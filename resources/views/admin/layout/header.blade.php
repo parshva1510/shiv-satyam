@@ -37,8 +37,6 @@ License: For each use you must have a valid license purchased only from above li
 		<link href="{{url('public/assets/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{url('public/assets/css/header.css')}}" rel="stylesheet" type="text/css" />
 		<!--end::Global Stylesheets Bundle-->
-		
-		
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
