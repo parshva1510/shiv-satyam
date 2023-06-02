@@ -1,0 +1,29 @@
+.header-txt{
+    color:white !important;
+}
+
+.number_error{
+    margin-top: 0.5rem;
+    font-size: .925rem;
+    color: #f1416c;
+}
+
+table.dataTable thead>tr>th.sorting {
+    padding-right: 0px !important;
+}
+
+.new-full-width {
+    max-width: 100% !important;
+}
+
+.mr-0 {
+  margin-right: 0px !important;
+}
+
+ul.select2-results__options {
+    font-size: 1.1rem !important;
+}
+
+.daterangepicker.ltr.show-ranges.opensright.show-calendar {
+    margin-right: 30px !important;
+}

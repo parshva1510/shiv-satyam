@@ -1,0 +1,5 @@
+@include ('admin.layout.header')
+@include ('admin.layout.sidebar')
+@yield('mainsection')
+@include ('admin.layout.footer')
+@yield('pagescript')
