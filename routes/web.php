@@ -17,4 +17,4 @@ use App\Http\Controllers\authentication;
 Route::get('add_ticket',[ticket::class,'add_ticket'])->name('add_ticket');
 Route::get('view_ticket',[ticket::class,'view_ticket'])->name('view_ticket');
 Route::get('login',[authentication::class,'login'])->name('login');
-Route::get('/',[authentication::class,'login1']);
+Route::get('/',[authentication::class,'login']);
