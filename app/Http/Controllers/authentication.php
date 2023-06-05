@@ -10,4 +10,9 @@ class authentication extends Controller
     {
         return view('login');
     }
+
+    public function changepassword()
+    {
+        return view('changepassword');
+    }
 }
