@@ -1,10 +1,6 @@
 @extends('admin.layout.layout')
 @section('mainsection')
 
-<!--begin::Vendor Stylesheets(used for view weighment page only)-->
-<link href="{{url('public/assets/plugins/custom/datatables/datatables.bundle.css')}}" rel="stylesheet" type="text/css" />
-<!--end::Vendor Stylesheets-->
-
 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
 						<!--begin::Content wrapper-->
 						<div class="d-flex flex-column flex-column-fluid">
@@ -433,6 +429,9 @@
         });
     });
 </script> -->
+
+
+
 
 
 <script>
