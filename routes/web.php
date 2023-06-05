@@ -15,6 +15,14 @@ use App\Http\Controllers\user;
 |
 */
 
+
+
+
+
+
+
+
+
 Route::get('add_ticket',[ticket::class,'add_ticket'])->name('add_ticket');
 Route::get('view_ticket',[ticket::class,'view_ticket'])->name('view_ticket');
 Route::get('login',[authentication::class,'login'])->name('login');
