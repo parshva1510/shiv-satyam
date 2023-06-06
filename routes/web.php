@@ -5,6 +5,7 @@ use App\Http\Controllers\ticket;
 use App\Http\Controllers\authentication;
 use App\Http\Controllers\user;
 use App\Http\Controllers\pdfcontroller;
+use App\Http\Controllers\reportcontroller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,3 +32,4 @@ Route::get('add_report',[ticket::class,'add_report'])->name('add_report');
 Route::get('add_payment',[payment::class,'add_payment'])->name('add_payment');
 
 Route::get('generate-pdf',[pdfcontroller::class,'generatepdf'])->name('generate-pdf');
+Route::get('reports',[reportcontroller::class,'reports'])->name('reports');
