@@ -24,4 +24,6 @@ Route::get('/',[authentication::class,'login']);
 Route::get('demo',[ticket::class,'demo'])->name('demo');
 Route::post('formsubmit',[ticket::class,'formsubmit'])->name('formsubmit');
 
-Route::post('transporter',[ticket::class,'add_transporter'])->name('add_transporter');
+
+Route::get('client',[ticket::class,'client'])->name('client');
+Route::post('xyz',[ticket::class,'add_transporter'])->name('add_transporter');
