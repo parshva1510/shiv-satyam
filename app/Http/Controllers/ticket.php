@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\demo;
+use App\Models\transporter;
 use Illuminate\Http\Request;
 
 class ticket extends Controller
@@ -40,5 +41,17 @@ class ticket extends Controller
      return view('admin.demo')->with("success","data has been saved");
 
 
+   }
+   public function add_transporter(Request $req){
+
+     $req->validate([
+          'name'=>'required'
+     ]);
+     $data=new transporter();
+     $data->name=$req->name;
+     $data->city=$req->city;
+     $data->contact=$req->contact;
+     $data->remark=$req->remark;
+     return view('admin/demo');
    }
 }

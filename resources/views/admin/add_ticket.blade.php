@@ -29,7 +29,7 @@
                         <!--begin::Heading-->
                         <div class="card-px text-center pt-9 pb-9">
                             <!--begin:Form-->
-                                <form id="kt_modal_new_target_form" class="form" action="#">
+                                <form id="kt_modal_new_target_form" class="form" method="POST" action="">
                                     <!--begin::Input group-->
                                     <div class="row g-9 mb-8">
                                         <!--begin::Label-->
@@ -99,7 +99,7 @@
                                                                 <!--begin::Modal body-->
                                                                 <div class="modal-body scroll-y mx-5 mx-xl-15 my-7 text-start">
                                                                     <!--begin::Form-->
-                                                                    <!-- <form id="kt_modal_add_user_form_1" class="form" action="#"> -->
+                                                                     <form id="kt_modal_add_transporter" class="form" action="">
                                                                         <!--begin::Scroll-->
                                                                         <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
                                                                             <!--begin::Input group-->
@@ -118,7 +118,7 @@
                                                                                 <label class="required fw-bolder fs-6 mb-2">Name</label>
                                                                                 <!--end::Label-->
                                                                                 <!--begin::Input-->
-                                                                                <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Sahal"/>
+                                                                                <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" name="name" id="name" placeholder="Sahal"/>
                                                                                 <!--end::Input-->
                                                                             </div>
                                                                             <!--end::Input group-->
@@ -128,7 +128,7 @@
                                                                                 <label class="required fw-bolder fs-6 mb-2">City</label>
                                                                                 <!--end::Label-->
                                                                                 <!--begin::Input-->
-                                                                                <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Bhuj"/>
+                                                                                <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" name="city" id="city" placeholder="Bhuj"/>
                                                                                 <!--end::Input-->
                                                                             </div>
                                                                             <!--end::Input group-->
@@ -138,7 +138,7 @@
                                                                                 <label class="required fw-bolder fs-6 mb-2">Contact No.</label>
                                                                                 <!--end::Label-->
                                                                                 <!--begin::Input-->
-                                                                                <input type="number" min="0" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="6595989565"/>
+                                                                                <input type="number" min="0" class="form-control form-control-solid mb-3 mb-lg-0" name="contact" id="contact" placeholder="6595989565"/>
                                                                                 <!--end::Input-->
                                                                             </div>
                                                                             <!--end::Input group-->
@@ -157,14 +157,14 @@
                                                                         <!--begin::Actions-->
                                                                         <div class="text-center d-flex flex-stack pt-5">
                                                                             <button type="" class="btn btn-light me-3" data-kt-users-modal-action_1="cancel_1">Reset</button>
-                                                                            <button type="" class="btn btn-primary" data-kt-users-modal-action_1="submit_1">
+                                                                            <button type="" class="btn btn-primary" data-kt-users-modal-action_1="submit_1" id="transporter">
                                                                                 <span class="indicator-label">Submit</span>
                                                                                 <span class="indicator-progress">Please wait...
                                                                                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                                                             </button>
                                                                         </div>
                                                                         <!--end::Actions-->
-                                                                    <!-- </form> -->
+                                                                     </form>
                                                                     <!--end::Form-->
                                                                 </div>
                                                                 <!--end::Modal body-->
@@ -370,6 +370,7 @@ let field2 = document.getElementById('field2').value;
 let field3 = document.getElementById('field3').value;
 
 // Check if any of the required fields are empty
+/*hide
 if (field1 === '' || field2 === '' || field3 === '') {
     Swal.fire({
         text: "Sorry, looks like there are some errors detected, please try again.",
@@ -392,7 +393,7 @@ if (field1 === '' || field2 === '' || field3 === '') {
     }).then((function(t) {
         t.isConfirmed && o.hide();
     }));
-}
+}*/
 }
 </script>
 
@@ -424,9 +425,10 @@ document.getElementById('number_error').textContent="please add valid vehical nu
 
 
 </script>
-
+<!--Temp hide code to add transporte
 <script>
 // Element to indecate
+
 var button = document.querySelector("#new_submit");
 
 // Handle button click event
@@ -441,7 +443,7 @@ myFunction(1);
 button.removeAttribute("data-kt-indicator");
 }, 1000);
 });
-</script>
+</script> STOP-->
 
 <script>
 $(document).ready(function($){
