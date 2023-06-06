@@ -30,3 +30,5 @@ Route::post('transporter',[ticket::class,'add_transporter'])->name('add_transpor
 
 Route::get('client',[ticket::class,'client'])->name('client');
 Route::post('xyz',[ticket::class,'add_transporter'])->name('add_transporter');
+
+Route::get('reports',[reportcontroller::class,'reports'])->name('reports');
