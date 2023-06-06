@@ -52,7 +52,9 @@
 		<script src="{{url('public/assets/js/custom/apps/ecommerce/reports/views/views.js')}}"></script>
 		<!--end::Custom Javascript-->
 	
-
+		<!--begin::Custom Javascript(used for report page only)-->
+		<script src="{{url('public/assets/js/custom/apps/ecommerce/sales/listing.js')}}"></script>
+		<!--end::Custom Javascript-->
 		
 		<!--end::Javascript-->
 	</body>

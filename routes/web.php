@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ticket;
 use App\Http\Controllers\authentication;
 use App\Http\Controllers\user;
+use App\Http\Controllers\pdfcontroller;
+use App\Http\Controllers\reportcontroller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +26,7 @@ Route::get('/',[authentication::class,'login']);
 Route::get('demo',[ticket::class,'demo'])->name('demo');
 Route::post('formsubmit',[ticket::class,'formsubmit'])->name('formsubmit');
 
+Route::post('transporter',[ticket::class,'add_transporter'])->name('add_transporter');
 
 Route::get('client',[ticket::class,'client'])->name('client');
 Route::post('xyz',[ticket::class,'add_transporter'])->name('add_transporter');
