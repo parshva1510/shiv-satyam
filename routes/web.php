@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ticket;
 use App\Http\Controllers\authentication;
 use App\Http\Controllers\user;
+use App\Http\Controllers\client;
+use App\Http\Controllers\payment;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
