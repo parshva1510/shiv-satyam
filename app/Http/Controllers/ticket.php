@@ -21,6 +21,12 @@ class ticket extends Controller
    {
         return view('admin/demo');
    }
+   public function client()
+   {
+     $data=transporter::get()->all();
+     //dd($data);
+        return view('admin.add_client');
+   }
 
    public function formsubmit(Request $data)
    {
@@ -38,7 +44,7 @@ class ticket extends Controller
      $datainsert->gross_date = $data->gross_date;
 
      $datainsert->save();
-     return view('admin/demo')->with("success","data has been saved");
+     return view('admin.demo')->with("success","data has been saved");
 
 
    }
@@ -52,6 +58,9 @@ class ticket extends Controller
      $data->city=$req->city;
      $data->contact=$req->contact;
      $data->remark=$req->remark;
-     return view('admin/demo');
+     $data->save();
+   
+     return view('admin.add_client');
    }
+  
 }
