@@ -8,17 +8,17 @@ class ticket extends Controller
 {
     public function add_ticket()
     {
-        return view('admin/add_ticket');
+        return view('admin.add_ticket');
     }
 
    public function view_ticket()
    {
-        return view('admin/view_ticket');
+        return view('admin.view_ticket');
    }
 
    public function demo()
    {
-        return view('admin/demo');
+        return view('admin.demo');
    }
 
    public function formsubmit(Request $data)
@@ -37,7 +37,7 @@ class ticket extends Controller
      $datainsert->gross_date = $data->gross_date;
 
      $datainsert->save();
-     return view('admin/demo')->with("success","data has been saved");
+     return view('admin.demo')->with("success","data has been saved");
 
 
    }
