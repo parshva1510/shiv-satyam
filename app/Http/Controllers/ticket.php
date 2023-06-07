@@ -24,7 +24,7 @@ class ticket extends Controller
    public function client()
    {
      $data=transporter::get()->all();
-     //dd($data);
+     dd($data);
         return view('admin.add_client');
    }
 
