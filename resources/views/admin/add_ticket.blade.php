@@ -46,7 +46,7 @@
                                             <div class="row">
                                                 <div class="col-md-8">
                                                     <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
-                                                        <span class="required">Transporter</span>
+                                                        <span class="required">Transporter1</span>
                                                     </label>
                                                     <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Account" name="target_assign">
                                                         <option class="dropdown-font" value="">Select Account...</option>
