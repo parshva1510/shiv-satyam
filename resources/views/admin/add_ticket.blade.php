@@ -37,7 +37,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Ticket No.</span>
                                             </label>
-                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="1510" name="target_title" readonly/>
+                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="1510" name="ticket_no" readonly/>
                                         </div>
                                         <!--end::Label-->
                                         
@@ -46,9 +46,9 @@
                                             <div class="row">
                                                 <div class="col-md-8">
                                                     <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
-                                                        <span class="required">Transporter1</span>
+                                                        <span class="required">Transporter</span>
                                                     </label>
-                                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Account" name="target_assign">
+                                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Account" name="transpoter_no">
                                                         <option class="dropdown-font" value="">Select Account...</option>
                                                         <option class="dropdown-font" value="1">1. Karan</option>
                                                         <option class="dropdown-font" value="2">2. Sahal</option>
@@ -183,7 +183,7 @@
                                                 <span class="required">Vehicle No.</span>
                                             </label>
                                             <input id="NUMBERPLATE" type="text" class="form-control form-control-solid" placeholder="GJ-12-PM-####" 
-                                                name="target_title" title="Please enter a valid vehicle number." 
+                                                name="vehical_no" title="Please enter a valid vehicle number." 
                                                 autocomplete="off" required oninput="this.value = this.value.toUpperCase();" />
                                             <span class="d-flex number_error" id="number_error"></span>
                                         </div>
@@ -200,7 +200,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Gross Weight (KG)</span>
                                             </label>
-                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="0" name="target_title"/>
+                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="0" name="gross_weight"/>
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Label-->
@@ -220,7 +220,7 @@
                                                 <!--end::Svg Icon-->
                                                 <!--end::Icon-->
                                                 <!--begin::Datepicker-->
-                                                <input class="form-control form-control-solid ps-12" id="new_date" placeholder="Select a date" name="due_date"/>
+                                                <input class="form-control form-control-solid ps-12" id="new_date" placeholder="Select a date" name="gross_date"/>
                                                 <!--end::Datepicker-->
                                             </div>
                                         </div>
@@ -231,7 +231,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Tare Weight (KG)</span>
                                             </label>
-                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="0" name="target_title"/>
+                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="0" name="tare_wight"/>
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Label-->
@@ -251,7 +251,7 @@
                                                 <!--end::Svg Icon-->
                                                 <!--end::Icon-->
                                                 <!--begin::Datepicker-->
-                                                <input class="form-control form-control-solid ps-12" id="new_date1" placeholder="Select a date" name="due_date"/>
+                                                <input class="form-control form-control-solid ps-12" id="new_date1" placeholder="Select a date" name="tare_date"/>
                                                 <!--end::Datepicker-->
                                             </div>
                                         </div>
@@ -267,7 +267,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Net Weight</span>
                                             </label>
-                                            <input id="field1" type="number" min="0" class="form-control form-control-solid" placeholder="0" name="target_title" required/>
+                                            <input id="field1" type="number" min="0" class="form-control form-control-solid" placeholder="0" name="net_weight" required/>
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Label-->
@@ -275,7 +275,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Material</span>
                                             </label>
-                                            <input id="field2" type="text" class="form-control form-control-solid" placeholder="" name="target_title" required/>
+                                            <input id="field2" type="text" class="form-control form-control-solid" placeholder="" name="material" required/>
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Label-->
@@ -283,13 +283,13 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Charge</span>
                                             </label>
-                                            <input id="field3" type="number" min="0" class="form-control form-control-solid" placeholder="0" name="target_title" required/>
+                                            <input id="field3" type="number" min="0" class="form-control form-control-solid" placeholder="0" name="charge" required/>
                                         </div>
                                         <!--end::Label-->	
                                         <!--begin::Col-->
                                         <div class="col-md-3 fv-row">
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">Payment Mode</label>
-                                            <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Payment Mode" name="target_assign">
+                                            <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Payment Mode" name="payment_mode">
                                                 <option value="">Select Mode...</option>
                                                 <option value="1">Cash</option>
                                                 <option value="2">Gpay</option>
@@ -305,7 +305,7 @@
                                     <!--begin::Input group-->
                                     <div class="d-flex flex-column mb-8">
                                         <label class="d-flex align-items-center fs-6 fw-bolder mb-2">Remarks</label>
-                                        <textarea class="form-control form-control-solid" rows="3" name="target_details" placeholder="Remarks"></textarea>
+                                        <textarea class="form-control form-control-solid" rows="3" name="remark" placeholder="Remarks"></textarea>
                                     </div>
                                     <!--end::Input group-->
                                     <!--begin::Actions-->
