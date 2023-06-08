@@ -29,7 +29,7 @@
                         <!--begin::Heading-->
                         <div class="card-px text-center pt-9 pb-9">
                             <!--begin:Form-->
-                                <form id="kt_modal_new_target_form" class="form" method="POST" action="">
+                                <form id="kt_modal_new_target_form" class="form" method="POST" action="{{route('add_transporter')}}">
                                     <!--begin::Input group-->
                                     <div class="row g-9 mb-8">
                                         <!--begin::Label-->
@@ -260,7 +260,7 @@
             <!--begin::Modal body-->
             <div class="modal-body scroll-y mx-5 mx-xl-15 my-7 text-start">
                 <!--begin::Form-->
-                    <form id="kt_modal_add_transporter" class="form" method="POST" action="{{route('add_transporter')}}">
+                    <form id="kt_modal_add_transporter" class="form" method="POST" action="">
                     <!--begin::Scroll-->
                     <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
                         <!--begin::Input group-->

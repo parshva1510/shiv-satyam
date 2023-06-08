@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class ticket extends Controller
 {
+ 
     public function add_ticket()
     {
         return view('admin.add_ticket');
@@ -24,7 +25,7 @@ class ticket extends Controller
    public function client()
    {
      $data=transporter::get()->all();
-     dd($data);
+     //dd($data);
         return view('admin.add_client');
    }
 
@@ -48,7 +49,15 @@ class ticket extends Controller
 
 
    }
-   public function add_transporter(Request $req){
+   public function index()
+    {
+     $client['data'] = transporter::orderby("name","asc")
+     ->select('id','name')
+     ->get();
+
+          // Load index view
+     return view('index')->with("transporter",$client);
+    }   public function add_transporter(Request $req){
 
      $req->validate([
           'name'=>'required'

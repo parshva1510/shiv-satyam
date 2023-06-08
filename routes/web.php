@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ticket;
+use App\Http\Controllers\transporter;
 use App\Http\Controllers\authentication;
 use App\Http\Controllers\user;
 use App\Http\Controllers\pdfcontroller;
@@ -26,11 +27,18 @@ Route::get('/',[authentication::class,'login']);
 Route::get('demo',[ticket::class,'demo'])->name('demo');
 Route::post('formsubmit',[ticket::class,'formsubmit'])->name('formsubmit');
 
-Route::post('transporter',[ticket::class,'add_transporter'])->name('add_transporter');
-Route::get('client',[ticket::class,'client'])->name('client');
-Route::post('client',[ticket::class,'add_transporter'])->name('add_transporter');
 
+Route::get('client',[ticket::class,'client'])->name('client');
+//Route::post('client',[ticket::class,'add_transporter'])->name('add_transporter');
+
+
+Route::get('transporter',[ticket::class,'add_transporter'])->name('add_transporter');
 /*Route::get('add_ticket/{id}',[ticket::class,'add_ticket'])->name('add_ticket');
 Route::post('add_ticket/{id}',[ticket::class,'add_transporter'])->name('add_transporter');*/
+
+
+//Route::get('add_transporter',[transporter::class,'show'])->name('show');
+
+
 
 Route::get('reports',[reportcontroller::class,'reports'])->name('reports');
