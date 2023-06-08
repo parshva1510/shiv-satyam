@@ -17,7 +17,7 @@ use App\Http\Controllers\reportcontroller;
 |
 */
 
-Route::get('add_ticket',[ticket::class,'add_ticket'])->name('add_ticket');
+Route::get('ticket_form',[ticket::class,'index'])->name('ticket_form');
 Route::get('view_ticket',[ticket::class,'view_ticket'])->name('view_ticket');
 Route::get('login',[authentication::class,'login'])->name('login');
 Route::get('/',[authentication::class,'login']);
@@ -33,3 +33,5 @@ Route::get('add_payment',[payment::class,'add_payment'])->name('add_payment');
 
 Route::get('generate-pdf',[pdfcontroller::class,'generatepdf'])->name('generate-pdf');
 Route::get('reports',[reportcontroller::class,'reports'])->name('reports');
+
+Route::POST('add_ticket',[ticket::class,'add_ticket'])->name('add_ticket');

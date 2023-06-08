@@ -12,4 +12,5 @@ class weight_entry extends Model
     protected $table='weight_entry';
     protected $primaryKey='sr_no';
     public $timestamps=false;
+   
 }
