@@ -9,12 +9,15 @@ use Illuminate\Http\Request;
 class ticket extends Controller
 {
      public function index(){
-          return view('admin.add_ticket');
+          $data=transporter::get()->all();
+          return view('admin.add_ticket',["transporter" => $data]);
      }
     public function add_ticket(Request $req)
     {
      $datainsert = new weight_entry();
-
+     $req->validate([
+          'ticket_no'=>'required'
+     ]);
      $datainsert->ticket_no = $req->ticket_no;
      $datainsert->transpoter_no = $req->transpoter_no;
      $datainsert->vehicle_no = $req->vehical_no;
@@ -43,27 +46,7 @@ class ticket extends Controller
         return view('admin.demo');
    }
 
-   public function formsubmit(Request $data)
-   {
-
-     $data->validate([
-          'transporter'=>'required'
-     ]);
-     
-     $datainsert=new demo();
-
-     $datainsert->ticket_no = $data->ticket_no;
-     $datainsert->transporter = $data->transporter;
-     $datainsert->vehicle_no = $data->vehicle_no;
-     $datainsert->gross_weight = $data->gross_weight;
-     $datainsert->gross_date = $data->gross_date;
-     
-
-     $datainsert->save();
-     return view('admin.demo')->with("success","data has been saved");
-
-
-   }
+   
    public function add_transporter(Request $req){
 
      $req->validate([

@@ -146,12 +146,14 @@
                         <div class="card card-flush">
                             <!--begin::Card body-->
                             <div class="card-body">
-                                <!--begin::Table-->
+                                <!--begin::form-->
+                                <form id="kt_modal_add_transporter" class="form" method="POST" action="{{route('add_transporter')}}">
                                 <div class="fv-row mb-7">
                                     <!--begin::Label-->
                                     <label class="required fw-bolder fs-6 mb-2">A/c No.</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
+                                    @csrf
                                     <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" placeholder="1510"/>
                                     <!--end::Input-->
                                 </div>
@@ -160,7 +162,7 @@
                                     <label class="required fw-bolder fs-6 mb-2">Name</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" placeholder=""/>
+                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="name" id="name" placeholder=""/>
                                     <!--end::Input-->
                                 </div>
                                     <!--begin::Table-->
@@ -169,7 +171,7 @@
                                         <label class="required fw-bolder fs-6 mb-2">City</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" placeholder=""/>
+                                        <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="city" id="city" placeholder=""/>
                                         <!--end::Input-->
                                     </div>
                                     <div class="fv-row mb-7">
@@ -177,7 +179,7 @@
                                         <label class="required fw-bolder fs-6 mb-2">Contact</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" placeholder=""/>
+                                        <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="contact" id="contact" placeholder=""/>
                                         <!--end::Input-->
                                     </div>
                                     <div class="fv-row mb-7">
@@ -185,12 +187,12 @@
                                         <label class="required fw-bolder fs-6 mb-2">Remark</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" placeholder=""/>
+                                        <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="remark" id="remark" placeholder=""/>
                                         <!--end::Input-->
                                     </div>
                                 
                                 
-                                <button type="submit" id="new_submit" class="btn btn-primary">
+                                <button type="" id="new_submit" class="btn btn-primary">
                                     <span class="indicator-label">Add</span>
                                     <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -208,7 +210,7 @@
                                     <!--end::Svg Icon-->
                                     <input type="text" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search Order" />
                                 </div>
-                                
+                            </form>
                             </div>
                             <!--end::Card body-->
                         </div>
