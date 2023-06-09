@@ -10,9 +10,9 @@ class ticket extends Controller
  
     public function add_ticket()
     {
-          $data=transporter::get()->all();
+          // $data=transporter::get()->all();
 
-          return view('admin.add_ticket',["transporter" => $data]);
+          return view('admin.add_ticket');
           //return redirect()->route('add_ticket');
     }
 

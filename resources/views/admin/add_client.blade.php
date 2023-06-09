@@ -29,8 +29,7 @@
                         <!--begin::Heading-->
                         <div class="card-px text-center pt-9 pb-9">
                          
-                               
-                                        
+
                                         <!--begin::Label-->
                                         <div class="col-md-4 fv-row">
                                             <div class="row">
@@ -40,9 +39,12 @@
                                                     </label>
                                                     <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Account" name="target_assign">
                                                         <option class="dropdown-font" value="">Select Account...</option>
-                                                        @foreach($data as $row)
-                                                        <option value="{{ $row->id }}">{{$row->name}}</option>
-                                                        @endforeach
+                                                        <option class="dropdown-font" value="">Select Account...</option>
+                                                        <option class="dropdown-font" value="">Select Account...</option>
+                                                        <option class="dropdown-font" value="">Select Account...</option>
+                                                        <option class="dropdown-font" value="">Select Account...</option>
+                                                        <option class="dropdown-font" value="">Select Account...</option>
+
                                                     </select>
                                                 </div>
 
@@ -87,7 +89,7 @@
                                                                 <!--begin::Modal body-->
                                                                 <div class="modal-body scroll-y mx-5 mx-xl-15 my-7 text-start">
                                                                     <!--begin::Form-->
-                                                                     <form id="kt_modal_add_transporter1" class="form" method="POST" action="{{route('add_transporter')}}">
+                                                                     <form id="kt_modal_add_transporter1" class="form" method="POST" action="">
                                                                         <!--begin::Scroll-->
                                                                         <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
                                                                             <!--begin::Input group-->

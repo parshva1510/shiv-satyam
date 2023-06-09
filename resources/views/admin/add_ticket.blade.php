@@ -29,7 +29,7 @@
                         <!--begin::Heading-->
                         <div class="card-px text-center pt-9 pb-9">
                             <!--begin:Form-->
-                                <form id="kt_modal_new_target_form" class="form" method="POST" action="{{route('add_transporter')}}">
+                                <form id="kt_modal_new_target_form" class="form" method="POST" action="">
                                     <!--begin::Input group-->
                                     <div class="row g-9 mb-8">
                                         <!--begin::Label-->
@@ -50,14 +50,13 @@
                                                     </label>
                                                     <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Account" name="target_assign">
                                                         <option class="dropdown-font" value="">Select Account...</option>
-                                                        @forelse($transporter as $row)
-                                                        <option value="{{ $row -> sr_no }}">{{$row -> name}}</option>
-                                                        @empty
-                                                        No data found
-                                                        @endforelse
+                                                        <option class="dropdown-font" value="">Select Account...</option>
+                                                        <option class="dropdown-font" value="">Select Account...</option>
+                                                        <option class="dropdown-font" value="">Select Account...</option>
+                                                        <option class="dropdown-font" value="">Select Account...</option>
                                                     </select>
                                                 </div>
-
+                                                
                                                 <div class="col-md-4 mt-8">
                                                     <!--begin::Add user-->
                                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_user_1">
