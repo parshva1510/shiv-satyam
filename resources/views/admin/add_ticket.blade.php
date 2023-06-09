@@ -50,11 +50,11 @@
                                                     </label>
                                                     <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Account" name="target_assign">
                                                         <option class="dropdown-font" value="">Select Account...</option>
-                                                        <option class="dropdown-font" value="1">1. Karan</option>
-                                                        <option class="dropdown-font" value="2">2. Sahal</option>
-                                                        <option class="dropdown-font" value="3">3. Junaid</option>
-                                                        <option class="dropdown-font" value="4">4. Sahil</option>
-                                                        <option class="dropdown-font" value="5">5. Baba</option>
+                                                        @forelse($transporter as $row)
+                                                        <option value="{{ $row -> sr_no }}">{{$row -> name}}</option>
+                                                        @empty
+                                                        No data found
+                                                        @endforelse
                                                     </select>
                                                 </div>
 
@@ -317,8 +317,8 @@
                     <!--end::Scroll-->
                     <!--begin::Actions-->
                     <div class="text-center d-flex flex-stack pt-5">
-                        <button type="" class="btn btn-light me-3" data-kt-users-modal-action_1="cancel_1">Reset</button>
-                        <button type="" class="btn btn-primary" data-kt-users-modal-action_1="submit_1" >
+                        <button type="" class="btn btn-light me-3" >Reset</button>
+                        <button type="" class="btn btn-primary"  >
                             <span class="indicator-label">Submit</span>
                             <span class="indicator-progress">Please wait...
                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
