@@ -272,6 +272,11 @@
 
 @section('pagescript')
 
+<script src="{{url('public/assets/js/custom/apps/ecommerce/customers/listing/listing.js')}}"></script>
+<script src="{{url('public/assets/js/custom/apps/ecommerce/customers/listing/add.js')}}"></script>
+<script src="{{url('public/assets/js/custom/apps/ecommerce/customers/listing/export.js')}}"></script>
+<script src="{{url('public/assets/js/custom/apps/ecommerce/reports/views/views.js')}}"></script>
+
 <script>
     jQuery(document).ready(function($){
         var currentDateTime = new Date();

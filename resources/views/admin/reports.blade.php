@@ -1,6 +1,7 @@
 @extends('admin.layout.layout')
 
 @section('mainsection')
+
 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
     <!--begin::Content wrapper-->
     <div class="d-flex flex-column flex-column-fluid">
@@ -29,91 +30,72 @@
                     <div class="col-xl-9">
                         <!--begin::Products-->
                         <div class="card card-flush">
-                            <div class="card-header border-0 pt-6">
-                                <!--begin::Card title-->
+                            <div class="card-header align-items-center py-5 gap-2 gap-md-5">
                                 <div class="card-title">
                                     <!--begin::Search-->
                                     <div class="d-flex align-items-center position-relative my-1">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
-                                        <span class="svg-icon svg-icon-1 position-absolute ms-6">
+                                        <span class="svg-icon svg-icon-1 position-absolute ms-4">
                                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor" />
-                                                <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor" />
-                                            </svg>
+                                                <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"></rect>
+                                                <path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"></path>
+                                                </svg>
                                         </span>
-                                        <!--end::Svg Icon-->
-                                        <input type="text" data-kt-customer-table-filter="search" class="form-control form-control-solid w-250px ps-15" placeholder="Search Customers" />
+                                        <input type="text" data-kt-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search Report" />
                                     </div>
                                     <!--end::Search-->
+                                    <!--begin::Export buttons-->
+                                    <div id="kt_datatable_example_1_export" class="d-none"></div>
+                                    <!--end::Export buttons-->
                                 </div>
-                                <!--begin::Card title-->
-                                <!--begin::Card toolbar-->
-                                <div class="card-toolbar flex-row-fluid justify-content-end">
-                                    <!--begin::Toolbar-->
-                                    <div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
-                                            <div class="card-title">
-                                                <!--begin::Export buttons-->
-                                                <div id="kt_customers_table_export" class="d-none"></div>
-                                                <!--end::Export buttons-->
-                                            </div>
-                                            <div class="m-0">
-                                                <!--begin::Export dropdown-->
-                                                <button type="button" class="btn btn-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                                <span class="svg-icon svg-icon-2">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <rect opacity="0.3" x="12.75" y="4.25" width="12" height="2" rx="1" transform="rotate(90 12.75 4.25)" fill="currentColor" />
-                                                        <path d="M12.0573 6.11875L13.5203 7.87435C13.9121 8.34457 14.6232 8.37683 15.056 7.94401C15.4457 7.5543 15.4641 6.92836 15.0979 6.51643L12.4974 3.59084C12.0996 3.14332 11.4004 3.14332 11.0026 3.59084L8.40206 6.51643C8.0359 6.92836 8.0543 7.5543 8.44401 7.94401C8.87683 8.37683 9.58785 8.34458 9.9797 7.87435L11.4427 6.11875C11.6026 5.92684 11.8974 5.92684 12.0573 6.11875Z" fill="currentColor" />
-                                                        <path opacity="0.3" d="M18.75 8.25H17.75C17.1977 8.25 16.75 8.69772 16.75 9.25C16.75 9.80228 17.1977 10.25 17.75 10.25C18.3023 10.25 18.75 10.6977 18.75 11.25V18.25C18.75 18.8023 18.3023 19.25 17.75 19.25H5.75C5.19772 19.25 4.75 18.8023 4.75 18.25V11.25C4.75 10.6977 5.19771 10.25 5.75 10.25C6.30229 10.25 6.75 9.80228 6.75 9.25C6.75 8.69772 6.30229 8.25 5.75 8.25H4.75C3.64543 8.25 2.75 9.14543 2.75 10.25V19.25C2.75 20.3546 3.64543 21.25 4.75 21.25H18.75C19.8546 21.25 20.75 20.3546 20.75 19.25V10.25C20.75 9.14543 19.8546 8.25 18.75 8.25Z" fill="currentColor" />
-                                                    </svg>
-                                                </span>Export
-                                                </button>
-                                                <!--begin::Menu-->
-                                                <div id="kt_customers_table_export_menu" class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4" data-kt-menu="true">
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3" data-kt-export="copy">
-                                                        Copy to clipboard
-                                                        </a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3" data-kt-export="excel">
-                                                        Export as Excel
-                                                        </a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3" data-kt-export="csv">
-                                                        Export as CSV
-                                                        </a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                    <!--begin::Menu item-->
-                                                    <div class="menu-item px-3">
-                                                        <a href="#" class="menu-link px-3" data-kt-export="pdf">
-                                                        Export as PDF
-                                                        </a>
-                                                    </div>
-                                                    <!--end::Menu item-->
-                                                </div>
-                                                <!--end::Menu-->
-                                                <!--end::Export dropdown-->
-
-                                                <!--begin::Hide default export buttons-->
-                                                <div id="kt_customers_table_buttons" class="d-none"></div>
-                                                <!--end::Hide default export buttons-->
-                                            </div>
+                                <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+                                    <!--begin::Export dropdown-->
+                                    <button type="button" class="btn btn-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                       
+                                        Export Data
+                                    </button>
+                                    <!--begin::Menu-->
+                                    <div id="kt_datatable_example_export_menu" class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4" data-kt-menu="true">
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="#" class="menu-link px-3" data-kt-export="copy">
+                                            Copy to clipboard
+                                            </a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="#" class="menu-link px-3" data-kt-export="excel">
+                                            Export as Excel
+                                            </a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="#" class="menu-link px-3" data-kt-export="csv">
+                                            Export as CSV
+                                            </a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="#" class="menu-link px-3" data-kt-export="pdf">
+                                            Export as PDF
+                                            </a>
+                                        </div>
+                                        <!--end::Menu item-->
                                     </div>
-                                    <!--end::Toolbar-->
+                                    <!--end::Menu-->
+                                    <!--end::Export dropdown-->
+                            
+                                    <!--begin::Hide default export buttons-->
+                                    <div id="kt_datatable_example_buttons" class="d-none"></div>
+                                    <!--end::Hide default export buttons-->
                                 </div>
-                                <!--end::Card toolbar-->
                             </div>
                             <!--begin::Card body-->
                             <div class="card-body">
                                 <!--begin::Table-->
-                                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_sales_table">
+                                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_datatable_example">
                                     <!--begin::Table head-->
                                     <thead>
                                         <!--begin::Table row-->
@@ -145,11 +127,11 @@
 
                                             <td>1056</td>
 
-                                            <td>24 May, 2023 - 11:47 AM</td>
+                                            <td>24 May, 2023</td>
 
                                             <td>650</td>
                                             
-                                            <td>24 May, 2023 - 11:47 AM</td>
+                                            <td>24 May, 2023</td>
                                     
                                             <td>1650</td>
 
@@ -193,11 +175,11 @@
 
                                             <td>1056</td>
 
-                                            <td>24 May, 2023 - 11:47 AM</td>
+                                            <td>24 May, 2023</td>
 
                                             <td>650</td>
                                             
-                                            <td>24 May, 2023 - 11:47 AM</td>
+                                            <td>24 May, 2023</td>
                                     
                                             <td>1650</td>
 
@@ -267,17 +249,7 @@
                                     </label>
                                     <!--begin::Flatpickr-->
                                     <div class="input-group">
-                                        <input class="form-control form-control-solid rounded rounded-end-0" placeholder="Pick date range" id="kt_ecommerce_sales_flatpickr" />
-                                        <button class="btn btn-icon btn-light" id="kt_ecommerce_sales_flatpickr_clear">
-                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr088.svg-->
-                                            <span class="svg-icon svg-icon-2">
-                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <rect opacity="0.5" x="7.05025" y="15.5356" width="12" height="2" rx="1" transform="rotate(-45 7.05025 15.5356)" fill="currentColor" />
-                                                    <rect x="8.46447" y="7.05029" width="12" height="2" rx="1" transform="rotate(45 8.46447 7.05029)" fill="currentColor" />
-                                                </svg>
-                                            </span>
-                                            <!--end::Svg Icon-->
-                                        </button>
+                                        <input class="form-control form-control-solid" placeholder="Pick date rage" id="kt_daterangepicker_1"/>
                                     </div>
                                     <!--end::Flatpickr-->
                                 </div>
@@ -316,4 +288,105 @@
 
 @section('pagescript')
 
+
+<!--begin::Custom Javascript(used for report page only)-->
+<script src="{{url('public/assets/js/custom/apps/ecommerce/sales/listing.js')}}"></script>
+{{-- <script src="{{url('public/assets/js/custom/apps/ecommerce/customers/listing/listing.js')}}"></script> --}}
+<!--end::Custom Javascript-->
+
+<script>
+    $("#kt_daterangepicker_1").daterangepicker();
+</script>
+
+<script>
+
+// Class definition
+var KTDatatablesExample = function () {
+    // Shared variables
+    var table = '#kt_datatable_example';
+    var datatable;
+
+    // Private functions
+    var initDatatable = function () {
+       
+
+        // Init datatable --- more info on datatables: https://datatables.net/manual/
+        datatable = $('#kt_datatable_example').DataTable({
+            "info": true,
+            'pageLength': 10,
+            "ordering": false
+        });
+        //console.log(datatable);
+    }
+
+    // Hook export buttons
+    var exportButtons = () => {
+        const documentTitle = 'Assesment Report';
+        var buttons = new $.fn.dataTable.Buttons(table, {
+            buttons: [
+                {
+                    extend: 'copyHtml5',
+                    title: documentTitle
+                },
+                {
+                    extend: 'excelHtml5',
+                    title: documentTitle
+                },
+                {
+                    extend: 'csvHtml5',
+                    title: documentTitle
+                },
+                {
+                    extend: 'pdf',
+                    title: documentTitle
+                }
+            ]
+        }).container().appendTo($('#kt_datatable_example_buttons'));
+
+        // Hook dropdown menu click event to datatable export buttons
+        const exportButtons = document.querySelectorAll('#kt_datatable_example_export_menu [data-kt-export]');
+        exportButtons.forEach(exportButton => {
+            exportButton.addEventListener('click', e => {
+                e.preventDefault();
+
+                // Get clicked export value
+                const exportValue = e.target.getAttribute('data-kt-export');
+                const target = document.querySelector('.dt-buttons .buttons-' + exportValue);
+
+                // Trigger click event on hidden datatable export buttons
+                target.click();
+            });
+        });
+    }
+
+    // Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
+    var handleSearchDatatable = () => {
+        const filterSearch = document.querySelector('[data-kt-filter="search"]');
+        filterSearch.addEventListener('keyup', function (e) {
+            datatable.search(e.target.value).draw();
+        });
+    }
+
+    // Public methods
+    return {
+        init: function () {
+            table = document.querySelector('#kt_datatable_example');
+
+            if ( !table ) {
+                return;
+            }
+
+            initDatatable();
+            exportButtons();
+            handleSearchDatatable();
+        }
+    };
+}();
+
+// On document ready
+KTUtil.onDOMContentLoaded(function () {
+    KTDatatablesExample.init();
+});
+
+</script>
 @endsection
