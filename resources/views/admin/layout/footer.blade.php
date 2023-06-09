@@ -45,16 +45,7 @@
 
 		<script src="{{url('public/assets/js/custom/apps/user-management/users/list/add.js')}}"></script>
 
-		<!--begin::Custom Javascript(used for  view weighment page only)-->
-		<script src="{{url('public/assets/js/custom/apps/ecommerce/customers/listing/listing.js')}}"></script>
-		<script src="{{url('public/assets/js/custom/apps/ecommerce/customers/listing/add.js')}}"></script>
-		<script src="{{url('public/assets/js/custom/apps/ecommerce/customers/listing/export.js')}}"></script>
-		<script src="{{url('public/assets/js/custom/apps/ecommerce/reports/views/views.js')}}"></script>
-		<!--end::Custom Javascript-->
-	
-		<!--begin::Custom Javascript(used for report page only)-->
-		<script src="{{url('public/assets/js/custom/apps/ecommerce/sales/listing.js')}}"></script>
-		<!--end::Custom Javascript-->
+
 		
 		<!--end::Javascript-->
 	</body>

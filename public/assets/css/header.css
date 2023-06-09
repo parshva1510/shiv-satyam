@@ -28,6 +28,10 @@ ul.select2-results__options {
     margin-right: 30px !important;
 }
 
+.daterangepicker.ltr.show-calendar.opensright {
+    margin-right: 30px;
+}
+
 .w-80 {
     width: 80% !important;
 }
@@ -39,3 +43,4 @@ ul.select2-results__options {
 a.btn.btn-primary.full-button {
     width: -webkit-fill-available !important;
 }
+
