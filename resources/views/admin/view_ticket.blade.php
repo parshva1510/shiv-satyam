@@ -61,7 +61,7 @@
 													</div>
 													<!--end::Daterangepicker-->
 													<!--begin::Filter menu-->
-													<div class="m-0">
+													{{-- <div class="m-0">
 														<!--begin::Menu toggle-->
 														<button type="button" class="btn btn-light" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
 																		<!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
@@ -174,7 +174,7 @@
 															<!--end::Form-->
 														</div>
 														<!--end::Menu 1-->
-													</div>
+													</div> --}}
 													<!--end::Filter menu-->
 														<div class="card-title">
 															<!--begin::Export buttons-->
@@ -251,7 +251,7 @@
 												<!--begin::Table head-->
 												<thead>
 													<!--begin::Table row-->
-													<tr class="text-start text-gray-400 fw-bold fs-7 text-uppercase gs-0">
+													<tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
 														<th class="w-10px pe-2">
 															<div class="form-check form-check-sm form-check-custom form-check-solid me-3">
 																<input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_customers_table .form-check-input" value="1" />
@@ -430,7 +430,101 @@
     });
 </script> -->
 
+<!--begin::Custom Javascript(used for  view weighment page only)-->
+<script src="{{url('public/assets/js/custom/apps/ecommerce/customers/listing/listing.js')}}"></script>
+<script src="{{url('public/assets/js/custom/apps/ecommerce/customers/listing/add.js')}}"></script>
+<!--end::Custom Javascript-->
+<script>
 
+	// Class definition
+	var KTDatatablesExample = function () {
+		// Shared variables
+		var table = '#kt_customers_table';
+		var datatable;
+	
+		// Private functions
+		var initDatatable = function () {
+		   
+	
+			// Init datatable --- more info on datatables: https://datatables.net/manual/
+			datatable = $('#kt_customers_table').DataTable({
+				"info": true,
+				'pageLength': 10,
+				"ordering": false
+			});
+			//console.log(datatable);
+		}
+	
+		// Hook export buttons
+		var exportButtons = () => {
+			const documentTitle = 'Assesment Report';
+			var buttons = new $.fn.dataTable.Buttons(table, {
+				buttons: [
+					{
+						extend: 'copyHtml5',
+						title: documentTitle
+					},
+					{
+						extend: 'excelHtml5',
+						title: documentTitle
+					},
+					{
+						extend: 'csvHtml5',
+						title: documentTitle
+					},
+					{
+						extend: 'pdf',
+						title: documentTitle
+					}
+				]
+			}).container().appendTo($('#kt_customers_table_buttons'));
+	
+			// Hook dropdown menu click event to datatable export buttons
+			const exportButtons = document.querySelectorAll('#kt_customers_table_export_menu [data-kt-export]');
+			exportButtons.forEach(exportButton => {
+				exportButton.addEventListener('click', e => {
+					e.preventDefault();
+	
+					// Get clicked export value
+					const exportValue = e.target.getAttribute('data-kt-export');
+					const target = document.querySelector('.dt-buttons .buttons-' + exportValue);
+	
+					// Trigger click event on hidden datatable export buttons
+					target.click();
+				});
+			});
+		}
+	
+		// Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
+		var handleSearchDatatable = () => {
+			const filterSearch = document.querySelector('[data-kt-filter="search"]');
+			filterSearch.addEventListener('keyup', function (e) {
+				datatable.search(e.target.value).draw();
+			});
+		}
+	
+		// Public methods
+		return {
+			init: function () {
+				table = document.querySelector('#kt_customers_table');
+	
+				if ( !table ) {
+					return;
+				}
+	
+				initDatatable();
+				exportButtons();
+				handleSearchDatatable();
+			}
+		};
+	}();
+	
+	// On document ready
+	KTUtil.onDOMContentLoaded(function () {
+		KTDatatablesExample.init();
+	});
+	
+	</script>
 
 
 
@@ -468,7 +562,7 @@ cb(start, end);
 
 
 
-
+{{-- 
 <script>
     $(document).ready(function () {
 var table = $('#kt_customers_table').DataTable({
@@ -486,6 +580,6 @@ $('input.toggle-vis').on('click', function (e) {
     column.visible(!column.visible());
 });
 });
-</script>
+</script> --}}
     
 @endsection
