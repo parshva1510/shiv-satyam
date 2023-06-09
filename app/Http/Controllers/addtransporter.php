@@ -8,7 +8,8 @@ class addtransporter extends Controller
 {
     public function show_transporter()
     {
-        
+        $id = transporter::get()->last();
+        dd($id);
         return view('admin.add_transporter');
     }
     public function add_transporter(Request $req){
