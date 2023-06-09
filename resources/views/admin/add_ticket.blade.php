@@ -242,7 +242,7 @@
                                     <!--end::Input group-->
                                     <!--begin::Actions-->
                                     <div class="text-center d-flex flex-stack">
-                                        <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">Reset</button>
+                                        <button type="reset" id="kt_modal_new_target_cancel" >Reset</button>
                                         <button type="submit" id="new_submit" class="btn btn-primary">
                                             <span class="indicator-label">Submit</span>
                                             <span class="indicator-progress">Please wait...
@@ -277,7 +277,7 @@
         var currentDateTime = new Date();
         $('#new_date').flatpickr({
         enableTime: !0,
-        dateFormat: "d M, Y - h:i K",
+        dateFormat: "Y-m-d",
         defaultDate: currentDateTime
     })
 
@@ -285,7 +285,7 @@
         var currentDateTime = new Date();
         $('#new_date1').flatpickr({
         enableTime: !0,
-        dateFormat: "d M, Y - h:i K",
+        dateFormat: "Y-m-d",
         defaultDate: currentDateTime
     })
 
