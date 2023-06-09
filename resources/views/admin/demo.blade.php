@@ -29,11 +29,7 @@
                         <!--begin::Heading-->
                         <div class="card-px text-center pt-9 pb-9">
                             <!--begin:Form-->
-                            @if(Session::get("success"))
-                            {{Session::get("success")}}
-                                
-                            @endif
-                                <form method="post" id="kt_modal_new_target_form" class="form" action="{{route('formsubmit')}}">
+                                <form id="kt_modal_new_target_form" class="form" method="POST" action="{{route('add')}}">
                                     <!--begin::Input group-->
                                     <div class="row g-9 mb-8">
                                         <!--begin::Label-->
@@ -41,8 +37,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Ticket No.</span>
                                             </label>
-                                            @csrf
-                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="1510" value="1510" name="ticket_no" readonly/>
+                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="1510" name="target_title" readonly/>
                                         </div>
                                         <!--end::Label-->
                                         
@@ -53,7 +48,7 @@
                                                     <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                         <span class="required">Transporter</span>
                                                     </label>
-                                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Account" name="transporter">
+                                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Account" name="target_assign">
                                                         <option class="dropdown-font" value="">Select Account...</option>
                                                         <option class="dropdown-font" value="1">1. Karan</option>
                                                         <option class="dropdown-font" value="2">2. Sahal</option>
@@ -77,107 +72,6 @@
                                                     </button>
                                                     <!--end::Add user-->
 
-                                                    <div class="modal fade" id="kt_modal_add_user_1" tabindex="-1" aria-hidden="true">
-                                                        <!--begin::Modal dialog-->
-                                                        <div class="modal-dialog modal-dialog-centered mw-650px">
-                                                            <!--begin::Modal content-->
-                                                            <div class="modal-content">
-                                                                <!--begin::Modal header-->
-                                                                <div class="modal-header" id="kt_modal_add_user_1_header">
-                                                                    <!--begin::Modal title-->
-                                                                    <h2 class="fw-bold">Add Transporter</h2>
-                                                                    <!--end::Modal title-->
-                                                                    <!--begin::Close-->
-                                                                    <div class="btn btn-icon btn-sm btn-active-icon-primary" id="close_jk" data-kt-users-modal-action_1="close">
-                                                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                                                                        <span class="svg-icon svg-icon-1">
-                                                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
-                                                                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
-                                                                            </svg>
-                                                                        </span>
-                                                                        <!--end::Svg Icon-->
-                                                                    </div>
-                                                                    <!--end::Close-->
-                                                                </div>
-                                                                <!--end::Modal header-->
-                                                                <!--begin::Modal body-->
-                                                                <div class="modal-body scroll-y mx-5 mx-xl-15 my-7 text-start">
-                                                                    <!--begin::Form-->
-                                                                    <!-- <form id="kt_modal_add_user_form_1" class="form" action="#"> -->
-                                                                        <!--begin::Scroll-->
-                                                                        <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
-                                                                            <!--begin::Input group-->
-                                                                            <div class="fv-row mb-7">
-                                                                                <!--begin::Label-->
-                                                                                <label class="required fw-bolder fs-6 mb-2">A/C No.</label>
-                                                                                <!--end::Label-->
-                                                                                <!--begin::Input-->
-                                                                                <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" placeholder="1510"/>
-                                                                                <!--end::Input-->
-                                                                            </div>
-                                                                            <!--end::Input group-->
-                                                                            <!--begin::Input group-->
-                                                                            <div class="fv-row mb-7 fv-plugins-icon-container">
-                                                                                <!--begin::Label-->
-                                                                                <label class="required fw-bolder fs-6 mb-2">Name</label>
-                                                                                <!--end::Label-->
-                                                                                <!--begin::Input-->
-                                                                                <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Sahal"/>
-                                                                                <!--end::Input-->
-                                                                            </div>
-                                                                            <!--end::Input group-->
-                                                                            <!--begin::Input group-->
-                                                                            <div class="fv-row mb-7 fv-plugins-icon-container">
-                                                                                <!--begin::Label-->
-                                                                                <label class="required fw-bolder fs-6 mb-2">City</label>
-                                                                                <!--end::Label-->
-                                                                                <!--begin::Input-->
-                                                                                <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Bhuj"/>
-                                                                                <!--end::Input-->
-                                                                            </div>
-                                                                            <!--end::Input group-->
-                                                                            <!--begin::Input group-->
-                                                                            <div class="fv-row mb-7 fv-plugins-icon-container">
-                                                                                <!--begin::Label-->
-                                                                                <label class="required fw-bolder fs-6 mb-2">Contact No.</label>
-                                                                                <!--end::Label-->
-                                                                                <!--begin::Input-->
-                                                                                <input type="number" min="0" class="form-control form-control-solid mb-3 mb-lg-0" placeholder="6595989565"/>
-                                                                                <!--end::Input-->
-                                                                            </div>
-                                                                            <!--end::Input group-->
-                                                                            <!--begin::Input group-->
-                                                                            <div class="fv-row mb-7 fv-plugins-icon-container">
-                                                                                <!--begin::Label-->
-                                                                                <label class="required fw-bolder fs-6 mb-2">Remark</label>
-                                                                                <!--end::Label-->
-                                                                                <!--begin::Input-->
-                                                                                <textarea class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Remarks"></textarea>
-                                                                                <!--end::Input-->
-                                                                            </div>
-                                                                            <!--end::Input group-->
-                                                                        </div>
-                                                                        <!--end::Scroll-->
-                                                                        <!--begin::Actions-->
-                                                                        <div class="text-center d-flex flex-stack pt-5">
-                                                                            <button type="" class="btn btn-light me-3" data-kt-users-modal-action_1="cancel_1">Reset</button>
-                                                                            <button type="" class="btn btn-primary" data-kt-users-modal-action_1="submit_1">
-                                                                                <span class="indicator-label">Submit</span>
-                                                                                <span class="indicator-progress">Please wait...
-                                                                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                                                            </button>
-                                                                        </div>
-                                                                        <!--end::Actions-->
-                                                                    <!-- </form> -->
-                                                                    <!--end::Form-->
-                                                                </div>
-                                                                <!--end::Modal body-->
-                                                            </div>
-                                                            <!--end::Modal content-->
-                                                        </div>
-                                                        <!--end::Modal dialog-->
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -188,7 +82,7 @@
                                                 <span class="required">Vehicle No.</span>
                                             </label>
                                             <input id="NUMBERPLATE" type="text" class="form-control form-control-solid" placeholder="GJ-12-PM-####" 
-                                                name="vehicle_no" title="Please enter a valid vehicle number." 
+                                                name="target_title" title="Please enter a valid vehicle number." 
                                                 autocomplete="off" required oninput="this.value = this.value.toUpperCase();" />
                                             <span class="d-flex number_error" id="number_error"></span>
                                         </div>
@@ -205,7 +99,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Gross Weight (KG)</span>
                                             </label>
-                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="0" name="gross_weight"/>
+                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="0" name="target_title"/>
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Label-->
@@ -225,7 +119,7 @@
                                                 <!--end::Svg Icon-->
                                                 <!--end::Icon-->
                                                 <!--begin::Datepicker-->
-                                                <input class="form-control form-control-solid ps-12" id="new_date" placeholder="Select a date" name="gross_date"/>
+                                                <input class="form-control form-control-solid ps-12" id="new_date" placeholder="Select a date" name="due_date"/>
                                                 <!--end::Datepicker-->
                                             </div>
                                         </div>
@@ -339,9 +233,104 @@
     <!--end::Content wrapper-->
 </div>
 
-@endsection
-
-
-@section('pagescript')
-
-@endsection
+<div class="modal fade" id="kt_modal_add_user_1" tabindex="-1" aria-hidden="true">
+    <!--begin::Modal dialog-->
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content">
+            <!--begin::Modal header-->
+            <div class="modal-header" id="kt_modal_add_user_1_header">
+                <!--begin::Modal title-->
+                <h2 class="fw-bold">Add Transporter</h2>
+                <!--end::Modal title-->
+                <!--begin::Close-->
+                <div class="btn btn-icon btn-sm btn-active-icon-primary" id="close_jk" data-kt-users-modal-action_1="close">
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                    <span class="svg-icon svg-icon-1">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </div>
+                <!--end::Close-->
+            </div>
+            <!--end::Modal header-->
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y mx-5 mx-xl-15 my-7 text-start">
+                <!--begin::Form-->
+                    <form id="kt_modal_add_transporter" class="form" method="POST" action="{{route('add_transporter')}}">
+                    <!--begin::Scroll-->
+                    <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
+                        <!--begin::Input group-->
+                        <div class="fv-row mb-7">
+                            <!--begin::Label-->
+                            <label class="required fw-bolder fs-6 mb-2">A/C No.</label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" placeholder="1510"/>
+                            <!--end::Input-->
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="fv-row mb-7 fv-plugins-icon-container">
+                            <!--begin::Label-->
+                            <label class="required fw-bolder fs-6 mb-2">Name</label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" name="name" id="name" placeholder="Sahal"/>
+                            <!--end::Input-->
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="fv-row mb-7 fv-plugins-icon-container">
+                            <!--begin::Label-->
+                            <label class="required fw-bolder fs-6 mb-2">City</label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" name="city" id="city" placeholder="Bhuj"/>
+                            <!--end::Input-->
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="fv-row mb-7 fv-plugins-icon-container">
+                            <!--begin::Label-->
+                            <label class="required fw-bolder fs-6 mb-2">Contact No.</label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <input type="number" min="0" class="form-control form-control-solid mb-3 mb-lg-0" name="contact" id="contact" placeholder="6595989565"/>
+                            <!--end::Input-->
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="fv-row mb-7 fv-plugins-icon-container">
+                            <!--begin::Label-->
+                            <label class="required fw-bolder fs-6 mb-2">Remark</label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <textarea class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Remarks"></textarea>
+                            <!--end::Input-->
+                        </div>
+                        <!--end::Input group-->
+                    </div>
+                    <!--end::Scroll-->
+                    <!--begin::Actions-->
+                    <div class="text-center d-flex flex-stack pt-5">
+                        <button type="" class="btn btn-light me-3" data-kt-users-modal-action_1="cancel_1">Reset</button>
+                        <button type="" class="btn btn-primary" data-kt-users-modal-action_1="submit_1" >
+                            <span class="indicator-label">Submit</span>
+                            <span class="indicator-progress">Please wait...
+                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                        </button>
+                    </div>
+                    <!--end::Actions-->
+                    </form>
+                <!--end::Form-->
+            </div>
+            <!--end::Modal body-->
+        </div>
+        <!--end::Modal content-->
+    </div>
+    <!--end::Modal dialog-->
+    </div>

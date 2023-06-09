@@ -564,7 +564,7 @@ cb(start, end);
 
 {{-- 
 <script>
-    $(document).ready(function () {
+    /*$(document).ready(function () {
 var table = $('#kt_customers_table').DataTable({
     scrollY: '200px',
     paging: false,
@@ -580,6 +580,6 @@ $('input.toggle-vis').on('click', function (e) {
     column.visible(!column.visible());
 });
 });
-</script> --}}
+</script>
     
 @endsection
