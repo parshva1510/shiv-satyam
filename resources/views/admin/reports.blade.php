@@ -93,7 +93,7 @@
                                 </div>
                             </div>
                             <!--begin::Card body-->
-                            <div class="card-body">
+                            <div class="card-body mt-0">
                                 <!--begin::Table-->
                                 <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_datatable_example">
                                     <!--begin::Table head-->
