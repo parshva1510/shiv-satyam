@@ -13,7 +13,7 @@
                 <!--begin::Page title-->
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
-                    <h1 class="page-heading d-flex text-dark fw-bold flex-column justify-content-center my-0">Reports</h1>
+                    <h1 class="page-heading d-flex text-dark fw-bold flex-column justify-content-center my-0">Transporters</h1>
                     <!--end::Title-->
                 </div>
                 <!--end::Page title-->
@@ -155,7 +155,7 @@
                                     <!--end::Label-->
                                     <!--begin::Input-->
                                     
-                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" value="{{$sr_no+1}}" readonly>
+                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="ac_no" value="{{$sr_no+1}}" readonly>
                                     
                                     <!--end::Input-->
                                 </div>

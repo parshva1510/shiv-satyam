@@ -18,14 +18,16 @@ class client extends Controller
     public function add_client(Request $req){
 
       
-
+        // dd($req);
+        
         $data=new transporter();
+        $data->sr_no=$req->ac_no;
         $data->name=$req->name;
         $data->city=$req->city;
         $data->contact=$req->contact;
         $data->remark=$req->remark;
         
         $data->save();
-        return view('admin.add_client');
+        return redirect()->route('add_client')->with("ok");
       }
 }
