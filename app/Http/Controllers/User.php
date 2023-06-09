@@ -10,4 +10,5 @@ class User extends Controller
     {
         return view('admin/add_user');
     }
+
 }
