@@ -15,8 +15,6 @@ class ticket extends Controller
     {
      $datainsert = new weight_entry();
 
-
-     
      $datainsert->ticket_no = $req->ticket_no;
      $datainsert->transpoter_no = $req->transpoter_no;
      $datainsert->vehicle_no = $req->vehical_no;
@@ -32,7 +30,7 @@ class ticket extends Controller
      $datainsert->payment_mode = $req->payment_mode;
 
      $datainsert->save();
-        return view('admin.add_ticket')->with("success","data has been added");
+        return view('admin.add_ticket');
     }
 
    public function view_ticket()
