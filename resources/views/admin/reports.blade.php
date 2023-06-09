@@ -30,7 +30,7 @@
                     <div class="col-xl-9">
                         <!--begin::Products-->
                         <div class="card card-flush">
-                            <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+                            <div class="card-header align-items-center py-5 gap-2 gap-md-5 pb-0">
                                 <div class="card-title">
                                     <!--begin::Search-->
                                     <div class="d-flex align-items-center position-relative my-1">
@@ -93,7 +93,7 @@
                                 </div>
                             </div>
                             <!--begin::Card body-->
-                            <div class="card-body mt-0">
+                            <div class="card-body pt-0">
                                 <!--begin::Table-->
                                 <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_datatable_example">
                                     <!--begin::Table head-->
