@@ -154,7 +154,7 @@
                                     <!--end::Label-->
                                     <!--begin::Input-->
                                     @csrf
-                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" placeholder="1510"/>
+                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" placeholder="1510" value="{{$sr_no}}" readonly>
                                     <!--end::Input-->
                                 </div>
                                 <div class="fv-row mb-7">

@@ -8,9 +8,12 @@ class addtransporter extends Controller
 {
     public function show_transporter()
     {
-        $id = transporter::get()->last();
-        dd($id);
-        return view('admin.add_transporter');
+        $sr_no = transporter::get()->last()->sr_no;
+        // $sr_no = transporter::latest()->value('sr_no');
+
+        // dd($id);
+        return view('admin.add_transporter', ['sr_no' => $sr_no]);
+        
     }
     public function add_transporter(Request $req){
 
