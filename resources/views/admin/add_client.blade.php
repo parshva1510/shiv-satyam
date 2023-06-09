@@ -147,14 +147,16 @@
                             <!--begin::Card body-->
                             <div class="card-body">
                                 <!--begin::form-->
-                                <form id="kt_modal_add_transporter" class="form" method="POST" action="{{route('add_transporter')}}">
+                                <form id="kt_modal_add_transporter" class="form" method="POST" action="{{route('add_client')}}">
+                                @csrf
                                 <div class="fv-row mb-7">
                                     <!--begin::Label-->
                                     <label class="required fw-bolder fs-6 mb-2">A/c No.</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    @csrf
-                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" placeholder="1510" value="{{$sr_no}}" readonly>
+                                    
+                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" value="{{$sr_no+1}}" readonly>
+                                    
                                     <!--end::Input-->
                                 </div>
                                 <div class="fv-row mb-7">

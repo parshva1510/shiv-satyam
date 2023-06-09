@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 use App\Models\transporter;
 use Illuminate\Http\Request;
 
-class addtransporter extends Controller
+class client extends Controller
 {
-    public function show_transporter()
+    public function show_client()
     {
         $sr_no = transporter::get()->last()->sr_no;
         // $sr_no = transporter::latest()->value('sr_no');
 
         // dd($id);
-        return view('admin.add_transporter', ['sr_no' => $sr_no]);
+        return view('admin.add_client', ['sr_no' => $sr_no]);
         
     }
-    public function add_transporter(Request $req){
+    public function add_client(Request $req){
 
       
 
@@ -26,6 +26,6 @@ class addtransporter extends Controller
         $data->remark=$req->remark;
         
         $data->save();
-        return view('admin.add_transporter');
+        return view('admin.add_client');
       }
 }
