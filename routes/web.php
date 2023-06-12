@@ -21,6 +21,10 @@ use App\Http\Controllers\reportcontroller;
 
 Route::get('ticket_form',[ticket::class,'index'])->name('ticket_form');
 Route::get('view_ticket',[ticket::class,'view_ticket'])->name('view_ticket');
+
+Route::get('show_transporter',[ticket::class,'show_transporter'])->name('show_transporter');
+Route::POST('add_transporter',[ticket::class,'add_transporter'])->name('add_transporter');
+
 Route::get('login',[authentication::class,'login'])->name('login');
 Route::get('/',[authentication::class,'login']);
 

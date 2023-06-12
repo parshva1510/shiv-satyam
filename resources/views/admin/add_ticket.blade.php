@@ -204,7 +204,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">Payment Mode</label>
                                             <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Payment Mode" name="payment_mode">
                                                 <option value="">Select Mode...</option>
-                                                <option value="1">Cash</option>
+                                                <option value="">Cash</option>
                                                 <option value="2">Gpay</option>
                                                 <option value="3">Cheque</option>
                                                 <option value="4">Bank Transfer</option>
@@ -275,7 +275,8 @@
             <!--begin::Modal body-->
             <div class="modal-body scroll-y mx-5 mx-xl-15 my-7 text-start">
                 <!--begin::Form-->
-                    <form id="kt_modal_add_transporter" class="form" method="POST" action="">
+                    <form id="kt_modal_add_transporter" class="form" method="POST" action="{{route('add_transporter')}}">
+                        @csrf
                     <!--begin::Scroll-->
                     <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
                         <!--begin::Input group-->
@@ -284,7 +285,8 @@
                             <label class="required fw-bolder fs-6 mb-2">A/C No.</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" placeholder="1510"/>
+                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="ac_no" value="{{$sr_no+1}}" readonly>
+                                    
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->
@@ -324,7 +326,7 @@
                             <label class="required fw-bolder fs-6 mb-2">Remark</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <textarea class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Remarks"></textarea>
+                            <textarea class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Remarks" name="remark" id="remark"></textarea>
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->

@@ -10,7 +10,8 @@ class ticket extends Controller
 {
      public function index(){
           $data=transporter::get()->all();
-          return view('admin.add_ticket',["transporter" => $data]);
+          $sr_no = transporter::get()->last()->sr_no;
+          return view('admin.add_ticket',["transporter" => $data,'sr_no'=>$sr_no]);
      }
      public function add_ticket(Request $req)
      {
@@ -49,18 +50,25 @@ class ticket extends Controller
    {
         return view('admin.demo');
    }
-
    
-   public function add_transporter(Request $req){
+   public function show_transporter()
+   {
+     $sr_no = transporter::get()->last()->sr_no;
+    
+     return view('admin.add_ticket', ['sr_no' => $sr_no]);
+        
+   }
 
-     $req->validate([
-          'name'=>'required'
-     ]);
-     $data=new transporter();
-     $data->name=$req->name;
-     $data->city=$req->city;
-     $data->contact=$req->contact;
-     $data->remark=$req->remark;
-     return view('admin/demo');
+   public function add_transporter(Request $req){
+     
+        $data=new transporter();
+        
+        $data->sr_no=$req->ac_no;
+        $data->name=$req->name;
+        $data->city=$req->city;
+        $data->contact=$req->contact;
+        $data->remark=$req->remark;
+        $data->save();
+        return redirect()->back();
    }
 }
