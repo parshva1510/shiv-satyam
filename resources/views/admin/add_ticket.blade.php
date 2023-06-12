@@ -95,7 +95,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Vehicle No.</span>
                                             </label>
-                                            <input id="NUMBERPLATE" type="text" class="form-control form-control-solid" placeholder="GJ-12-PM-####" 
+                                            <input id="NUMBERPLATE" type="text" class="form-control form-control-solid" placeholder="GJ12PM1234" 
                                                 name="vehical_no" title="Please enter a valid vehicle number." 
                                                 autocomplete="off" required oninput="this.value = this.value.toUpperCase();" />
                                             <span class="d-flex number_error" id="number_error"></span>
@@ -186,9 +186,9 @@
                                         <!--begin::Label-->
                                         <div class="col-md-3 fv-row">
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
-                                                <span class="required">Material</span>
+                                                <span class="">Material</span>
                                             </label>
-                                            <input id="field2" type="text" class="form-control form-control-solid" placeholder="" name="material" required/>
+                                            <input id="field2" type="text" class="form-control form-control-solid" placeholder="" name="material">
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Label-->
