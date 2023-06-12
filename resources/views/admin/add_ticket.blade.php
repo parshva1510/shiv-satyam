@@ -51,12 +51,24 @@
                                                     </label>
                                                     <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Account" name="transpoter_no">
                                                         <option class="dropdown-font" value="">Select Account...</option>
-                                                        @forelse($transporter as $row)
-                                                        <option value="{{$row -> sr_no}}">{{$row -> name}}</option>
+                                                        @foreach ($transporter as $row)
+                                                        <option value="{{$row->sr_no}}">{{$row->name}}</option>
+                                                        @endforeach
+                                                    
+                                                        <!-- @forelse ($transporter as $row)
+                                                        
+                                                            <option value="{{$row -> sr_no}}">{{$row -> name}}</option>
+                                                        
+
                                                         @empty 
-                                                        no data found
-                                                        @endforelse
+                                                         No Data Found
+
+                                                        @endforelse -->
+                                                        <!-- @foreach ($transporter as $row)
+                                                        <option value="{{$row -> sr_no}}">{{$row -> name}}</option>
+                                                        @endforeach -->
                                                     </select>
+                                                   
                                                 </div>
 
                                                 <div class="col-md-4 mt-8">
