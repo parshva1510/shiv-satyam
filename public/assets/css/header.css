@@ -44,3 +44,46 @@ a.btn.btn-primary.full-button {
     width: -webkit-fill-available !important;
 }
 
+@media only screen and (max-width: 600px) {
+    .card-body.mobile-padding {
+        padding: 0rem 0rem !important;
+    }
+
+    button.btn.btn-primary {
+        width: -webkit-fill-available;
+    }
+
+    button.btn.btn-light-primary.full-button {
+        width: -webkit-fill-available;
+    }
+
+    .w-250px {
+        width: 300px !important;
+    }
+
+    table.dataTable{
+        width: 1280px !important;
+    }
+
+    .d-flex.justify-content-end.mobileflex {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card-toolbar.flex-row-fluid.justify-content-end.mobflex {
+        flex: inherit;
+    }
+
+    .w-225px {
+        width: 300px !important;
+    }
+
+    .w-225px.me-3.mobilewidth {
+        margin-right: 0px !important;
+    }
+
+    .mw-250px {
+        max-width: 300px !important;
+    }
+  }
+

@@ -25,7 +25,7 @@
                 <!--begin::Card-->
                 <div class="card">
                     <!--begin::Card body-->
-                    <div class="card-body">
+                    <div class="card-body mobile-padding">
                         <!--begin::Heading-->
                         <div class="card-px text-center pt-9 pb-9">
                             <!--begin:Form-->

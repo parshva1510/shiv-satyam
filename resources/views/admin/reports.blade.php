@@ -6,7 +6,7 @@
     <!--begin::Content wrapper-->
     <div class="d-flex flex-column flex-column-fluid">
         <!--begin::Toolbar-->
-        <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+        <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6 mb-5 mt-5">
             <!--begin::Toolbar container-->
             <div id="kt_app_toolbar_container" class="app-container new-full-width container-xxl d-flex flex-stack">
                 <!--begin::Page title-->
@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                                     <!--begin::Export dropdown-->
-                                    <button type="button" class="btn btn-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                    <button type="button" class="btn btn-primary full-button" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                        
                                         Export Data
                                     </button>
