@@ -186,7 +186,7 @@
                                     </div>
                                     <div class="fv-row mb-7">
                                         <!--begin::Label-->
-                                        <label class="required fw-bolder fs-6 mb-2">Remark</label>
+                                        <label class="fw-bolder fs-6 mb-2">Remark</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
                                         <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="remark" id="remark" placeholder=""/>

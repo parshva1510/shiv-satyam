@@ -49,7 +49,7 @@
                                                     <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                         <span class="required">Transporter</span>
                                                     </label>
-                                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Account" name="transpoter_no">
+                                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="false" data-placeholder="Select Account" name="transpoter_no">
                                                         <option class="dropdown-font" value="">Select Account...</option>
                                                         @foreach ($transporter as $row)
                                                         <option value="{{$row->sr_no}}">{{$row->name}}</option>
@@ -204,7 +204,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">Payment Mode</label>
                                             <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Payment Mode" name="payment_mode">
                                                 <option value="">Select Mode...</option>
-                                                <option value="">Cash</option>
+                                                <option value="1" selected>Cash</option>
                                                 <option value="2">Gpay</option>
                                                 <option value="3">Cheque</option>
                                                 <option value="4">Bank Transfer</option>
@@ -323,7 +323,7 @@
                         <!--begin::Input group-->
                         <div class="fv-row mb-7 fv-plugins-icon-container">
                             <!--begin::Label-->
-                            <label class="required fw-bolder fs-6 mb-2">Remark</label>
+                            <label class="fw-bolder fs-6 mb-2">Remark</label>
                             <!--end::Label-->
                             <!--begin::Input-->
                             <textarea class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Remarks" name="remark" id="remark"></textarea>
