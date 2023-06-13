@@ -32,6 +32,7 @@ class ticket extends Controller
          $datainsert->transpoter_no = $req->transpoter_no;
          $datainsert->vehicle_no = $req->vehical_no;
          $datainsert->gross_weight = $req->gross_weight;
+       
          $datainsert->gross_date = $req->gross_date;
          $datainsert->tare_weight = $req->tare_wight;
          $datainsert->tare_date = $req->tare_date;
@@ -52,8 +53,8 @@ class ticket extends Controller
 
    public function view_ticket()
    {
-     $data=weight_entry::all();
-
+     $transporters = Transporter::all();
+     $data=weight_entry::with('transporter')->get();
      return view('admin.view_ticket',compact('data'));
       
    }
@@ -74,7 +75,6 @@ class ticket extends Controller
    public function add_transporter(Request $req){
      
         $data=new transporter();
-        
         $data->sr_no=$req->ac_no;
         $data->name=$req->name;
         $data->city=$req->city;

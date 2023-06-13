@@ -279,6 +279,8 @@
 												<!--begin::Table body-->
 												<tbody class="fw-semibold text-gray-600">
 													@foreach($data as $row)
+												
+
 													<tr>
 														<!--begin::Checkbox-->
 														<td>
@@ -292,8 +294,10 @@
 													
 
 														<td>{{$row->vehicle_no}}</td>
+														
+														
+														<td>{{ $row->transporter?$row->transporter->name:'' }}</td>
 
-														<td>{{$row->transpoter_no}}</td>
 
 														<td>{{$row->gross_weight}}</td>
 

@@ -9,8 +9,13 @@ class weight_entry extends Model
 {
     use HasFactory;
 
-    protected $table='weight_entry';
-    protected $primaryKey='sr_no';
-    public $timestamps=false;
-   
+    protected $table = 'weight_entry';
+    protected $primaryKey = 'sr_no';
+    public $timestamps = false;
+
+    public function transporter()
+    {
+        return $this->belongsTo(Transporter::class, 'sr_no');
+    }
 }
+
