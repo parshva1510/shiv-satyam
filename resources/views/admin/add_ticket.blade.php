@@ -47,26 +47,17 @@
                                             <div class="row">
                                                 <div class="col-md-8">
                                                     <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
+                                                        {{($transporter['sr_no'])}}
                                                         <span class="required">Transporter</span>
                                                     </label>
                                                     <select class="form-select form-select-solid" data-control="select2" data-hide-search="false" data-placeholder="Select Account" name="transpoter_no">
                                                         <option class="dropdown-font" value="">Select Account...</option>
-                                                        @foreach ($transporter as $row)
-                                                        <option value="{{$row->sr_no}}">{{$row->name}}</option>
+                                                        @foreach ($tr_data as $row)
+                                                        <option value="{{$row->sr_no}}" >{{$row->name}}</option>
+                                                     
                                                         @endforeach
                                                     
-                                                        <!-- @forelse ($transporter as $row)
-                                                        
-                                                            <option value="{{$row -> sr_no}}">{{$row -> name}}</option>
-                                                        
-
-                                                        @empty 
-                                                         No Data Found
-
-                                                        @endforelse -->
-                                                        <!-- @foreach ($transporter as $row)
-                                                        <option value="{{$row -> sr_no}}">{{$row -> name}}</option>
-                                                        @endforeach -->
+                          
                                                     </select>
                                                    
                                                 </div>
@@ -93,10 +84,11 @@
                                         <!--begin::Label-->
                                         <div class="col-md-4 fv-row">
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
+                                                <!-- {{($transporter['sr_no'])}} -->
                                                 <span class="required">Vehicle No.</span>
                                             </label>
                                             <input id="NUMBERPLATE" type="text" class="form-control form-control-solid" placeholder="GJ12PM1234" 
-                                                name="vehical_no" title="Please enter a valid vehicle number." 
+                                                name="vehical_no" title="Please enter a valid vehicle number." value="{{$transporter['vehicle_no']}}"
                                                 autocomplete="off" required oninput="this.value = this.value.toUpperCase();" />
                                             <span class="d-flex number_error" id="number_error"></span>
                                         </div>
@@ -296,7 +288,7 @@
                             <label class="required fw-bolder fs-6 mb-2">Name</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" name="name" id="name" placeholder="Sahal"/>
+                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" name="name" id="name" placeholder="Sahal" value=""/>
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->

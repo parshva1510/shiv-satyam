@@ -32,7 +32,6 @@ class ticket extends Controller
          $datainsert->transpoter_no = $req->transpoter_no;
          $datainsert->vehicle_no = $req->vehical_no;
          $datainsert->gross_weight = $req->gross_weight;
-       
          $datainsert->gross_date = $req->gross_date;
          $datainsert->tare_weight = $req->tare_wight;
          $datainsert->tare_date = $req->tare_date;
@@ -41,14 +40,12 @@ class ticket extends Controller
          $datainsert->charges = $req->charge;
          $datainsert->payment_mode = $req->payment_mode;
          $datainsert->remark = $req->remark;
-     //     $datainsert->payment_mode = $req->payment_mode;
-     
          $datainsert->save();
      
-         // Fetch the list of transporters separately
+        
          $transporters = Transporter::all();
      
-         return view('admin.add_ticket', ["transporter" => $transporters]);
+         return view('admin.add_ticket', ["transporter" => $transporters,'tr_data'=>$transporters]);
      }
 
    public function view_ticket()
@@ -61,10 +58,11 @@ class ticket extends Controller
 
    public function edit_ticket($sr_no)
    {
-     $data = weight_entry::findOrFail($sr_no);
-  
+     $data = weight_entry::find($sr_no);
+     $sr_no=$data->sr_no;
+     $tr_data=Transporter::all();
      // dd($sr_no);
-     return view('admin.add_ticket',["transporter" => $data]);
+     return view('admin.add_ticket',["transporter" => $data->toArray(),'sr_no'=>$sr_no,'tr_data'=>$tr_data]);
    }
    
 
