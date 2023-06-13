@@ -56,8 +56,18 @@ class ticket extends Controller
      $transporters = Transporter::all();
      $data=weight_entry::with('transporter')->get();
      return view('admin.view_ticket',compact('data'));
-      
+     
    }
+
+   public function edit_ticket($sr_no)
+   {
+     $data = weight_entry::findOrFail($sr_no);
+  
+     // dd($sr_no);
+     return view('admin.add_ticket',["transporter" => $data]);
+   }
+   
+
 
    public function demo()
    {
