@@ -367,7 +367,7 @@
         var currentDateTime = new Date();
         $('#new_date').flatpickr({
         enableTime: !0,
-        dateFormat: "Y-m-d",
+        dateFormat: "d-m-Y",
         defaultDate: currentDateTime
     })
 
@@ -375,7 +375,7 @@
         var currentDateTime = new Date();
         $('#new_date1').flatpickr({
         enableTime: !0,
-        dateFormat: "Y-m-d",
+        dateFormat: "d-m-Y",
         defaultDate: currentDateTime
     })
 

@@ -17,8 +17,17 @@ class ticket extends Controller
      {
          $datainsert = new weight_entry();
          $req->validate([
-             'ticket_no' => 'required'
-         ]);
+             'ticket_no' => 'required',
+             'transpoter_no' => 'required',
+             'vehicle_no' => 'required',
+             'gross_weight' => 'required',
+             'tare_weight' => 'required',
+             'tare_date' => 'required',
+             'net_weight' => 'required',
+             'charges' => 'required',
+             'payment_mode' => 'required',
+             'remark' => 'required'
+          ]);
          $datainsert->ticket_no = $req->ticket_no;
          $datainsert->transpoter_no = $req->transpoter_no;
          $datainsert->vehicle_no = $req->vehical_no;
@@ -31,7 +40,7 @@ class ticket extends Controller
          $datainsert->charges = $req->charge;
          $datainsert->payment_mode = $req->payment_mode;
          $datainsert->remark = $req->remark;
-         $datainsert->payment_mode = $req->payment_mode;
+     //     $datainsert->payment_mode = $req->payment_mode;
      
          $datainsert->save();
      
@@ -43,7 +52,10 @@ class ticket extends Controller
 
    public function view_ticket()
    {
-        return view('admin.view_ticket');
+     $data=weight_entry::all();
+
+     return view('admin.view_ticket',compact('data'));
+      
    }
 
    public function demo()
