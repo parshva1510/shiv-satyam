@@ -38,7 +38,8 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Ticket No.</span>
                                             </label>
-                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="1510" name="ticket_no" id="ticket_no"/>
+                                            <input type="hidden" name="edit_sr_no" value="{{print_r($transporter)}}">
+                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="1510" name="ticket_no" id="ticket_no" value="" />
                                         </div>
                                         <!--end::Label-->
                                         
@@ -47,13 +48,13 @@
                                             <div class="row">
                                                 <div class="col-md-8">
                                                     <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
-                                                        {{($transporter['sr_no'])}}
+                                                        
                                                         <span class="required">Transporter</span>
                                                     </label>
                                                     <select class="form-select form-select-solid" data-control="select2" data-hide-search="false" data-placeholder="Select Account" name="transpoter_no">
                                                         <option class="dropdown-font" value="">Select Account...</option>
                                                         @foreach ($tr_data as $row)
-                                                        <option value="{{$row->sr_no}}" >{{$row->name}}</option>
+                                                        <option value="{{$row->sr_no}}">{{$row->name}}</option>
                                                      
                                                         @endforeach
                                                     
@@ -84,11 +85,12 @@
                                         <!--begin::Label-->
                                         <div class="col-md-4 fv-row">
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
-                                                <!-- {{($transporter['sr_no'])}} -->
+                                                
                                                 <span class="required">Vehicle No.</span>
                                             </label>
+                                            
                                             <input id="NUMBERPLATE" type="text" class="form-control form-control-solid" placeholder="GJ12PM1234" 
-                                                name="vehical_no" title="Please enter a valid vehicle number." value="{{$transporter['vehicle_no']}}"
+                                                name="vehical_no" title="Please enter a valid vehicle number." value=""
                                                 autocomplete="off" required oninput="this.value = this.value.toUpperCase();" />
                                             <span class="d-flex number_error" id="number_error"></span>
                                         </div>
@@ -105,7 +107,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Gross Weight (KG)</span>
                                             </label>
-                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="0" name="gross_weight"/>
+                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="0" name="gross_weight" value="{{count($transporter)?$transporter:''}}" />
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Label-->
@@ -125,7 +127,7 @@
                                                 <!--end::Svg Icon-->
                                                 <!--end::Icon-->
                                                 <!--begin::Datepicker-->
-                                                <input class="form-control form-control-solid ps-12" id="new_date" placeholder="Select a date" name="gross_date"/>
+                                                <input class="form-control form-control-solid ps-12" id="new_date" placeholder="Select a date" name="gross_date" value="{{count($transporter)?$transporter:''}}"/>
                                                 <!--end::Datepicker-->
                                             </div>
                                         </div>
@@ -136,7 +138,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Tare Weight (KG)</span>
                                             </label>
-                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="0" name="tare_wight"/>
+                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="0" name="tare_wight" value="{{count($transporter)?$transporter:''}}"/>
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Label-->
@@ -156,7 +158,7 @@
                                                 <!--end::Svg Icon-->
                                                 <!--end::Icon-->
                                                 <!--begin::Datepicker-->
-                                                <input class="form-control form-control-solid ps-12" id="new_date1" placeholder="Select a date" name="tare_date"/>
+                                                <input class="form-control form-control-solid ps-12" id="new_date1" placeholder="Select a date" name="tare_date" value="{{count($transporter)?$transporter:''}}"/>
                                                 <!--end::Datepicker-->
                                             </div>
                                         </div>
@@ -172,7 +174,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Net Weight</span>
                                             </label>
-                                            <input id="field1" type="number" min="0" class="form-control form-control-solid" placeholder="0" name="net_weight" required/>
+                                            <input id="field1" type="number" min="0" class="form-control form-control-solid" placeholder="0" name="net_weight" value="{{count($transporter)?$transporter:''}}" required/>
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Label-->
@@ -180,7 +182,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="">Material</span>
                                             </label>
-                                            <input id="field2" type="text" class="form-control form-control-solid" placeholder="" name="material">
+                                            <input id="field2" type="text" class="form-control form-control-solid" placeholder="material"  name="material" value="" />
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Label-->
@@ -188,13 +190,13 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Charge</span>
                                             </label>
-                                            <input id="field3" type="number" min="0" class="form-control form-control-solid" placeholder="0" name="charge" required/>
+                                            <input id="field3" type="number" min="0" class="form-control form-control-solid" placeholder="0" name="charge" value="{{count($transporter)?$transporter:''}}" required/>
                                         </div>
                                         <!--end::Label-->	
                                         <!--begin::Col-->
                                         <div class="col-md-3 fv-row">
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">Payment Mode</label>
-                                            <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Payment Mode" name="payment_mode">
+                                            <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Payment Mode" name="payment_mode" value="{{count($transporter)?$transporter:''}}">
                                                 <option value="">Select Mode...</option>
                                                 <option value="1" selected>Cash</option>
                                                 <option value="2">Gpay</option>
@@ -210,7 +212,7 @@
                                     <!--begin::Input group-->
                                     <div class="d-flex flex-column mb-8">
                                         <label class="d-flex align-items-center fs-6 fw-bolder mb-2">Remarks</label>
-                                        <textarea class="form-control form-control-solid" rows="3" name="remark" placeholder="Remarks"></textarea>
+                                        <textarea class="form-control form-control-solid" rows="3" name="remark" placeholder="Remarks" value="{{count($transporter)?$transporter:''}}"></textarea>
                                     </div>
                                     <!--end::Input group-->
                                     <!--begin::Actions-->
@@ -277,7 +279,7 @@
                             <label class="required fw-bolder fs-6 mb-2">A/C No.</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="ac_no" value="{{$sr_no+1}}" readonly>
+                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="ac_no" value="{{$sr_no + 1}}" readonly>
                                     
                             <!--end::Input-->
                         </div>
@@ -359,7 +361,7 @@
         var currentDateTime = new Date();
         $('#new_date').flatpickr({
         enableTime: !0,
-        dateFormat: "d-m-Y",
+        dateFormat: "Y-m-d",
         defaultDate: currentDateTime
     })
 
@@ -367,7 +369,7 @@
         var currentDateTime = new Date();
         $('#new_date1').flatpickr({
         enableTime: !0,
-        dateFormat: "d-m-Y",
+        dateFormat: "Y-m-d",
         defaultDate: currentDateTime
     })
 

@@ -46,5 +46,5 @@ Route::get('reports',[reportcontroller::class,'reports'])->name('reports');
 
 Route::POST('add_ticket',[ticket::class,'add_ticket'])->name('add_ticket');
 
-Route::get('/edit_ticket/{sr_no}',[ticket::class,'edit_ticket'])->name('edit_ticket');
+//Route::get('/add_ticket/{sr_no}',[ticket::class,'edit_ticket'])->name('edit_ticket');
 

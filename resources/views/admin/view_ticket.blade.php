@@ -317,7 +317,8 @@
 														
 													
 														<td class="text-end">
-																<a href="{{ route('edit_ticket', ['sr_no' => $row->sr_no]) }}"   class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+														
+																<a href="{{ route('ticket_form', ['sr_no' => $row->sr_no]) }}"   class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
 																	<!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
 																	<span class="svg-icon svg-icon-3">
 																		<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -398,18 +399,7 @@
 		var table = '#kt_customers_table';
 		var datatable;
 	
-		// Private functions
-		var initDatatable = function () {
-		   
-	
-			// Init datatable --- more info on datatables: https://datatables.net/manual/
-			datatable = $('#kt_customers_table').DataTable({
-				"info": true,
-				'pageLength': 10,
-				"ordering": false
-			});
-			//console.log(datatable);
-		}
+		
 	
 		// Hook export buttons
 		var exportButtons = () => {
@@ -468,7 +458,7 @@
 					return;
 				}
 	
-				initDatatable();
+
 				exportButtons();
 				handleSearchDatatable();
 			}
