@@ -85,5 +85,10 @@ a.btn.btn-primary.full-button {
     .mw-250px {
         max-width: 300px !important;
     }
+
+    .row.g-5.g-xl-10.mb-5.mb-xl-10.column-reverse {
+        display: flex;
+        flex-direction: column-reverse;
+    }
   }
 

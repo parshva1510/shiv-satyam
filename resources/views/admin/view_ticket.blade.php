@@ -432,7 +432,7 @@
 
 <!--begin::Custom Javascript(used for  view weighment page only)-->
 <script src="{{url('public/assets/js/custom/apps/ecommerce/customers/listing/listing.js')}}"></script>
-<script src="{{url('public/assets/js/custom/apps/ecommerce/customers/listing/add.js')}}"></script>
+
 <!--end::Custom Javascript-->
 <script>
 
@@ -441,19 +441,6 @@
 		// Shared variables
 		var table = '#kt_customers_table';
 		var datatable;
-	
-		// Private functions
-		var initDatatable = function () {
-		   
-	
-			// Init datatable --- more info on datatables: https://datatables.net/manual/
-			datatable = $('#kt_customers_table').DataTable({
-				"info": true,
-				'pageLength': 10,
-				"ordering": false
-			});
-			//console.log(datatable);
-		}
 	
 		// Hook export buttons
 		var exportButtons = () => {
@@ -512,7 +499,6 @@
 					return;
 				}
 	
-				initDatatable();
 				exportButtons();
 				handleSearchDatatable();
 			}

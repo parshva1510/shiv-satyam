@@ -11,8 +11,13 @@ class authentication extends Controller
         return view('login');
     }
 
-    public function changepassword()
+    public function reset_password()
     {
-        return view('changepassword');
+        return view('reset_password');
+    }
+
+    public function change_password()
+    {
+        return view('admin.change_password');
     }
 }
