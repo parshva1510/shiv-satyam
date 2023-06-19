@@ -284,11 +284,11 @@
 														</td>
 														<!--end::Checkbox-->
 
-														<td>1510</td>
+														<td>2023-24/00012</td>
 
 														<td>GH12FF1510</td>
 
-														<td>Harjibhai</td>
+														<td>Harjibhai xxgbdfggrgrgd</td>
 
 														<td>1056</td>
 
@@ -300,7 +300,7 @@
 												
 														<td>1650</td>
 
-														<td>Rice</td>
+														<td>Iron Rods sdf</td>
 
 														<td>655</td>
 
@@ -340,11 +340,11 @@
 														</td>
 														<!--end::Checkbox-->
 
-														<td>150</td>
+														<td>2023-24/00012</td>
 
 														<td>GH12FF1510</td>
 
-														<td>Aarjibhai</td>
+														<td>Aarjibhai asdfggggghdg</td>
 
 														<td>1056</td>
 
@@ -444,7 +444,7 @@
 	
 		// Hook export buttons
 		var exportButtons = () => {
-			const documentTitle = 'Assesment Report';
+			const documentTitle = 'Weighment Report';
 			var buttons = new $.fn.dataTable.Buttons(table, {
 				buttons: [
 					{
@@ -461,7 +461,24 @@
 					},
 					{
 						extend: 'pdf',
-						title: documentTitle
+						customize: function (doc) {
+                                // Here's where you can control the cell padding
+                                doc.styles.tableHeader.margin =
+                                  doc.styles.tableBodyOdd.margin =
+                                  doc.styles.tableBodyEven.margin = [3, 3, 3, 3];
+								  doc.pageMargins = [10, 10, 10,10];
+								  doc.defaultStyle.fontSize = 8;
+								  doc.styles.tableHeader.fontSize = 9;
+								  doc.styles.title.fontSize = 20;
+								  doc.content[1].margin = [ 25, 0, 25, 0 ] //left, top, right, bottom
+                            },
+
+						title: documentTitle + ' (25-06-2023 to 26-07-2023)',
+						orientation: 'landscape',
+						pageSize: 'a4',
+						exportOptions: {
+							columns: [1,2,3,4,5,6,7,8,9,10,11],
+						}
 					}
 				]
 			}).container().appendTo($('#kt_customers_table_buttons'));
