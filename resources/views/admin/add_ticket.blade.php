@@ -38,6 +38,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2" >
                                             <span class="required">Ticket no</span>
                                             </label>
+                                          
                                             <input type="hidden" name="edit_sr_no" value="{{print_r($transporter)}}">
                                                 
                                             <input type="number" min="0" class="form-control form-control-solid" placeholder="1510" name="ticket_no" id="ticket_no" value="{{!empty($transporter)?$transporter['ticket_no']:''}}" />
@@ -55,7 +56,7 @@
                                                     <select class="form-select form-select-solid" data-control="select2" data-hide-search="false" data-placeholder="Select Account" name="transpoter_no">
                                                         <option class="dropdown-font" value="">Select Account...</option>
                                                         @foreach ($tr_data as $row)
-                                                        <option value="{{$row->sr_no}}">{{$row->name}}</option>
+                                                        <option value="{{$row->sr_no}}" selected="{{($transporter) && $transporter['transporter']['name']==$row->name?'true':'false'}}"> {{($transporter['transporter']['name'])}} </option>
                                                      
                                                         @endforeach
                                                     

@@ -45,24 +45,42 @@ class ticket extends Controller
 
    public function view_ticket()
    {
-     $transporters = Transporter::all();
-    $data=weight_entry::with('transporter')->get();
-    //$data = DB::select('select * from weight_entry ORDER BY sr_no DESC');
-     return view('admin.view_ticket',compact('data'));
+      $transporters = Transporter::all();
+      $data=weight_entry::with('transporter')->get();
+      //$data = DB::select('select * from weight_entry ORDER BY sr_no DESC');
+      return view('admin.view_ticket',compact('data'));
      
    }
 
    public function edit_ticket(Request $req,$ticket_no)
    {
      
-     $data = weight_entry::find($ticket_no);
-     //dd($ticket_no);
-     //$data->vehicle_no = $req->vehical_no;
-     $sr_data = DB :: select('SELECT name FROM transporter WHERE sr_no=1');
-     $tr_data=Transporter::all();
-     //$data->update();
-     return view('admin.add_ticket',["transporter" => $data->toArray(),'tr_data'=>$tr_data]);
+      $data = weight_entry::with('transporter')->find($ticket_no);
+      
+      $data->ticket_no = $req->ticket_no;
+      $data->transpoter_no = $req->transpoter_no;
+      $data->vehicle_no = $req->vehical_no;
+      $data->gross_weight = $req->gross_weight;
+      $data->gross_date = $req->gross_date;
+      $data->tare_weight = $req->tare_wight;
+      $data->tare_date = $req->tare_date;
+      $data->net_weight = $req->net_weight;
+      $data->material = $req->material;
+      $data->charges = $req->charge;
+      $data->payment_mode = $req->payment_mode;
+      $data->remark = $req->remark;
+      $data->save();
+      //$sr_data = DB :: select('SELECT name FROM transporter WHERE sr_no=1');
+      $tr_data=transporter::all();
+      return view('admin.add_ticket',["transporter" => $data->toArray(),'tr_data'=>$tr_data]);
      
+   }
+  
+
+   public function delete_ticket($sr_no){
+     $data = weight_entry::find($sr_no);
+     $data -> delete();
+     return redirect()->route('admin.view_ticket');
    }
    
 
