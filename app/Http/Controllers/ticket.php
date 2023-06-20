@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\demo;
 use App\Models\transporter;
 use App\Models\weight_entry;
+use DB;
 use Illuminate\Http\Request;
 
 
@@ -29,7 +30,6 @@ class ticket extends Controller
          $datainsert->vehicle_no = $req->vehical_no;
          $datainsert->gross_weight = $req->gross_weight;
          $datainsert->gross_date = $req->gross_date;
-        //  $datainsert->gross_time = "10:20";
          $datainsert->tare_weight = $req->tare_wight;
          $datainsert->tare_date = $req->tare_date;
          $datainsert->net_weight = $req->net_weight;
@@ -38,8 +38,6 @@ class ticket extends Controller
          $datainsert->payment_mode = $req->payment_mode;
          $datainsert->remark = $req->remark;
          $datainsert->save();
-     
-        
          $transporters = Transporter::all();
      
          return view('admin.add_ticket', ["transporter" => $data,'tr_data'=>$transporters]);
@@ -54,15 +52,16 @@ class ticket extends Controller
      
    }
 
-   public function edit_ticket(Request $req)
+   public function edit_ticket(Request $req,$ticket_no)
    {
      
-     $data = weight_entry::find($req->sr_no);
-    
-     $data->vehicle_no=$req->vehical_no;
+     $data = weight_entry::find($ticket_no);
+     //dd($ticket_no);
+     //$data->vehicle_no = $req->vehical_no;
+     $sr_data = DB :: select('SELECT name FROM transporter WHERE sr_no=1');
      $tr_data=Transporter::all();
-     $data->update();
-     return view('admin.add_ticket',["transporter" => $data,'tr_data'=>$tr_data]);
+     //$data->update();
+     return view('admin.add_ticket',["transporter" => $data->toArray(),'tr_data'=>$tr_data]);
      
    }
    
