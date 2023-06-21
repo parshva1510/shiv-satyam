@@ -44,6 +44,7 @@ a.btn.btn-primary.full-button {
     width: -webkit-fill-available !important;
 }
 
+
 @media only screen and (max-width: 600px) {
     .card-body.mobile-padding {
         padding: 0rem 0rem !important;
@@ -91,4 +92,5 @@ a.btn.btn-primary.full-button {
         flex-direction: column-reverse;
     }
   }
+
 
