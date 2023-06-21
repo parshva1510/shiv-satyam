@@ -29,7 +29,7 @@
                         <!--begin::Heading-->
                         <div class="card-px text-center pt-9 pb-9">
                             <!--begin:Form-->
-                                <form id="kt_modal_new_target_form" class="form" method="POST" action="{{route('add_ticket')}}">
+                                <form id="kt_modal_new_target_form" class="form" method="POST" action= "{{!empty($transporter)?route('edit_ticket',['sr_no' => $row->sr_no]):route('add_ticket')}}">
                                     @csrf
                                     <!--begin::Input group-->
                                     <div class="row g-9 mb-8">
@@ -59,10 +59,10 @@
                                                         <option value="{{$row->sr_no}}" selected="{{($transporter) && $transporter['transporter']['name']==$row->name?'true':'false'}}"> {{($transporter['transporter']['name'])}} </option>
                                                      
                                                         @endforeach
-                                                    
+                                                       
                           
                                                     </select>
-                                                   
+                                               
                                                 </div>
 
                                                 <div class="col-md-4 mt-8">

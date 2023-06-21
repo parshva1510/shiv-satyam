@@ -56,7 +56,7 @@ class ticket extends Controller
    {
      
       $data = weight_entry::with('transporter')->find($ticket_no);
-      
+      dd($req->input());
       $data->ticket_no = $req->ticket_no;
       $data->transpoter_no = $req->transpoter_no;
       $data->vehicle_no = $req->vehical_no;
@@ -75,13 +75,20 @@ class ticket extends Controller
       return view('admin.add_ticket',["transporter" => $data->toArray(),'tr_data'=>$tr_data]);
      
    }
+
+//    public function update_ticket(Request $req,$ticket_no) {
+//       $data = weight_entry::with('transporter')->find($ticket_no);
+//       $tr_data=transporter::all();
+//       return view('admin.add_ticket',["transporter" => $data->toArray(),'tr_data'=>$tr_data]);
+
+//    }
   
 
-   public function delete_ticket($sr_no){
-     $data = weight_entry::find($sr_no);
-     $data -> delete();
-     return redirect()->route('admin.view_ticket');
-   }
+//    public function delete_ticket($sr_no){
+//      $data = weight_entry::find($sr_no);
+//      $data -> delete();
+//      return redirect()->route('admin.view_ticket');
+//    }
    
 
 
