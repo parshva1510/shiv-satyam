@@ -5,7 +5,7 @@
 						<!--begin::Content wrapper-->
 						<div class="d-flex flex-column flex-column-fluid">
 							<!--begin::Toolbar-->
-							<div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+							<div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6 mb-5 mt-5">
 								<!--begin::Toolbar container-->
 								<div id="kt_app_toolbar_container" class="app-container new-full-width container-xxl d-flex flex-stack">
 									<!--begin::Page title-->
@@ -52,11 +52,11 @@
 											</div>
 											<!--begin::Card title-->
 											<!--begin::Card toolbar-->
-											<div class="card-toolbar flex-row-fluid justify-content-end">
+											<div class="card-toolbar flex-row-fluid justify-content-end mobflex">
 												<!--begin::Toolbar-->
-												<div class="d-flex justify-content-end" data-kt-customer-table-toolbar="base">
+												<div class="d-flex justify-content-end mobileflex" data-kt-customer-table-toolbar="base">
 													<!--begin::Daterangepicker-->
-													<div class="w-225px me-3">
+													<div class="w-225px me-3 mobilewidth">
 													<input class="form-control form-control-solid w-100 mw-250px me-3" placeholder="Pick date range" id="kt_ecommerce_report_views_daterangepicker" />
 													</div>
 													<!--end::Daterangepicker-->
@@ -183,7 +183,7 @@
 														</div>
 														<div class="m-0">
 															<!--begin::Export dropdown-->
-															<button type="button" class="btn btn-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+															<button type="button" class="btn btn-light-primary full-button" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
 															<span class="svg-icon svg-icon-2">
 																<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 																	<rect opacity="0.3" x="12.75" y="4.25" width="12" height="2" rx="1" transform="rotate(90 12.75 4.25)" fill="currentColor" />
@@ -284,11 +284,11 @@
 														</td>
 														<!--end::Checkbox-->
 
-														<td>1510</td>
+														<td>2023-24/00012</td>
 
 														<td>GH12FF1510</td>
 
-														<td>Harjibhai</td>
+														<td>Harjibhai xxgbdfggrgrgd</td>
 
 														<td>1056</td>
 
@@ -300,7 +300,7 @@
 												
 														<td>1650</td>
 
-														<td>Rice</td>
+														<td>Iron Rods sdf</td>
 
 														<td>655</td>
 
@@ -340,11 +340,11 @@
 														</td>
 														<!--end::Checkbox-->
 
-														<td>150</td>
+														<td>2023-24/00012</td>
 
 														<td>GH12FF1510</td>
 
-														<td>Aarjibhai</td>
+														<td>Aarjibhai asdfggggghdg</td>
 
 														<td>1056</td>
 
@@ -432,7 +432,7 @@
 
 <!--begin::Custom Javascript(used for  view weighment page only)-->
 <script src="{{url('public/assets/js/custom/apps/ecommerce/customers/listing/listing.js')}}"></script>
-<script src="{{url('public/assets/js/custom/apps/ecommerce/customers/listing/add.js')}}"></script>
+
 <!--end::Custom Javascript-->
 <script>
 
@@ -442,22 +442,9 @@
 		var table = '#kt_customers_table';
 		var datatable;
 	
-		// Private functions
-		var initDatatable = function () {
-		   
-	
-			// Init datatable --- more info on datatables: https://datatables.net/manual/
-			datatable = $('#kt_customers_table').DataTable({
-				"info": true,
-				'pageLength': 10,
-				"ordering": false
-			});
-			//console.log(datatable);
-		}
-	
 		// Hook export buttons
 		var exportButtons = () => {
-			const documentTitle = 'Assesment Report';
+			const documentTitle = 'Weighment Report';
 			var buttons = new $.fn.dataTable.Buttons(table, {
 				buttons: [
 					{
@@ -474,7 +461,24 @@
 					},
 					{
 						extend: 'pdf',
-						title: documentTitle
+						customize: function (doc) {
+                                // Here's where you can control the cell padding
+                                doc.styles.tableHeader.margin =
+                                  doc.styles.tableBodyOdd.margin =
+                                  doc.styles.tableBodyEven.margin = [3, 3, 3, 3];
+								  doc.pageMargins = [10, 10, 10,10];
+								  doc.defaultStyle.fontSize = 8;
+								  doc.styles.tableHeader.fontSize = 9;
+								  doc.styles.title.fontSize = 20;
+								  doc.content[1].margin = [ 25, 0, 25, 0 ] //left, top, right, bottom
+                            },
+
+						title: documentTitle + ' (25-06-2023 to 26-07-2023)',
+						orientation: 'landscape',
+						pageSize: 'a4',
+						exportOptions: {
+							columns: [1,2,3,4,5,6,7,8,9,10,11],
+						}
 					}
 				]
 			}).container().appendTo($('#kt_customers_table_buttons'));
@@ -512,7 +516,6 @@
 					return;
 				}
 	
-				initDatatable();
 				exportButtons();
 				handleSearchDatatable();
 			}
@@ -564,7 +567,7 @@ cb(start, end);
 
 {{-- 
 <script>
-    $(document).ready(function () {
+    /*$(document).ready(function () {
 var table = $('#kt_customers_table').DataTable({
     scrollY: '200px',
     paging: false,
@@ -580,6 +583,6 @@ $('input.toggle-vis').on('click', function (e) {
     column.visible(!column.visible());
 });
 });
-</script> --}}
-    
+</script>--}}
+
 @endsection

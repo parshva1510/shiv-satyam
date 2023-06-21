@@ -18,7 +18,6 @@ use App\Http\Controllers\reportcontroller;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('add_ticket',[ticket::class,'add_ticket'])->name('add_ticket');
 Route::get('view_ticket',[ticket::class,'view_ticket'])->name('view_ticket');
 Route::get('login',[authentication::class,'login'])->name('login');
@@ -35,3 +34,7 @@ Route::get('add_payment',[payment::class,'add_payment'])->name('add_payment');
 
 Route::get('generate-pdf',[pdfcontroller::class,'generatepdf'])->name('generate-pdf');
 Route::get('reports',[reportcontroller::class,'reports'])->name('reports');
+
+Route::get('reset_password',[authentication::class,'reset_password'])->name('reset_password');
+
+Route::get('change_password',[authentication::class,'change_password'])->name('change_password');

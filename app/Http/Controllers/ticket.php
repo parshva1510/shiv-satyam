@@ -7,9 +7,13 @@ use Illuminate\Http\Request;
 
 class ticket extends Controller
 {
+ 
     public function add_ticket()
     {
-        return view('admin.add_ticket');
+          // $data=transporter::get()->all();
+
+          return view('admin.add_ticket');
+          //return redirect()->route('add_ticket');
     }
 
    public function view_ticket()
@@ -20,6 +24,12 @@ class ticket extends Controller
    public function demo()
    {
         return view('admin.demo');
+   }
+   public function client()
+   {
+     $data=transporter::get()->all();
+     //dd($data);
+        return view('admin.add_client');
    }
 
    public function formsubmit(Request $data)
@@ -42,7 +52,15 @@ class ticket extends Controller
 
 
    }
-   public function add_transporter(Request $req){
+   public function index()
+    {
+     $client['data'] = transporter::orderby("name","asc")
+     ->select('id','name')
+     ->get();
+
+          // Load index view
+     return view('index')->with("transporter",$client);
+    }   public function add_transporter(Request $req){
 
      $req->validate([
           'name'=>'required'
@@ -52,6 +70,9 @@ class ticket extends Controller
      $data->city=$req->city;
      $data->contact=$req->contact;
      $data->remark=$req->remark;
-     return view('admin/demo');
+     $data->save();
+   
+     return view('admin.add_client');
    }
+  
 }

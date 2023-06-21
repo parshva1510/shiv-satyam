@@ -6,7 +6,7 @@
     <!--begin::Content wrapper-->
     <div class="d-flex flex-column flex-column-fluid">
         <!--begin::Toolbar-->
-        <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+        <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6 mb-5 mt-5">
             <!--begin::Toolbar container-->
             <div id="kt_app_toolbar_container" class="app-container new-full-width container-xxl d-flex flex-stack">
                 <!--begin::Page title-->
@@ -25,12 +25,12 @@
             <!--begin::Content container-->
             <div id="kt_app_content_container" class="app-container container-xxxl">
                 <!--begin::Row-->
-                <div class="row g-5 g-xl-10 mb-5 mb-xl-10">
+                <div class="row g-5 g-xl-10 mb-5 mb-xl-10 column-reverse">
                     <!--begin::Col-->
                     <div class="col-xl-9">
                         <!--begin::Products-->
                         <div class="card card-flush">
-                            <div class="card-header align-items-center py-5 gap-2 gap-md-5">
+                            <div class="card-header align-items-center py-5 gap-2 gap-md-5 pb-0">
                                 <div class="card-title">
                                     <!--begin::Search-->
                                     <div class="d-flex align-items-center position-relative my-1">
@@ -49,7 +49,7 @@
                                 </div>
                                 <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                                     <!--begin::Export dropdown-->
-                                    <button type="button" class="btn btn-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                    <button type="button" class="btn btn-primary full-button" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                        
                                         Export Data
                                     </button>
@@ -93,7 +93,7 @@
                                 </div>
                             </div>
                             <!--begin::Card body-->
-                            <div class="card-body">
+                            <div class="card-body pt-0">
                                 <!--begin::Table-->
                                 <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_datatable_example">
                                     <!--begin::Table head-->
