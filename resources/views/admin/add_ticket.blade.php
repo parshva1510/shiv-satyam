@@ -29,7 +29,7 @@
                         <!--begin::Heading-->
                         <div class="card-px text-center pt-9 pb-9">
                             <!--begin:Form-->
-                                <form id="kt_modal_new_target_form" class="form" method="POST" action= "{{!empty($transporter)?route('edit_ticket',['sr_no' => $row->sr_no]):route('add_ticket')}}">
+                                <form id="kt_modal_new_target_form" class="form" method="POST" action= "{{!empty($transporter)?route('update_ticket'):route('add_ticket')}}">
                                     @csrf
                                     <!--begin::Input group-->
                                     <div class="row g-9 mb-8">
@@ -39,12 +39,12 @@
                                             <span class="required">Ticket no</span>
                                             </label>
                                           
-                                            <input type="hidden" name="edit_sr_no" value="{{print_r($transporter)}}">
+                                            <input type="hidden" name="edit_sr_no" value="{{!empty($transporter)?$transporter['sr_no']:''}}">
                                                 
-                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="1510" name="ticket_no" id="ticket_no" value="{{!empty($transporter)?$transporter['ticket_no']:''}}" />
+                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="" name="ticket_no" id="ticket_no" value="{{!empty($transporter)?$transporter['ticket_no']:$ticket_no}}" readonly>
                                         </div>
                                         <!--end::Label-->
-                                        
+                                        <!-- edit vadu page  -->
                                         <!--begin::Label-->
                                         <div class="col-md-4 fv-row">
                                             <div class="row">
@@ -56,13 +56,13 @@
                                                     <select class="form-select form-select-solid" data-control="select2" data-hide-search="false" data-placeholder="Select Account" name="transpoter_no">
                                                         <option class="dropdown-font" value="">Select Account...</option>
                                                         @foreach ($tr_data as $row)
-                                                        <option value="{{$row->sr_no}}" selected="{{($transporter) && $transporter['transporter']['name']==$row->name?'true':'false'}}"> {{($transporter['transporter']['name'])}} </option>
-                                                     
+                                                        <option value="{{$row->sr_no}}" {{!empty($transporter) && $transporter['transporter']['name']==$row->name? "selected":""}}> {{($row->name)}} </option>
+                                                 
+                                                      
                                                         @endforeach
-                                                       
-                          
+                                                  
+                                         
                                                     </select>
-                                               
                                                 </div>
 
                                                 <div class="col-md-4 mt-8">
@@ -161,7 +161,7 @@
                                                 <!--end::Icon-->
                                                 <!--begin::Datepicker-->
                                                 
-                                                <input class="form-control form-control-solid ps-12" id="new_date1" placeholder="Select a date" name="tare_date" value=" {{!empty($transporter)?$transporter['tare_date']:''}}"/>
+                                                <input class="form-control form-control-solid ps-12" id="new_date1" placeholder="Select a date" name="tare_date" value="{{!empty($transporter)?$transporter['tare_date']:''}}"/>
                                                 <!--end::Datepicker-->
                                             </div>
                                         </div>
@@ -192,22 +192,24 @@
                                         <div class="col-md-3 fv-row">
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Charge</span>
+                                                
                                             </label>
-                                            <input id="field3" type="number" min="0" class="form-control form-control-solid" placeholder="0" name="charge" value="{{!empty($transporter)?$transporter['charges']:''}}" required/>
+                                            <!--begin::Input group-->
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-currency-rupee"></i></span>
+                                                <input id="field3 " type="number" min="0" class="form-control form-control-solid" placeholder="0" name="charge" value="{{!empty($transporter)?$transporter['charges']:''}}" required/>
+                                            </div>
+                                           
+                                           
                                         </div>
                                         <!--end::Label-->	
                                         <!--begin::Col-->
                                         <div class="col-md-3 fv-row">
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">Payment Mode</label>
-                                            <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Payment Mode" name="payment_mode" value="{{!empty($transporter)?$transporter['payment_mode']:''}}">
-                                                <option value="">Select Mode...</option>
-                                                <option value="1" selected>Cash</option>
-                                                <option value="2">Gpay</option>
-                                                <option value="3">Cheque</option>
-                                                <option value="4">Bank Transfer</option>
-                                                <option value="5">Baki</option>
-                                            </select>
+                                            <select class="form-select form-select-solid" id="select-payment" data-control="select2" data-hide-search="true" data-placeholder="Select Payment Mode" name="payment_mode" value="">
+                                        </select>
                                         </div>
+                                        
                                         <!--end::Col-->						
                                     </div>
                                     <!--end::Input group-->
@@ -282,7 +284,7 @@
                             <label class="required fw-bolder fs-6 mb-2">A/C No.</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="ac_no" value="" readonly>
+                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="ac_no" value="SS{{$sr_no+1}}" readonly>
                                     
                             <!--end::Input-->
                         </div>
@@ -368,6 +370,7 @@
         timeFormat: "h-m-s",
         //defaultDate: currentDateTime
     })
+});
 
     jQuery(document).ready(function($){
         var currentDateTime = new Date();
@@ -379,7 +382,7 @@
     })
 
     
-});
+
 
 });
 </script>
@@ -432,6 +435,7 @@ var value = this.value;
 
 // Create a regular expression pattern for validation
 var pattern = /^[A-Z]{2}\d{2}[A-Z]{1,}\d{4}$/;
+// var pattern = /^[A-Z]{2}\d{1,2}(?:[A-Z]{1,3}|\d{1,4})?[A-Z]{1,2}$/;
 
 // Check if the entered value matches the pattern
 if (pattern.test(value)) {

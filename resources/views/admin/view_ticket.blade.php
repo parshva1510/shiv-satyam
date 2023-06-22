@@ -61,7 +61,7 @@
 													</div>
 													<!--end::Daterangepicker-->
 													<!--begin::Filter menu-->
-													{{-- <div class="m-0">
+													 <div class="m-0">
 														<!--begin::Menu toggle-->
 														<button type="button" class="btn btn-light" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
 																		<!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
@@ -177,7 +177,7 @@
 															<!--end::Form-->
 														</div>
 														<!--end::Menu 1-->
-													</div> --}}
+													</div> 
 													<!--end::Filter menu-->
 														<div class="card-title">
 															<!--begin::Export buttons-->
@@ -250,7 +250,7 @@
 										<!--begin::Card body-->
 										<div class="card-body pt-0">
 											<!--begin::Table-->
-											<table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table">
+											<table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table" >
 												<!--begin::Table head-->
 												<thead>
 													<!--begin::Table row-->
@@ -313,7 +313,29 @@
 
 														<td>{{$row->charges}}</td>
 
-														<td>{{$row->payment_mode}}</td>
+														@if($row->payment_mode==1)
+														{
+															<td>cash</td>
+														}
+														@elseif($row->payment_mode==2)
+														{
+															<td>Gpay</td>
+														}
+														@elseif($row->payment_mode==3)
+														{
+															<td>Cheque</td>
+														}
+														@elseif($row->payment_mode==4)
+														{
+															<td>Bank Transfer</td>
+														}
+														@else
+														{
+															<td>A/C Pay</td>
+														}
+														
+														@endif
+														
 														
 													
 														<td class="text-end">
