@@ -371,94 +371,92 @@
 </script>
 
 <script>
-function myFunction(id) {
-// Get the values of the required fields
-let field1 = document.getElementById('field1').value;
-let field2 = document.getElementById('field2').value;
-let field3 = document.getElementById('field3').value;
-
-// Check if any of the required fields are empty
-hide
-if (field1 === '' || field2 === '' || field3 === '') {
-    Swal.fire({
-        text: "Sorry, looks like there are some errors detected, please try again.",
-        icon: "error",
-        buttonsStyling: false,
-        confirmButtonText: "Ok, got it!",
-        customClass: {
-            confirmButton: "btn btn-primary"
-        }
+    function myFunction(id) {
+    // Get the values of the required fields
+    let field1 = document.getElementById('field1').value;
+    let field2 = document.getElementById('field2').value;
+    let field3 = document.getElementById('field3').value;
+    
+    // Check if any of the required fields are empty
+    if (field1 === '' || field2 === '' || field3 === '') {
+        Swal.fire({
+            text: "Sorry, looks like there are some errors detected, please try again.",
+            icon: "error",
+            buttonsStyling: false,
+            confirmButtonText: "Ok, got it!",
+            customClass: {
+                confirmButton: "btn btn-primary"
+            }
+        });
+    } else {
+        Swal.fire({
+            text: "Form has been successfully submitted!",
+            icon: "success",
+            buttonsStyling: false,
+            confirmButtonText: "Ok, got it!",
+            customClass: {
+                confirmButton: "btn btn-primary"
+            }
+        }).then((function(t) {
+            t.isConfirmed && o.hide();
+        }));
+    }
+    }
+    </script>
+    
+    
+    <script>
+    
+    // Get the input element
+    var input = document.getElementById('NUMBERPLATE');
+    
+    // Add an input event listener
+    input.addEventListener('input', function() {
+    // Get the entered value
+    var value = this.value;
+    
+    // Create a regular expression pattern for validation
+    var pattern = /^[A-Z]{2}\d{2}[A-Z]{1,}\d{4}$/;
+    
+    // Check if the entered value matches the pattern
+    if (pattern.test(value)) {
+    // The entered value is valid
+    console.log('Valid vehicle number: ' + value);
+    document.getElementById('number_error').textContent="";
+    } else {
+    // The entered value is invalid
+    console.log('Invalid vehicle number: ' + value);
+    document.getElementById('number_error').textContent="please add valid vehical number";
+    }
     });
-} else {
-    Swal.fire({
-        text: "Form has been successfully submitted!",
-        icon: "success",
-        buttonsStyling: false,
-        confirmButtonText: "Ok, got it!",
-        customClass: {
-            confirmButton: "btn btn-primary"
-        }
-    }).then((function(t) {
-        t.isConfirmed && o.hide();
-    }));
-}
-}
-</script>
-
-
-<script>
-
-// Get the input element
-var input = document.getElementById('NUMBERPLATE');
-
-// Add an input event listener
-input.addEventListener('input', function() {
-// Get the entered value
-var value = this.value;
-
-// Create a regular expression pattern for validation
-var pattern = /^[A-Z]{2}\d{2}[A-Z]{1,}\d{4}$/;
-
-// Check if the entered value matches the pattern
-if (pattern.test(value)) {
-// The entered value is valid
-console.log('Valid vehicle number: ' + value);
-document.getElementById('number_error').textContent="";
-} else {
-// The entered value is invalid
-console.log('Invalid vehicle number: ' + value);
-document.getElementById('number_error').textContent="please add valid vehical number";
-}
-});
-
-
-</script>
-
-<script>
-// Element to indecate
-
-var button = document.querySelector("#new_submit");
-
-// Handle button click event
-button.addEventListener("click", function(e) {
-e.preventDefault();
-// Activate indicator
-button.setAttribute("data-kt-indicator", "on");
-
-// Disable indicator after 3 seconds
-setTimeout(function() {
-myFunction(1);
-button.removeAttribute("data-kt-indicator");
-}, 1000);
-});
-</script>
-
-<script>
-$(document).ready(function($){
-$("#close_jk").click(function(){
-$("#kt_modal_add_user_1").modal('hide');
-});
-});
-</script>
+    
+    
+    </script>
+    
+    <script>
+    // Element to indecate
+    var button = document.querySelector("#new_submit");
+    
+    // Handle button click event
+    button.addEventListener("click", function(e) {
+    e.preventDefault();
+    // Activate indicator
+    button.setAttribute("data-kt-indicator", "on");
+    
+    // Disable indicator after 3 seconds
+    setTimeout(function() {
+    myFunction(1);
+    button.removeAttribute("data-kt-indicator");
+    }, 1000);
+    });
+    </script>
+    
+    <script>
+    $(document).ready(function($){
+    $("#close_jk").click(function(){
+    $("#kt_modal_add_user_1").modal('hide');
+    });
+    });
+    </script>
 @endsection
 
