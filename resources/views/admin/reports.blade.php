@@ -234,12 +234,10 @@
                                         <span class="required">Transporter</span>
                                     </label>
                                     <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Account" name="target_assign">
-                                        <option class="dropdown-font" value="">Select Account...</option>
-                                        <option class="dropdown-font" value="1">1. Karan</option>
-                                        <option class="dropdown-font" value="2">2. Sahal</option>
-                                        <option class="dropdown-font" value="3">3. Junaid</option>
-                                        <option class="dropdown-font" value="4">4. Sahil</option>
-                                        <option class="dropdown-font" value="5">5. Baba</option>
+                                    <option class="dropdown-font" value="">Select Account...</option>
+                                                        @foreach ($transporter as $row)
+                                                        <option value="{{$row->sr_no}}">{{$row->name}}</option>
+                                                        @endforeach
                                     </select>
                                 </div>
 
