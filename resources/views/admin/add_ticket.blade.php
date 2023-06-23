@@ -25,46 +25,38 @@
                 <!--begin::Card-->
                 <div class="card">
                     <!--begin::Card body-->
-                    <div class="card-body">
+                    <div class="card-body mobile-padding">
                         <!--begin::Heading-->
                         <div class="card-px text-center pt-9 pb-9">
                             <!--begin:Form-->
-                                <form id="kt_modal_new_target_form" class="form" method="POST" action= "{{!empty($transporter)?route('update_ticket'):route('add_ticket')}}">
-                                    @csrf
+                                <form id="kt_modal_new_target_form" class="form" method="POST" action="">
                                     <!--begin::Input group-->
                                     <div class="row g-9 mb-8">
                                         <!--begin::Label-->
                                         <div class="col-md-4 fv-row">
-                                            <label class="d-flex align-items-center fs-6 fw-bolder mb-2" >
-                                            <span class="required">Ticket no</span>
+                                            <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
+                                                <span class="required">Ticket No.</span>
                                             </label>
-                                          
-                                            <input type="hidden" name="edit_sr_no" value="{{!empty($transporter)?$transporter['sr_no']:''}}">
-                                                
-                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="" name="ticket_no" id="ticket_no" value="{{!empty($transporter)?$transporter['ticket_no']:$ticket_no}}" readonly>
+                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="1510" name="target_title" readonly/>
                                         </div>
                                         <!--end::Label-->
-                                        <!-- edit vadu page  -->
+                                        
                                         <!--begin::Label-->
                                         <div class="col-md-4 fv-row">
                                             <div class="row">
                                                 <div class="col-md-8">
                                                     <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
-                                                        
                                                         <span class="required">Transporter</span>
                                                     </label>
-                                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="false" data-placeholder="Select Account" name="transpoter_no">
+                                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="false" data-placeholder="Select Account" name="target_assign">
                                                         <option class="dropdown-font" value="">Select Account...</option>
-                                                        @foreach ($tr_data as $row)
-                                                        <option value="{{$row->sr_no}}" {{!empty($transporter) && $transporter['transporter']['name']==$row->name? "selected":""}}> {{($row->name)}} </option>
-                                                 
-                                                      
-                                                        @endforeach
-                                                  
-                                         
+                                                        <option class="dropdown-font" value="">Select Account...</option>
+                                                        <option class="dropdown-font" value="">Select Account...</option>
+                                                        <option class="dropdown-font" value="">Select Account...</option>
+                                                        <option class="dropdown-font" value="">Select Account...</option>
                                                     </select>
                                                 </div>
-
+                                                
                                                 <div class="col-md-4 mt-8">
                                                     <!--begin::Add user-->
                                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_user_1">
@@ -79,7 +71,6 @@
                                                     </button>
                                                     <!--end::Add user-->
 
-                                                   
                                                 </div>
                                             </div>
                                         </div>
@@ -87,12 +78,10 @@
                                         <!--begin::Label-->
                                         <div class="col-md-4 fv-row">
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
-                                                
                                                 <span class="required">Vehicle No.</span>
                                             </label>
-                                           
-                                            <input id="NUMBERPLATE" type="text" class="form-control form-control-solid" placeholder="GJ12PM1234" 
-                                                name="vehical_no" title="Please enter a valid vehicle number." value= "{{!empty($transporter)?$transporter['vehicle_no']:''}}"
+                                            <input id="NUMBERPLATE" type="text" class="form-control form-control-solid" placeholder="GJ-12-PM-####" 
+                                                name="target_title" title="Please enter a valid vehicle number." 
                                                 autocomplete="off" required oninput="this.value = this.value.toUpperCase();" />
                                             <span class="d-flex number_error" id="number_error"></span>
                                         </div>
@@ -109,7 +98,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Gross Weight (KG)</span>
                                             </label>
-                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="0" name="gross_weight" value="{{!empty($transporter)?$transporter['gross_weight']:''}}" />
+                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="0" name="target_title"/>
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Label-->
@@ -129,7 +118,7 @@
                                                 <!--end::Svg Icon-->
                                                 <!--end::Icon-->
                                                 <!--begin::Datepicker-->
-                                                <input class="form-control form-control-solid ps-12" id="new_date" placeholder="Select a date" name="gross_date" value="{{!empty($transporter)?$transporter['gross_date']:''}}"/>
+                                                <input class="form-control form-control-solid ps-12" id="new_date" placeholder="Select a date" name="due_date"/>
                                                 <!--end::Datepicker-->
                                             </div>
                                         </div>
@@ -140,7 +129,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Tare Weight (KG)</span>
                                             </label>
-                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="0" name="tare_wight" value="{{!empty($transporter)?$transporter['tare_weight']:''}}"/>
+                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="0" name="target_title"/>
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Label-->
@@ -160,8 +149,7 @@
                                                 <!--end::Svg Icon-->
                                                 <!--end::Icon-->
                                                 <!--begin::Datepicker-->
-                                                
-                                                <input class="form-control form-control-solid ps-12" id="new_date1" placeholder="Select a date" name="tare_date" value="{{!empty($transporter)?$transporter['tare_date']:''}}"/>
+                                                <input class="form-control form-control-solid ps-12" id="new_date1" placeholder="Select a date" name="due_date"/>
                                                 <!--end::Datepicker-->
                                             </div>
                                         </div>
@@ -177,39 +165,37 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Net Weight</span>
                                             </label>
-                                            <input id="field1" type="number" min="0" class="form-control form-control-solid" placeholder="0" name="net_weight" value="{{!empty($transporter)?$transporter['net_weight']:''}}" required/>
+                                            <input id="field1" type="number" min="0" class="form-control form-control-solid" placeholder="0" name="target_title" required/>
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Label-->
                                         <div class="col-md-3 fv-row">
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
-                                                <span class="">Material</span>
+                                                <span class="required">Material</span>
                                             </label>
-                                            <input id="field2" type="text" class="form-control form-control-solid" placeholder="material"  name="material" value="{{!empty($transporter)?$transporter['material']:''}}" />
+                                            <input id="field2" type="text" class="form-control form-control-solid" placeholder="" name="target_title" required/>
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Label-->
                                         <div class="col-md-3 fv-row">
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Charge</span>
-                                                
                                             </label>
-                                            <!--begin::Input group-->
-                                            <div class="input-group">
-                                                <span class="input-group-text" id="basic-addon1"><i class="bi bi-currency-rupee"></i></span>
-                                                <input id="field3 " type="number" min="0" class="form-control form-control-solid" placeholder="0" name="charge" value="{{!empty($transporter)?$transporter['charges']:''}}" required/>
-                                            </div>
-                                           
-                                           
+                                            <input id="field3" type="number" min="0" class="form-control form-control-solid" placeholder="0" name="target_title" required/>
                                         </div>
                                         <!--end::Label-->	
                                         <!--begin::Col-->
                                         <div class="col-md-3 fv-row">
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">Payment Mode</label>
-                                            <select class="form-select form-select-solid" id="select-payment" data-control="select2" data-hide-search="true" data-placeholder="Select Payment Mode" name="payment_mode" value="">
-                                        </select>
+                                            <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Payment Mode" name="target_assign">
+                                                <option value="">Select Mode...</option>
+                                                <option value="1">Cash</option>
+                                                <option value="2">Gpay</option>
+                                                <option value="3">Cheque</option>
+                                                <option value="4">Bank Transfer</option>
+                                                <option value="5">Baki</option>
+                                            </select>
                                         </div>
-                                        
                                         <!--end::Col-->						
                                     </div>
                                     <!--end::Input group-->
@@ -217,12 +203,12 @@
                                     <!--begin::Input group-->
                                     <div class="d-flex flex-column mb-8">
                                         <label class="d-flex align-items-center fs-6 fw-bolder mb-2">Remarks</label>
-                                        <textarea class="form-control form-control-solid" rows="3" name="remark" placeholder="Remarks" value="{{!empty($transporter)?$transporter['remark']:''}}"></textarea>
+                                        <textarea class="form-control form-control-solid" rows="3" name="target_details" placeholder="Remarks"></textarea>
                                     </div>
                                     <!--end::Input group-->
                                     <!--begin::Actions-->
                                     <div class="text-center d-flex flex-stack">
-                                        <button type="reset" id="kt_modal_new_target_cancel" >Reset</button>
+                                        <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-light me-3">Reset</button>
                                         <button type="submit" id="new_submit" class="btn btn-primary">
                                             <span class="indicator-label">Submit</span>
                                             <span class="indicator-progress">Please wait...
@@ -231,7 +217,6 @@
                                     </div>
                                     <!--end::Actions-->
                                 </form>
-                                
                             <!--end:Form-->
                         </div>
                         <!--end::Heading-->
@@ -274,8 +259,7 @@
             <!--begin::Modal body-->
             <div class="modal-body scroll-y mx-5 mx-xl-15 my-7 text-start">
                 <!--begin::Form-->
-                    <form id="kt_modal_add_transporter" class="form" method="POST" action="{{route('add_transporter')}}">
-                        @csrf
+                    <form id="kt_modal_add_transporter" class="form" method="POST" action="">
                     <!--begin::Scroll-->
                     <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
                         <!--begin::Input group-->
@@ -284,8 +268,7 @@
                             <label class="required fw-bolder fs-6 mb-2">A/C No.</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="ac_no" value="SS{{$sr_no+1}}" readonly>
-                                    
+                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" placeholder="1510"/>
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->
@@ -295,7 +278,7 @@
                             <label class="required fw-bolder fs-6 mb-2">Name</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" name="name" id="name" placeholder="Sahal" value=""/>
+                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" name="name" id="name" placeholder="Sahal"/>
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->
@@ -322,10 +305,10 @@
                         <!--begin::Input group-->
                         <div class="fv-row mb-7 fv-plugins-icon-container">
                             <!--begin::Label-->
-                            <label class="fw-bolder fs-6 mb-2">Remark</label>
+                            <label class="required fw-bolder fs-6 mb-2">Remark</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <textarea class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Remarks" name="remark" id="remark"></textarea>
+                            <textarea class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Remarks"></textarea>
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->
@@ -354,6 +337,8 @@
 @endsection
 
 
+
+
 @section('pagescript')
 
 <script src="{{url('public/assets/js/custom/apps/ecommerce/customers/listing/listing.js')}}"></script>
@@ -361,121 +346,117 @@
 <script src="{{url('public/assets/js/custom/apps/ecommerce/customers/listing/export.js')}}"></script>
 <script src="{{url('public/assets/js/custom/apps/ecommerce/reports/views/views.js')}}"></script>
 
+
 <script>
     jQuery(document).ready(function($){
         var currentDateTime = new Date();
         $('#new_date').flatpickr({
         enableTime: !0,
-        dateFormat: "Y-m-d",
-        timeFormat: "h-m-s",
-        //defaultDate: currentDateTime
+        dateFormat: "d M, Y - h:i K",
+        defaultDate: currentDateTime
     })
-});
 
     jQuery(document).ready(function($){
         var currentDateTime = new Date();
         $('#new_date1').flatpickr({
         enableTime: !0,
-        dateFormat: "Y-m-d",
-        timeFormat: "h-m-s",
-        //defaultDate: currentDateTime
+        dateFormat: "d M, Y - h:i K",
+        defaultDate: currentDateTime
     })
 
     
-
+});
 
 });
 </script>
 
 <script>
-function myFunction(id) {
-// Get the values of the required fields
-let field1 = document.getElementById('field1').value;
-let field2 = document.getElementById('field2').value;
-let field3 = document.getElementById('field3').value;
-
-// Check if any of the required fields are empty
-/*hide
-if (field1 === '' || field2 === '' || field3 === '') {
-    Swal.fire({
-        text: "Sorry, looks like there are some errors detected, please try again.",
-        icon: "error",
-        buttonsStyling: false,
-        confirmButtonText: "Ok, got it!",
-        customClass: {
-            confirmButton: "btn btn-primary"
-        }
+    function myFunction(id) {
+    // Get the values of the required fields
+    let field1 = document.getElementById('field1').value;
+    let field2 = document.getElementById('field2').value;
+    let field3 = document.getElementById('field3').value;
+    
+    // Check if any of the required fields are empty
+    if (field1 === '' || field2 === '' || field3 === '') {
+        Swal.fire({
+            text: "Sorry, looks like there are some errors detected, please try again.",
+            icon: "error",
+            buttonsStyling: false,
+            confirmButtonText: "Ok, got it!",
+            customClass: {
+                confirmButton: "btn btn-primary"
+            }
+        });
+    } else {
+        Swal.fire({
+            text: "Form has been successfully submitted!",
+            icon: "success",
+            buttonsStyling: false,
+            confirmButtonText: "Ok, got it!",
+            customClass: {
+                confirmButton: "btn btn-primary"
+            }
+        }).then((function(t) {
+            t.isConfirmed && o.hide();
+        }));
+    }
+    }
+    </script>
+    
+    
+    <script>
+    
+    // Get the input element
+    var input = document.getElementById('NUMBERPLATE');
+    
+    // Add an input event listener
+    input.addEventListener('input', function() {
+    // Get the entered value
+    var value = this.value;
+    
+    // Create a regular expression pattern for validation
+    var pattern = /^[A-Z]{2}\d{2}[A-Z]{1,}\d{4}$/;
+    
+    // Check if the entered value matches the pattern
+    if (pattern.test(value)) {
+    // The entered value is valid
+    console.log('Valid vehicle number: ' + value);
+    document.getElementById('number_error').textContent="";
+    } else {
+    // The entered value is invalid
+    console.log('Invalid vehicle number: ' + value);
+    document.getElementById('number_error').textContent="please add valid vehical number";
+    }
     });
-} else {
-    Swal.fire({
-        text: "Form has been successfully submitted!",
-        icon: "success",
-        buttonsStyling: false,
-        confirmButtonText: "Ok, got it!",
-        customClass: {
-            confirmButton: "btn btn-primary"
-        }
-    }).then((function(t) {
-        t.isConfirmed && o.hide();
-    }));
-}*/
-}
-</script>
-
-
-<script>
-
-// Get the input element
-var input = document.getElementById('NUMBERPLATE');
-
-// Add an input event listener
-input.addEventListener('input', function() {
-// Get the entered value
-var value = this.value;
-
-// Create a regular expression pattern for validation
-var pattern = /^[A-Z]{2}\d{2}[A-Z]{1,}\d{4}$/;
-// var pattern = /^[A-Z]{2}\d{1,2}(?:[A-Z]{1,3}|\d{1,4})?[A-Z]{1,2}$/;
-
-// Check if the entered value matches the pattern
-if (pattern.test(value)) {
-// The entered value is valid
-console.log('Valid vehicle number: ' + value);
-document.getElementById('number_error').textContent="";
-} else {
-// The entered value is invalid
-console.log('Invalid vehicle number: ' + value);
-document.getElementById('number_error').textContent="please add valid vehical number";
-}
-});
-
-
-</script>
-<!--Temp hide code to add transporte
-<script>
-// Element to indecate
-
-var button = document.querySelector("#new_submit");
-
-// Handle button click event
-button.addEventListener("click", function(e) {
-e.preventDefault();
-// Activate indicator
-button.setAttribute("data-kt-indicator", "on");
-
-// Disable indicator after 3 seconds
-setTimeout(function() {
-myFunction(1);
-button.removeAttribute("data-kt-indicator");
-}, 1000);
-});
-</script> STOP-->
-
-<script>
-$(document).ready(function($){
-$("#close_jk").click(function(){
-$("#kt_modal_add_user_1").modal('hide');
-});
-});
-</script>
+    
+    
+    </script>
+    
+    <script>
+    // Element to indecate
+    var button = document.querySelector("#new_submit");
+    
+    // Handle button click event
+    button.addEventListener("click", function(e) {
+    e.preventDefault();
+    // Activate indicator
+    button.setAttribute("data-kt-indicator", "on");
+    
+    // Disable indicator after 3 seconds
+    setTimeout(function() {
+    myFunction(1);
+    button.removeAttribute("data-kt-indicator");
+    }, 1000);
+    });
+    </script>
+    
+    <script>
+    $(document).ready(function($){
+    $("#close_jk").click(function(){
+    $("#kt_modal_add_user_1").modal('hide');
+    });
+    });
+    </script>
 @endsection
+
