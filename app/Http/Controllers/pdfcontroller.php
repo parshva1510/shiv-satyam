@@ -14,7 +14,7 @@ class pdfcontroller extends Controller
         // $pdf->loadHTML('<h1>Hello BABA</h1>');
         // return $pdf->stream();
 
-    $pdf = Pdf::loadView('admin/demopdf')->setPaper('a4', 'landscape');
+    $pdf = Pdf::loadView('admin/demopdf')->setPaper('a4', 'portrait');
     return $pdf->stream();
     }
 }

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 class ticket extends Controller
 {
+
      public function index(){
       
           $data=weight_entry::get()->all();
@@ -50,6 +51,12 @@ class ticket extends Controller
       $data=weight_entry::with('transporter')->get();
       return view('admin.view_ticket',compact('data'));
      
+   }
+   public function client()
+   {
+     $data=transporter::get()->all();
+     //dd($data);
+        return view('admin.add_client');
    }
 
    public function edit_ticket(Request $req, $ticket_no)
@@ -100,6 +107,7 @@ class ticket extends Controller
         
    }
 
+
    public function add_transporter(Request $req){
      
         $data=new transporter();
@@ -111,4 +119,5 @@ class ticket extends Controller
         $data->save();
         return redirect()->back();
    }
+  
 }
