@@ -13,7 +13,6 @@
                 <!--begin::Page title-->
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
-
                     <h1 class="page-heading d-flex text-dark fw-bold flex-column justify-content-center my-0">Transporters</h1>
                     <!--end::Title-->
                 </div>
@@ -54,7 +53,7 @@
                                     <tbody class="fw-semibold text-gray-600">
                                     @foreach($data as $row)
                                         <tr id="cid{{$row->sr_no}}">
-                                            <td>{{$row->sr_no}}</td>
+                                            <td data-kt-ecommerce-order-filter="order-id">{{$row->sr_no}}</td>
 
                                             <td>{{$row->name}}</td>
 
@@ -65,7 +64,7 @@
                                             <td>{{$row->remark}}</td>
                                     
                                             <td class="text-end">
-                                                <a href="{{route('edit_client', $row->sr_no)}}" id="edit"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" onclick="call({{$row->sr_no}})">
+                                            <a href="{{route('edit_client', $row->sr_no)}}" data-typeId="{{$row->sr_no}}" id="edit"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" >
                                                     <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                                                     <span class="svg-icon svg-icon-3">
                                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -113,7 +112,7 @@
                                     <!--end::Label-->
                                     <!--begin::Input-->
                                     
-                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="ac_no" value="{{$sr_no+1}}" readonly>
+                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="ac_no" id="ac_no" value="{{'SS'.$sr_no+1}}" readonly>
                                     
                                     <!--end::Input-->
                                 </div>
@@ -122,36 +121,35 @@
                                     <label class="required fw-bolder fs-6 mb-2">Name</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="name" id="name" value="" placeholder=""/>
+                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="name" id="name" value="" placeholder="" required/>
+                                  
                                     <!--end::Input-->
                                 </div>
                                     <!--begin::Table-->
-                                    <div class="fv-row mb-7">
+                                <div class="fv-row mb-7">
                                         <!--begin::Label-->
-                                        <label class="required fw-bolder fs-6 mb-2">City</label>
+                                    <label class="required fw-bolder fs-6 mb-2">City</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="city" id="city" placeholder=""/>
+                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="city" id="city" placeholder="" required/>
                                         <!--end::Input-->
-                                    </div>
-                                    <div class="fv-row mb-7">
+                                </div>
+                                <div class="fv-row mb-7">
                                         <!--begin::Label-->
-                                        <label class="required fw-bolder fs-6 mb-2">Contact</label>
+                                    <label class="required fw-bolder fs-6 mb-2">Contact</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="contact" id="contact" placeholder=""/>
+                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="contact" id="contact" placeholder="" maxlength="10" required/>
                                         <!--end::Input-->
-                                    </div>
-                                    <div class="fv-row mb-7">
+                                </div>
+                                <div class="fv-row mb-7">
                                         <!--begin::Label-->
-                                        <label class="fw-bolder fs-6 mb-2">Remark</label>
+                                    <label class="fw-bolder fs-6 mb-2">Remark</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="remark" id="remark" placeholder=""/>
+                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="remark" id="remark" placeholder=""/>
                                         <!--end::Input-->
-                                    </div>
-                                
-                                
+                                </div>     
                                 <button type="" id="new_submit" class="btn btn-primary">
                                     <span class="indicator-label">Add</span>
                                     <span class="indicator-progress">Please wait...
@@ -176,16 +174,14 @@
                         </div>
                         <!--end::Products-->
                     </div>
-
-                <!--Edit Module-->
-                
-                <div class="col-xl-4" id="editclient" hidden>
+                    <!--Edit Module-->
+                    <div class="col-xl-4" id="editclient">
                         <!--begin::Products-->
                         <div class="card card-flush">
                             <!--begin::Card body-->
                             <div class="card-body">
                                 <!--begin::form-->
-                                <form id="kt_modal_edit_transporter" class="form" method="POST" action="{{route('add_client')}}">
+                                <form id="kt_modal_edit_transporter" class="form" method="POST" action="{{route('update_client')}}">
                                 @csrf
                                 <div class="fv-row mb-7">
                                     <!--begin::Label-->
@@ -193,7 +189,7 @@
                                     <!--end::Label-->
                                     <!--begin::Input-->
                                     
-                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="ac_no1" value="{{$sr_no+1}}" readonly>
+                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="ac_no1" id="ac_no1" value="{{'SS'.$sr_no+1}}" readonly>
                                     
                                     <!--end::Input-->
                                 </div>
@@ -202,38 +198,37 @@
                                     <label class="required fw-bolder fs-6 mb-2">Name</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="name1" id="name1" value="" placeholder=""/>
+                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="name1" id="name1" value="" placeholder="" required/>
+                                  
                                     <!--end::Input-->
                                 </div>
                                     <!--begin::Table-->
-                                    <div class="fv-row mb-7">
+                                <div class="fv-row mb-7">
                                         <!--begin::Label-->
-                                        <label class="required fw-bolder fs-6 mb-2">City</label>
+                                    <label class="required fw-bolder fs-6 mb-2">City</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="city1" id="city1" placeholder=""/>
+                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="city1" id="city1" placeholder="" required/>
                                         <!--end::Input-->
-                                    </div>
-                                    <div class="fv-row mb-7">
+                                </div>
+                                <div class="fv-row mb-7">
                                         <!--begin::Label-->
-                                        <label class="required fw-bolder fs-6 mb-2">Contact</label>
+                                    <label class="required fw-bolder fs-6 mb-2">Contact</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="contact1" id="contact1" placeholder=""/>
+                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="contact1" id="contact1" placeholder="" maxlength="10" required/>
                                         <!--end::Input-->
-                                    </div>
-                                    <div class="fv-row mb-7">
+                                </div>
+                                <div class="fv-row mb-7">
                                         <!--begin::Label-->
-                                        <label class="fw-bolder fs-6 mb-2">Remark</label>
+                                    <label class="fw-bolder fs-6 mb-2">Remark</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="remark1" id="remark1" placeholder=""/>
+                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="remark1" id="remark1" placeholder=""/>
                                         <!--end::Input-->
-                                    </div>
-                                
-                                
-                                <button type="" id="edit_submit" class="btn btn-primary">
-                                    <span class="indicator-label">Add</span>
+                                </div>     
+                                <button type="" id="new_submit" class="btn btn-primary">
+                                    <span class="indicator-label">Save</span>
                                     <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                 </button>
@@ -256,8 +251,7 @@
                         </div>
                         <!--end::Products-->
                     </div>
-                <!--End Edit Module-->
-
+                    <!--End Edit Module-->
                 </div>
             </div>
             <!--end::Content container-->
@@ -271,31 +265,29 @@
 
 @section('pagescript')
 <script>
-   /* $(document).ready(function(){
-        $('a#edit').click(function(e){
    
-        e.preventDefault();
-        }); 
-        
-    });*/
-</script>
-<script>
-   function call(id)
-    { 
-        $ajax({
-            url:"{{url('edit')}}" +"/"+ id,
-            type:'GET',
-            dataType:'json',
-            success:function(response){
-                var data=JSON.parse(response);
-                console.log("hi");
-                $("#ac_no").val(data.'sr_no'); 
-                $("#name").val(response['name']); 
-                $("#city").val(response['city']); 
-                $("#contact").val(response['contact']);
-                $("#remark").val(response['remark']);  
-            }
+    let editLinks1 = document.querySelectorAll('a#edit')
+        editLinks1.forEach(link1 => {
+            $("#editclient").hide();
+            $("#addclient").show();
+            link1.addEventListener('click', function(event) {
+                $("#addclient").hide();
+                $("#editclient").show();
+                event.preventDefault();
+                const id = link1.getAttribute('data-typeId');
+                $.ajax({
+                    url:"{{url('edit_client')}}" +"/"+ id,
+                    type:'GET',
+                    success:function(response){
+                        $("#ac_no1").val("SS"+response['sr_no']); 
+                        $("#name1").val(response['name']); 
+                        $("#city1").val(response['city']); 
+                        $("#contact1").val(response['contact']);
+                        $("#remark1").val(response['remark']);  
+                    }
+                });
+            });
         });
-    }
-    </script>
+</script>
+
 @endsection

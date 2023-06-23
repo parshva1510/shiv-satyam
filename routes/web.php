@@ -39,12 +39,17 @@ Route::post('formsubmit',[ticket::class,'formsubmit'])->name('formsubmit');
 
 Route::get('add_user',[user::class,'add_user'])->name('add_user');
 
-/*Route::get('add_client',[client::class,'show_client'])->name('show_client');
-Route::post('add_client',[client::class,'add_client'])->name('add_client');*/
 Route::get('add_client',[client::class,'show_client'])->name('show_client');
 Route::post('add_client',[client::class,'add_client'])->name('add_client');
-Route::get('edit/{id}',[client::class,'edit'])->name('edit_client');
-Route::get('delete/{id}',[client::class,'delete'])->name('delete_client');
+Route::get('edit_client/{id}',[client::class,'edit_client'])->name('edit_client');
+Route::get('delete_client/{id}',[client::class,'delete_client'])->name('delete_client');
+Route::post('update_client',[client::class,'update_client'])->name('update_client');
+
+Route::get('add_user',[User::class,'show_user'])->name('show_user');
+Route::post('add_user',[User::class,'add_user'])->name('add_user');
+Route::get('edit_user/{id}',[User::class,'edit_user'])->name('edit_user');
+Route::get('delete_user/{id}',[User::class,'delete_user'])->name('delete_user');
+Route::post('update_user',[User::class,'update_user'])->name('update_user');
 
 Route::get('add_report',[ticket::class,'add_report'])->name('add_report');
 Route::get('add_payment',[payment::class,'add_payment'])->name('add_payment');
