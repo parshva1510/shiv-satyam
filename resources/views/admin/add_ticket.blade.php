@@ -229,8 +229,8 @@
                                     <!--begin::Actions-->
                                     <div class="text-center d-flex flex-stack">
                                         <button type="reset" id="kt_modal_new_target_cancel" >Reset</button>
-                                        <button type="submit" id="new_submit" class="btn btn-primary">
-                                            <span class="indicator-label">Submit</span>
+                                        <button type="submit" id="new_submit" class="btn btn-primary" >
+                                            <span class="indicator-label"  onclick="submitForm()">Submit</span>
                                             <span class="indicator-progress">Please wait...
                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                         </button>
@@ -432,25 +432,29 @@
     
     
     <script>
-    // Get the input element
-    var input = document.getElementById('NUMBERPLATE');
-    // Add an input event listener
-    input.addEventListener('input', function() {
-        // Get the entered value
-        var value = this.value;
-        // Create a regular expression pattern for validation
-        var pattern = /^[A-Z]{2}-\d{2}-[A-Z]{2}-\d{4}$/;
-        // Check if the entered value matches the pattern
-        if (pattern.test(value)) {
-            // The entered value is valid
-            console.log('Valid vehicle number: ' + value);
-            document.getElementById('number_error').textContent = "";
-        } else {
-            // The entered value is invalid
-            console.log('Invalid vehicle number: ' + value);
-            document.getElementById('number_error').textContent = "Please add a valid vehicle number";
-        }
+    // Define the pattern outside the event listener
+    var pattern = /^[A-Z]{2}-\d{2}-[A-Z]{2}-\d{4}$/;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the input element
+        var input = document.getElementById('NUMBERPLATE');
+        // Add an input event listener
+        input.addEventListener('input', function() {
+            // Get the entered value
+            var value = this.value;
+            // Check if the entered value matches the pattern
+            if (pattern.test(value)) {
+                // The entered value is valid
+                console.log('Valid vehicle number: ' + value);
+                document.getElementById('number_error').textContent = "";
+            } else {
+                // The entered value is invalid
+                console.log('Invalid vehicle number: ' + value);
+                document.getElementById('number_error').textContent = "Please add a valid vehicle number";
+            }
+        });
     });
+
     function submitForm() {
         // Get the value of the vehicle number field
         var vehicleNumber = document.getElementById('NUMBERPLATE').value;
@@ -482,6 +486,8 @@
         }
     }
 </script>
+
+
     
     <!-- <script>
     // Element to indecate

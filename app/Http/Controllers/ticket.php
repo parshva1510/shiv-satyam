@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\demo;
 use App\Models\transporter;
 use App\Models\weight_entry;
+use App\Models\weight_entry_log;
+use Carbon\Carbon;
 use DB;
 use Illuminate\Http\Request;
 
@@ -20,20 +22,19 @@ class ticket extends Controller
           $tr_data=Transporter::all();
           $sr_no = transporter::get()->last()->sr_no;
           $ticket_no =(weight_entry::get()->last()->ticket_no) +  1;
+          $payment = payment::select('client_no')->get();
        
 
-          return view('admin.add_ticket',["transporter" => $transporter,'sr_no' => $sr_no, 'tr_data'=>$tr_data,'ticket_no'=> $ticket_no,'data'=>$data]);
+          return view('admin.add_ticket',["transporter" => $transporter,'sr_no' => $sr_no, 'tr_data'=>$tr_data,'ticket_no'=> $ticket_no,'data'=>$data,'payment'=>$payment]);
      }
      public function add_ticket(Request $req)
      {
-    
-
-    ['required', 'regex:/^[A-Z]{2}-[0-9]{2}-[A-Z]{2}-[0-9]{4}$/'];
-
 
        
          $data = weight_entry::find($req->sr_no);
+         $data1 = new weight_entry_log();
          $datainsert = new weight_entry();
+         
          $sr_no = transporter::get()->last()->sr_no;
          $datainsert->ticket_no = $req->ticket_no;
          $datainsert->transpoter_no = $req->transpoter_no;
@@ -48,9 +49,25 @@ class ticket extends Controller
          $datainsert->payment_mode = $req->payment_mode;
          $datainsert->remark = $req->remark;
          $datainsert->save();
+         $data1->ticket_no = $req->ticket_no;
+        //  aa field 6 table ma ?na update ma current avse date 
+         $data1->update_date =  Carbon::now();
+         $data1->update_by =  1;
+         $data1->vehicle_no = $req->vehical_no;
+         $data1->gross_weight = $req->gross_weight;
+         $data1->gross_date = $req->gross_date;
+         $data1->tare_weight = $req->tare_wight;
+         $data1->tare_date = $req->tare_date;
+         $data1->net_weight = $req->net_weight;
+         $data1->material = $req->material;
+         $data1->charges = $req->charge;
+         $data1->payment_mode = $req->payment_mode;
+         $data1->remark = $req->remark;
+         $data1->save();
+         dd($data1->toArray());
          $transporters = Transporter::all();
          $ticket_no =(weight_entry::get()->last()->ticket_no) +  1;
-         return view('admin.add_ticket', ["transporter" => $data,'tr_data'=>$transporters,'sr_no' => $sr_no,'ticket_no'=> $ticket_no]);
+         return view('admin.add_ticket', ["transporter" => $data,'tr_data'=>$transporters,'sr_no' => $sr_no,'ticket_no'=> $ticket_no,'data1'=> $data1]);
      }
 
    public function view_ticket()
