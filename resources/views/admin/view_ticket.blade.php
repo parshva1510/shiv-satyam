@@ -277,12 +277,13 @@
 												</thead>
 												<!--end::Table head-->
 												<!--begin::Table body-->
+												
 												<tbody class="fw-semibold text-gray-600">
 
 													@foreach($data as $row)
-												
-
+													
 													<tr>
+														
 														<!--begin::Checkbox-->
 														<td>
 															<div class="form-check form-check-sm form-check-custom form-check-solid">
@@ -290,21 +291,22 @@
 															</div>
 														</td>
 														<!--end::Checkbox-->
-														
 														<td>{{$row->ticket_no}}</td>
 													
+													
+														<td>{{$row->vehicle_no}}</td>
 														
 														
-														<td>{{ $row->transporter?$row->transporter->name:'' }}</td>
+														<td>{{$row->name}}</td>
 
 
 														<td>{{$row->gross_weight}}</td>
 
-														<td>{{$row->gross_date}}</td>
+														<td>{{(new DateTime($row->gross_date))->format('d-m-Y')}}</td>
 
 														<td>{{$row->tare_weight}}</td>
 														
-														<td>{{$row->tare_date}}</td>
+														<td>{{(new DateTime($row->tare_date))->format('d-m-Y')}}</td>
 												
 														<td>{{$row->net_weight}}</td>
 
@@ -313,33 +315,33 @@
 														<td>{{$row->charges}}</td>
 
 														@if($row->payment_mode==1)
-														{
+														
 															<td>cash</td>
-														}
+														
 														@elseif($row->payment_mode==2)
-														{
+														
 															<td>Gpay</td>
-														}
+														
 														@elseif($row->payment_mode==3)
-														{
+														
 															<td>Cheque</td>
-														}
+														
 														@elseif($row->payment_mode==4)
-														{
+													
 															<td>Bank Transfer</td>
-														}
+														
 														@else
-														{
+														
 															<td>A/C Pay</td>
-														}
+														
 														
 														@endif
 														
-														
+													
 													
 														<td class="text-end">
 														
-																<a href="{{ route('edit_ticket', ['sr_no' => $row->sr_no]) }}"   class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+																<a href="{{route('edit_ticket', $row->id) }}"   class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
 																	<!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
 																	<span class="svg-icon svg-icon-3">
 																		<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -349,7 +351,7 @@
 																	</span>
 																	<!--end::Svg Icon-->
 																</a>
-																<a href="{{ route('delete_ticket', ['sr_no' => $row->sr_no]) }}" data-kt-customer-table-filter="delete_row" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+																<a href="{{ route('delete_ticket', $row->sr_no) }}" data-kt-customer-table-filter="delete_row" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
 																	<!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
 																	<span class="svg-icon svg-icon-3">
 																		<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -563,4 +565,6 @@ $('input.toggle-vis').on('click', function (e) {
 });
 </script>--}}
 
+
+	</script>
 @endsection

@@ -264,8 +264,7 @@
 
 
 @section('pagescript')
-<script>
-   
+<script> 
     let editLinks1 = document.querySelectorAll('a#edit')
         editLinks1.forEach(link1 => {
             $("#editclient").hide();

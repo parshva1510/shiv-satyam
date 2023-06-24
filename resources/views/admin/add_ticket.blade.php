@@ -1,3 +1,4 @@
+<!-- <option value="1">Cash</option> -->
 @extends('admin.layout.layout')
 @section('mainsection')
 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
@@ -28,43 +29,46 @@
                     <div class="card-body mobile-padding">
                         <!--begin::Heading-->
                         <div class="card-px text-center pt-9 pb-9">
-                            <!--begin:Form-->
+                            <!--begin:Add Form-->
+                            <div id="addticket">
                             <form id="kt_modal_new_target_form" class="form" method="POST" action= "{{!empty($transporter)?route('update_ticket'):route('add_ticket')}}">
                                     @csrf
                                     <!--begin::Input group-->
                                     <div class="row g-9 mb-8">
                                         <!--begin::Label-->
                                         <div class="col-md-4 fv-row">
-                                            <label class="d-flex align-items-center fs-6 fw-bolder mb-2" >
-                                            <span class="required">Ticket no</span>
+                                            <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
+                                                <span class="required">Ticket No.</span>
+                                              <!-- done medam condition samjai gai ??  -->
+                                                <!-- weight entry ma j 6 ne k tranmsporter table ma ??hauk de je hu pote joi lis -->
                                             </label>
-                                          
+                                           
                                             <input type="hidden" name="edit_sr_no" value="{{!empty($transporter)?$transporter['sr_no']:''}}">
-                                                
-                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="" name="ticket_no" id="ticket_no" value="{{!empty		($transporter)?$transporter['ticket_no']:$ticket_no}}" readonly>
+                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="" name="ticket_no" id="ticket_no" value="{{(!empty($transporter['ticket_no']))?$transporter['ticket_no']:$ticket_no}}" readonly>
                                         </div>
                                         <!--end::Label-->
-                                        <!-- edit vadu page  -->
+                                        
                                         <!--begin::Label-->
                                         <div class="col-md-4 fv-row">
                                             <div class="row">
+
+                                            
                                                 <div class="col-md-8">
                                                     <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
-                                                        
                                                         <span class="required">Transporter</span>
                                                     </label>
-                                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="false" data-placeholder="Select Account" name="transpoter_no">
+                                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="false" data placeholder="Select Account"name="transpoter_no" required>
                                                         <option class="dropdown-font" value="">Select Account...</option>
                                                         @foreach ($tr_data as $row)
-                                                        <option value="{{$row->sr_no}}" {{!empty($transporter) && $transporter['transporter']['name']==$row->name? "selected":""}}> {{($row->name)}} </option>
-                                                 
-                                                      
+                                                        
+                                                        <option value="{{$row->sr_no}}" {{((!empty($transporter) && !empty($transporter['transporter']['name']) && $transporter['transporter']['name']==$row->name))? "selected":""}}> {{($row->name).'-'.('SS'.$row->sr_no)}} </option>
+                                                     
                                                         @endforeach
-                                                  
+                                                       
                                          
                                                     </select>
                                                 </div>
-
+                                                
                                                 <div class="col-md-4 mt-8">
                                                     <!--begin::Add user-->
                                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_user_1">
@@ -79,7 +83,6 @@
                                                     </button>
                                                     <!--end::Add user-->
 
-                                                   
                                                 </div>
                                             </div>
                                         </div>
@@ -87,10 +90,8 @@
                                         <!--begin::Label-->
                                         <div class="col-md-4 fv-row">
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
-                                                
                                                 <span class="required">Vehicle No.</span>
                                             </label>
-                                           
                                             <input id="NUMBERPLATE" type="text" class="form-control form-control-solid" placeholder="GJ12PM1234" 
                                                 name="vehical_no" title="Please enter a valid vehicle number." value= "{{!empty($transporter)?$transporter['vehicle_no']:''}}"
                                                 autocomplete="off" required oninput="this.value = this.value.toUpperCase();" />
@@ -160,7 +161,6 @@
                                                 <!--end::Svg Icon-->
                                                 <!--end::Icon-->
                                                 <!--begin::Datepicker-->
-                                                
                                                 <input class="form-control form-control-solid ps-12" id="new_date1" placeholder="Select a date" name="tare_date" value="{{!empty($transporter)?$transporter['tare_date']:''}}"/>
                                                 <!--end::Datepicker-->
                                             </div>
@@ -183,8 +183,9 @@
                                         <!--begin::Label-->
                                         <div class="col-md-3 fv-row">
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
-                                                <span class="">Material</span>
+                                                <span class="required">Material</span>
                                             </label>
+                                            
                                             <input id="field2" type="text" class="form-control form-control-solid" placeholder="material"  name="material" value="{{!empty($transporter)?$transporter['material']:''}}" />
                                         </div>
                                         <!--end::Label-->
@@ -192,24 +193,29 @@
                                         <div class="col-md-3 fv-row">
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Charge</span>
-                                                
                                             </label>
-                                            <!--begin::Input group-->
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1"><i class="bi bi-currency-rupee"></i></span>
                                                 <input id="field3 " type="number" min="0" class="form-control form-control-solid" placeholder="0" name="charge" value="{{!empty($transporter)?$transporter['charges']:''}}" required/>
                                             </div>
-                                           
-                                           
                                         </div>
                                         <!--end::Label-->	
-                                        <!--begin::Col-->
+                                        <!--begin::Col-->                         
                                         <div class="col-md-3 fv-row">
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">Payment Mode</label>
                                             <select class="form-select form-select-solid" id="select-payment" data-control="select2" data-hide-search="true" data-placeholder="Select Payment Mode" name="payment_mode" value="">
-                                        </select>
-                                        </div>
+                                            <option value="">Select Mode...</option>
+                                            <option value="1" {{!empty($transporter) && $transporter['payment_mode'] == "1" && !empty($transporter['payment_mode']) ? 'selected' : '' }}>cash</option>
+                                            <option value="2" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "2" ? 'selected' : '' }}>Gpay</option>
+                                            <option value="3" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "3" ? 'selected' : '' }}>Cheque</option>
+                                            <option value="4" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "4" ? 'selected' : '' }}>Bank Transfer</option>
+                                            <option value="5" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "5" ? 'selected' : '' }}>A/C Pay</option>
                                         
+                                            
+                                            </select>
+                                        <!-- a kem ave che ok joi lau 
+                                     -->
+                                        </div>
                                         <!--end::Col-->						
                                     </div>
                                     <!--end::Input group-->
@@ -221,17 +227,21 @@
                                     </div>
                                     <!--end::Input group-->
                                     <!--begin::Actions-->
-                                    <div class="text-center d-flex flex-stack pt-5">
-                        <button type="" class="btn btn-light me-3" >Reset</button>
-                        <button type="" class="btn btn-primary"  >
-                            <span class="indicator-label">Submit</span>
-                            <span class="indicator-progress">Please wait...
-                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                        </button>
-                    </div>
+                                    <div class="text-center d-flex flex-stack">
+                                        <button type="reset" id="kt_modal_new_target_cancel" >Reset</button>
+                                        <button type="submit" id="new_submit" class="btn btn-primary">
+                                            <span class="indicator-label">Submit</span>
+                                            <span class="indicator-progress">Please wait...
+                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                        </button>
+                                    </div>
                                     <!--end::Actions-->
                                 </form>
+                            </div>
                             <!--end:Form-->
+                            <!--Begin Edit Form-->
+                           
+                            <!--End Edit form-->
                         </div>
                         <!--end::Heading-->
                     </div>
@@ -273,7 +283,8 @@
             <!--begin::Modal body-->
             <div class="modal-body scroll-y mx-5 mx-xl-15 my-7 text-start">
                 <!--begin::Form-->
-                    <form id="kt_modal_add_transporter" class="form" method="POST" action="">
+                <form id="kt_modal_add_transporter" class="form" method="POST" action="{{route('add_transporter')}}">
+                        @csrf
                     <!--begin::Scroll-->
                     <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
                         <!--begin::Input group-->
@@ -282,7 +293,8 @@
                             <label class="required fw-bolder fs-6 mb-2">A/C No.</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" placeholder="1510"/>
+                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="ac_no" value="{{'SS'.$sr_no+1}}" readonly>
+                                    
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->
@@ -292,7 +304,7 @@
                             <label class="required fw-bolder fs-6 mb-2">Name</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" name="name" id="name" placeholder="Sahal"/>
+                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" name="name" id="name" placeholder="Sahal" value=""/>
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->
@@ -319,10 +331,10 @@
                         <!--begin::Input group-->
                         <div class="fv-row mb-7 fv-plugins-icon-container">
                             <!--begin::Label-->
-                            <label class="required fw-bolder fs-6 mb-2">Remark</label>
+                            <label class="fw-bolder fs-6 mb-2">Remark</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <textarea class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Remarks"></textarea>
+                            <textarea class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Remarks" name="remark" id="remark"></textarea>
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->
@@ -367,7 +379,7 @@
         $('#new_date').flatpickr({
         enableTime: !0,
         dateFormat: "Y-m-d",
-        defaultDate: currentDateTime
+        //defaultDate: currentDateTime
     })
 
     jQuery(document).ready(function($){
@@ -375,7 +387,7 @@
         $('#new_date1').flatpickr({
         enableTime: !0,
         dateFormat: "Y-m-d",
-        defaultDate: currentDateTime
+        //defaultDate: currentDateTime
     })
 
     
@@ -384,7 +396,7 @@
 });
 </script>
 
-<script>
+<!-- <script>
     function myFunction(id) {
     // Get the values of the required fields
     let field1 = document.getElementById('field1').value;
@@ -416,38 +428,62 @@
         }));
     }
     }
-    </script>
+    </script> -->
     
     
     <script>
-    
     // Get the input element
     var input = document.getElementById('NUMBERPLATE');
-    
     // Add an input event listener
     input.addEventListener('input', function() {
-    // Get the entered value
-    var value = this.value;
-    
-    // Create a regular expression pattern for validation
-    var pattern = /^[A-Z]{2}\d{2}[A-Z]{1,}\d{4}$/;
-    
-    // Check if the entered value matches the pattern
-    if (pattern.test(value)) {
-    // The entered value is valid
-    console.log('Valid vehicle number: ' + value);
-    document.getElementById('number_error').textContent="";
-    } else {
-    // The entered value is invalid
-    console.log('Invalid vehicle number: ' + value);
-    document.getElementById('number_error').textContent="please add valid vehical number";
-    }
+        // Get the entered value
+        var value = this.value;
+        // Create a regular expression pattern for validation
+        var pattern = /^[A-Z]{2}-\d{2}-[A-Z]{2}-\d{4}$/;
+        // Check if the entered value matches the pattern
+        if (pattern.test(value)) {
+            // The entered value is valid
+            console.log('Valid vehicle number: ' + value);
+            document.getElementById('number_error').textContent = "";
+        } else {
+            // The entered value is invalid
+            console.log('Invalid vehicle number: ' + value);
+            document.getElementById('number_error').textContent = "Please add a valid vehicle number";
+        }
     });
+    function submitForm() {
+        // Get the value of the vehicle number field
+        var vehicleNumber = document.getElementById('NUMBERPLATE').value;
+        // Check if the vehicle number is empty or invalid
+        if (vehicleNumber === '' || !pattern.test(vehicleNumber)) {
+            Swal.fire({
+                text: "Sorry, looks like there are some errors detected, please try again.",
+                icon: "error",
+                buttonsStyling: false,
+                confirmButtonText: "Ok, got it!",
+                customClass: {
+                    confirmButton: "btn btn-primary"
+                }
+            });
+        } else {
+            Swal.fire({
+                text: "Form has been successfully submitted!",
+                icon: "success",
+                buttonsStyling: false,
+                confirmButtonText: "Ok, got it!",
+                customClass: {
+                    confirmButton: "btn btn-primary"
+                }
+            }).then(function(t) {
+                if (t.isConfirmed) {
+                    // Hide the Swal alert or perform any other action
+                }
+            });
+        }
+    }
+</script>
     
-    
-    </script>
-    
-    <script>
+    <!-- <script>
     // Element to indecate
     var button = document.querySelector("#new_submit");
     
@@ -463,7 +499,7 @@
     button.removeAttribute("data-kt-indicator");
     }, 1000);
     });
-    </script>
+    </script> -->
     
     <script>
     $(document).ready(function($){
@@ -473,4 +509,3 @@
     });
     </script>
 @endsection
-
