@@ -11,14 +11,14 @@
 		<meta property="og:title" content="Metronic | Bootstrap HTML, VueJS, React, Angular, Asp.Net Core, Rails, Spring, Blazor, Django, Flask & Laravel Admin Dashboard Theme" />
 		<meta property="og:url" content="https://keenthemes.com/metronic" />
 		<meta property="og:site_name" content="Keenthemes | Metronic" />
-		<link href="shiv_satyam/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="shiv_satyam/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="{{url('public/assets/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{url('public/assets/css/style.bundle.css" rel="stylesheet')}}" type="text/css" />
 		<!--begin::Fonts(mandatory for all pages)-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
 		<!--end::Fonts-->
 		<!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
-		<link href="shiv_satyam/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="shiv_satyam/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="{{url('public/assets/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{url('public/assets/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<!--end::Global Stylesheets Bundle-->
 	</head>
 	<!--end::Head-->
@@ -39,7 +39,7 @@
 					<!--begin::Content-->
 					<div class="d-flex flex-column flex-center pb-0 pb-lg-10 p-10 w-100">
 						<!--begin::Image-->
-						<img class="theme-light-show mx-auto mw-100 w-150px w-lg-300px mb-10 mb-lg-20" src="shiv_satyam/assets/media/auth/agency.png" alt="">						<h1 class="text-gray-800 fs-2qx fw-bold text-center mb-7">Fast, Efficient and Productive</h1>
+						<img class="theme-light-show mx-auto mw-100 w-150px w-lg-300px mb-10 mb-lg-20" src="{{url('public/assets/media/auth/agency.png')}}" alt="">						<h1 class="text-gray-800 fs-2qx fw-bold text-center mb-7">Fast, Efficient and Productive</h1>
 						<!--end::Title-->
 						<!--begin::Text-->
 						<div class="text-gray-600 fs-base text-center fw-semibold">In this kind of post,
@@ -59,7 +59,8 @@
 						<!--begin::Content-->
 						<div class="w-md-400px">
 							<!--begin::Form-->
-							<form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" data-kt-redirect-url="../../demo1/dist/index.html" action="#">
+							<form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" data-kt-redirect-url="../../demo1/dist/index.html" method = "POST" action="{{route('login')}}">
+							@csrf
 								<!--begin::Heading-->
 								<div class="text-center mb-11">
 									<!--begin::Title-->
@@ -124,11 +125,11 @@
 		<!--begin::Javascript-->
 		<script>var hostUrl = "shiv_satyam/assets/";</script>
 		<!--begin::Global Javascript Bundle(mandatory for all pages)-->
-		<script src="shiv_satyam/assets/plugins/global/plugins.bundle.js"></script>
-		<script src="shiv_satyam/assets/js/scripts.bundle.js"></script>
+		<script src="{{url('public/assets/plugins/global/plugins.bundle.js')}}"></script>
+		<script src="{{url('public/assets/js/scripts.bundle.js')}}"></script>
 		<!--end::Global Javascript Bundle-->
 		<!--begin::Custom Javascript(used for this page only)-->
-		<script src="shiv_satyam/assets/js/custom/authentication/sign-in/general.js"></script>
+		<script src="{{url('public/assets/js/custom/authentication/sign-in/general.js')}}"></script>
 		<!--end::Custom Javascript-->
 		<!--end::Javascript-->
 	</body>

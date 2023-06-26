@@ -14,9 +14,6 @@ class ticket extends Controller
 {
      public function index(){
        $data=weight_entry::with('transporter')->get();
-      
-
-      
           // $data=DB::select("SELECT * from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no");
           $transporter =[];
           $tr_data=Transporter::all();
@@ -115,9 +112,7 @@ class ticket extends Controller
       $data->payment_mode = $req->input('payment_mode');
       $data->date = $req->input('date');
       $data->remark =ucfirst($req->input('remark'));
-     
       $data->save();
-
       $tr_data=transporter::all();
       $data=DB::select("SELECT *,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no");
       return view('admin.view_ticket',['data' => $data]);

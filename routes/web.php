@@ -31,7 +31,7 @@ Route::get('show_transporter',[ticket::class,'show_transporter'])->name('show_tr
 Route::POST('add_transporter',[ticket::class,'add_transporter'])->name('add_transporter');
 
 Route::get('login',[authentication::class,'login'])->name('login');
-Route::get('/',[authentication::class,'login']);
+Route::post('login',[authentication::class,'index'])->name('login');
 
 
 Route::get('demo',[ticket::class,'demo'])->name('demo');
