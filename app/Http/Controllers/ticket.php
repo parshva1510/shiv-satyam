@@ -22,10 +22,10 @@ class ticket extends Controller
           $tr_data=Transporter::all();
           $sr_no = transporter::get()->last()->sr_no;
           $ticket_no =(weight_entry::get()->last()->ticket_no) +  1;
-          $payment = payment::select('client_no')->get();
+          //$payment = payment::select('client_no')->get();
        
 
-          return view('admin.add_ticket',["transporter" => $transporter,'sr_no' => $sr_no, 'tr_data'=>$tr_data,'ticket_no'=> $ticket_no,'data'=>$data,'payment'=>$payment]);
+          return view('admin.add_ticket',["transporter" => $transporter,'sr_no' => $sr_no, 'tr_data'=>$tr_data,'ticket_no'=> $ticket_no,'data'=>$data]);
      }
      public function add_ticket(Request $req)
      {
@@ -37,34 +37,36 @@ class ticket extends Controller
          
          $sr_no = transporter::get()->last()->sr_no;
          $datainsert->ticket_no = $req->ticket_no;
-         $datainsert->transpoter_no = $req->transpoter_no;
+         $datainsert->transpoter_no = strtoupper( $req->transpoter_no) ;
          $datainsert->vehicle_no = $req->vehical_no;
          $datainsert->gross_weight = $req->gross_weight;
          $datainsert->gross_date = $req->gross_date;
+         $datainsert->gross_time = date('Y-m-d H:i:s',strtotime($req->gross_date));
          $datainsert->tare_weight = $req->tare_wight;
          $datainsert->tare_date = $req->tare_date;
+         $datainsert->tare_time = date('Y-m-d H:i:s',strtotime($req->tare_date));
          $datainsert->net_weight = $req->net_weight;
-         $datainsert->material = $req->material;
+         $datainsert->material =strtoupper($req->material);
          $datainsert->charges = $req->charge;
          $datainsert->payment_mode = $req->payment_mode;
          $datainsert->remark = $req->remark;
          $datainsert->save();
-         $data1->ticket_no = $req->ticket_no;
-        //  aa field 6 table ma ?na update ma current avse date 
-         $data1->update_date =  Carbon::now();
-         $data1->update_by =  1;
-         $data1->vehicle_no = $req->vehical_no;
-         $data1->gross_weight = $req->gross_weight;
-         $data1->gross_date = $req->gross_date;
-         $data1->tare_weight = $req->tare_wight;
-         $data1->tare_date = $req->tare_date;
-         $data1->net_weight = $req->net_weight;
-         $data1->material = $req->material;
-         $data1->charges = $req->charge;
-         $data1->payment_mode = $req->payment_mode;
-         $data1->remark = $req->remark;
-         $data1->save();
-         dd($data1->toArray());
+         
+        //  $data1->ticket_no = $req->ticket_no;
+        //  $data1->update_date =  Carbon::now();
+        //  $data1->update_by =  1;
+        //  $data1->vehicle_no = $req->vehical_no;
+        //  $data1->gross_weight = $req->gross_weight;
+        //  $data1->gross_date = $req->gross_date;
+        //  $data1->tare_weight = $req->tare_wight;
+        //  $data1->tare_date = $req->tare_date;
+        //  $data1->net_weight = $req->net_weight;
+        //  $data1->material = $req->material;
+        //  $data1->charges = $req->charge;
+        //  $data1->payment_mode = $req->payment_mode;
+        //  $data1->remark = $req->remark;
+        //  $data1->save();
+        //  dd($data1->toArray());
          $transporters = Transporter::all();
          $ticket_no =(weight_entry::get()->last()->ticket_no) +  1;
          return view('admin.add_ticket', ["transporter" => $data,'tr_data'=>$transporters,'sr_no' => $sr_no,'ticket_no'=> $ticket_no,'data1'=> $data1]);
@@ -142,10 +144,10 @@ class ticket extends Controller
      
         $data=new transporter();
     
-        $data->name=$req->name;
+        $data->name=strtoupper($req->name);
         $data->city=$req->city;
         $data->contact=$req->contact;
-        $data->remark=$req->remark;
+        $data->remark=ucfirst($req->remark);
         $data->save();
         return redirect()->back();
    }

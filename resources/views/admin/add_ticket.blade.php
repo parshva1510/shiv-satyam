@@ -56,6 +56,7 @@
                                                 <div class="col-md-8">
                                                     <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                         <span class="required">Transporter</span>
+                                                      
                                                     </label>
                                                     <select class="form-select form-select-solid" data-control="select2" data-hide-search="false" data placeholder="Select Account"name="transpoter_no" required>
                                                         <option class="dropdown-font" value="">Select Account...</option>
@@ -64,7 +65,7 @@
                                                         <option value="{{$row->sr_no}}" {{((!empty($transporter) && !empty($transporter['transporter']['name']) && $transporter['transporter']['name']==$row->name))? "selected":""}}> {{($row->name).'-'.('SS'.$row->sr_no)}} </option>
                                                      
                                                         @endforeach
-                                                       
+                                                      
                                          
                                                     </select>
                                                 </div>
@@ -130,7 +131,7 @@
                                                 <!--end::Svg Icon-->
                                                 <!--end::Icon-->
                                                 <!--begin::Datepicker-->
-                                                <input class="form-control form-control-solid ps-12" id="new_date" placeholder="Select a date" name="gross_date" value="{{!empty($transporter)?$transporter['gross_date']:''}}"/>
+                                                <input class="form-control form-control-solid ps-12" id="gross_date" placeholder="Select a date" name="gross_date" value="{{!empty($transporter)?$transporter['gross_date']:''}}"/>
                                                 <!--end::Datepicker-->
                                             </div>
                                         </div>
@@ -161,7 +162,7 @@
                                                 <!--end::Svg Icon-->
                                                 <!--end::Icon-->
                                                 <!--begin::Datepicker-->
-                                                <input class="form-control form-control-solid ps-12" id="new_date1" placeholder="Select a date" name="tare_date" value="{{!empty($transporter)?$transporter['tare_date']:''}}"/>
+                                                <input class="form-control form-control-solid ps-12" id="tare_date" placeholder="Select a date" name="tare_date" value="{{!empty($transporter)?$transporter['tare_date']:''}}"/>
                                                 <!--end::Datepicker-->
                                             </div>
                                         </div>
@@ -374,27 +375,23 @@
 
 
 <script>
-    jQuery(document).ready(function($){
-        var currentDateTime = new Date();
-        $('#new_date').flatpickr({
-        enableTime: !0,
-        dateFormat: "Y-m-d",
-        //defaultDate: currentDateTime
-    })
+  jQuery(document).ready(function($){
+    var currentDateTime = new Date();
 
-    jQuery(document).ready(function($){
-        var currentDateTime = new Date();
-        $('#new_date1').flatpickr({
-        enableTime: !0,
-        dateFormat: "Y-m-d",
-        //defaultDate: currentDateTime
-    })
+    $('#gross_date').flatpickr({
+      enableTime: true,
+      dateFormat: "Y-m-d H:i",
+      //defaultDate: currentDateTime
+    });
 
-    
-});
-
-});
+    $('#tare_date').flatpickr({
+      enableTime: true,
+      dateFormat: "Y-m-d H:i",
+      //defaultDate: currentDateTime
+    });
+  });
 </script>
+
 
 <!-- <script>
     function myFunction(id) {
@@ -432,23 +429,16 @@
     
     
     <script>
-    // Define the pattern outside the event listener
-    var pattern = /^[A-Z]{2}-\d{2}-[A-Z]{2}-\d{4}$/;
+    var pattern = /^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/;
 
     document.addEventListener('DOMContentLoaded', function() {
-        // Get the input element
         var input = document.getElementById('NUMBERPLATE');
-        // Add an input event listener
         input.addEventListener('input', function() {
-            // Get the entered value
             var value = this.value;
-            // Check if the entered value matches the pattern
             if (pattern.test(value)) {
-                // The entered value is valid
                 console.log('Valid vehicle number: ' + value);
                 document.getElementById('number_error').textContent = "";
             } else {
-                // The entered value is invalid
                 console.log('Invalid vehicle number: ' + value);
                 document.getElementById('number_error').textContent = "Please add a valid vehicle number";
             }
@@ -456,9 +446,7 @@
     });
 
     function submitForm() {
-        // Get the value of the vehicle number field
         var vehicleNumber = document.getElementById('NUMBERPLATE').value;
-        // Check if the vehicle number is empty or invalid
         if (vehicleNumber === '' || !pattern.test(vehicleNumber)) {
             Swal.fire({
                 text: "Sorry, looks like there are some errors detected, please try again.",
@@ -469,6 +457,7 @@
                     confirmButton: "btn btn-primary"
                 }
             });
+            return false; // Prevent form submission
         } else {
             Swal.fire({
                 text: "Form has been successfully submitted!",
@@ -486,6 +475,7 @@
         }
     }
 </script>
+
 
 
     

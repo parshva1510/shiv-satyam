@@ -15,7 +15,7 @@ class weight_entry extends Model
 
     public function transporter()
     {
-        return $this->belongsTo(Transporter::class, 'sr_no');
+        return $this->belongsTo(Transporter::class, 'transpoter_no');
     }
 }
 
