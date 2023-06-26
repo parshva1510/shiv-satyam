@@ -271,7 +271,10 @@
 														<th class="min-w-70px">Material</th>
 														<th class="min-w-70px">Charge</th>
 														<th class="min-w-70px">Payment Mode</th>
+														<th class="min-w-70px">Current Date</th>
 														<th class="text-end min-w-70px">Actions</th>
+														
+
 													</tr>
 													<!--end::Table row-->
 												</thead>
@@ -313,6 +316,7 @@
 														<td>{{$row->material}}</td>
 
 														<td>{{$row->charges}}</td>
+														
 
 														@if($row->payment_mode==1)
 														
@@ -336,6 +340,8 @@
 														
 														
 														@endif
+														<td>{{(new DateTime ($row->date))->format('d-m-Y')}}</td>
+														
 														
 													
 													

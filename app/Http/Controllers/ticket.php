@@ -36,6 +36,7 @@ class ticket extends Controller
          $datainsert = new weight_entry();
          
          $sr_no = transporter::get()->last()->sr_no;
+         $datainsert->date = $req->date;
          $datainsert->ticket_no = $req->ticket_no;
          $datainsert->transpoter_no = strtoupper( $req->transpoter_no) ;
          $datainsert->vehicle_no = $req->vehical_no;
@@ -112,6 +113,7 @@ class ticket extends Controller
       $data->material = strtoupper($req->input('material'));
       $data->charges = $req->input('charge');
       $data->payment_mode = $req->input('payment_mode');
+      $data->date = $req->input('date');
       $data->remark =ucfirst($req->input('remark'));
      
       $data->save();
