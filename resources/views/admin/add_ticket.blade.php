@@ -231,7 +231,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">Payment Mode</label>
                                             <select class="form-select form-select-solid" id="select-payment" data-control="select2" data-hide-search="true" data-placeholder="Select Payment Mode" name="payment_mode" value="">
                                             <option value="">Select Mode...</option>
-                                            <option value="1" {{!empty($transporter) && $transporter['payment_mode'] == "1" && !empty($transporter['payment_mode']) ? 'selected' : '' }}>cash</option>
+                                            <option value="1" {{!empty($transporter) && $transporter['payment_mode'] == "1" && !empty($transporter['payment_mode']) ? 'selected' : '' }} selected>cash</option>
                                             <option value="2" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "2" ? 'selected' : '' }}>Gpay</option>
                                             <option value="3" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "3" ? 'selected' : '' }}>Cheque</option>
                                             <option value="4" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "4" ? 'selected' : '' }}>Bank Transfer</option>
@@ -406,13 +406,13 @@
     $('#gross_date').flatpickr({
       enableTime: true,
       dateFormat: "Y-m-d H:i",
-      //defaultDate: currentDateTime
+      defaultDate: currentDateTime
     });
 
     $('#tare_date').flatpickr({
       enableTime: true,
       dateFormat: "Y-m-d H:i",
-      //defaultDate: currentDateTime
+      defaultDate: currentDateTime
     });
     $('#date').flatpickr({
       enableTime: true,

@@ -74,8 +74,9 @@ class ticket extends Controller
    {
      $data=DB::select("SELECT *,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no");
     // $transporters = Transporter::all();
+    $viewdata = DB::select("SELECT * FROM `weight_entry` ORDER BY `sr_no` DESC LIMIT 7");
       //$data=weight_entry::with('transporter')->get()->toarray();
-      return view('admin.view_ticket',compact('data'));
+      return view('admin.view_ticket',['viewdata'=> '$viewdata'],compact('data'));
      
    }
    public function client()

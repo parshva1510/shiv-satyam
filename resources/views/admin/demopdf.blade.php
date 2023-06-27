@@ -95,30 +95,33 @@
 			  </tr>
 			</thead>
 			<tbody>
+			
 			  <tr class="pt">
-				<td><b>Ticket No.:</b></td>	<td><b>1510</b></td>
-				<td><b>Vehicle No.:</b></td>	<td><b>GJ12AA9999</b></td>
-				<td>Transporter:</td>	<td>Kutch Transport</td>
+			  
+			  <td><b>Ticket No.:</b></td>	<td><b>{{($data[0]->ticket_no)}}</b></td>
+				<td><b>Vehicle No.:</b></td>	<td><b>{{$data[0]->vehicle_no}}</b></td>
+				<td>Transporter:</td>	<td>{{$data[0]->name}}</td>
 			  </tr>
 			  <tr>
-				<td><b>Gross:</b></td>	<td><b>37180</b></td>
-				<td>Date:</td>	<td>08/06/2023</td>
+				<td><b>Gross:</b></td>	<td><b>{{($data[0]->gross_weight)}}</b></td>
+				<td>Date:</td>	<td>{{(new DateTime($data[0]->gross_date))->format('d-m-Y')}}</td>
 				<td>Time:</td>	<td>9:50 AM</td>
 			  </tr>
 			  <tr>
-				<td><b>Tare:</b></td>	<td><b>10000</b></td>
-				<td>Date:</td>	<td>08/06/2023</td>
+				<td><b>Tare:</b></td>	<td><b>{{($data[0]->tare_weight)}}</b></td>
+				<td>Date:</td>	<td>{{(new DateTime($data[0]->tare_date))->format('d-m-Y')}}</td>
 				<td>Time:</td>	<td>9:50 AM</td>
 			  </tr>
 			  <tr class="pb">
-				<td><b>Net:</b></td>	<td><b>48180</b></td>
-				<td>Material:</td>	<td>Ramdev</td>
-				<td>Charges:</td>	<td>650</td>
+				<td><b>Net:</b></td>	<td><b>{{($data[0]->net_weight)}}</b></td>
+				<td>Material:</td>	<td>{{($data[0]->material)}}</td>
+				<td>Charges:</td>	<td>{{($data[0]->charges)}}</td>
 			  </tr>
 			  <tr class="hr"> 
 				<td colspan="3">Operators Signature:</td>
 				<td colspan="3">Drivers Signature:</td>
 			  </tr>
+			  
 			</tbody>
 		</table>
 
@@ -134,9 +137,10 @@
 			  </tr>
 			</thead>
 			<tbody>
+			
 			  <tr class="pt">
-				<td><b>Ticket No.:</b></td>	<td><b>1510</b></td>
-				<td><b>Vehicle No.:</b></td>	<td><b>GJ12AA9999</b></td>
+				<td><b>Ticket No.:</b></td>	<td><b>{{($data[0]->ticket_no)}}</b></td>
+				<td><b>Vehicle No.:</b></td>	<td><b>{{$data[0]->vehicle_no}}</b></td>
 				<td>Transporter:</td>	<td>Kutch Transport</td>
 			  </tr>
 			  <tr>
@@ -158,6 +162,7 @@
 				<td colspan="3">Operators Signature:</td>
 				<td colspan="3">Drivers Signature:</td>
 			  </tr>
+			 
 			</tbody>
 		</table>
 
@@ -173,8 +178,9 @@
 			  </tr>
 			</thead>
 			<tbody>
+			
 			  <tr class="pt">
-				<td><b>Ticket No.:</b></td>	<td><b>1510</b></td>
+				<td><b>Ticket No.:</b></td>	<td><b>{{($data[0]->ticket_no)}}</b></td>
 				<td><b>Vehicle No.:</b></td>	<td><b>GJ12AA9999</b></td>
 				<td>Transporter:</td>	<td>Kutch Transport</td>
 			  </tr>
@@ -197,7 +203,9 @@
 				<td colspan="3">Operators Signature:</td>
 				<td colspan="3">Drivers Signature:</td>
 			  </tr>
+			 
 			</tbody>
+			
 		</table>
 	</body>
 </html>

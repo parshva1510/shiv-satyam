@@ -89,6 +89,7 @@
                 <div class="col-xl-9">
                     <!--begin::Products-->
                     <div class="card card-flush">
+                   
                         <!--begin::Card body-->
                         <div class="card-body">
                             <!--begin::Table-->
@@ -98,8 +99,7 @@
                                     <!--begin::Table row-->
                                     <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
                                         <th class="min-w-70px">Receipt No.</th>
-                                        <th class="min-w-70px">Date</th>
-                                        <th class="min-w-70px">Transoprter</th>                            
+                                        <th class="min-w-70px">Date</th>                         
                                         <th class="min-w-70x">Debit</th>
                                         <th class="min-w-70px">Credit</th>
                                         <th class="min-w-70px">Remaining</th>
@@ -120,8 +120,6 @@
                                         <td>{{$row->receipt_no}}</td>
 
                                         <td data-kt-ecommerce-order-filter="order_id">{{(new DateTime($row->date))->format('d-m-Y')}}</td>
-
-                                        <td>{{$row->transporter_name}}</td>
 
                                         <td>{{$row->amount + $row->due}}</td>
 
@@ -164,6 +162,7 @@
                             <!--end::Table-->
                         </div>
                         <!--end::Card body-->
+                   
                     </div>
                     <!--end::Products-->  
                 </div> 
@@ -191,8 +190,8 @@
                                     <div class="row-md-1 mb-5">
                                         <!--begin::Label-->
                                         <label class="fs-6 fw-semibold form-label ">
-                                            <span><b><h4></h4></b></span>
-                                            <span><b><h4> Opening Balance: </h4></b></span>
+                                            <span><b><h4>Transporter: {{$row->transporter_name}}</h4></b></span>
+                                            <span><b><h4> Opening Balance: {{$balance[0]->balance}} </h4></b></span>
                                         </label>
                                         <!--end::Label-->
                                     </div>
@@ -204,15 +203,30 @@
                                         </label>
                                         <!--end::Label-->
                                     </div>
-                                    
                                         <div class="col-md-9">
                                             <!--begin::Input-->
                                             <input type="date" name="date" id="date" class="form-control form-control-solid" value="" required>
                                             <!--end::Input-->
                                         </div>
-                                       
                                 </div>
                                 
+                                <div class="row fv-row mb-5" hidden>
+                                    <div class="col-md-3 text-md-start">
+                                        <!--begin::Label-->
+                                        <label class="fs-6 fw-semibold form-label mt-3">
+                                            <span class="required"><b>id.</b></span>
+                                        </label>
+                                        <!--end::Label-->
+                                    </div>
+                                    
+                                        <div class="col-md-9">
+                                            <!--begin::Input-->
+                                     
+                                            <input type="text" class="form-control form-control-solid" name="id" id="id" value="{{$id}}" data-kt-ecommerce-settings-type="tagify" readonly/>
+                                            <!--end::Input-->
+                                        </div>
+                                </div>
+
                                 <div class="row fv-row mb-5">
                                     <div class="col-md-3 text-md-start">
                                         <!--begin::Label-->
@@ -228,7 +242,6 @@
                                             <input type="text" class="form-control form-control-solid" name="sr_no" id="sr_no" value="{{$rec_no }}" data-kt-ecommerce-settings-type="tagify" readonly/>
                                             <!--end::Input-->
                                         </div>
-                                       
                                 </div>
                                 
                                 <div class="row fv-row mb-5">
@@ -337,7 +350,7 @@
                                     <div class="row-md-1 mb-5">
                                         <!--begin::Label-->
                                         <label class="fs-6 fw-semibold form-label ">
-                                            <span><b><h2> Transporter: </h2></b></span>
+                                            <span><b><h2> Transporter </h2></b></span>
                                             <span><b><h4> Opening Balance: </h4></b></span>
                                         </label>
                                         <!--end::Label-->
@@ -465,7 +478,7 @@
 
 @section('pagescript')
 <script>
-  jQuery(document).ready(function($){
+   jQuery(document).ready(function($){
     var currentDateTime = new Date();
     $('#date').flatpickr({
       enableTime: true,
@@ -490,12 +503,9 @@
                     type:'GET',
                     success:function(response){
                         alert("success");
-                       /* $("#id1").val(response['id']); 
-                       // $("#password1").val(""); 
-                        $("#username1").val(response['username']); 
-                        $("#f_name1").val(response['f_name']); 
-                        $("#role1").val(response['role']); 
-                        $("#contact1").val(response['contact']);*/
+                        /*$("#date1").val(response['date']); 
+                      
+                        $("#remark1").val(response['remark']);  */
                     }
                 });
             });

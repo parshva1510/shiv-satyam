@@ -215,7 +215,7 @@
                                         <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="username1" id="username1" placeholder="Enter Username" required/>
                                         <!--end::Input-->
                                     </div>
-                                    <div class="fv-row mb-7" >
+                                    <div class="fv-row mb-7">
                                         <!--begin::Label-->
                                         <label class="required fw-bolder fs-6 mb-2">Password</label>
                                         <!--end::Label-->
@@ -236,7 +236,6 @@
                                         <label class="required fw-bolder fs-6 mb-2">Full Name</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        @csrf
                                         <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="f_name1" id="f_name1" placeholder="Enter Full Name" required/>
                                         <!--end::Input-->
                                     </div>
@@ -245,7 +244,6 @@
                                         <label class="required fw-bolder fs-6 mb-2">Contact Number</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        @csrf
                                         <input type="number" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="contact1" id="contact1" placeholder="Enter Contact Number" maxlength=10 required/>
                                         <!--end::Input-->
                                     </div>
@@ -314,7 +312,7 @@
                     type:'GET',
                     success:function(response){
                         $("#id1").val(response['id']); 
-                        $("#password1").val(""); 
+                       // $("#password1").val(""); 
                         $("#username1").val(response['username']); 
                         $("#f_name1").val(response['f_name']); 
                         $("#role1").val(response['role']); 
@@ -325,7 +323,7 @@
         });
 </script>
 <script>
-    $(document).ready(function(){
+ /* $(document).ready(function(){
         $("#vpassword").focusout(function(){
            if(document.getElementById("password").value != document.getElementById("vpassword").value)
         {
@@ -352,6 +350,6 @@
            }
            document.getElementById("contact").value="";
         });
-    });
+    });*/
 </script>
 @endsection

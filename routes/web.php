@@ -30,7 +30,7 @@ Route::get('show_reports',[reportcontroller::class,'show_reports'])->name('show_
 Route::get('show_transporter',[ticket::class,'show_transporter'])->name('show_transporter');
 Route::POST('add_transporter',[ticket::class,'add_transporter'])->name('add_transporter');
 
-Route::get('login',[authentication::class,'login'])->name('login');
+//Route::get('login',[authentication::class,'login'])->name('login');
 Route::post('login',[authentication::class,'index'])->name('login');
 
 
@@ -51,10 +51,17 @@ Route::get('edit_user/{id}',[User::class,'edit_user'])->name('edit_user');
 Route::get('delete_user/{id}',[User::class,'delete_user'])->name('delete_user');
 Route::post('update_user',[User::class,'update_user'])->name('update_user');
 
+Route::get('add_payment',[paymentController::class,'show_payment'])->name('show_payment');
+Route::post('add_payment',[paymentController::class,'add_payment'])->name('add_payment');
+Route::get('/edit_payment/{id}',[paymentController::class,'edit_payment'])->name('edit_payment');
+Route::post('update_payment',[paymentController::class,'update_payment'])->name('update_payment');
+Route::get('delete_payment/{id}',[paymentController::class,'delete_payment'])->name('delete_payment');
+Route::get('get_transporter',[paymentController::class,'get_transporter'])->name('get_transporter');
+
 Route::get('add_report',[ticket::class,'add_report'])->name('add_report');
 Route::get('add_payment',[payment::class,'add_payment'])->name('add_payment');
 
-Route::get('generate-pdf',[pdfcontroller::class,'generatepdf'])->name('generate-pdf');
+Route::get('generate-pdf/{id}',[pdfcontroller::class,'generatepdf'])->name('generate-pdf');
 Route::get('reports',[reportcontroller::class,'reports'])->name('reports');
 
 Route::get('reset_password',[authentication::class,'reset_password'])->name('reset_password');

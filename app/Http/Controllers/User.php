@@ -20,13 +20,11 @@ class User extends Controller
             'contact' => 'required|numeric|min:10'
         ]);
         $data->username=$req->username;
-        $data->password=$req->password;
+        $data->password=md5($req->password);
         $data->f_name=strtoupper($req->f_name);
         $data->contact=$req->contact;
         $data->role=strtoupper($req->role);
-        $data->save();
-       // $data=DB::select('select * from users');
-       // return view('admin.add_user',['user' => $data]);   
+        $data->save();  
         return redirect()->route('add_user')->with("Add");
     }
     public function delete_user($id)
@@ -46,7 +44,7 @@ class User extends Controller
        $validated=$req->validate([
         'contact1' => 'required|numeric'
     ]);
-       $data->username=strtoupper($req->username1);
+       //$data->username=strtoupper($req->username1);
        $data->f_name=strtoupper($req->f_name1);
        $data->contact=$req->contact1;
        $data->role=ucfirst($req->role1);
