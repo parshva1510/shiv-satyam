@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use DB;
-use App\Models\payment;
+
 use Illuminate\Http\Request;
+use DB;
+use App\models\payment;
 
 class paymentController extends Controller
 {
@@ -62,3 +63,4 @@ class paymentController extends Controller
         return view('admin.edit_payment', ['transporter' => $transporter,'payment' => $payment,'sr_no' => $sr_no ,'rec_no' => $next_rec_no,'balance'=>$balance,'id' =>$id]);
     }
 }
+

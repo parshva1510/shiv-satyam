@@ -7,5 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class payment extends Model
 {
-    use HasFactory;
+    
+    
+    protected $table="payment";
+    protected $primaryKey="sr_no";
+    public $timestamps=false;
 }

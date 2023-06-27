@@ -6,7 +6,7 @@ use App\Http\Controllers\ticket;
 use App\Http\Controllers\authentication;
 use App\Http\Controllers\user;
 use App\Http\Controllers\client;
-use App\Http\Controllers\payment;
+use App\Http\Controllers\paymentController;
 use App\Http\Controllers\pdfcontroller;
 use App\Http\Controllers\reportcontroller;
 /*
@@ -59,7 +59,7 @@ Route::get('delete_payment/{id}',[paymentController::class,'delete_payment'])->n
 Route::get('get_transporter',[paymentController::class,'get_transporter'])->name('get_transporter');
 
 Route::get('add_report',[ticket::class,'add_report'])->name('add_report');
-Route::get('add_payment',[payment::class,'add_payment'])->name('add_payment');
+
 
 Route::get('generate-pdf/{id}',[pdfcontroller::class,'generatepdf'])->name('generate-pdf');
 Route::get('reports',[reportcontroller::class,'reports'])->name('reports');
