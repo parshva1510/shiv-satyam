@@ -8,6 +8,7 @@
 
 				html{
 					margin: 30px;
+					font-family: helvetica;
 				}
 
 				table {
@@ -16,6 +17,7 @@
 				margin-left: auto;
   				margin-right: auto;
 				margin-bottom: 20px;
+				
 				}
 
 				thead.hr{
@@ -40,7 +42,7 @@
 				h1 {
 					margin-bottom: -20px;
 					margin-top: -15px;
-					text-align: center;
+				
 				}
 
 				.addcenter{
@@ -52,13 +54,14 @@
 					font-size: 16px;
 				}
 
-				th.right-logo {
-					padding: inherit;
+				th.right-logo img{
+					width: 80px;
 				}
 				th.right-logo img {
-					width: 80px;
-					margin-right: -130px;
+					margin: -20px !important;
 				}
+
+
 				th.left-logo img {
 					width: 90px;
 				}
