@@ -1,14 +1,17 @@
 <html>
 	<head>
+	
 		<style type="text/css">
+		
+		
 			/* table, th, td {
 				border: 1px solid black;
 				border-collapse: collapse;
 				} */
 
 				html{
-					margin: 30px;
-					font-family: helvetica;
+					margin: 10px 30px;
+					font-family: "Raleway", sans-serif;
 				}
 
 				table {
@@ -18,6 +21,7 @@
   				margin-right: auto;
 				margin-bottom: 20px;
 				
+				
 				}
 
 				thead.hr{
@@ -26,6 +30,7 @@
 				
 				
 				}
+			   
 
 				tr.hr{
 				border-top: 2px solid black;
@@ -53,21 +58,6 @@
 					font-weight: bolder !important;
 					font-size: 16px;
 				}
-
-				th.right-logo img{
-					width: 80px;
-				}
-				th.right-logo img {
-					margin: -20px !important;
-				}
-
-
-				th.left-logo img {
-					width: 90px;
-				}
-				th.left-logo img {
-					margin: -20px !important;
-				}
 				tr.hr td {
 					padding: 15px;
 				}
@@ -82,7 +72,9 @@
 		</style>
 	</head>
 	<body>
+	<img src="C:\xampplatest\htdocs\shiv-satyam\public\assets\media\logos\header.png"style="width:740px;">
 		<table style="width: 740px">
+		
 			<colgroup>
 				<col style="width: 10px">
 				<col style="width: 100px">
@@ -91,18 +83,10 @@
 				<col style="width: 100px">
 				<col style="width: 120px">
 			</colgroup>
-			<thead class="hr">
-			  <tr>
-			  	<th class="left-logo" rowspan="2"><img src="assets/media/logos/left-logo.png"></th>
-				<th colspan="4"><h1>Shiv Satyam Weighbridge</h1></th>
-				<th class="right-logo" rowspan="2"><img src="assets/media/logos/right-logo.png"></th>
-			  </tr>
-			  <tr>
-				<td class="addcenter" colspan="4">Village: Dhaneti, Bhuj-Bhachau Highway, <br> Dist. Kutch, Pin Code: 370020, Tel. (+91) 98244 86644</td>
-			  </tr>
-			</thead>
-			<tbody>
 			
+			
+			
+			<tbody>
 			  <tr class="pt">
 			  
 			  <td><b>Ticket No.:</b></td><td><b>{{($data[0]->ticket_no)}}</b></td>

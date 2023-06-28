@@ -122,10 +122,14 @@ class ticket extends Controller
    }
   
 
-   public function delete_ticket($sr_no){
-     $data = weight_entry::find($sr_no);
+   public function delete_ticket($id){
+     $sr_no = transporter::get()->last()->sr_no;
+     $data = weight_entry::with('transporter')->find($id);
+ 
+     $tr_data = transporter::all();
+     $ticket_no =(weight_entry::get()->last()->ticket_no) +  1;
      $data -> delete();
-     return redirect()->route('admin.view_ticket');
+     return view('admin.add_ticket', ["transporter" => $data, 'tr_data' => $tr_data,'sr_no' => $sr_no,'ticket_no'=> $ticket_no]);
    }
    
 
