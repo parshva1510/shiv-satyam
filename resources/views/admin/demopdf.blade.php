@@ -21,7 +21,8 @@
 				thead.hr{
 				border-bottom: 2px solid black;
 				border-collapse: collapse;
-				padding-left: 100px !importantant;
+				
+				
 				}
 
 				tr.hr{
@@ -39,6 +40,7 @@
 				h1 {
 					margin-bottom: -20px;
 					margin-top: -15px;
+					text-align: center;
 				}
 
 				.addcenter{
@@ -88,8 +90,7 @@
 			</colgroup>
 			<thead class="hr">
 			  <tr>
-			  <th class="left-logo" rowspan="2"><img src="assets/media/logos/left-logo.png"></th>
-
+			  	<th class="left-logo" rowspan="2"><img src="assets/media/logos/left-logo.png"></th>
 				<th colspan="4"><h1>Shiv Satyam Weighbridge</h1></th>
 				<th class="right-logo" rowspan="2"><img src="assets/media/logos/right-logo.png"></th>
 			  </tr>

@@ -40,22 +40,14 @@ class authentication extends Controller
                     setcookie("user_password", $_POST['password'], strtotime('+30 days'));
                 }
                 Session()->flash('message', 'Login succssesful');
-                return redirect()->route('add_client');
+                return redirect()->route('view_ticket');
                }else{
                 Session()->flash('message', 'Login Failed!');
                 return view('login');
                }
             }
         }
-    public function reset_password()
-    {
-        return view('reset_password');
-    }
-
-    public function change_password()
-    {
-        return view('admin.change_password');
-    }
+   
     public function destroy()
     {
         session()->forget('user');
