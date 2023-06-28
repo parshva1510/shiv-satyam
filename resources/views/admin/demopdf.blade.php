@@ -105,12 +105,14 @@
 			  <tr>
 				<td><b>Gross:</b></td>	<td><b>{{($data[0]->gross_weight)}}</b></td>
 				<td>Date:</td>	<td>{{(new DateTime($data[0]->gross_date))->format('d-m-Y')}}</td>
-				<td>Time:</td>	<td>{{(new DateTime($data[0]->gross_time))->format('H:i:s')}}</td>
+				<td>Time:</td>	<td>{{(new DateTime($data[0]->gross_time))->format('H:i A')}}</td>
+
+
 			  </tr>
 			  <tr>
 				<td><b>Tare:</b></td>	<td><b>{{($data[0]->tare_weight)}}</b></td>
 				<td>Date:</td>	<td>{{(new DateTime($data[0]->tare_date))->format('d-m-Y')}}</td>
-				<td>Time:</td>	<td>{{(new DateTime($data[0]->tare_time))->format('H:i:s')}}</td>
+				<td>Time:</td>	<td>{{(new DateTime($data[0]->tare_time))->format('H:i A')}}</td>
 			  </tr>
 			  <tr class="pb">
 				<td><b>Net:</b></td>	<td><b>{{($data[0]->net_weight)}}</b></td>
@@ -146,12 +148,12 @@
 			  <tr>
 				<td><b>Gross:</b></td>	<td><b>{{($data[0]->gross_weight)}}</b></td>
 				<td>Date:</td>	<td>{{(new DateTime($data[0]->gross_date))->format('d-m-Y')}}</td>
-				<td>Time:</td>	<td>{{(new DateTime($data[0]->gross_time))->format('H:i:s')}}</td>
+				<td>Time:</td>	<td>{{(new DateTime($data[0]->gross_time))->format('H:i A')}}</td>
 			  </tr>
 			  <tr>
 				<td><b>Tare:</b></td>	<td><b>{{($data[0]->tare_weight)}}</b></td>
 				<td>Date:</td>	<td>{{(new DateTime($data[0]->tare_date))->format('d-m-Y')}}</td>
-				<td>Time:</td>	<td>{{(new DateTime($data[0]->tare_time))->format('H:i:s')}}</td>
+				<td>Time:</td>	<td>{{(new DateTime($data[0]->tare_time))->format('H:i A')}}</td>
 			  </tr>
 			  <tr class="pb">
 				<td><b>Net:</b></td>	<td><b>{{($data[0]->net_weight)}}</b></td>
@@ -187,12 +189,12 @@
 			  <tr>
 				<td><b>Gross:</b></td>	<td><b>{{($data[0]->gross_weight)}}</b></td>
 				<td>Date:</td>	<td>{{(new DateTime($data[0]->gross_date))->format('d-m-Y')}}</td>
-				<td>Time:</td>	<td>{{(new DateTime($data[0]->gross_time))->format('H:i:s')}}</td>
+				<td>Time:</td>	<td>{{(new DateTime($data[0]->gross_time))->format('H:i A')}}</td>
 			  </tr>
 			  <tr>
 				<td><b>Tare:</b></td>	<td><b>{{($data[0]->tare_weight)}}</b></td>
 				<td>Date:</td>	<td>{{(new DateTime($data[0]->tare_date))->format('d-m-Y')}}</td>
-				<td>Time:</td>	<td>{{(new DateTime($data[0]->tare_time))->format('H:i:s')}}</td>
+				<td>Time:</td>	<td>{{(new DateTime($data[0]->tare_time))->format(' H:i A')}}</td>
 			  </tr>
 			  <tr class="pb">
 				<td><b>Net:</b></td>	<td><b>{{($data[0]->net_weight)}}</b></td>
