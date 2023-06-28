@@ -1,3 +1,8 @@
+@if (Session::has('user'))
+<script>window.location = "{{url('/add_client')}}";</script>
+@else
+
+@endif
 <html lang="en">
 	<!--begin::Head-->
 	<head><base href="../../../"/>
@@ -58,8 +63,9 @@
 					<div class="bg-body d-flex flex-center rounded-4 w-md-600px p-10">
 						<!--begin::Content-->
 						<div class="w-md-400px">
+					
 							<!--begin::Form-->
-							<form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" data-kt-redirect-url="../../demo1/dist/index.html" method = "POST" action="{{route('login')}}">
+							<form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" data-kt-redirect-url="../../demo1/dist/index.html" method = "POST" action="{{route('check_user')}}">
 							@csrf
 								<!--begin::Heading-->
 								<div class="text-center mb-11">
@@ -75,13 +81,13 @@
 								<!--begin::Input group=-->
 								<div class="fv-row mb-8">
 									<!--begin::Email-->
-									<input type="text" placeholder="Email" name="email" autocomplete="off" class="form-control bg-transparent" />
+									<input type="text" placeholder="Username" name="username" id="username" autocomplete="off" class="form-control bg-transparent" required="" value="<?php if(isset($_COOKIE["user_login"])) { echo $_COOKIE["user_login"]; } ?>"/>
 									<!--end::Email-->
 								</div>
 								<!--end::Input group=-->
 								<div class="fv-row mb-3">
 									<!--begin::Password-->
-									<input type="password" placeholder="Password" name="password" autocomplete="off" class="form-control bg-transparent" />
+									<input type="password" placeholder="Password" name="password" autocomplete="off" class="form-control bg-transparent" required="" value="<?php if(isset($_COOKIE["user_password"])){ echo $_COOKIE["user_password"];} ?>"/>
 									<!--end::Password-->
 								</div>
 								<!--end::Input group=-->
@@ -89,19 +95,30 @@
 								<div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
 									<div></div>
 									<!--begin::Link-->
+								
 									<a href="../../demo1/dist/authentication/layouts/overlay/reset-password.html" class="link-primary">Forgot Password ?</a>
 									<!--end::Link-->
 								</div>
+								<div class="fv-row  mb-8 fv-plugins-icon-container">
+									<label class="form-check form-check-inline">
+										<input class="form-check-input" type="checkbox" name="remember" value="1" <?php if(isset($_COOKIE["user_login"])) { ?> checked <?php } ?>>
+										<span class="form-check-label fw-semibold text-gray-700 fs-base ms-1">Remember
+									</span>
+									</label>
+									
+
+								<div class="fv-plugins-message-container invalid-feedback"></div></div>
 								<!--end::Wrapper-->
-								<!--begin::Submit button-->
+								<!--begin::Submit button  id="kt_sign_in_submit"-->
 								<div class="d-grid mb-10">
-									<button type="submit" id="kt_sign_in_submit" class="btn btn-primary">
+									<button type="submit" id="" class="btn btn-primary">
 										<!--begin::Indicator label-->
 										<span class="indicator-label">Sign In</span>
 										<!--end::Indicator label-->
 										<!--begin::Indicator progress-->
 										<span class="indicator-progress">Please wait...
 										<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+
 										<!--end::Indicator progress-->
 									</button>
 								</div>

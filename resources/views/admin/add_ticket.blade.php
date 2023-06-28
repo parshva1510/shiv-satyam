@@ -506,11 +506,7 @@
     }
 </script>
 
-<form onsubmit="return false;">
-    <input type="text" id="NUMBERPLATE">
-    <div id="number_error"></div>
-    <button onclick="submitForm()">Submit</button>
-</form>
+
 
 
 

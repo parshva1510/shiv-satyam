@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\users;
+use DB;
 
 class authentication extends Controller
 {
@@ -11,24 +12,41 @@ class authentication extends Controller
     {
      return view('login');
     }
-    public function index(Request $request)
+    public function check_user(Request $req)
+ 
     {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-        
-
-        if (auth()->attempt($credentials)) {
-           
-            return redirect()->intended('/home'); 
-        } else {
-            
-            return redirect()->back()->withErrors(['email' => 'Invalid credentials']);
+        $username=$req->username;
+        $password=md5($req->password);
+        $check=$req->remember;
+        $data=DB::select("SELECT * FROM `users` where username like '$username'");
+        if($data==null){
+            Session()->flash('message', 'Login Failed!');
+        }else{
+            if($password==$data[0]->password){
+                $_SESSION['type']="remember";
+                session(['user'=>$username]);
+                if($check==null){
+                    if(isset($_COOKIE['user_login'])){
+                        setcookie('user_login',"");
+                        if(isset($_COOKIE['user_password'])){
+                            setcookie('user_password',"");
+                        }
+                    }
+               }else{
+                    //COOKIES for username
+                    setcookie("test_cookie", "test", time() + 3600, '/');
+                    setcookie("user_login", $_POST['username'], strtotime('+30 days'));
+                    //COOKIES for password
+                    setcookie("user_password", $_POST['password'], strtotime('+30 days'));
+                }
+                Session()->flash('message', 'Login succssesful');
+                return redirect()->route('add_client');
+               }else{
+                Session()->flash('message', 'Login Failed!');
+                return view('login');
+               }
+            }
         }
-    }
-    
-
     public function reset_password()
     {
         return view('reset_password');
@@ -37,6 +55,11 @@ class authentication extends Controller
     public function change_password()
     {
         return view('admin.change_password');
+    }
+    public function destroy()
+    {
+        session()->forget('user');
+        return view('login');
     }
 }
 

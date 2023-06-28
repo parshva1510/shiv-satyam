@@ -30,8 +30,11 @@ Route::get('show_reports',[reportcontroller::class,'show_reports'])->name('show_
 Route::get('show_transporter',[ticket::class,'show_transporter'])->name('show_transporter');
 Route::POST('add_transporter',[ticket::class,'add_transporter'])->name('add_transporter');
 
-//Route::get('login',[authentication::class,'login'])->name('login');
-Route::post('login',[authentication::class,'index'])->name('login');
+
+Route::get('login',[authentication::class,'login'])->name('login');
+Route::post('login',[authentication::class,'check_user'])->name('check_user');
+Route::get('login',[authentication::class,'destroy'])->name('destroy');
+Route::get('/',[authentication::class,'login']);
 
 
 Route::get('demo',[ticket::class,'demo'])->name('demo');
