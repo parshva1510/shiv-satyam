@@ -6,14 +6,14 @@
     <div class="d-flex flex-column flex-column-fluid">
         <!--begin::Toolbar-->
         <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6 mb-5 mt-5">
-        <form id="kt_modal_new_target_form" class="form" method="POST" action= "{{!empty($transporter)?route('update_ticket'):route('add_ticket')}}">
+        <form id="kt_modal_new_target_form" class="form" method="POST" action= "{{!empty($transporter)?route('update_ticket'):route('add_ticket')}}" target="_blank">
             <!--begin::Toolbar container-->
             <div id="kt_app_toolbar_container" class="app-container new-full-width container-xxl d-flex flex-stack">
                 
                 <!--begin::Page title-->
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
-                    <h1 class="page-heading d-flex text-dark fw-bold flex-column justify-content-center my-0">Create New Ticket</h1>
+                    <h1 class="page-heading d-flex text-dark fw-bold flex-column justify-content-center my-0">{{!empty($transporter)?'Edit Ticket':'Create New Ticket'}}</h1>
                     <!--end::Title-->
                 </div>
                             <div>

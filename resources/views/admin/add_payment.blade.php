@@ -123,18 +123,18 @@
 
                                         <td>{{$row->transporter_name}}</td>
 
-                                        <td>{{$row->amount + $row->due}}</td>
+                                        <td>{{$row->debit-$row->credit }}</td>
 
                                         <td>{{$row->amount}}</td>
 
-                                        <td>{{$row->due}}</td>
+                                        <td>{{$row->debit-($row->credit + $row->amount)}}</td>
 
                                         <td>{{$row->payment_mode}}</td>
                                      
                                         <td>{{$row->remark}}</td>
 
                                         <td class="">
-                                            <a href="{{route('edit_payment',$row->receipt_no)}}" data-typeId="{{$row->receipt_no}}" id="edit" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+                                            <a href="{{route('edit_payment',$row->sr_no)}}" data-typeId="{{$row->sr_no}}" id="edit" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
                                                 <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                                                 <span class="svg-icon svg-icon-3">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -144,8 +144,8 @@
                                                 </span>
                                                 <!--end::Svg Icon-->
                                             </a>
-                                            <a href="{{route('delete_payment',$row->receipt_no)}}" data-kt-ecommerce-order-filter="delete_row" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
-                                                <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
+                                            <a href="{{route('delete_payment',$row->sr_no)}}"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+                                                <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg data-kt-ecommerce-order-filter="delete_row"-->
                                                 <span class="svg-icon svg-icon-3">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor"></path>
@@ -337,8 +337,8 @@
                                     <div class="row-md-1 mb-5">
                                         <!--begin::Label-->
                                         <label class="fs-6 fw-semibold form-label ">
-                                            <span><b><h2> Transporter: </h2></b></span>
-                                            <span><b><h4> Opening Balance: </h4></b></span>
+                                            <span><b><h4>Transporter: {{$row->transporter_name}}</h4></b></span>
+                                            <span><b><h4> Opening Balance:  </h4></b></span>
                                         </label>
                                         <!--end::Label-->
                                     </div>
@@ -478,9 +478,11 @@
    
     let editLinks1 = document.querySelectorAll('a#edit')
         editLinks1.forEach(link1 => {
+
             $("#editpayment").hide();
             $("#addpayment").show();
             link1.addEventListener('click', function(event) {
+               // alert("success");
                 $("#addpayment").hide();
                 $("#editpayment").show();
                 event.preventDefault();
@@ -489,13 +491,8 @@
                     url:"{{url('edit_payment')}}" +"/"+ id,
                     type:'GET',
                     success:function(response){
-                        alert("success");
-                       /* $("#id1").val(response['id']); 
-                       // $("#password1").val(""); 
-                        $("#username1").val(response['username']); 
-                        $("#f_name1").val(response['f_name']); 
-                        $("#role1").val(response['role']); 
-                        $("#contact1").val(response['contact']);*/
+                      
+                      
                     }
                 });
             });

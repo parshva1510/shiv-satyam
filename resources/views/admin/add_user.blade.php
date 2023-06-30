@@ -56,7 +56,11 @@
 
                                             <td>{{$row->f_name}}</td>
 
-                                            <td>{{$row->role}}</td>
+                                            @if($row->role==1)
+                                                <td>Admin</td>
+                                            @else
+                                                <td>Operator</td>
+                                            @endif
 
                                             <td>{{$row->contact}}</td>
 
@@ -130,7 +134,7 @@
                                     </div>
                                     <div class="fv-row mb-7">
                                         <!--begin::Label-->
-                                        <label class="required fw-bolder fs-6 mb-2">Varify Password</label>
+                                        <label class="required fw-bolder fs-6 mb-2">Confirm Password</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
                                         <input type="password" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="vpassword" id="vpassword" placeholder="Retype Password" required/>
@@ -160,7 +164,11 @@
                                         <label class="required fw-bolder fs-6 mb-2">Role</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="role" id="role" placeholder=""/>
+                                        <select class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="role" id="role" placeholder="">        
+                                        <option value="">Select Mode...</option>    
+                                        <option value="1">Admin</option>
+                                        <option value="2">Operator</option>
+                                        </select>
                                         <!--end::Input-->
                                     </div>
                                                                    
@@ -217,18 +225,18 @@
                                     </div>
                                     <div class="fv-row mb-7">
                                         <!--begin::Label-->
-                                        <label class="required fw-bolder fs-6 mb-2">Password</label>
+                                        <label class=" fw-bolder fs-6 mb-2">Old Password</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="password" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="password1" id="password1" placeholder="Enter Password" required/>
+                                        <input type="password" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="password1" id="password1" placeholder="Enter Password" />
                                         <!--end::Input-->
                                     </div>
                                     <div class="fv-row mb-7">
                                         <!--begin::Label-->
-                                        <label class="required fw-bolder fs-6 mb-2">Varify Password</label>
+                                        <label class=" fw-bolder fs-6 mb-2">New Password</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="password" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="vpassword1" id="vpassword1" placeholder="Retype Password" required/>
+                                        <input type="password" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="vpassword1" id="vpassword1" placeholder="Retype Password"/>
                                         <!--end::Input-->
                                     </div>
                                     <div class="fv-row mb-7">
@@ -253,7 +261,11 @@
                                         <label class="required fw-bolder fs-6 mb-2">Role</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="role1" id="role1" placeholder=""/>
+                                        <select class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="role1" id="role1" placeholder="" >
+		                                        <option value="">Select Mode...</option>
+                                                <option value="1">Admin</option>
+                                                <option value="2">Operator</option>
+                                        </select>
                                         <!--end::Input-->
                                     </div>
                                                                    

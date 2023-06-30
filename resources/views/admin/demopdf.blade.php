@@ -10,8 +10,12 @@
 				} */
 
 				html{
-					margin: 10px 30px;
+					margin: 20px 30px;
+					/* font-family: 'Rasa', serif; */
 					font-family: "Raleway", sans-serif;
+				
+					
+					
 				}
 
 				table {
@@ -19,17 +23,22 @@
 				border-collapse: collapse;
 				margin-left: auto;
   				margin-right: auto;
-				margin-bottom: 20px;
+				margin-bottom: 40px;
+				font-size:14px;
 				
 				
 				}
 
 				thead.hr{
 				border-bottom: 2px solid black;
+				
 				border-collapse: collapse;
 				
 				
+				
+				
 				}
+
 			   
 
 				tr.hr{
@@ -38,7 +47,7 @@
 				}
 
 				th, td {
-				padding-top: 10px;
+				padding-top: 2px;
 				padding-bottom: 10px;
 				padding-left: 10px;
 				padding-right: 5px;
@@ -56,23 +65,24 @@
 
 				b {
 					font-weight: bolder !important;
-					font-size: 16px;
+					
+					
 				}
 				tr.hr td {
 					padding: 15px;
 				}
 
 				.pt td{
-					padding-top: 20px;
+					padding-top: 5px;
 				}
 				
 				.pb td{
-					padding-bottom: 20px;
+					padding-bottom: 10px;
 				}
 		</style>
 	</head>
 	<body>
-	<img src="C:\xampplatest\htdocs\shiv-satyam\public\assets\media\logos\header.png"style="width:740px;">
+	
 		<table style="width: 740px">
 		
 			<colgroup>
@@ -83,13 +93,18 @@
 				<col style="width: 100px">
 				<col style="width: 120px">
 			</colgroup>
-			
-			
+		<thead class="hr">	
+			<tr>
+			<td colspan="6">
+			<img src="C:\xampplatest\htdocs\shiv-satyam\public\assets\media\logos\header.png"style="height:100px;">
+			</td>
+			</tr>
+		</thead>
 			
 			<tbody>
 			  <tr class="pt">
 			  
-			  <td><b>Ticket No.:</b></td><td><b>{{($data[0]->ticket_no)}}</b></td>
+			  <td><b>Ticket No .:</b></td><td><b>{{($data[0]->ticket_no)}}</b></td>
 				<td><b>Vehicle No.:</b></td><td><b>{{$data[0]->vehicle_no}}</b></td>
 				<td>Transporter:</td>	<td>{{$data[0]->name}}</td>
 			  </tr>
@@ -117,17 +132,16 @@
 			  
 			</tbody>
 		</table>
-
+				
 		<table style="width: 740px">
 			<thead class="hr">
+			
 			  <tr>
-				<th class="left-logo" rowspan="2"><img src="assets/media/logos/left-logo.png"></th>
-				<th colspan="4"><h1>Shiv Satyam Weighbridge</h1></th>
-				<th class="right-logo" rowspan="2"><img src="assets/media/logos/right-logo.png"></th>
-			  </tr>
-			  <tr>
-				<td class="addcenter" colspan="4">Village: Dhaneti, Bhuj-Bhachau Highway, <br> Dist. Kutch, Pin Code: 370020, Tel. (+91) 98244 86644</td>
-			  </tr>
+			<td colspan="6">
+			<img src="C:\xampplatest\htdocs\shiv-satyam\public\assets\media\logos\header.png"style="height:100px;">
+			</td>
+		</tr>
+			  
 			</thead>
 			<tbody>
 			
@@ -161,14 +175,14 @@
 
 		<table style="width: 740px">
 			<thead class="hr">
+			
 			  <tr>
-				<th class="left-logo" rowspan="2"><img src="assets/media/logos/left-logo.png"></th>
-				<th colspan="4"><h1>Shiv Satyam Weighbridge</h1></th>
-				<th class="right-logo" rowspan="2"><img src="assets/media/logos/right-logo.png"></th>
-			  </tr>
-			  <tr>
-				<td class="addcenter" colspan="4">Village: Dhaneti, Bhuj-Bhachau Highway, <br> Dist. Kutch, Pin Code: 370020, Tel. (+91) 98244 86644</td>
-			  </tr>
+			<td colspan="6">
+			<img src="C:\xampplatest\htdocs\shiv-satyam\public\assets\media\logos\header.png"style="height:100px;">
+			</td>
+		</tr>
+			  
+			 
 			</thead>
 			<tbody>
 			

@@ -41,10 +41,7 @@ class User extends Controller
     public function update_user(Request $req)
     {
        $data=users::find($req->id1);
-       $validated=$req->validate([
-        'contact1' => 'required|numeric'
-    ]);
-       //$data->username=strtoupper($req->username1);
+       /*check old password*/
        $data->f_name=strtoupper($req->f_name1);
        $data->contact=$req->contact1;
        $data->role=ucfirst($req->role1);

@@ -18,7 +18,7 @@
 									<!--begin::Actions-->
 									<div class="d-flex align-items-center gap-2 gap-lg-3">
 										<!--begin::Primary button-->
-										<a href="#" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app">Add New Weighment</a>
+										<a href="{{route('ticket_form')}}" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app">Add New Weighment</a>
 										<!--end::Primary button-->
 									</div>
 									<!--end::Actions-->
@@ -346,7 +346,7 @@
 													
 													
 														<td class="text-end">
-														<a href="{{route('generate-pdf', $row->id) }}"   class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+														<a href="{{route('generate-pdf', $row->id) }}"  target="_blank"   class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
 																	<!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
 																	
 																	
