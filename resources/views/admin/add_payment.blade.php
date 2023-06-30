@@ -1,6 +1,9 @@
 @extends('admin.layout.layout')
 
 @section('mainsection')
+@section('pagecss')
+<link rel="stylesheet" href="https://sweetalert2.github.io/styles/bootstrap4-buttons.css"/>
+@endsection
 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
     <!--begin::Content wrapper-->
     <div class="d-flex flex-column flex-column-fluid">
@@ -144,7 +147,7 @@
                                                 </span>
                                                 <!--end::Svg Icon-->
                                             </a>
-                                            <a href="{{route('delete_payment',$row->sr_no)}}"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+                                            <a href=""  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" onclick="delete()">
                                                 <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg data-kt-ecommerce-order-filter="delete_row"-->
                                                 <span class="svg-icon svg-icon-3">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -190,10 +193,7 @@
                                 <div class="col-md-12 ml-4">
                                     <div class="row-md-1 mb-5">
                                         <!--begin::Label-->
-                                        <label class="fs-6 fw-semibold form-label ">
-                                            <span><b><h4></h4></b></span>
-                                            <span><b><h4> Opening Balance: </h4></b></span>
-                                        </label>
+                                      
                                         <!--end::Label-->
                                     </div>
                                 <div class="row fv-row mb-5">
@@ -336,10 +336,6 @@
                                 <div class="col-md-12 ml-4">
                                     <div class="row-md-1 mb-5">
                                         <!--begin::Label-->
-                                        <label class="fs-6 fw-semibold form-label ">
-                                            <span><b><h4>Transporter: {{$row->transporter_name}}</h4></b></span>
-                                            <span><b><h4> Opening Balance:  </h4></b></span>
-                                        </label>
                                         <!--end::Label-->
                                     </div>
                                 <div class="row fv-row mb-5">
@@ -464,7 +460,46 @@
 
 
 @section('pagescript')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+    function delete(){
+    const swalWithBootstrapButtons = Swal.mixin({
+  customClass: {
+    confirmButton: 'btn btn-success',
+    cancelButton: 'btn btn-danger'
+  },
+  buttonsStyling: false
+})
+
+swalWithBootstrapButtons.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonText: 'Yes, delete it!',
+  cancelButtonText: 'No, cancel!',
+  reverseButtons: true
+}).then((result) => {
+  if (result.isConfirmed) {
+    swalWithBootstrapButtons.fire(
+      'Deleted!',
+      'Your file has been deleted.',
+      'success'
+    )
+  } else if (
+    /* Read more about handling dismissals below */
+    result.dismiss === Swal.DismissReason.cancel
+  ) {
+    swalWithBootstrapButtons.fire(
+      'Cancelled',
+      'Your imaginary file is safe :)',
+      'error'
+    )
+  }
+})
+    }
+    </sript>
 <script>
+
   jQuery(document).ready(function($){
     var currentDateTime = new Date();
     $('#date').flatpickr({
@@ -478,20 +513,25 @@
    
     let editLinks1 = document.querySelectorAll('a#edit')
         editLinks1.forEach(link1 => {
-
             $("#editpayment").hide();
             $("#addpayment").show();
             link1.addEventListener('click', function(event) {
-               // alert("success");
+             
                 $("#addpayment").hide();
-                $("#editpayment").show();
+                $("#editpayment").show();     
                 event.preventDefault();
                 const id = link1.getAttribute('data-typeId');
+               
                 $.ajax({
                     url:"{{url('edit_payment')}}" +"/"+ id,
                     type:'GET',
                     success:function(response){
-                      
+                        $("#date1").val(response['date']); 
+                        $("#sr_no1").val(response['receipt_no']); 
+                        $("#amount1").val(response['amount']); 
+                        $("#remark1").val(response['remark']);  
+                     
+                        //$("#payment1").val('Gpay');
                       
                     }
                 });

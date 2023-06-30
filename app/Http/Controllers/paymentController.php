@@ -42,8 +42,9 @@ class paymentController extends Controller
 
    public function edit_payment($id)
     {
+     
        $data=payment::find($id);
-       $balance= DB::select("SELECT (SELECT sum(charges) FROM `weight_entry` where transpoter_no=$id)-(SELECT sum(amount) FROM `payment` where client_no=$id) as balance");
+      //$balance= DB::select("SELECT (SELECT sum(charges) FROM `weight_entry` where transpoter_no=$id)-(SELECT sum(amount) FROM `payment` where client_no=$id) as balance");
        return $data;
     }
     public function update_payment(Request $req)

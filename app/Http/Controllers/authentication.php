@@ -18,6 +18,7 @@ class authentication extends Controller
         $username=$req->username;
         $password=md5($req->password);
         $check=$req->remember;
+        
         $data=DB::select("SELECT * FROM `users` where username like '$username'");
         if($data==null){
             Session()->flash('message', 'Login Failed!');
@@ -40,14 +41,13 @@ class authentication extends Controller
                     setcookie("user_password", $_POST['password'], strtotime('+30 days'));
                 }
                 Session()->flash('message', 'Login succssesful');
-                return redirect()->route('view_ticket');
+                return redirect()->route('add_client');
                }else{
                 Session()->flash('message', 'Login Failed!');
-                return view('login');
+                return redirect("login")->with("fail","Login Failed");
                }
             }
         }
-   
     public function destroy()
     {
         session()->forget('user');

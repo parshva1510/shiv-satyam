@@ -144,5 +144,8 @@ class ticket extends Controller
         $data->save();
         return redirect()->back();
    }
-  
+  public function getdata($date)
+  {
+    dd("hi");
+  }
 }

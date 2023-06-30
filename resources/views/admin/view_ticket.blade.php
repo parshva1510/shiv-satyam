@@ -15,12 +15,22 @@
 										<!--end::Title-->
 									</div>
 									<!--end::Page title-->
+									<form id="kt_modal_add_ticket" class="form" method="GET" action="{{route('ticket_form')}}">
 									<!--begin::Actions-->
-									<div class="d-flex align-items-center gap-2 gap-lg-3">
+									
 										<!--begin::Primary button-->
-										<a href="{{route('ticket_form')}}" class="btn btn-sm fw-bold btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app">Add New Weighment</a>
+										<div class="text-center d-flex flex-stack">
+                                       	 
+                                       		<button type="submit" id="new_submit" class="btn btn-primary" >
+                                            	<span class="indicator-label"  onclick="submitForm()">Add New Weighment</span>
+                                            	<span class="indicator-progress">Please wait...
+                                         		<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                        	</button>
+                                    	</div>
+									</form>
+										
 										<!--end::Primary button-->
-									</div>
+									
 									<!--end::Actions-->
 								</div>
 								<!--end::Toolbar container-->
@@ -250,7 +260,7 @@
 										<!--begin::Card body-->
 										<div class="card-body pt-0">
 											<!--begin::Table-->
-											<table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table" >
+											<table id="ticket_data" class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table" >
 												<!--begin::Table head-->
 												<thead>
 													<!--begin::Table row-->
@@ -581,7 +591,20 @@ $('input.toggle-vis').on('click', function (e) {
 });
 });
 </script>--}}
-
+<script>
+	$("#kt_ecommerce_report_views_daterangepicker").change(function(){
+		var date=this.value;
+		alert(date);
+		$.ajax({
+		
+                    url:"{{url('getdata')}}"+"/"+date,
+                    type:'GET',
+                    success:function(response){
+                 
+                    }
+                });
+});
 
 	</script>
+
 @endsection

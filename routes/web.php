@@ -22,9 +22,10 @@ use App\Http\Controllers\reportcontroller;
 
 Route::get('ticket_form',[ticket::class,'index'])->name('ticket_form');
 Route::get('view_ticket',[ticket::class,'view_ticket'])->name('view_ticket');
+Route::get('getdata/{id}',[ticket::class,'getdata'])->name('getdata');
 
-
-Route::get('show_reports',[reportcontroller::class,'show_reports'])->name('show_reports');
+Route::get('reports',[reportcontroller::class,'reports'])->name('reports');
+Route::get('show_report',[reportcontroller::class,'show_report'])->name('show_report');
 
 Route::get('show_transporter',[ticket::class,'show_transporter'])->name('show_transporter');
 Route::POST('add_transporter',[ticket::class,'add_transporter'])->name('add_transporter');

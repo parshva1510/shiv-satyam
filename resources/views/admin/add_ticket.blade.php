@@ -136,7 +136,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Gross Weight (KG)</span>
                                             </label>
-                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="0" name="gross_weight" value="{{!empty($transporter)?$transporter['gross_weight']:''}}" />
+                                            <input type="number"   class="form-control form-control-solid" placeholder="0" name="gross_weight" value="{{!empty($transporter)?$transporter['gross_weight']:''}}" />
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Label-->
@@ -231,11 +231,11 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">Payment Mode</label>
                                             <select class="form-select form-select-solid" id="select-payment" data-control="select2" data-hide-search="true" data-placeholder="Select Payment Mode" name="payment_mode" value="">
                                             <option value="">Select Mode...</option>
-                                            <option value="1" {{!empty($transporter) && $transporter['payment_mode'] == "1" && !empty($transporter['payment_mode']) ? 'selected' : '' }} selected>cash</option>
-                                            <option value="2" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "2" ? 'selected' : '' }}>Gpay</option>
-                                            <option value="3" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "3" ? 'selected' : '' }}>Cheque</option>
-                                            <option value="4" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "4" ? 'selected' : '' }}>Bank Transfer</option>
-                                            <option value="5" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "5" ? 'selected' : '' }}>A/C Pay</option>
+                                            <option value="1" {{!empty($transporter) && $transporter['payment_mode'] == "1" && !empty($transporter['payment_mode']) ? 'selected' : '' }} selected>CASH</option>
+                                            <option value="2" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "2" ? 'selected' : '' }}>GPAY</option>
+                                            <option value="3" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "3" ? 'selected' : '' }}>CHEQUE</option>
+                                            <option value="4" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "4" ? 'selected' : '' }}>BANK TRANSFER</option>
+                                            <option value="5" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "5" ? 'selected' : '' }}>A/C PAY</option>
                                         
                                             
                                             </select>
@@ -316,7 +316,7 @@
                         <!--begin::Input group-->
                         <div class="fv-row mb-7">
                             <!--begin::Label-->
-                            <label class="required fw-bolder fs-6 mb-2">A/C No.</label>
+                            <label class="required fw-bolder fs-6 mb-2">Transporter A/C No.</label>
                             <!--end::Label-->
                             <!--begin::Input-->
                             <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="ac_no" value="{{'SS'.$sr_no+1}}" readonly>
@@ -337,6 +337,16 @@
                         <!--begin::Input group-->
                         <div class="fv-row mb-7 fv-plugins-icon-container">
                             <!--begin::Label-->
+                            <label class="required fw-bolder fs-6 mb-2">Contact No.</label>
+                            <!--end::Label-->
+                            <!--begin::Input-->
+                            <input type="number" maxlength="10" pattern="[789][0-9]{9}" class="form-control form-control-solid mb-3 mb-lg-0" name="contact" id="contact" placeholder="6595989565"/>
+                            <!--end::Input-->
+                        </div>
+                        <!--end::Input group-->
+                        <!--begin::Input group-->
+                        <div class="fv-row mb-7 fv-plugins-icon-container">
+                            <!--begin::Label-->
                             <label class="required fw-bolder fs-6 mb-2">City</label>
                             <!--end::Label-->
                             <!--begin::Input-->
@@ -344,16 +354,7 @@
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="fv-row mb-7 fv-plugins-icon-container">
-                            <!--begin::Label-->
-                            <label class="required fw-bolder fs-6 mb-2">Contact No.</label>
-                            <!--end::Label-->
-                            <!--begin::Input-->
-                            <input type="number" min="0" class="form-control form-control-solid mb-3 mb-lg-0" name="contact" id="contact" placeholder="6595989565"/>
-                            <!--end::Input-->
-                        </div>
-                        <!--end::Input group-->
+                        
                         <!--begin::Input group-->
                         <div class="fv-row mb-7 fv-plugins-icon-container">
                             <!--begin::Label-->
