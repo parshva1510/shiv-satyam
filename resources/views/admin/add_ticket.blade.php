@@ -32,7 +32,7 @@
                                             <!--end::Svg Icon-->
                                             <!--end::Icon-->
                                             <!--begin::Datepicker-->
-                                            <input class="form-control form-control-solid ps-12" id="date" placeholder="Select a date" name="date" value="{{!empty($transporter)?$transporter['curr_date']:''}}"/>
+                                            <input class="form-control form-control-solid ps-12" id="cdate" placeholder="Select a date" name="cdate" value="{{!empty($transporter) ? $transporter['cdate'] : date('Y-m-d ')}}"/>
                                             <!--end::Datepicker-->
                                     </div>
                             </div>
@@ -156,7 +156,11 @@
                                                 <!--end::Svg Icon-->
                                                 <!--end::Icon-->
                                                 <!--begin::Datepicker-->
-                                                <input class="form-control form-control-solid ps-12" id="gross_date" placeholder="Select a date" name="gross_date" value="{{!empty($transporter)?$transporter['gross_date']:''}}"/>
+                                                <!-- <input class="form-control form-control-solid ps-12" id="gross_date" placeholder="Select a date" name="gross_date" value="{{!empty($transporter)?$transporter['gross_date']:''}}"/> -->
+                                                <input class="form-control form-control-solid ps-12" id="gross_date" placeholder="Select a date" name="gross_date" value="{{!empty($transporter) ? $transporter['gross_date'] : date('Y-m-d\\TH:i:s.vP')}}" />
+                                                
+
+
                                                 <!--end::Datepicker-->
                                             </div>
                                         </div>
@@ -187,7 +191,7 @@
                                                 <!--end::Svg Icon-->
                                                 <!--end::Icon-->
                                                 <!--begin::Datepicker-->
-                                                <input class="form-control form-control-solid ps-12" id="tare_date" placeholder="Select a date" name="tare_date" value="{{!empty($transporter)?$transporter['tare_date']:''}}"/>
+                                                <input class="form-control form-control-solid ps-12" id="tare_date" placeholder="Select a date" name="tare_date" value="{{!empty($transporter) ? $transporter['tare_date'] :date('Y-m-d H:i:s')}}"/>
                                                 <!--end::Datepicker-->
                                             </div>
                                         </div>
@@ -408,18 +412,18 @@
     $('#gross_date').flatpickr({
       enableTime: true,
       dateFormat: "Y-m-d H:i",
-      defaultDate: currentDateTime
+      //defaultDate: currentDateTime
     });
 
     $('#tare_date').flatpickr({
       enableTime: true,
       dateFormat: "Y-m-d H:i",
-      defaultDate: currentDateTime
+      //defaultDate: currentDateTime
     });
-    $('#date').flatpickr({
+    $('#cdate').flatpickr({
       enableTime: true,
       dateFormat: "Y-m-d H:i",
-      defaultDate: currentDateTime
+      //defaultDate: currentDateTime
     });
   });
 </script>

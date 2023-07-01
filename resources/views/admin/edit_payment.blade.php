@@ -118,7 +118,7 @@
 
                                         <td>{{(new DateTime($row->date))->format('M-Y')}}</td>
 
-                                        <td>{{$row->debit-$row->credit }}</td>
+                                        <td>{{$row->debit-$row->credit}}</td>
 
                                         <td></td>
 

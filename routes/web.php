@@ -26,6 +26,12 @@ Route::get('getdata/{id}',[ticket::class,'getdata'])->name('getdata');
 
 Route::get('reports',[reportcontroller::class,'reports'])->name('reports');
 Route::get('show_report',[reportcontroller::class,'show_report'])->name('show_report');
+Route::get('transporter_report',[reportcontroller::class,'transporter_report'])->name('transporter_report');
+Route::get('transporter_report',[reportcontroller::class,'show_transporter_report'])->name('show_transporter_report');
+Route::get('vehicle_report',[reportcontroller::class,'vehicle_report'])->name('vehicle_report');
+Route::get('vehicel_report',[reportcontroller::class,'show_vehicle_report'])->name('show_vehicle_report');
+Route::get('date_report',[reportcontroller::class,'datewise_report'])->name('datewise_report');
+Route::get('date_report1',[reportcontroller::class,'show_datewise_report'])->name('show_datewise_report');
 
 Route::get('show_transporter',[ticket::class,'show_transporter'])->name('show_transporter');
 Route::POST('add_transporter',[ticket::class,'add_transporter'])->name('add_transporter');
@@ -56,6 +62,7 @@ Route::post('update_user',[User::class,'update_user'])->name('update_user');
 
 Route::get('add_payment',[paymentController::class,'show_payment'])->name('show_payment');
 Route::post('add_payment',[paymentController::class,'add_payment'])->name('add_payment');
+Route::post('add_payment1',[paymentController::class,'show_payment'])->name('add_payment1');
 Route::get('/edit_payment/{id}',[paymentController::class,'edit_payment'])->name('edit_payment');
 Route::post('update_payment',[paymentController::class,'update_payment'])->name('update_payment');
 Route::get('delete_payment/{id}',[paymentController::class,'delete_payment'])->name('delete_payment');

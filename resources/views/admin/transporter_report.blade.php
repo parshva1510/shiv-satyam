@@ -124,7 +124,7 @@
 
                                             <td>{{$row->vehicle_no}}</td>
 
-                                            <td>{{$row->tranporter_name}}</td>
+                                            <td>{{$row->transporter_name}}</td>
 
                                             <td>{{$row->gross_weight}}</td>
 
@@ -140,28 +140,7 @@
 
                                             <td>{{$row->charges}}</td>
 
-                                            @if($row->payment_mode==1)
-														
-															<td>CASH</td>
-														
-														@elseif($row->payment_mode==2)
-														
-															<td>GPAY</td>
-														
-														@elseif($row->payment_mode==3)
-														
-															<td>CHEQUE</td>
-														
-														@elseif($row->payment_mode==4)
-													
-															<td>BANK TRANSFER</td>
-														
-														@else
-														
-															<td>A/C PAY</td>
-														
-														
-														@endif
+                                            <td>{{$row->payment_mode}}</td>
 
                                        
                                   
@@ -182,7 +161,7 @@
                         <div class="card card-flush">
                             <!--begin::Card body-->
                             <div class="card-body">
-                                <form id="kt_modal_transporter" class="form" method="GET" action="{{route('show_report')}}">
+                                <form id="kt_modal_transporter" class="form" method="GET" action="{{route('show_transporter_report')}}">
                                 <!--begin::Table-->
                                 <div class="">
                                     <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
@@ -194,17 +173,6 @@
                                                         <option value="{{$row->sr_no}}">{{$row->name}}</option>
                                                         @endforeach
                                     </select>
-                                </div>
-
-                                <div class="">
-                                    <label class="d-flex align-items-center fs-6 fw-bolder mb-2 mt-5">
-                                        <span class="required">Select Date Range</span>
-                                    </label>
-                                    <!--begin::Flatpickr-->
-                                    <div class="input-group">
-                                        <input class="form-control form-control-solid" placeholder="Pick date rage" id="kt_daterangepicker_1" name="kt_daterangepicker_1"/>
-                                    </div>
-                                    <!--end::Flatpickr-->
                                 </div>
                                 <!--end::Table-->
                                 <div class="d-flex d-none align-items-center position-relative my-1">
@@ -251,9 +219,7 @@
 {{-- <script src="{{url('public/assets/js/custom/apps/ecommerce/customers/listing/listing.js')}}"></script> --}}
 <!--end::Custom Javascript-->
 
-<script>
-    $("#kt_daterangepicker_1").daterangepicker();
-</script>
+
 
 <script>
 
@@ -278,7 +244,7 @@ var KTDatatablesExample = function () {
 
     // Hook export buttons
     var exportButtons = () => {
-        const documentTitle = 'Assesment Report';
+        const documentTitle = 'Transporter Report';
         var buttons = new $.fn.dataTable.Buttons(table, {
             buttons: [
                 {

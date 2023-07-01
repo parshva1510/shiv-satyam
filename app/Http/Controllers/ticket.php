@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\demo;
 use App\Models\transporter;
 use App\Models\weight_entry;
+use App\Models\payment;
 use App\Models\weight_entry_log;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
@@ -34,7 +35,7 @@ class ticket extends Controller
          $sr_no = transporter::get()->last()->sr_no;
          $datainsert->date = $req->date;
          $datainsert->ticket_no = $req->ticket_no;
-         $datainsert->transpoter_no = strtoupper( $req->transpoter_no) ;
+         $datainsert->transpoter_no =$req->transpoter_no ;
          $datainsert->vehicle_no = $req->vehical_no;
          $datainsert->gross_weight = $req->gross_weight;
          $datainsert->gross_date = $req->gross_date;
@@ -47,19 +48,31 @@ class ticket extends Controller
          $datainsert->charges = $req->charge;
          $datainsert->payment_mode = $req->payment_mode;
          $datainsert->remark = $req->remark;
-         $datainsert->save();
-         $transporters = Transporter::all();
-        //  $ticket_no =(weight_entry::get()->last()->datainsert()->ticket_no) +  1;
-        $ticket_no = $datainsert->ticket_no;
-        // if($req->transporter_no =="1")
-        // {
-        //   cash
-        // }
-        
-
+         $datainsert->cdate =  date('Y-m-d H:i:s',strtotime($req->cdate));
+         $ticket_no = $datainsert->ticket_no;
          $data=DB::select("SELECT *,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no where weight_entry.sr_no = '$datainsert->sr_no'");
-         $viewdata = DB::select("SELECT * FROM `weight_entry` ORDER BY `sr_no` DESC LIMIT 7");
-         $pdf = Pdf::loadView('admin.demopdf',['viewdata'=> $viewdata,'transporter' => $data,'tr_data'=>$transporters,'sr_no' => $sr_no,'ticket_no'=> $ticket_no],compact('data'))->setPaper('a4', 'portrait');
+        $transporters = Transporter::all();
+        $sr_no = payment::get()->last()->sr_no;
+        $rec_no= payment::get()->last()->receipt_no;
+        $temp=substr($rec_no,0,8);
+        $next_rec_no= $temp . $sr_no+1;
+        $datapayment = new payment();
+        $datapayment->client_no=$req->transpoter_no;
+        $datapayment->amount=$req->charge;
+        $datapayment->date=$req->date;
+        $datapayment->remark="Cash received";
+        $datapayment->payment_mode="Cash";
+        $datapayment->receipt_no=$next_rec_no;
+        if($req->transpoter_no==22)
+        {
+          $datainsert->save();
+          $datapayment->save();
+        }
+        else{
+          
+        }
+        $viewdata = DB::select("SELECT * FROM `weight_entry` ORDER BY `sr_no` DESC LIMIT 7");
+         $pdf = Pdf::loadView('admin.demopdf',['viewdata'=> $viewdata,'transporter' => $data,'tr_data'=>$transporters,'sr_no' => $sr_no,'ticket_no'=> $ticket_no,'rec_no' => $next_rec_no],compact('data'))->setPaper('a4', 'portrait');
          return $pdf->stream();
         
      }
@@ -107,7 +120,7 @@ class ticket extends Controller
       $data->material = strtoupper($req->input('material'));
       $data->charges = $req->input('charge');
       $data->payment_mode = $req->input('payment_mode');
-      $data->date = $req->input('date');
+      $data->cdate =  date('Y-m-d H:i:s',strtotime($req->cdate));
       $data->remark =ucfirst($req->input('remark'));
       $data->save();
       /*cash transaction automatic enterd to paymnet table*/
