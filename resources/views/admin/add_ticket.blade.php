@@ -120,7 +120,7 @@
                                             </label>
                                             <input id="NUMBERPLATE" type="text" class="form-control form-control-solid" placeholder="GJ12PM1234" 
                                                 name="vehical_no" title="Please enter a valid vehicle number." value= "{{!empty($transporter)?$transporter['vehicle_no']:''}}"
-                                                autocomplete="off" required oninput="this.value = this.value.toUpperCase();" />
+                                                autocomplete="off" required oninput="this.value = this.value.toUpperCase();" maxlength="10"  required/>
                                             <span class="d-flex number_error" id="number_error"></span>
                                         </div>
                                         <!--end::Label-->												
@@ -254,7 +254,7 @@
                                     <!--end::Input group-->
                                     <!--begin::Actions-->
                                     <div class="text-center d-flex flex-stack">
-                                        <button type="reset" id="kt_modal_new_target_cancel" >Reset</button>
+                                        <button type="reset" id="kt_modal_new_target_cancel" >{{!empty($transporter)?'':'Reset'}}</button>
                                         <button type="submit" id="new_submit" class="btn btn-primary" >
                                             <span class="indicator-label"  onclick="submitForm()">Submit</span>
                                             <span class="indicator-progress">Please wait...
@@ -337,10 +337,11 @@
                         <!--begin::Input group-->
                         <div class="fv-row mb-7 fv-plugins-icon-container">
                             <!--begin::Label-->
-                            <label class="required fw-bolder fs-6 mb-2">Contact No.</label>
+                            <label class="required fw-bolder fs-6 mb-2">Mobile No.</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="number" maxlength="10" pattern="[789][0-9]{9}" class="form-control form-control-solid mb-3 mb-lg-0" name="contact" id="contact" placeholder="6595989565"/>
+                            <input type="text"  class="form-control form-control-solid mb-3 mb-lg-0" name="contact" id="contact" placeholder="6595989565" maxlength="10" minlength="10" required/>
+                            
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->
@@ -506,6 +507,8 @@
         }
     }
 </script>
+
+
 
 
 

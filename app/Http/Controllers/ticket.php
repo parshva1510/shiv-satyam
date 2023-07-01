@@ -51,6 +51,11 @@ class ticket extends Controller
          $transporters = Transporter::all();
         //  $ticket_no =(weight_entry::get()->last()->datainsert()->ticket_no) +  1;
         $ticket_no = $datainsert->ticket_no;
+        // if($req->transporter_no =="1")
+        // {
+        //   cash
+        // }
+        
 
          $data=DB::select("SELECT *,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no where weight_entry.sr_no = '$datainsert->sr_no'");
          $viewdata = DB::select("SELECT * FROM `weight_entry` ORDER BY `sr_no` DESC LIMIT 7");
@@ -94,8 +99,10 @@ class ticket extends Controller
       $data->vehicle_no = $req->input('vehical_no');
       $data->gross_weight = $req->input('gross_weight');
       $data->gross_date = $req->input('gross_date');
+      $data->gross_time = date('Y-m-d H:i:s',strtotime($req->gross_date));
       $data->tare_weight = $req->input('tare_wight');
       $data->tare_date = $req->input('tare_date');
+      $data->tare_time = date('Y-m-d H:i:s',strtotime($req->tare_date));
       $data->net_weight = $req->input('net_weight');
       $data->material = strtoupper($req->input('material'));
       $data->charges = $req->input('charge');
@@ -103,6 +110,7 @@ class ticket extends Controller
       $data->date = $req->input('date');
       $data->remark =ucfirst($req->input('remark'));
       $data->save();
+      /*cash transaction automatic enterd to paymnet table*/
       $tr_data=transporter::all();
       $data=DB::select("SELECT *,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no");
       return view('admin.view_ticket',['data' => $data]);

@@ -58,7 +58,7 @@
                                         </div>
                                     <div class="col-md-2">
                                         <button type="submit" id="transporter_submit" name="transporter_submit" class="btn btn-primary">
-                                            <span class="indicator-label">View</span>
+                                            <span class="indicator-label">View Transporters</span>
                                             <span class="indicator-progress">Please wait...
                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                         </button>
@@ -171,7 +171,7 @@
                     <!--end::Products-->  
                 </div> 
                       <!--Begin Add Payment Form-->
-                      <div class="col-xl-3" id="addpayment">
+                      <div class="col-xl-3" id="addpayment" hidden>
                         <!--begin::Products-->
                         <div class="card card-flush">
                             <!--begin::Card body-->
@@ -285,9 +285,9 @@
                                         </div>
                                     
                                 </div>
-                                <div class="row-md-2 mt-8">
+                                <div class="row-md-6 mt-8"style= "display: flex; justify-content: flex-end;">
                                     <button type="submit" id="payment_submit" class="btn btn-primary">
-                                        <span class="indicator-label">Save</span>
+                                        <span class="indicator-label">Save Payment </span>
                                         <span class="indicator-progress">Please wait...
                                         <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                     </button>

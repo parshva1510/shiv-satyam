@@ -55,7 +55,7 @@
                                         </div>
                                     <div class="col-md-2">
                                         <button type="submit" id="transporter_submit" name="transporter_submit" class="btn btn-primary">
-                                            <span class="indicator-label">View</span>
+                                            <span class="indicator-label">View Transporters</span>
                                             <span class="indicator-progress">Please wait...
                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                         </button>
@@ -290,7 +290,7 @@
                                         </div>
                                     
                                 </div>
-                                <div class="row-md-2 mt-8">
+                                <div class="row-md-2 mt-8" style= "display: flex; justify-content: flex-end;">
                                     <button type="submit" id="payment_submit" class="btn btn-primary">
                                         <span class="indicator-label">Save</span>
                                         <span class="indicator-progress">Please wait...
@@ -438,26 +438,22 @@
                                         </div>
                                     
                                 </div>
-                                <div class="row-md-2 mt-8">
+                                <div class="row-md-4 mt-8" style= "display: flex; justify-content: flex-end;">
                                     <button type="submit" id="payment_edit" class="btn btn-primary">
                                         <span class="indicator-label">Save</span>
                                         <span class="indicator-progress">Please wait...
                                         <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                    </button>
+                                    </button>&nbsp;&nbsp;
+                               
                                   
-                                    <a href="{{route('delete_payment',$row->sr_no)}}"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+                                    <a href="{{route('delete_payment',$row->sr_no)}}"  class="btn btn-primary btn-md">
                                                 <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg data-kt-ecommerce-order-filter="delete_row"-->
-                                                <span class="svg-icon svg-icon-3">
-                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor"></path>
-                                                        <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor"></path>
-                                                        <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor"></path>
-                                                    </svg>
-                                                </span>
+                                                <span class="indicator-label">Delete</span>
                                                 <!--end::Svg Icon-->
-                                            </a>
+                                    </a>
                                    
-                                 
+                                   
+                                
                                 </div>
                                                                                          
                                 <!--end::Table-->

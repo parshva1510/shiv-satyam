@@ -590,6 +590,7 @@ $('input.toggle-vis').on('click', function (e) {
     column.visible(!column.visible());
 });
 });
+<!-- view ticket ma day vise data display thava joie-->
 </script>--}}
 <script>
 	$("#kt_ecommerce_report_views_daterangepicker").change(function(){

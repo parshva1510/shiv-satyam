@@ -42,7 +42,7 @@
                                             <th class="min-w-70px">A/c No</th>
                                             <th class="min-w-70px">Transporter</th>
                                             <th class="min-w-70px">City</th>
-                                            <th class="min-w-70px">Contact No</th>
+                                            <th class="min-w-70px">Mobile No</th>
                                             <th class="min-w-70px">Remark</th>
                                             <th class="text-end min-w-70px">Actions</th>
                                         </tr>
@@ -108,7 +108,7 @@
                                 @csrf
                                 <div class="fv-row mb-7">
                                     <!--begin::Label-->
-                                    <label class="required fw-bolder fs-6 mb-2">A/c No.</label>
+                                    <label class="required fw-bolder fs-6 mb-2">Transporter A/c No.</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
                                     
@@ -125,6 +125,14 @@
                                   
                                     <!--end::Input-->
                                 </div>
+                                <div class="fv-row mb-7">
+                                        <!--begin::Label-->
+                                    <label class="required fw-bolder fs-6 mb-2">Mobile No</label>
+                                        <!--end::Label-->
+                                        <!--begin::Input-->
+                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="contact" id="contact" placeholder="" maxlength="10" minlength="10" required/>
+                                        <!--end::Input-->
+                                </div>
                                     <!--begin::Table-->
                                 <div class="fv-row mb-7">
                                         <!--begin::Label-->
@@ -134,14 +142,7 @@
                                     <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="city" id="city" placeholder="" required/>
                                         <!--end::Input-->
                                 </div>
-                                <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                    <label class="required fw-bolder fs-6 mb-2">Contact</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="contact" id="contact" placeholder="" maxlength="10" required/>
-                                        <!--end::Input-->
-                                </div>
+                                
                                 <div class="fv-row mb-7">
                                         <!--begin::Label-->
                                     <label class="fw-bolder fs-6 mb-2">Remark</label>
@@ -149,12 +150,14 @@
                                         <!--begin::Input-->
                                     <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="remark" id="remark" placeholder=""/>
                                         <!--end::Input-->
-                                </div>     
+                                </div> 
+                                <div class="row-md-6 mt-8"style= "display: flex; justify-content: flex-end;">    
                                 <button type="" id="new_submit" class="btn btn-primary">
-                                    <span class="indicator-label">Add</span>
+                                    <span class="indicator-label">Add Transporter</span>
                                     <span class="indicator-progress">Please wait...
                                     <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                 </button>
+                                </div>
                                 
                                 <!--end::Table-->
                                 <div class="d-flex d-none align-items-center position-relative my-1">
