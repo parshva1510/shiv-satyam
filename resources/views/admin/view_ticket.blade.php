@@ -315,7 +315,7 @@
 
 														<td>{{$row->gross_weight}}</td>
 
-														<td>{{(new DateTime($row->gross_date))->format('d-m-Y')}}</td>
+														<td>@if(isset($row->gross_date)){{(new DateTime($row->gross_date))->format('d-m-Y')}}@endif</td>
 
 														<td>{{$row->tare_weight}}</td>
 														
@@ -350,7 +350,7 @@
 														
 														
 														@endif
-														<td>{{(new DateTime ($row->date))->format('d-m-Y')}}</td>
+														<td>@if(isset($row->date)){{(new DateTime ($row->date))->format('d-m-Y')}}@endif</td>
 														
 														
 													
@@ -592,7 +592,8 @@ $('input.toggle-vis').on('click', function (e) {
 });
 <!-- view ticket ma day vise data display thava joie-->
 </script>--}}
-<script>
+
+{{--<script>
 	$("#kt_ecommerce_report_views_daterangepicker").change(function(){
 		var date=this.value;
 		alert(date);
@@ -606,6 +607,47 @@ $('input.toggle-vis').on('click', function (e) {
                 });
 });
 
-	</script>
+	</script>--}}
+
+<script>
+    $(document).ready(function() {
+        // Add the date range filter
+        $('#kt_ecommerce_report_views_daterangepicker').on('change', function() {
+            var dateRange = $(this).val().split(' - ');
+            var startDate = $.trim(dateRange[0]);
+            var endDate = $.trim(dateRange[1]);
+			//console.log(dateRange);
+            // Loop through each row and show/hide based on date range
+            $('#ticket_data tbody tr').each(function() {
+                var soldDate = formatDate($(this).find('td:nth-child(8)').text());
+				//console.log(soldDate);
+                if (isDateInRange(soldDate, startDate, endDate)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+
+		 // Function to format date as 'DD-MM-YYYY'
+		 function formatDate(date) {
+            var parts = date.split('-');
+            return parts[0] + '-' + parts[1] + '-' + parts[2];
+        }
+
+
+        // Function to check if a date is within the specified range
+        function isDateInRange(date, start, end) {
+            var soldDate = new Date(date);
+            var startDate = new Date(start);
+            var endDate = new Date(end);
+
+            if (startDate <= soldDate && soldDate <= endDate) {
+                return true;
+            }
+            return false;
+        }
+    });
+</script>
 
 @endsection
