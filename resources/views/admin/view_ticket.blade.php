@@ -350,7 +350,7 @@
 														
 														
 														@endif
-														<td>@if(isset($row->date)){{(new DateTime ($row->date))->format('d-m-Y')}}@endif</td>
+														<td>@if(isset($row->cdate)){{(new DateTime ($row->cdate))->format('d-m-Y')}}@endif</td>
 														
 														
 													
@@ -619,7 +619,7 @@ $('input.toggle-vis').on('click', function (e) {
 			//console.log(dateRange);
             // Loop through each row and show/hide based on date range
             $('#ticket_data tbody tr').each(function() {
-                var soldDate = formatDate($(this).find('td:nth-child(8)').text());
+                var soldDate = formatDate($(this).find('td:nth-child(13)').text());
 				//console.log(soldDate);
                 if (isDateInRange(soldDate, startDate, endDate)) {
                     $(this).show();
@@ -632,7 +632,7 @@ $('input.toggle-vis').on('click', function (e) {
 		 // Function to format date as 'DD-MM-YYYY'
 		 function formatDate(date) {
             var parts = date.split('-');
-            return parts[0] + '-' + parts[1] + '-' + parts[2];
+            return parts[1] + '-' + parts[0] + '-' + parts[2];
         }
 
 
