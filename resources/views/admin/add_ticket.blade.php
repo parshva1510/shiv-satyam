@@ -158,7 +158,7 @@
                                                 <!--begin::Datepicker-->
                                                 
                                                 
-                                                <input class="form-control form-control-solid ps-12" id="gross_date" placeholder="" name="gross_date"  value="{{!empty($transporter) ? $transporter['gross_date'].$transporter['gross_time']: date('Y-m-d h:i:s',time())}}" />
+                                                <input class="form-control form-control-solid ps-12" id="gross_date" placeholder="" name="gross_date"  value="{{!empty($transporter) ? $transporter['gross_date'].$transporter['gross_time']: date('Y-m-d H:i)}}" />
 
                                                 
 
