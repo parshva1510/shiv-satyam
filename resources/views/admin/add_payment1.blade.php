@@ -100,7 +100,7 @@
                                     <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
                                         <th class="min-w-70px">Receipt No.</th>
                                         <th class="min-w-70px">Date</th>                         
-                                        <th class="min-w-70x">Debit</th>
+                                        <th class="min-w-70x">Debiteee</th>
                                         <th class="min-w-70px">Credit</th>
                                         <th class="min-w-70px">Remaining</th>
                                         <th class="min-w-70px">Payment</th>

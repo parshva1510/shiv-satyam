@@ -350,7 +350,7 @@
 														
 														
 														@endif
-														<td>{{(new DateTime ($row->date))->format('d-m-Y')}}</td>
+														<td>{{(new DateTime ($row->cdate))->format('d-m-Y')}}</td>
 														
 														
 													

@@ -126,11 +126,11 @@
 
                                         <td>{{$row->transporter_name}}</td>
 
-                                        <td>{{$row->debit-$row->credit.' ₹' }}</td>
+                                        <td>{{'₹ '.$row->debit-$row->credit }}</td>
 
-                                        <td>{{$row->amount.' ₹'}}</td>
+                                        <td>{{'₹ '.$row->amount}}</td>
 
-                                        <td>{{$row->debit-($row->credit + $row->amount).' ₹'}}</td>
+                                        <td>{{'₹ '.$row->debit-($row->credit + $row->amount)}}</td>
 
                                         <td>{{$row->payment_mode}}</td>
                                      

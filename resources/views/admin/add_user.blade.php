@@ -324,7 +324,8 @@
                     type:'GET',
                     success:function(response){
                         $("#id1").val(response['id']); 
-                       // $("#password1").val(""); 
+                        $("#password1").val(""); 
+                        $("#vpassword1").val(""); 
                         $("#username1").val(response['username']); 
                         $("#f_name1").val(response['f_name']); 
                         $("#role1").val(response['role']); 
@@ -335,7 +336,7 @@
         });
 </script>
 <script>
- /* $(document).ready(function(){
+  $(document).ready(function(){
         $("#vpassword").focusout(function(){
            if(document.getElementById("password").value != document.getElementById("vpassword").value)
         {
@@ -345,8 +346,8 @@
             document.getElementById("password").focus();
         }
         
-        });
-        $("#vpassword1").focusout(function(){
+        });  });
+       /* $("#vpassword1").focusout(function(){
            if(document.getElementById("password1").value != document.getElementById("vpassword1").value)
         {
             alert("Password does not Match");
