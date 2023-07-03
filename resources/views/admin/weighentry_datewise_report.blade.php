@@ -140,7 +140,28 @@
 
                                             <td>{{$row->charges}}</td>
 
-                                            <td>{{$row->payment_mode}}</td>
+                                            @if($row->payment_mode==1)
+														
+															<td>CASH</td>
+														
+														@elseif($row->payment_mode==2)
+														
+															<td>GPAY</td>
+														
+														@elseif($row->payment_mode==3)
+														
+															<td>CHEQUE</td>
+														
+														@elseif($row->payment_mode==4)
+													
+															<td>BANK TRANSFER</td>
+														
+														@else
+														
+															<td>A/C PAY</td>
+														
+														
+														@endif
 
                                        
                                   

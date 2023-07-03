@@ -270,7 +270,7 @@
 																<input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_customers_table .form-check-input" value="1" />
 															</div>
 														</th>
-														<th class="min-w-30px">T. No.</th>
+														<th class="min-w-30px">Ticket. No.</th>
 														<th class="min-w-70px">Vehicle No.</th>
 														<th class="min-w-150px">Transporter</th>
 														<th class="min-w-70px">G. Weight</th>

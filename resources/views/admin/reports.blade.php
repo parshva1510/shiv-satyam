@@ -100,7 +100,7 @@
                                     <thead>
                                         <!--begin::Table row-->
                                         <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
-                                            <th class="min-w-30px">T. No.</th>
+                                            <th class="min-w-30px">Ticket. No.</th>
                                             <th class="min-w-70px">Vehicle No.</th>
                                             <th class="min-w-150px">Transporter</th>
                                             <th class="min-w-70px">G. Weight</th>

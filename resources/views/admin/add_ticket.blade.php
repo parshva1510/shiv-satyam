@@ -32,7 +32,7 @@
                                             <!--end::Svg Icon-->
                                             <!--end::Icon-->
                                             <!--begin::Datepicker-->
-                                            <input class="form-control form-control-solid ps-12" id="cdate" placeholder="Select a date" name="cdate" value="{{!empty($transporter) ? $transporter['cdate'] : date('Y-m-d')}}"/>
+                                            <input class="form-control form-control-solid ps-12" id="cdate" placeholder="Select a date" name="cdate" value="{{!empty($transporter) ? $transporter['cdate'] : date('d-m-Y')}}"/>
                                             <!--end::Datepicker-->
                                     </div>
                             </div>
@@ -120,8 +120,10 @@
                                             </label>
                                             <input id="NUMBERPLATE" type="text" class="form-control form-control-solid" placeholder="GJ12PM1234" 
                                                 name="vehical_no" title="Please enter a valid vehicle number." value= "{{!empty($transporter)?$transporter['vehicle_no']:''}}"
-                                                autocomplete="off" required oninput="this.value = this.value.toUpperCase();" maxlength="10"  required/>
+                                                 required oninput="this.value = this.value.toUpperCase();" maxlength="10"  required/>
+                                                
                                             <span class="d-flex number_error" id="number_error"></span>
+                                            
                                         </div>
                                         <!--end::Label-->												
                                     </div>
@@ -136,7 +138,8 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Gross Weight (KG)</span>
                                             </label>
-                                            <input type="number"   class="form-control form-control-solid" placeholder="0" name="gross_weight" value="{{!empty($transporter)?$transporter['gross_weight']:''}}" />
+                                            <input type="number"   class="form-control form-control-solid" placeholder="0" name="gross_weight" value="{{!empty($transporter)?$transporter['gross_weight']:''}}" style=" -webkit-appearance: none;"/>
+                                           
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Label-->
@@ -157,7 +160,7 @@
                                                 <!--end::Icon-->
                                                 <!--begin::Datepicker-->
                                                 
-                                                <input class="form-control form-control-solid ps-12" id="gross_date" placeholder="Select a date" name="gross_date" value="{{!empty($transporter) ? $transporter['gross_date']: date('Y-m-d')}}" />
+                                                <input class="form-control form-control-solid ps-12" id="gross_date" placeholder="Select a date" name="gross_date" value="{{!empty($transporter) ? $transporter['gross_date']: date('d-m-Y')}}" />
                                                 
 
 
@@ -216,11 +219,11 @@
                                                 <span class="required">Material</span>
                                             </label>
                                             
-                                            <input id="field2" type="text" class="form-control form-control-solid" placeholder="material"  name="material" value="{{!empty($transporter)?$transporter['material']:''}}" />
+                                            <input id="field2" type="text" class="form-control form-control-solid" placeholder="MATERIAL"  name="material" value="{{!empty($transporter)?$transporter['material']:''}}" />
                                                     <datalist id="material">
                                                             @foreach($material as $item)
                                                                 <option value="{{$item->material}}">{{$item->material}}</option>
-                                                                @endforeach
+                                                            @endforeach
                                                     </datalist>
                                         </div>
                                         <!--end::Label-->
@@ -416,18 +419,18 @@
 
     $('#gross_date').flatpickr({
       enableTime: true,
-      dateFormat: "Y-m-d H:i",
-      //defaultDate: currentDateTime
+      dateFormat: "d-m-Y H:i",
+      defaultDate: currentDateTime
     });
 
     $('#tare_date').flatpickr({
       enableTime: true,
-      dateFormat: "Y-m-d H:i",
-      //defaultDate: currentDateTime
+      dateFormat: "d-m-Y H:i",
+      defaultDate: currentDateTime
     });
     $('#cdate').flatpickr({
       enableTime: true,
-      dateFormat: "Y-m-d ",
+      dateFormat: "d-m-Y ",
      // defaultDate: currentDate
     });
   });

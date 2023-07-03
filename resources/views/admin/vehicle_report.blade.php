@@ -100,7 +100,7 @@
                                     <thead>
                                         <!--begin::Table row-->
                                         <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
-                                            <th class="min-w-30px">T. No.</th>
+                                            <th class="min-w-30px">Ticket. No.</th>
                                             <th class="min-w-70px">Vehicle No.</th>
                                             <th class="min-w-150px">Transporter</th>
                                             <th class="min-w-70px">G. Weight</th>
@@ -124,7 +124,7 @@
 
                                             <td>{{$row->vehicle_no}}</td>
 
-                                            <td>{{$row->transporter_name}}</td>
+                                            <td>{{$row->tranporter_name}}</td>
 
                                             <td>{{$row->gross_weight}}</td>
 
@@ -140,7 +140,28 @@
 
                                             <td>{{$row->charges}}</td>
 
-                                            <td>{{$row->payment_mode}}</td>
+                                            </td>@if($row->payment_mode==1)
+														
+                                                        <td>CASH</td>
+                                                    
+                                                    @elseif($row->payment_mode==2)
+                                                    
+                                                        <td>GPAY</td>
+                                                    
+                                                    @elseif($row->payment_mode==3)
+                                                    
+                                                        <td>CHEQUE</td>
+                                                    
+                                                    @elseif($row->payment_mode==4)
+                                                
+                                                        <td>BANK TRANSFER</td>
+                                                    
+                                                    @else
+                                                    
+                                                        <td>A/C PAY</td>
+                                                    
+                                                    
+                                                    @endif
 
                                        
                                   

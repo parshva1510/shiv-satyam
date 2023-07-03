@@ -17,11 +17,12 @@ class ticket extends Controller
      public function index(){
           $data=weight_entry::with('transporter')->get();
           $material=DB::select("select DISTINCT material from weight_entry");
+          $vehicle_no=DB::select("select DISTINCT vehicle_no from weight_entry");
           $transporter =[];
           $tr_data=Transporter::all();
           $sr_no = transporter::get()->last()->sr_no;
           $ticket_no =(weight_entry::get()->last()->ticket_no) +  1;
-          return view('admin.add_ticket',["transporter" => $transporter,'sr_no' => $sr_no, 'tr_data'=>$tr_data,'ticket_no'=> $ticket_no,'data'=>$data,'material' => $material]);
+          return view('admin.add_ticket',["transporter" => $transporter,'sr_no' => $sr_no, 'tr_data'=>$tr_data,'ticket_no'=> $ticket_no,'data'=>$data,'material' => $material,'vehicle_no'=>$vehicle_no]);
      }
      public function add_ticket(Request $req)
      {
@@ -97,12 +98,14 @@ class ticket extends Controller
  
      $sr_no = transporter::get()->last()->sr_no;
      $data = weight_entry::with('transporter')->find($id);
+     $material=DB::select("select DISTINCT material from weight_entry");
+
      //dd($data->gross_time);
      //$ticket_no = DB::table('weight_entry')->where('sr_no',$id);
     // $data=DB::select("SELECT *,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no");
      $tr_data = transporter::all();
      $ticket_no =(weight_entry::get()->last()->ticket_no) +  1;
-     return view('admin.add_ticket', ["transporter" => $data, 'tr_data' => $tr_data,'sr_no' => $sr_no,'ticket_no'=> $ticket_no]);
+     return view('admin.add_ticket', ["transporter" => $data, 'tr_data' => $tr_data,'sr_no' => $sr_no,'ticket_no'=> $ticket_no,'material'=> $material]);
 }
 
 
