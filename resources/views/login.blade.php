@@ -63,7 +63,19 @@
 								<!--begin::Heading-->
 								<div class="text-center mb-11">
 									<!--begin::Title-->
-									<h1 class="text-dark fw-bolder mb-3">Sign In</h1>
+									<h1 class="text-dark fw-bolder mb-3">Sign In 
+										<div class="overlay-wrapper text-gray-600 __web-inspector-hide-shortcut__">
+<i class="ki-duotone ki-printer fs-2x">
+<span class="path1"></span>
+<span class="path2"></span>
+<span class="path3"></span>
+<span class="path4"></span>
+<span class="path5"></span>
+</i>
+<i class="ki-solid ki-printer fs-2x"></i>
+<i class="ki-outline ki-printer fs-2x"></i>
+</div>
+									</h1>
 									<!--end::Title-->
 									<!--begin::Subtitle-->
 									

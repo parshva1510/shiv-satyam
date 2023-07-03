@@ -29,9 +29,9 @@
 				}
 
 				th, td {
-				padding-top: 10px;
-				padding-bottom: 10px;
-				padding-left: 15px;
+				padding-top: 5px;
+				padding-bottom: 5px;
+				padding-left: 5px;
 				padding-right: 5px;
 				}
 
@@ -75,15 +75,15 @@
 		</style>
 	</head>
 	<body>
-		<table style="width: 640px">
-			<colgroup>
-				<col style="width: 10px">
+		<table style="width: 740px">
+			{{-- <colgroup>
+				<col style="width: 100px">
 				<col style="width: 100px">
 				<col style="width: 100px">
 				<col style="width: 100px">
 				<col style="width: 100px">
 				<col style="width: 120px">
-			</colgroup>
+			</colgroup> --}}
 			<thead class="hr">
 			  <tr>
 				<th class="left-logo" rowspan="2"><img src="C:/xampp/htdocs/shiv-satyam/public/assets/media/logos/left-logo.png"></th>
@@ -96,7 +96,7 @@
 			</thead>
 			<tbody>
 			  <tr class="pt">
-				<td><b>Ticket No.:</b></td>	<td><b>1510</b></td>
+				<td><b>Ticket No.:</b></td>	<td><b>1510-23/00754</b></td>
 				<td><b>Vehicle No.:</b></td>	<td><b>GJ12AA9999</b></td>
 				<td>Transporter:</td>	<td>Kutch Transport</td>
 			  </tr>
