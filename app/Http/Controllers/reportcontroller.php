@@ -21,7 +21,7 @@ class reportcontroller extends Controller
        $daterange=$req->kt_daterangepicker_1;
        $date1=date('Y-m-d',strtotime(substr($daterange,0,10)));
        $date2=date('y-m-d',strtotime(substr($daterange,13)));
-       $data=DB::select("SELECT *,transporter.name as tranporter_name FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no where transpoter_no='$id' and date BETWEEN '$date1' and '$date2';");
+       $data=DB::select("SELECT *,transporter.name as tranporter_name FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no where transpoter_no='$id' and cdate BETWEEN '$date1' and '$date2';");
        
        return view('admin.reports',["transporter" => $transporter,'data'=>$data]);
       
@@ -62,7 +62,7 @@ class reportcontroller extends Controller
         $daterange=$req->kt_daterangepicker_1;
         $date1=date('Y-m-d',strtotime(substr($daterange,0,10)));
         $date2=date('y-m-d',strtotime(substr($daterange,13)));
-        $data=DB::select("SELECT *,transporter.name as transporter_name from transporter join weight_entry on transporter.sr_no=weight_entry.transpoter_no where date BETWEEN '$date1' and '$date2'");
+        $data=DB::select("SELECT *,transporter.name as transporter_name from transporter join weight_entry on transporter.sr_no=weight_entry.transpoter_no where cdate BETWEEN '$date1' and '$date2'");
         return view('admin.weighentry_datewise_report',["data" => $data]);
    }
 

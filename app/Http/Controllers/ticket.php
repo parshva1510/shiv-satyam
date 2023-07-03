@@ -15,16 +15,13 @@ class ticket extends Controller
 
 {
      public function index(){
-       $data=weight_entry::with('transporter')->get();
-          // $data=DB::select("SELECT * from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no");
+          $data=weight_entry::with('transporter')->get();
+          $material=DB::select("select DISTINCT material from weight_entry");
           $transporter =[];
           $tr_data=Transporter::all();
           $sr_no = transporter::get()->last()->sr_no;
           $ticket_no =(weight_entry::get()->last()->ticket_no) +  1;
-          //$payment = payment::select('client_no')->get();
-       
-
-          return view('admin.add_ticket',["transporter" => $transporter,'sr_no' => $sr_no, 'tr_data'=>$tr_data,'ticket_no'=> $ticket_no,'data'=>$data]);
+          return view('admin.add_ticket',["transporter" => $transporter,'sr_no' => $sr_no, 'tr_data'=>$tr_data,'ticket_no'=> $ticket_no,'data'=>$data,'material' => $material]);
      }
      public function add_ticket(Request $req)
      {
@@ -175,4 +172,4 @@ class ticket extends Controller
   // {
   //   dd("hi");
   // }
-}
+  }

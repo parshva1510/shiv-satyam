@@ -157,11 +157,7 @@
                                                 <!--end::Icon-->
                                                 <!--begin::Datepicker-->
                                                 
-                                                
-                                                <input class="form-control form-control-solid ps-12" id="gross_date" placeholder="" name="gross_date"  value="{{!empty($transporter) ? $transporter['gross_date'].$transporter['gross_time']: date('Y-m-d H:i)}}" />
-
-                                                
-
+                                                <input class="form-control form-control-solid ps-12" id="gross_date" placeholder="Select a date" name="gross_date" value="{{!empty($transporter) ? $transporter['gross_date']: date('Y-m-d')}}" />
                                                 
 
 
@@ -221,6 +217,11 @@
                                             </label>
                                             
                                             <input id="field2" type="text" class="form-control form-control-solid" placeholder="material"  name="material" value="{{!empty($transporter)?$transporter['material']:''}}" />
+                                                    <datalist id="material">
+                                                            @foreach($material as $item)
+                                                                <option value="{{$item->material}}">{{$item->material}}</option>
+                                                                @endforeach
+                                                    </datalist>
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Label-->
@@ -427,13 +428,10 @@
     $('#cdate').flatpickr({
       enableTime: true,
       dateFormat: "Y-m-d ",
-      defaultDate: currentDate
+     // defaultDate: currentDate
     });
   });
 </script>
-
-
-
 
 
 <!-- <script>
