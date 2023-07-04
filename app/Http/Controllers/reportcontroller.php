@@ -29,33 +29,33 @@ class reportcontroller extends Controller
    public function transporter_report()
    {
     $transporter=transporter::get()->all();
-    $data=weight_entry::get()->all();
+    $data=DB::select("SELECT *,transporter.name as tranporter_name FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no ");
     return view('admin.transporter_report',["transporter" => $transporter,"data" => $data]);
    }
    public function show_transporter_report(Request $req)
    {
        $id=$req->transporter;
        $transporter=transporter::get()->all();
-       $data=DB::select("SELECT *,transporter.name as transporter_name from transporter join weight_entry on transporter.sr_no=weight_entry.transpoter_no where transpoter_no='$id'");
+       $data=DB::select("SELECT *,transporter.name as name from transporter join weight_entry on transporter.sr_no=weight_entry.transpoter_no where transpoter_no='$id'");
        return view('admin.transporter_report',["transporter" => $transporter,'data'=>$data]);
    }
    public function vehicle_report()
    {
     $vehicle=DB::select("SELECT DISTINCT vehicle_no FROM weight_entry");
-    $data=weight_entry::get()->all();
+    $data=DB::select("SELECT *,transporter.name as name FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no ");
     return view('admin.vehicle_report',["vehicle" => $vehicle,"data" => $data]);
    }
    public function show_vehicle_report(Request $req)
    {
-          
         $id=$req->vehicle;
         $vehicle=DB::select("SELECT DISTINCT vehicle_no FROM weight_entry");
-        $data=DB::select("SELECT *,transporter.name as transporter_name from transporter join weight_entry on transporter.sr_no=weight_entry.transpoter_no where vehicle_no='$id'");
+        $data=DB::select("SELECT *,transporter.name as name from transporter join weight_entry on transporter.sr_no=weight_entry.transpoter_no where vehicle_no='$id'");
         return view('admin.vehicle_report',["vehicle" => $vehicle,"data" => $data]);
+       
    }
    public function datewise_report()
    {
-    $data=weight_entry::get()->all();
+     $data=DB::select("SELECT *,transporter.name as name FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no ");
     return view('admin.weighentry_datewise_report',["data" => $data]);
    }
    public function show_datewise_report(Request $req)
@@ -63,7 +63,7 @@ class reportcontroller extends Controller
         $daterange=$req->kt_daterangepicker_1;
         $date1=date('Y-m-d',strtotime(substr($daterange,0,10)));
         $date2=date('y-m-d',strtotime(substr($daterange,13)));
-        $data=DB::select("SELECT *,transporter.name as transporter_name from transporter join weight_entry on transporter.sr_no=weight_entry.transpoter_no where cdate BETWEEN '$date1' and '$date2'");
+        $data=DB::select("SELECT *,transporter.name as name from transporter join weight_entry on transporter.sr_no=weight_entry.transpoter_no where cdate BETWEEN '$date1' and '$date2'");
         return view('admin.weighentry_datewise_report',["data" => $data]);
    }
 
