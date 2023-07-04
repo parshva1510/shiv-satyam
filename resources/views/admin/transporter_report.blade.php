@@ -124,15 +124,15 @@
 
                                             <td>{{$row->vehicle_no}}</td>
 
-                                            <td>{{$row->transporter_name}}</td>
+                                            <td>{{$row->name}}</td>
+
+                                            <td>{{(new datetime($row->gross_date))->format('d-m-Y')}}</td>
 
                                             <td>{{$row->gross_weight}}</td>
 
-                                            <td>{{$row->gross_date}}</td>
+                                            <td>{{(new datetime($row->tare_date))->format('d-m-Y')}}</td>
 
                                             <td>{{$row->tare_weight}}</td>
-                                            
-                                            <td>{{$row->tare_date}}</td>
                                     
                                             <td>{{$row->net_weight}}</td>
 

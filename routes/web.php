@@ -26,13 +26,13 @@ Route::get('getdata/{id}',[ticket::class,'getdata'])->name('getdata');
 
 Route::get('reports',[reportcontroller::class,'reports'])->name('reports');
 Route::get('show_report',[reportcontroller::class,'show_report'])->name('show_report');
-Route::get('transporter_reports',[reportcontroller::class,'transporter_report'])->name('transporter_report');
-Route::get('transporter_reports',[reportcontroller::class,'show_transporter_report'])->name('show_transporter_report');
+Route::get('transporter_report',[reportcontroller::class,'transporter_report'])->name('transporter_report');
+Route::get('show_transporter_report',[reportcontroller::class,'show_transporter_report'])->name('show_transporter_report');
 Route::get('vehicle_report',[reportcontroller::class,'vehicle_report'])->name('vehicle_report');
-Route::get('vehicel_report',[reportcontroller::class,'show_vehicle_report'])->name('show_vehicle_report');
+Route::get('show_vehicle_report',[reportcontroller::class,'show_vehicle_report'])->name('show_vehicle_report');
 Route::get('datewise_report',[reportcontroller::class,'datewise_report'])->name('datewise_report');
-Route::get('datewise_report',[reportcontroller::class,'show_datewise_report'])->name('show_datewise_report');
-Route::get('datewise_report',[reportcontroller::class,'datewise_report'])->name('datewise_report');
+Route::get('show_datewise_report',[reportcontroller::class,'show_datewise_report'])->name('show_datewise_report');
+
 
 Route::get('show_transporter',[ticket::class,'show_transporter'])->name('show_transporter');
 Route::POST('add_transporter',[ticket::class,'add_transporter'])->name('add_transporter');

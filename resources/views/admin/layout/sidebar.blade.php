@@ -136,6 +136,45 @@
                 <!--end:Menu sub-->
             </div>
             <!--end:Menu item-->
+            <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                <!--begin:Menu link-->
+                <span class="menu-link">
+                    <span class="menu-icon">
+                        <!--begin::Svg Icon | path: icons/duotune/files/fil003.svg-->
+                        <span class="svg-icon svg-icon-2">
+                        <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+
+                        <g id="SVGRepo_iconCarrier"> <rect width="24" height="24" fill="white"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM9 6C8.44772 6 8 6.44772 8 7C8 7.55228 8.44772 8 9 8C9.99038 8 10.6533 8.33533 11.0729 8.76729C11.2786 8.97913 11.4396 9.22839 11.5529 9.5H9C8.44772 9.5 8 9.94772 8 10.5C8 11.0523 8.44772 11.5 9 11.5H11.5529C11.451 11.7442 11.3106 11.9705 11.1338 12.1675C10.7334 12.6135 10.0966 12.9656 9.14206 12.9976C8.68316 13.013 8.34028 13.3047 8.19245 13.6413C8.04079 13.9866 8.05891 14.4731 8.41475 14.829L11.2929 17.7071C11.6834 18.0976 12.3166 18.0976 12.7071 17.7071C13.0976 17.3166 13.0976 16.6834 12.7071 16.2929L11.0332 14.619C11.6627 14.3596 12.1965 13.9776 12.6221 13.5034C13.1446 12.9214 13.4817 12.2254 13.6414 11.5H15C15.5523 11.5 16 11.0523 16 10.5C16 9.94772 15.5523 9.5 15 9.5H13.6414C13.5255 8.97391 13.3164 8.46303 13.0108 8H15C15.5523 8 16 7.55228 16 7C16 6.44772 15.5523 6 15 6H9Z" fill="#999999"/> </g>
+
+                        </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </span>
+                    <span class="menu-title">Payment</span>
+                    <span class="menu-arrow"></span>
+                </span>
+                <!--end:Menu link-->
+                <!--begin:Menu sub-->
+                <div class="menu-sub menu-sub-accordion">
+                    <!--begin:Menu item-->
+                    <div class="menu-item">
+                        <!--begin:Menu link-->
+                        <a class="menu-link" href="{{route('add_payment')}}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Add Payment</span>
+                        </a>
+                        <!--end:Menu link-->
+                    </div>
+                    <!--end:Menu item-->
+                </div>
+                <!--end:Menu sub-->
+            </div>
             <!--begin:Menu item-->
             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                 <!--begin:Menu link-->
@@ -185,7 +224,7 @@
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">Vehicle Reports</span>
+                            <span class="menu-title">Vehicle Report</span>
                         </a>
                         <!--end:Menu link-->
                     </div>
@@ -201,7 +240,7 @@
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">Datewise Reports</span>
+                            <span class="menu-title">Datewise Report</span>
                         </a>
                         <!--end:Menu link-->
                     </div>
@@ -213,11 +252,11 @@
                     <!--begin:Menu item-->
                     <div class="menu-item">
                         <!--begin:Menu link-->
-                        <a class="menu-link" href="{{route('reports')}}">
+                        <a class="menu-link" href="{{route('transporter_report')}}">
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">Transporter Reports</span>
+                            <span class="menu-title">Transporter Report</span>
                         </a>
                         <!--end:Menu link-->
                     </div>
@@ -227,49 +266,7 @@
                  
             </div>
             <!--end:Menu item-->
-            <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                <!--begin:Menu link-->
-                <span class="menu-link">
-                    <span class="menu-icon">
-                        <!--begin::Svg Icon | path: icons/duotune/files/fil003.svg-->
-                        <span class="svg-icon svg-icon-2">
-                        <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"/>
-
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-
-                        <g id="SVGRepo_iconCarrier"> <rect width="24" height="24" fill="white"/> <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM9 6C8.44772 6 8 6.44772 8 7C8 7.55228 8.44772 8 9 8C9.99038 8 10.6533 8.33533 11.0729 8.76729C11.2786 8.97913 11.4396 9.22839 11.5529 9.5H9C8.44772 9.5 8 9.94772 8 10.5C8 11.0523 8.44772 11.5 9 11.5H11.5529C11.451 11.7442 11.3106 11.9705 11.1338 12.1675C10.7334 12.6135 10.0966 12.9656 9.14206 12.9976C8.68316 13.013 8.34028 13.3047 8.19245 13.6413C8.04079 13.9866 8.05891 14.4731 8.41475 14.829L11.2929 17.7071C11.6834 18.0976 12.3166 18.0976 12.7071 17.7071C13.0976 17.3166 13.0976 16.6834 12.7071 16.2929L11.0332 14.619C11.6627 14.3596 12.1965 13.9776 12.6221 13.5034C13.1446 12.9214 13.4817 12.2254 13.6414 11.5H15C15.5523 11.5 16 11.0523 16 10.5C16 9.94772 15.5523 9.5 15 9.5H13.6414C13.5255 8.97391 13.3164 8.46303 13.0108 8H15C15.5523 8 16 7.55228 16 7C16 6.44772 15.5523 6 15 6H9Z" fill="#999999"/> </g>
-
-                        </svg>
-                        </span>
-                        <!--end::Svg Icon-->
-                    </span>
-                    <span class="menu-title">Payment</span>
-                    <span class="menu-arrow"></span>
-                </span>
-                <!--end:Menu link-->
-                <!--begin:Menu sub-->
-                <div class="menu-sub menu-sub-accordion">
-                    <!--begin:Menu item-->
-                    <div class="menu-item">
-                        <!--begin:Menu link-->
-                        <a class="menu-link" href="{{route('add_payment')}}">
-                            <span class="menu-bullet">
-                                <span class="bullet bullet-dot"></span>
-                            </span>
-                            <span class="menu-title">Add Payment</span>
-                        </a>
-                        <!--end:Menu link-->
-                    </div>
-                    <!--end:Menu item-->
-                    
-                    
-                    
-                    
-                </div>
-                <!--end:Menu sub-->
-            </div>
 
             
             

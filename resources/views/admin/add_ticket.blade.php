@@ -16,7 +16,7 @@
                     <h1 class="page-heading d-flex text-dark fw-bold flex-column justify-content-center my-0">{{!empty($transporter)?'Edit Ticket':'Create New Ticket'}}</h1>
                     <!--end::Title-->
                 </div>
-                            <div>
+                            <div  style= "display: flex; justify-content: flex-end;">
                                 
                                     <!--begin::Input-->
                                     <div class="position-relative d-flex align-items-center">

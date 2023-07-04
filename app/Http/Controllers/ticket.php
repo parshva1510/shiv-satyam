@@ -139,16 +139,13 @@ class ticket extends Controller
   
 
    public function delete_ticket($id){
-    $data = weight_entry::find($id);
-    if ($data){
-      $ticket_no =(weight_entry::get()->last()->ticket_no) +  1;
-      $data -> delete();
-      return view('admin.view_ticket',['data' => $data,'ticket_no'=> $ticket_no]);
-     } else 
-     {
-        return response('Record not found', 404);
-    }
+   
+    $data = weight_entry::with('transporter')->find($id);
+    $tr_data = transporter::all();
+    $ticket_no =(weight_entry::get()->last()->ticket_no) +  1;
+    return view('admin.view_ticket', ["data" => $data, 'tr_data' => $tr_data,'ticket_no'=> $ticket_no]);
 }
+
 
 
    public function show_transporter()
