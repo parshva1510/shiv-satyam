@@ -194,7 +194,7 @@
 															<div id="kt_customers_table_export" class="d-none"></div>
 															<!--end::Export buttons-->
 														</div>
-														<div class="m-0">
+														<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
 															<!--begin::Export dropdown-->
 															<button type="button" class="btn btn-light-primary full-button" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
 															<span class="svg-icon svg-icon-2">
@@ -234,6 +234,7 @@
 																	Export as PDF
 																	</a>
 																</div>
+
 																<!--end::Menu item-->
 															</div>
 															<!--end::Menu-->
