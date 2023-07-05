@@ -32,7 +32,7 @@
                                             <!--end::Svg Icon-->
                                             <!--end::Icon-->
                                             <!--begin::Datepicker-->
-                                            <input class="form-control form-control-solid ps-12" id="cdate" placeholder="Select a date" name="cdate" value="{{!empty($transporter) ? $transporter['cdate'] : date('d-m-Y')}}"/>
+                                            <input class="form-control form-control-solid ps-12" id="cdate" placeholder="Select a date" name="cdate" value="{{(new DateTime($transporter->cdate))->format('d-m-Y')}}"/>
                                             <!--end::Datepicker-->
                                     </div>
                             </div>
