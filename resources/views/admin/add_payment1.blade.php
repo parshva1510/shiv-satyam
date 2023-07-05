@@ -118,11 +118,11 @@
 
                                         <td></td>
 
-                                        <td>{{$row->debit }}</td>
+                                        <td>{{'₹ '.$row->debit }}</td>
 
                                         <td></td>
 
-                                        <td>{{$row->debit }}</td>
+                                        <td>{{'₹ '.$row->debit }}</td>
 
                                         <td></td>
                                      

@@ -216,7 +216,7 @@
                                         <!--begin::Label-->
                                         <div class="col-md-3 fv-row">
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
-                                                <span class="required">Material</span>
+                                                <span class="">Material</span>
                                             </label>
                                             
                                             <input  type="text" class="form-control form-control-solid" placeholder="MATERIAL"  name="material" id="material" value="{{!empty($transporter)?$transporter['material']:''}}" />
