@@ -25,7 +25,7 @@ class paymentController extends Controller
     public function show_payment()
     {
         $transporter=DB::select("SELECT * from transporter");
-        $payment=DB::select("SELECT p.sr_no,p.client_no,t.name as transporter_name,p.amount,p.date,p.remark,p.payment_mode,p.receipt_no,(SELECT sum(charges) from weight_entry where transpoter_no=p.client_no and date<=p.date) as debit,(SELECT sum(amount) from payment where client_no=p.client_no and date < p.date)as credit from payment p join transporter t on t.sr_no=p.client_no GROUP by p.sr_no order by sr_no desc;");
+        $payment=DB::select("SELECT p.sr_no,p.client_no,t.name as transporter_name,p.amount,p.date,p.remark,p.payment_mode,p.receipt_no,(SELECT sum(charges) from weight_entry where transpoter_no=p.client_no and cdate<=p.date) as debit,(SELECT sum(amount) from payment where client_no=p.client_no and date < p.date)as credit from payment p join transporter t on t.sr_no=p.client_no GROUP by p.sr_no order by sr_no desc;");
         $sr_no = payment::get()->last()->sr_no;
         $rec_no= payment::get()->last()->receipt_no;
         $temp=substr($rec_no,0,8);

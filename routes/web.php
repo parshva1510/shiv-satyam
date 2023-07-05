@@ -21,8 +21,9 @@ use App\Http\Controllers\reportcontroller;
 */
 
 Route::get('ticket_form',[ticket::class,'index'])->name('ticket_form');
+Route::get('/edit_ticket/{id}',[ticket::class, 'edit_ticket'])->name('edit_ticket');
 Route::get('view_ticket',[ticket::class,'view_ticket'])->name('view_ticket');
-Route::get('getdata/{id}',[ticket::class,'getdata'])->name('getdata');
+
 
 Route::get('reports',[reportcontroller::class,'reports'])->name('reports');
 Route::get('show_report',[reportcontroller::class,'show_report'])->name('show_report');
@@ -36,6 +37,7 @@ Route::get('show_datewise_report',[reportcontroller::class,'show_datewise_report
 
 Route::get('show_transporter',[ticket::class,'show_transporter'])->name('show_transporter');
 Route::POST('add_transporter',[ticket::class,'add_transporter'])->name('add_transporter');
+
 
 
 Route::get('login',[authentication::class,'login'])->name('login');
@@ -83,6 +85,6 @@ Route::get('change_password',[authentication::class,'change_password'])->name('c
 
 Route::POST('add_ticket',[ticket::class,'add_ticket'])->name('add_ticket');
 
-Route::get('/edit_ticket/{id}',[ticket::class, 'edit_ticket'])->name('edit_ticket');
+
 Route::post('update_ticket',[ticket::class,'update_ticket'])->name('update_ticket');
 Route::get('/delete_ticket/{sr_no}',[ticket::class,'delete_ticket'])->name('delete_ticket');

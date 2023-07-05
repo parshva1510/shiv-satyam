@@ -36,17 +36,18 @@ class ticket extends Controller
          $datainsert->transpoter_no =$req->transpoter_no ;
          $datainsert->vehicle_no = $req->vehical_no;
          $datainsert->gross_weight = $req->gross_weight;
-         $datainsert->gross_date = $req->gross_date;
+         $datainsert->gross_date =date('Y-m-d',strtotime(substr($req->gross_date,0,10)));
          $datainsert->gross_time = date('Y-m-d H:i',strtotime($req->gross_date));
          $datainsert->tare_weight = $req->tare_wight;
-         $datainsert->tare_date = $req->tare_date;
+         $datainsert->tare_date =date('Y-m-d',strtotime(substr($req->tare_date,0,10)));
+         //dd($datainsert->tare_date);
          $datainsert->tare_time = date('Y-m-d H:i',strtotime($req->tare_date));
          $datainsert->net_weight = $req->net_weight;
          $datainsert->material =strtoupper($req->material);
          $datainsert->charges = $req->charge;
          $datainsert->payment_mode = $req->payment_mode;
          $datainsert->remark = $req->remark;
-         $datainsert->cdate =  $req->cdate;
+         $datainsert->cdate =  date('Y-m-d',strtotime(substr($req->cdate,0,10)));
          $datainsert->save();
          $data=DB::select("SELECT *,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no where weight_entry.sr_no = '$datainsert->sr_no'");
         $transporters = Transporter::all();
@@ -65,26 +66,24 @@ class ticket extends Controller
         $datapayment->receipt_no=$next_rec_no;
         if($req->transpoter_no==22)
         {
-         
           $datapayment->save();
         }
         else{
-          
         }
         $ticket_no = $datainsert->ticket_no;
         $viewdata = DB::select("SELECT * FROM `weight_entry` ORDER BY `sr_no` DESC LIMIT 7");
-         $pdf = Pdf::loadView('admin.demopdf',['viewdata'=> $viewdata,'transporter' => $data,'tr_data'=>$transporters,'sr_no' => $sr_no,'ticket_no'=> $ticket_no,'rec_no' => $next_rec_no],compact('data'))->setPaper('a4', 'portrait');
-         return $pdf->stream();
+        $pdf = Pdf::loadView('admin.demopdf',['viewdata'=> $viewdata,'transporter' => $data,'tr_data'=>$transporters,'sr_no' => $sr_no,'ticket_no'=> $ticket_no,'rec_no' => $next_rec_no],compact('data'))->setPaper('a4', 'portrait');
+        return $pdf->stream();
         
      }
 
    public function view_ticket()
    {
-     $data=DB::select("SELECT *,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no");
+     $data=DB::select("SELECT *,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no  ORDER BY weight_entry.sr_no DESC");
     // $transporters = Transporter::all();
-    $viewdata = DB::select("SELECT * FROM `weight_entry` ORDER BY `sr_no` DESC LIMIT 7");
+   
       //$data=weight_entry::with('transporter')->get()->toarray();
-      return view('admin.view_ticket',['viewdata'=> '$viewdata'],compact('data'));
+      return view('admin.view_ticket',compact('data'));
      
    }
    public function client()
@@ -100,12 +99,12 @@ class ticket extends Controller
      $data = weight_entry::with('transporter')->find($id);
      $material=DB::select("select DISTINCT material from weight_entry");
 
-     //dd($data->gross_time);
+     //dd($data->gross_date);
      //$ticket_no = DB::table('weight_entry')->where('sr_no',$id);
     // $data=DB::select("SELECT *,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no");
      $tr_data = transporter::all();
      $ticket_no =(weight_entry::get()->last()->ticket_no) +  1;
-     return view('admin.add_ticket', ["transporter" => $data, 'tr_data' => $tr_data,'sr_no' => $sr_no,'ticket_no'=> $ticket_no,'material'=> $material]);
+     return view('admin.edit_ticket', ["transporter" => $data, 'tr_data' => $tr_data,'sr_no' => $sr_no,'ticket_no'=> $ticket_no,'material'=> $material]);
 }
 
 
@@ -117,10 +116,10 @@ class ticket extends Controller
       $data->transpoter_no = $req->input('transpoter_no');
       $data->vehicle_no = $req->input('vehical_no');
       $data->gross_weight = $req->input('gross_weight');
-      $data->gross_date = $req->input('gross_date');
+      $data->gross_date =date('Y-m-d',strtotime(substr($req->gross_date,0,10)));
       $data->gross_time = date('Y-m-d H:i',strtotime($req->gross_date));
       $data->tare_weight = $req->input('tare_wight');
-      $data->tare_date = $req->input('tare_date');
+      $data->tare_date =date('Y-m-d',strtotime(substr($req->tare_date,0,10)));
       $data->tare_time = date('Y-m-d H:i',strtotime($req->tare_date));
       $data->net_weight = $req->input('net_weight');
       $data->material = strtoupper($req->input('material'));
@@ -131,7 +130,7 @@ class ticket extends Controller
       $data->save();
       /*cash transaction automatic enterd to paymnet table*/
       $tr_data=transporter::all();
-      $data=DB::select("SELECT *,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no");
+      $data=DB::select("SELECT *,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no  ORDER BY weight_entry.sr_no DESC");
       return view('admin.view_ticket',['data' => $data]);
      // return view('admin.add_ticket',['data' => $data,'tr_data'=>$tr_data]);
 
@@ -141,9 +140,8 @@ class ticket extends Controller
    public function delete_ticket($id){
    
     $data = weight_entry::with('transporter')->find($id);
-    $tr_data = transporter::all();
-    $ticket_no =(weight_entry::get()->last()->ticket_no) +  1;
-    return view('admin.view_ticket', ["data" => $data, 'tr_data' => $tr_data,'ticket_no'=> $ticket_no]);
+    $data->delete();
+    return redirect()->route('view_ticket');
 }
 
 
