@@ -26,6 +26,7 @@ class authentication extends Controller
             if($password==$data[0]->password){
                 $_SESSION['type']="remember";
                 session(['user'=>$username]);
+                session(['role'=>$data[0]->role]);
                 if($check==null){
                     if(isset($_COOKIE['user_login'])){
                         setcookie('user_login',"");
@@ -51,6 +52,7 @@ class authentication extends Controller
     public function destroy()
     {
         session()->forget('user');
+        session()->forget('role');
         return view('login');
     }
 }

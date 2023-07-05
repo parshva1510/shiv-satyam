@@ -1,5 +1,5 @@
 @if (Session::has('user'))
-<script>window.location = "{{url('/add_client')}}";</script>
+<script>window.location = "{{url('/view_ticket')}}";</script>
 @else
 
 @endif
@@ -92,13 +92,7 @@
 								</div>
 								<!--end::Input group=-->
 								<!--begin::Wrapper-->
-								<div class="d-flex flex-stack flex-wrap gap-3 fs-base fw-semibold mb-8">
-									<div></div>
-									<!--begin::Link-->
 								
-									<a href="../../demo1/dist/authentication/layouts/overlay/reset-password.html" class="link-primary">Forgot Password ?</a>
-									<!--end::Link-->
-								</div>
 								<div class="fv-row  mb-8 fv-plugins-icon-container">
 									<label class="form-check form-check-inline">
 										<input class="form-check-input" type="checkbox" name="remember" value="1" <?php if(isset($_COOKIE["user_login"])) { ?> checked <?php } ?>>
@@ -111,7 +105,7 @@
 								<!--end::Wrapper-->
 								<!--begin::Submit button  id="kt_sign_in_submit"-->
 								<div class="d-grid mb-10">
-									<button type="submit" id="" class="btn btn-primary">
+									<button type="submit" id="new_submit" class="btn btn-primary">
 										<!--begin::Indicator label-->
 										<span class="indicator-label">Sign In</span>
 										<!--end::Indicator label-->
@@ -122,11 +116,13 @@
 										<!--end::Indicator progress-->
 									</button>
 								</div>
+								@if(Session::get("fail"))
+                                <div>
+                                    {{Session::get("fail")}}
+                                </div>
+                                @endif
 								<!--end::Submit button-->
-								<!--begin::Sign up-->
-								<div class="text-gray-500 text-center fw-semibold fs-6">Not a Member yet?
-								<a href="../../demo1/dist/authentication/layouts/overlay/sign-up.html" class="link-primary">Sign up</a></div>
-								<!--end::Sign up-->
+								
 							</form>
 							<!--end::Form-->
 						</div>

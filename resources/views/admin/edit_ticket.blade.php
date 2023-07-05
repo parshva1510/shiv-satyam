@@ -6,7 +6,7 @@
     <div class="d-flex flex-column flex-column-fluid">
         <!--begin::Toolbar-->
         <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6 mb-5 mt-5">
-        <form id="kt_modal_new_target_form" class="form" method="get" action= "{{!empty($transporter)?route('update_ticket'):route('add_ticket')}}" target="_blank">
+        <form id="kt_modal_new_target_form" class="form" method="POST" action= "{{!empty($transporter)?route('update_ticket'):route('add_ticket')}}" target="_blank">
             <!--begin::Toolbar container-->
             <div id="kt_app_toolbar_container" class="app-container new-full-width container-xxl d-flex flex-stack">
                 
@@ -119,7 +119,7 @@
                                                 <span class="required">Vehicle No.</span>
                                             </label>
                                             <input id="NUMBERPLATE" type="text" class="form-control form-control-solid" placeholder="GJ12PM1234" 
-                                                name="vehical_no" title="Please enter a valid vehicle number." value= "{{$transporter['vehicle_no']}}"
+                                                name="vehical_no" id="vehical_no" title="Please enter a valid vehicle number." value= "{{$transporter['vehicle_no']}}"
                                                  required oninput="this.value = this.value.toUpperCase();" maxlength="10"  required/>
                                                 
                                             <span class="d-flex number_error" id="number_error"></span>
@@ -138,7 +138,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Gross Weight (KG)</span>
                                             </label>
-                                            <input type="number"   class="form-control form-control-solid" placeholder="0" name="gross_weight" value="{{$transporter['gross_weight']}}" style=" -webkit-appearance: none;"/>
+                                            <input type="number"  id="gross_weight"  class="form-control form-control-solid" placeholder="0" name="gross_weight" value="{{$transporter['gross_weight']}}" style=" -webkit-appearance: none;"/>
                                            
                                         </div>
                                         <!--end::Label-->
@@ -174,7 +174,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Tare Weight (KG)</span>
                                             </label>
-                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="0" name="tare_wight" value="{{$transporter['tare_weight']}}"/>
+                                            <input type="number" id="tare_wight" min="0" class="form-control form-control-solid" placeholder="0" name="tare_wight" value="{{$transporter['tare_weight']}}"/>
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Label-->
@@ -210,7 +210,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Net Weight</span>
                                             </label>
-                                            <input id="field1" type="number" min="0" class="form-control form-control-solid" placeholder="0" name="net_weight" value="{{$transporter['net_weight']}}" required/>
+                                            <input  id="net_weight" type="number" min="0" class="form-control form-control-solid" placeholder="0" name="net_weight" value="{{$transporter['net_weight']}}" required/>
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Label-->
@@ -234,7 +234,7 @@
                                             </label>
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1"><i class="bi bi-currency-rupee"></i></span>
-                                                <input id="field3 " type="number" min="0" class="form-control form-control-solid" placeholder="0" name="charge" value="{{$transporter['charges']}}" required/>
+                                                <input id="charges" type="number" min="0" class="form-control form-control-solid" placeholder="0" name="charge" value="{{$transporter['charges']}}" required/>
                                             </div>
                                         </div>
                                         <!--end::Label-->	
@@ -265,7 +265,7 @@
                                     </div>
                                     <!--end::Input group-->
                                     <!--begin::Actions-->
-                                    <div class="text-center d-flex flex-stack">
+                                    <div class="text-center d-flex flex-stack"  style= "display: flex; justify-content: flex-end;">
                                         <button type="submit" id="new_submit" class="btn btn-primary" >
                                             <span class="indicator-label"  onclick="submitForm()">Submit</span>
                                             <span class="indicator-progress">Please wait...
@@ -473,7 +473,7 @@
     </script> -->
     
     
-    <script>
+    <!-- <script>
     var pattern = /^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/;
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -519,7 +519,7 @@
             });
         }
     }
-</script>
+</script> -->
 
 
 
@@ -546,6 +546,33 @@
     }, 1000);
     });
     </script> -->
+    <script>
+        $("#kt_modal_new_target_form").submit(function(){
+        var vehicle_no=document.getElementById("vehical_no").value;
+        var gross_weight=document.getElementById("gross_weight").value;
+        var tare_weight=document.getElementById("tare_wight").value;
+        var net_weight=document.getElementById("net_weight").value;
+        var charges=document.getElementById("charges").value;
+        if(vehicle_no ==='' && gross_weight === '' && tare_weight ==='' && net_weight ==='' && charges ==='')
+        {
+            Swal.fire({
+                text: "Sorry, looks like there are some errors detected, please try again.",
+                icon: "error",
+            });
+            return false; // Prevent form submission
+        } else {
+            Swal.fire({
+                position: 'middle-center',
+                icon: 'success',
+                title: 'Ticket data has been successfully updated!',
+                showConfirmButton: false,
+                timer: 1500
+                }).then(function() {
+                $("#kt_modal_new_target_form").submit();
+           });
+        }
+    });
+    </script>
     
     <script>
     $(document).ready(function($){

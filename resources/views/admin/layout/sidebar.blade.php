@@ -5,6 +5,7 @@
         <!--begin::Menu-->
         <div class="menu menu-column menu-rounded menu-sub-indention px-3" id="#kt_app_sidebar_menu" data-kt-menu="true" data-kt-menu-expand="false">
             <!--begin:Menu item-->
+           
             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                 <!--begin:Menu link-->
                 <span class="menu-link">
@@ -22,6 +23,7 @@
                     <span class="menu-arrow"></span>
                 </span>
                 <!--end:Menu link-->
+             
                 <!--begin:Menu sub-->
                 <div class="menu-sub menu-sub-accordion">
                     <!--begin:Menu item-->
@@ -56,7 +58,7 @@
                 <!--end:Menu sub-->
             </div>
             <!--end:Menu item-->
-            
+            @if(session('role')==="Admin")
             <!--begin:Menu item-->
             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                 <!--begin:Menu link-->
@@ -96,6 +98,7 @@
                 </div>
                 <!--end:Menu sub-->
             </div>
+            @endif
             <!--end:Menu item-->
             <!--begin:Menu item-->
             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
@@ -175,6 +178,7 @@
                 </div>
                 <!--end:Menu sub-->
             </div>
+            @if(session('role')==="Admin")
             <!--begin:Menu item-->
             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                 <!--begin:Menu link-->
@@ -246,40 +250,10 @@
                     </div>
                     <!--end:Menu item-->
                 </div>
-                <!--end:Menu sub-->
-                  <!--begin:Menu sub-->
-                  <div class="menu-sub menu-sub-accordion menu-active-bg">
-                    <!--begin:Menu item-->
-                    <div class="menu-item">
-                        <!--begin:Menu link-->
-                        <a class="menu-link" href="{{route('transporter_report')}}">
-                            <span class="menu-bullet">
-                                <span class="bullet bullet-dot"></span>
-                            </span>
-                            <span class="menu-title">Transporter Report</span>
-                        </a>
-                        <!--end:Menu link-->
-                    </div>
-                    <!--end:Menu item-->
-                </div>
-                <!--end:Menu sub-->
-                 
+                <!--end:Menu sub-->       
             </div>
+            @endif
             <!--end:Menu item-->
-
-
-            
-            
-            
-           
-
-            
-            
-           
-            <!--begin:Menu item-->
-            
-            <!--end:Menu item-->
-
         </div>
         <!--end::Menu-->
     </div>

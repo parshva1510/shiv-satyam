@@ -271,14 +271,16 @@ var KTDatatablesExample = function () {
         datatable = $('#kt_datatable_example').DataTable({
             "info": true,
             'pageLength': 10,
-            "ordering": false
+            "ordering": false,
+        
         });
         //console.log(datatable);
     }
 
     // Hook export buttons
     var exportButtons = () => {
-        const documentTitle = 'Assesment Report';
+        const documentTitle = 'Transporter Report';
+    
         var buttons = new $.fn.dataTable.Buttons(table, {
             buttons: [
                 {

@@ -26,19 +26,8 @@ class reportcontroller extends Controller
        return view('admin.reports',["transporter" => $transporter,'data'=>$data]);
       
    }
-   public function transporter_report()
-   {
-    $transporter=transporter::get()->all();
-    $data=DB::select("SELECT *,transporter.name as tranporter_name FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no ");
-    return view('admin.transporter_report',["transporter" => $transporter,"data" => $data]);
-   }
-   public function show_transporter_report(Request $req)
-   {
-       $id=$req->transporter;
-       $transporter=transporter::get()->all();
-       $data=DB::select("SELECT *,transporter.name as name from transporter join weight_entry on transporter.sr_no=weight_entry.transpoter_no where transpoter_no='$id'");
-       return view('admin.transporter_report',["transporter" => $transporter,'data'=>$data]);
-   }
+   
+   
    public function vehicle_report()
    {
     $vehicle=DB::select("SELECT DISTINCT vehicle_no FROM weight_entry");

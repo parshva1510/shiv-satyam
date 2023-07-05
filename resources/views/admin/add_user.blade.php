@@ -50,6 +50,9 @@
                                     <tbody class="fw-semibold text-gray-600">
                                         @foreach($user as $row)
                                         <tr id="id{{$row->id}}">
+
+                                            <input type="hidden" class="delete_id" value="{{$row->id}}">
+
                                             <td>{{$row->id}}</td>
 
                                             <td>{{$row->username}}</td>
@@ -75,7 +78,7 @@
                                                     </span>
                                                     <!--end::Svg Icon-->
                                                 </a>
-                                                <a href="{{route('delete_user', $row->id)}}" data-kt-ecommerce-order-filter="delete_row" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+                                                <button typa="button" data-kt-ecommerce-order-filter="delete_row" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm servicedeletebtn">
                                                     <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
                                                     <span class="svg-icon svg-icon-3">
                                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -85,7 +88,7 @@
                                                         </svg>
                                                     </span>
                                                     <!--end::Svg Icon-->
-                                                </a>
+                                                </button>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -347,22 +350,135 @@
         }
         
         });  });
-       /* $("#vpassword1").focusout(function(){
-           if(document.getElementById("password1").value != document.getElementById("vpassword1").value)
+        <script>
+        $("#kt_modal_edit_user").submit(function(){
+        var name=document.getElementById("username1").value;
+        var pwd=document.getElementById("password1").value;
+        
+        if(name ==='' && pwd === '')
         {
-            alert("Password does not Match");
-            $("#password1").val("");
-            $("#vpassword1").val("");
-            document.getElementById("password1").focus();
-        } 
+            Swal.fire({
+                text: "Sorry, looks like there are some errors detected, please try again.",
+                icon: "error",
+            });
+            return false; // Prevent form submission
+        } else {
+            Swal.fire({
+                position: 'middle-center',
+                icon: 'success',
+                title: 'User data has been successfully updated!',
+                showConfirmButton: false,
+                timer: 1500
+                }).then(function() {
+                $("#kt_modal_edit_user").submit();
+           });
+        }
+    });
+</script>
+<script>
+    $("#kt_modal_add_user").submit(function(){
+        var name=document.getElementById("username").value;
+        var pwd=document.getElementById("password").value;
+     
+        if(name ==='' && pwd === '')
+        {
+            Swal.fire({
+                text: "Sorry, looks like there are some errors detected, please try again.",
+                icon: "error",
+            });
+            return false; // Prevent form submission
+        } else {
+            Swal.fire({
+                position: 'middle-center',
+                icon: 'success',
+                title: 'Transporter data has been successfully submitted!',
+                showConfirmButton: false,
+                timer: 1500
+                }).then(function() {
+                $("#kt_modal_add_user").submit();
+           });
+        }
+    });
+</script>
+<script>
+    $(".servicedeletebtn").click(function(e){
+            e.preventDefault();
+            var id=$(this).closest("tr").find(".delete_id").val();
+                 Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Once deleted, You will not be able to recover this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085D6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url:"{{url('delete_user')}}" +"/"+ id,
+                    type:'GET',
+                    success:function(response){
+                        Swal.fire(
+                            'Deleted!',
+                            'User has been deleted.',
+                            'success',
+                            );
+                            location.reload();
+                            }
+                        });
+                    }
+            });
         });
-        $("#contact").focusout(function(){
-           if(document.getElementById("contact").value.length < 10  )
-           {
-                alert("check no");
-           }
-           document.getElementById("contact").value="";
-        });
-    });*/
+</script>
+
+<script>
+        $("#kt_modal_add_user").submit(function(){
+        var name=document.getElementById("name1").value;
+        var city=document.getElementById("city1").value;
+        var contact=document.getElementById("contact1").value;
+        if(name ==='' && city === '' && contact ==='')
+        {
+            Swal.fire({
+                text: "Sorry, looks like there are some errors detected, please try again.",
+                icon: "error",
+            });
+            return false; // Prevent form submission
+        } else {
+            Swal.fire({
+                position: 'middle-center',
+                icon: 'success',
+                title: 'User data has been successfully updated!',
+                showConfirmButton: false,
+                timer: 1500
+                }).then(function() {
+                $("#kt_modal_add_user").submit();
+           });
+        }
+    });
+</script>
+<script>
+    $("#kt_modal_add_user").submit(function(){
+        var name=document.getElementById("name").value;
+        var city=document.getElementById("city").value;
+        var contact=document.getElementById("contact").value;
+        if(name ==='' && city === '' && contact ==='')
+        {
+            Swal.fire({
+                text: "Sorry, looks like there are some errors detected, please try again.",
+                icon: "error",
+            });
+            return false; // Prevent form submission
+        } else {
+            Swal.fire({
+                position: 'middle-center',
+                icon: 'success',
+                title: 'User data has been successfully submitted!',
+                showConfirmButton: false,
+                timer: 1500
+                }).then(function() {
+                $("#kt_modal_add_user").submit();
+           });
+        }
+    });
 </script>
 @endsection

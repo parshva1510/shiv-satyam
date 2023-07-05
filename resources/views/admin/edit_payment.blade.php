@@ -32,7 +32,7 @@
                             <!--begin::Card body-->
                             <div class="card-body">
                                 <!--begin::Table-->
-                                <form id="kt_modal_transporter" class="form" method="GET" action="{{route('get_transporter')}}">
+                                <form id="kt_modal_transporter" class="form" method="POST" action="{{route('get_transporter')}}">
                                 <div class="row fv-row mb-1">
                                     <div class="col-md-2 text-md-end">
                                         <!--begin::Label-->
@@ -131,6 +131,7 @@
                                     </tr> 
 
                                     <tr>
+                                    <input type="hidden" class="delete_id" value="{{$row->sr_no}}">
                                      
                                      <td><a href="{{route('edit_payment',$row->sr_no)}}" data-typeId="{{$row->sr_no}}" id="edit" >{{$row->receipt_no}}</a></td>
 
@@ -443,14 +444,21 @@
                                         <span class="indicator-label">Save</span>
                                         <span class="indicator-progress">Please wait...
                                         <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                    </button>&nbsp;&nbsp;
+                                    </button>&nbsp;&nbsp;&nbsp;
                                
                                   
-                                    <a href="{{route('delete_payment',$row->sr_no)}}"  class="btn btn-primary btn-md">
-                                                <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg data-kt-ecommerce-order-filter="delete_row"-->
-                                                <span class="indicator-label">Delete</span>
-                                                <!--end::Svg Icon-->
-                                    </a>
+                                    <button type="button"  data-kt-ecommerce-order-filter="delete_row" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm servicedeletebtn">
+                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
+                                                    <span class="svg-icon svg-icon-3">
+                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor" />
+                                                            <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor" />
+                                                            <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor" />
+                                                        </svg>
+                                                    </span>
+                                                    <!--end::Svg Icon-->
+                                                </button>
+                                   
                                    
                                    
                                 
@@ -509,6 +517,84 @@
                         //$("#payment1").val('Gpay');
                     }
                 });
+            });
+        });
+</script>
+<script>
+    $("#kt_modal_edit_payment").submit(function(){
+        var amount1=document.getElementById("amount1").value;
+        var remark=document.getElementById("remark1").value;
+        if(amount1 ==='' && remark1 === '')
+        {
+            Swal.fire({
+                text: "Sorry, looks like there are some errors detected, please try again.",
+                icon: "error",
+            });
+            return false; // Prevent form submission
+        } else {
+            Swal.fire({
+                position: 'middle-center',
+                icon: 'success',
+                title: 'payment has been successfully updated!',
+                showConfirmButton: false,
+                timer: 1500
+                }).then(function() {
+                $("kt_modal_edit_payment").submit();
+           });
+        }
+    });
+</script>
+<script>
+    $("#kt_modal_add_payment").submit(function(){
+        var amount=document.getElementById("amount").value;
+        var remark=document.getElementById("remark").value;
+        if(amount ==='' && remark === '')
+        {
+            Swal.fire({
+                text: "Sorry, looks like there are some errors detected, please try again.",
+                icon: "error",
+            });
+            return false; // Prevent form submission
+        } else {
+            Swal.fire({
+                position: 'middle-center',
+                icon: 'success',
+                title: 'payment has been successfully added!',
+                showConfirmButton: false,
+                timer: 1500
+                }).then(function() {
+                $("kt_modal_add_payment").submit();
+           });
+        }
+    });
+</script>
+<script>
+    $(".servicedeletebtn").click(function(e){
+            e.preventDefault();
+            var id=$(this).closest("tr").find(".delete_id").val();
+                 Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Once deleted, You will not be able to recover this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085D6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url:"{{url('delete_payment')}}" +"/"+ id,
+                    type:'GET',
+                    success:function(response){
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success',
+                            );
+                            location.reload();
+                            }
+                        });
+                    }
             });
         });
 </script>

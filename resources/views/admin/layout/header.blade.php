@@ -38,6 +38,8 @@ License: For each use you must have a valid license purchased only from above li
 		<link href="{{url('public/assets/css/header.css')}}" rel="stylesheet" type="text/css" />
 		<link href="{{url('public/assets/css/karan.css')}}" rel="stylesheet" type="text/css" />
 		<!--end::Global Stylesheets Bundle-->
+		
+
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
@@ -84,42 +86,72 @@ License: For each use you must have a valid license purchased only from above li
 									<!--begin:Menu item-->
 									<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item menu-here-bg menu-lg-down-accordion me-0 me-lg-2">
 										<!--begin:Menu link-->
-										<span class="menu-link">
-											<span class="menu-title">Dashboards</span>
-											<span class="menu-arrow d-lg-none"></span>
-										</span>
+									
+											<a  href="{{route('view_ticket')}}">	<span class="menu-link">
+											<span class="menu-title">Ticket</span>
+											<span class="menu-arrow d-lg-none"></span></span>
+											</a>
+										
+										
 										<!--end:Menu link-->
 									</div>
 									<!--end:Menu item-->
 									<!--begin:Menu item-->
 									<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
 										<!--begin:Menu link-->
-										<span class="menu-link">
-											<span class="menu-title">Pages</span>
-											<span class="menu-arrow d-lg-none"></span>
-										</span>
+										<a  href="{{route('add_client')}}">	<span class="menu-link">
+											<span class="menu-title">Transoprter</span>
+											<span class="menu-arrow d-lg-none"></span></span>
+											</a>
 										<!--end:Menu link-->
 									</div>
 									<!--end:Menu item-->
 									<!--begin:Menu item-->
 									<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
 										<!--begin:Menu link-->
-										<span class="menu-link">
-											<span class="menu-title">Apps</span>
-											<span class="menu-arrow d-lg-none"></span>
-										</span>
+										<a  href="{{route('add_payment')}}">	<span class="menu-link">
+											<span class="menu-title">Payment</span>
+											<span class="menu-arrow d-lg-none"></span></span>
+											</a>
 										<!--end:Menu link-->
 									</div>
 									<!--end:Menu item-->
+									@if(session('role')=="Admin")
                                     <!--begin:Menu item-->
 									<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
 										<!--begin:Menu link-->
-										<span class="menu-link">
-											<span class="menu-title">Apps</span>
-											<span class="menu-arrow d-lg-none"></span>
-										</span>
+										<a href="{{route('add_user')}}">	<span class="menu-link">
+											<span class="menu-title">Users</span>
+											<span class="menu-arrow d-lg-none"></span></span>
+										</a>
 										<!--end:Menu link-->
 									</div>
+									<!--end:Menu item-->
+
+									<!--begin:Menu item-->
+									<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
+										<!--begin:Menu link-->
+										<div class="dropdown">
+										
+												
+												<span class="menu-title">Reports</span>
+												<span class="menu-arrow d-lg-none"></span>
+												
+											
+											<div class="dropdown-menu">
+												
+												<a class="dropdown-item" href="#">Item 1</a>
+												<a class="dropdown-item" href="#">Item 2</a>
+												<a class="dropdown-item" href="#">Item 3</a>
+											</div>
+											</div>
+
+											
+
+
+										<!--end:Menu link-->
+									</div>
+									@endif
 									<!--end:Menu item-->
 								</div>
 								<!--end::Menu-->

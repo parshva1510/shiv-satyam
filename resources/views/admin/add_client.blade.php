@@ -53,6 +53,7 @@
                                     <tbody class="fw-semibold text-gray-600">
                                     @foreach($data as $row)
                                         <tr id="cid{{$row->sr_no}}">
+                                        <input type="hidden" class="delete_id" value="{{$row->sr_no}}">
                                             <td data-kt-ecommerce-order-filter="order-id">{{$row->sr_no}}</td>
 
                                             <td>{{$row->name}}</td>
@@ -74,7 +75,7 @@
                                                     </span>
                                                     <!--end::Svg Icon-->
                                                 </a>
-                                                <a href="{{route('delete_client', $row->sr_no)}}" data-kt-ecommerce-order-filter="delete_row" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm">
+                                                <button type="button"  data-kt-ecommerce-order-filter="delete_row" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm servicedeletebtn">
                                                     <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
                                                     <span class="svg-icon svg-icon-3">
                                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -84,7 +85,7 @@
                                                         </svg>
                                                     </span>
                                                     <!--end::Svg Icon-->
-                                                </a>
+                                                </button>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -288,6 +289,86 @@
                         $("#remark1").val(response['remark']);  
                     }
                 });
+            });
+        });
+        </script>
+        <script>
+        $("#kt_modal_edit_transporter").submit(function(){
+        var name=document.getElementById("name1").value;
+        var city=document.getElementById("city1").value;
+        var contact=document.getElementById("contact1").value;
+        if(name ==='' && city === '' && contact ==='')
+        {
+            Swal.fire({
+                text: "Sorry, looks like there are some errors detected, please try again.",
+                icon: "error",
+            });
+            return false; // Prevent form submission
+        } else {
+            Swal.fire({
+                position: 'middle-center',
+                icon: 'success',
+                title: 'Transporter data has been successfully updated!',
+                showConfirmButton: false,
+                timer: 1500
+                }).then(function() {
+                $("#kt_modal_edit_transporter").submit();
+           });
+        }
+    });
+</script>
+<script>
+    $("#kt_modal_add_transporter").submit(function(){
+        var name=document.getElementById("name").value;
+        var city=document.getElementById("city").value;
+        var contact=document.getElementById("contact").value;
+        if(name ==='' && city === '' && contact ==='')
+        {
+            Swal.fire({
+                text: "Sorry, looks like there are some errors detected, please try again.",
+                icon: "error",
+            });
+            return false; // Prevent form submission
+        } else {
+            Swal.fire({
+                position: 'middle-center',
+                icon: 'success',
+                title: 'Transporter data has been successfully submitted!',
+                showConfirmButton: false,
+                timer: 1500
+                }).then(function() {
+                $("#kt_modal_add_transporter").submit();
+           });
+        }
+    });
+</script>
+<script>
+    $(".servicedeletebtn").click(function(e){
+            e.preventDefault();
+            var id=$(this).closest("tr").find(".delete_id").val();
+                 Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Once deleted, You will not be able to recover this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085D6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url:"{{url('delete_client')}}" +"/"+ id,
+                    type:'GET',
+                    success:function(response){
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success',
+                            );
+                            location.reload();
+                            }
+                        });
+                    }
             });
         });
 </script>

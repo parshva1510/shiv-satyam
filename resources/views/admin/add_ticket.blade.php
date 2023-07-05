@@ -267,7 +267,7 @@
                                     <!--begin::Actions-->
                                     <div class="text-center d-flex flex-stack">
 
-                                        <button type="reset" id="kt_modal_new_target_cancel" >{{!empty($transporter)?'':'Reset'}}</button>
+                                        <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-primary">{{!empty($transporter)?'':'Reset'}}</button>
                                         <button type="submit" id="new_submit" class="btn btn-primary" >
                                             <span class="indicator-label"  >Submit</span>
                                             <span class="indicator-progress">Please wait...
@@ -517,10 +517,7 @@
                 }
             }).then(function() {
             
-              /*  if(t.isConfirmed)
-                {
-                    location.reload();
-                }*/
+              
           
            
                 var ticket=parseInt(document.getElementById("ticket_no").value);
@@ -540,6 +537,34 @@
         }
 });
 </script>
+<!-- <script>
+    $("#kt_modal_new_target_form").submit(function(){
+        var vehicle_no=document.getElementById("vehical_no").value;
+        var gross_weight=document.getElementById("gross_weight").value;
+        var tare_weight=document.getElementById("tare_wight").value;
+        var net_weight=document.getElementById("net_weight").value;
+        var charges=document.getElementById("charge").value;
+        
+        if(vehicle_no ==='' && gross_weight === '' && tare_weight ==='' && net_weight ==='' && charges ==='')
+        {
+            Swal.fire({
+                text: "Sorry, looks like there are some errors detected, please try again.",
+                icon: "error",
+            });
+            return false; // Prevent form submission
+        } else {
+            Swal.fire({
+                position: 'middle-center',
+                icon: 'success',
+                title: 'form has been successfully submitted!',
+                showConfirmButton: false,
+                timer: 1500
+                }).then(function() {
+                $("#kt_modal_new_target_form").submit();
+           });
+        }
+    });
+</script> -->
 
 
 

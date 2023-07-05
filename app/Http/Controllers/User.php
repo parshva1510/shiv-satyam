@@ -27,6 +27,7 @@ class User extends Controller
     public function delete_user($id)
     {
         $data = users::find($id);
+        if(session('user') <> $data->username)
         $data -> delete();
         return redirect() -> route('add_user') -> with("Delete");
     }
