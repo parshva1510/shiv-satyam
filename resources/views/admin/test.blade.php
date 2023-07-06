@@ -63,6 +63,35 @@
 
 
 
+<div class="card">
+
+
+    @php
+        
+        $paymentdetails = getPaymentdetails(1)
+
+    @endphp
+
+    <table>
+
+    @foreach($paymentdetails as $singleentry)
+
+        <tr>
+            <td>amount - {{$singleentry->amount}}</td>
+            <td>remark - {{$singleentry->remark}}</td>
+            <td>payment_mode - {{$singleentry->payment_mode}}</td>
+            <td>receipt_no - {{$singleentry->receipt_no}}</td>
+        </tr>
+
+    @endforeach
+</table>
+
+
+
+</div>
+
+
+
 <script>
 
 // Class definition

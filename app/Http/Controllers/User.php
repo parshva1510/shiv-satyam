@@ -52,4 +52,9 @@ class User extends Controller
     
     }
 
+
+    public function tetsing(){
+        return view('admin.test');
+    }
+
 }

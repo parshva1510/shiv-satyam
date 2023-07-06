@@ -19,7 +19,7 @@ use App\Http\Controllers\reportcontroller;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get('test',[user::class,'tetsing'])->name('test');
 Route::get('ticket_form',[ticket::class,'index'])->name('ticket_form');
 Route::get('/edit_ticket/{id}',[ticket::class, 'edit_ticket'])->name('edit_ticket');
 Route::get('view_ticket',[ticket::class,'view_ticket'])->name('view_ticket');
