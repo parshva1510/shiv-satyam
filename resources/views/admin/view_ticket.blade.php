@@ -189,12 +189,12 @@
 														<!--end::Menu 1-->
 													</div> 
 													<!--end::Filter menu-->
-														<div class="card-title">
+													<div class="card-title">
 															<!--begin::Export buttons-->
-															<div id="kt_customers_table_export" class="d-none"></div>
+															<div id="ticket_data_export" class="d-none"></div>
 															<!--end::Export buttons-->
 														</div>
-														<div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+														<div class="m-0">
 															<!--begin::Export dropdown-->
 															<button type="button" class="btn btn-light-primary full-button" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
 															<span class="svg-icon svg-icon-2">
@@ -206,7 +206,7 @@
 															</span>Export
 															</button>
 															<!--begin::Menu-->
-															<div id="kt_customers_table_export_menu" class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4" data-kt-menu="true">
+															<div id="ticket_data_export_menu" class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4" data-kt-menu="true">
 																<!--begin::Menu item-->
 																<div class="menu-item px-3">
 																	<a href="#" class="menu-link px-3" data-kt-export="copy">
@@ -234,14 +234,13 @@
 																	Export as PDF
 																	</a>
 																</div>
-
 																<!--end::Menu item-->
 															</div>
 															<!--end::Menu-->
 															<!--end::Export dropdown-->
 
 															<!--begin::Hide default export buttons-->
-															<div id="kt_customers_table_buttons" class="d-none"></div>
+															<div id="ticket_data_buttons" class="d-none"></div>
 															<!--end::Hide default export buttons-->
 														</div>
 												</div>
@@ -261,14 +260,14 @@
 										<!--begin::Card body-->
 										<div class="card-body pt-0">
 											<!--begin::Table-->
-											<table id="ticket_data" class="table align-middle table-row-dashed fs-6 gy-5" id="kt_customers_table" >
+											<table id="ticket_data" class="table align-middle table-row-dashed fs-6 gy-5" >
 												<!--begin::Table head-->
 												<thead>
 													<!--begin::Table row-->
 													<tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
 														<th class="w-10px pe-2">
 															<div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-																<input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#kt_customers_table .form-check-input" value="1" />
+																<input class="form-check-input" type="checkbox" data-kt-check="true" data-kt-check-target="#ticket_data .form-check-input" value="1" />
 															</div>
 														</th>
 														<th class="min-w-30px">Ticket. No.</th>
@@ -297,7 +296,7 @@
 													@foreach($data as $row)
 													
 													<tr>
-													<input type="hidden" class="delete_id" value="{{$row->id}}">
+														
 														<!--begin::Checkbox-->
 														<td>
 															<div class="form-check form-check-sm form-check-custom form-check-solid">
@@ -305,7 +304,7 @@
 															</div>
 														</td>
 														<!--end::Checkbox-->
-														
+														<input type="hidden" class="delete_id" value="{{$row->id}}">
 														<td>{{$row->ticket_no}}</td>
 													
 													
@@ -358,7 +357,7 @@
 													
 													
 														<td class="text-end">
-														<a href="{{route('generate-pdf', $row->id) }}"  target="_blank"   class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+																<a href="{{route('generate-pdf', $row->id) }}"  target="_blank"   class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
 																	<!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
 																	
 																	
@@ -381,22 +380,16 @@
 																	<!--end::Svg Icon-->
 																</a>
 																<button type="button"  data-kt-ecommerce-order-filter="delete_row" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm servicedeletebtn">
-                                                    <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
-                                                    <span class="svg-icon svg-icon-3">
-                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor" />
-                                                            <path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor" />
-                                                            <path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor" />
-                                                        </svg>
-                                                    </span>
-                                                    <!--end::Svg Icon-->
-                                                </button>
-
-
-
-
-
-
+																	<!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
+																	<span class="svg-icon svg-icon-3">
+																		<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+																			<path d="M5 9C5 8.44772 5.44772 8 6 8H18C18.5523 8 19 8.44772 19 9V18C19 19.6569 17.6569 21 16 21H8C6.34315 21 5 19.6569 5 18V9Z" fill="currentColor" />
+																			<path opacity="0.5" d="M5 5C5 4.44772 5.44772 4 6 4H18C18.5523 4 19 4.44772 19 5V5C19 5.55228 18.5523 6 18 6H6C5.44772 6 5 5.55228 5 5V5Z" fill="currentColor" />
+																			<path opacity="0.5" d="M9 4C9 3.44772 9.44772 3 10 3H14C14.5523 3 15 3.44772 15 4V4H9V4Z" fill="currentColor" />
+																		</svg>
+																	</span>
+                                                   	 			<!--end::Svg Icon-->
+                                                				</button>
 														</td>
 														
 														<!--end::Action=-->
@@ -454,69 +447,101 @@
 	// Class definition
 	var KTDatatablesExample = function () {
 		// Shared variables
-		var table = '#kt_customers_table';
+		var table = '#ticket_data';
 		var datatable;
+		
+    // Private functions
+    var initDatatable = function () {
+       
+
+	   // Init datatable --- more info on datatables: https://datatables.net/manual/
+	   datatable = $('#ticket_data').DataTable({
+		   "info": true,
+		   'pageLength': 10,
+		   "ordering": false
+	   });
+	   //console.log(datatable);
+   }
 
 		// Hook export buttons
 		var exportButtons = () => {
-        const documentTitle = 'weighbridge Report';
-    
-        var buttons = new $.fn.dataTable.Buttons(table, {
-            buttons: [
-                {
-                    extend: 'copyHtml5',
-                    title: documentTitle
-                },
-                {
-                    extend: 'excelHtml5',
-                    title: documentTitle
-                },
-                {
-                    extend: 'csvHtml5',
-                    title: documentTitle
-                },
-                {
-                    extend: 'pdf',
-                    title: documentTitle
-                }
-            ]
-        }).container().appendTo($('#kt_datatable_example_buttons'));
+			const documentTitle = 'Weighment Report';
+			var buttons = new $.fn.dataTable.Buttons(table, {
+				buttons: [
+					{
+						extend: 'copyHtml5',
+						title: documentTitle
+					},
+					{
+						extend: 'excelHtml5',
+						title: documentTitle
+					},
+					{
+						extend: 'csvHtml5',
+						title: documentTitle
+					},
+					{
+						extend: 'pdf',
+                    title: documentTitle,
+                    orientation: 'landscape',
+						customize: function (doc) {
+                                // Here's where you can control the cell padding
+                                doc.styles.tableHeader.margin =
+                                  doc.styles.tableBodyOdd.margin =
+                                  doc.styles.tableBodyEven.margin = [3, 3, 3, 3];
+								  doc.pageMargins = [10, 10, 10,10];
+								  doc.defaultStyle.fontSize = 8;
+								  doc.styles.tableHeader.fontSize = 9;
+								  doc.styles.title.fontSize = 20;
+								  doc.content[1].margin = [ 25, 0, 25, 0 ] //left, top, right, bottom
+                            },
 
-        // Hook dropdown menu click event to datatable export buttons
-        const exportButtons = document.querySelectorAll('#kt_datatable_example_export_menu [data-kt-export]');
-        exportButtons.forEach(exportButton => {
-            exportButton.addEventListener('click', e => {
-                e.preventDefault();
-
-                // Get clicked export value
-                const exportValue = e.target.getAttribute('data-kt-export');
-                const target = document.querySelector('.dt-buttons .buttons-' + exportValue);
-
-                // Trigger click event on hidden datatable export buttons
-                target.click();
-            });
-        });
-    }
+						title: documentTitle + ' (25-06-2023 to 26-07-2023)',
+						orientation: 'landscape',
+						pageSize: 'a4',
+						exportOptions: {
+							columns: [1,2,3,4,5,6,7,8,9,10,11],
+						}
+					}
+				]
+			}).container().appendTo($('#ticket_data_buttons'));
+	
+			// Hook dropdown menu click event to datatable export buttons
+			const exportButtons = document.querySelectorAll('#ticket_data_export_menu [data-kt-export]');
+			exportButtons.forEach(exportButton => {
+				exportButton.addEventListener('click', e => {
+					e.preventDefault();
+	
+					// Get clicked export value
+					const exportValue = e.target.getAttribute('data-kt-export');
+					const target = document.querySelector('.dt-buttons .buttons-' + exportValue);
+	
+					// Trigger click event on hidden datatable export buttons
+					target.click();
+				});
+			});
+		}
 	
 		// Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
 		var handleSearchDatatable = () => {
-			const filterSearch = document.querySelector('[data-kt-filter="search"]');
+			const filterSearch = document.querySelector('[data-kt-customer-table-filter]');
 			filterSearch.addEventListener('keyup', function (e) {
 				datatable.search(e.target.value).draw();
 			});
 		}
-	
+		
 		// Public methods
 		return {
 			init: function () {
-				table = document.querySelector('#kt_customers_table');
+				table = document.querySelector('#ticket_data');
 	
 				if ( !table ) {
 					return;
 				}
 	
-				exportButtons();
-				handleSearchDatatable();
+			initDatatable();
+            exportButtons();
+            handleSearchDatatable();
 			}
 		};
 	}();
@@ -564,10 +589,10 @@ cb(start, end);
 
 
 
-{{-- 
+
 <script>
-    /*$(document).ready(function () {
-var table = $('#kt_customers_table').DataTable({
+    $(document).ready(function () {
+var table = $('#ticket_data').DataTable({
     scrollY: '200px',
     paging: false,
 });
@@ -582,8 +607,8 @@ $('input.toggle-vis').on('click', function (e) {
     column.visible(!column.visible());
 });
 });
-<!-- view ticket ma day vise data display thava joie-->
-</script>--}}
+
+</script>
 
 {{--<script>
 	$("#kt_ecommerce_report_views_daterangepicker").change(function(){

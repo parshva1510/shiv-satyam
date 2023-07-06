@@ -160,7 +160,7 @@
                                                 <!--end::Icon-->
                                                 <!--begin::Datepicker-->
                                                 
-                                                <input class="form-control form-control-solid ps-12" id="gross_date" placeholder="Select a date" name="gross_date" value="{{(new DateTime($transporter->gross_date))->format('d-m-Y')}}" />
+                                                <input class="form-control form-control-solid ps-12" id="gross_date" placeholder="Select a date" name="gross_date" value="{{(new DateTime($transporter->gross_date))->format('d-m-Y H:i')}}" />
                                                 
 
 
@@ -420,18 +420,20 @@
 
     $('#gross_date').flatpickr({
       enableTime: true,
-      dateFormat: "d-m-Y",
+      dateFormat: "d-m-Y H:i",
   
     });
 
     $('#tare_date').flatpickr({
       enableTime: true,
-      dateFormat: "d-m-Y",
+      dateFormat: "d-m-Y H:i",
    
     });
     $('#cdate').flatpickr({
       enableTime: true,
       dateFormat: "d-m-Y ",
+      defaultDate: currentDateTime
+      
 
     });
   });
@@ -548,12 +550,10 @@
     </script> -->
     <script>
         $("#kt_modal_new_target_form").submit(function(){
-        var vehicle_no=document.getElementById("vehical_no").value;
         var gross_weight=document.getElementById("gross_weight").value;
-        var tare_weight=document.getElementById("tare_wight").value;
+        var tare_weight=document.getElementById("tare_weight").value;
         var net_weight=document.getElementById("net_weight").value;
-        var charges=document.getElementById("charges").value;
-        if(vehicle_no ==='' && gross_weight === '' && tare_weight ==='' && net_weight ==='' && charges ==='')
+        if(gross_weight ==='' && tare_weight === '' && net_weight ==='')
         {
             Swal.fire({
                 text: "Sorry, looks like there are some errors detected, please try again.",
@@ -564,7 +564,7 @@
             Swal.fire({
                 position: 'middle-center',
                 icon: 'success',
-                title: 'Ticket data has been successfully updated!',
+                title: 'Transporter data has been successfully updated!',
                 showConfirmButton: false,
                 timer: 1500
                 }).then(function() {

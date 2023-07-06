@@ -129,26 +129,17 @@ License: For each use you must have a valid license purchased only from above li
 									<!--end:Menu item-->
 
 									<!--begin:Menu item-->
-									<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-0 me-lg-2">
+									<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item">
 										<!--begin:Menu link-->
-										<div class="dropdown">
+										<a href="{{route('reports')}}">	<span class="menu-link">
+											<span class="menu-title">Repotes</span>
+											<span class="menu-arrow d-lg-none"></span></span>
 										
-												
-												<span class="menu-title">Reports</span>
-												<span class="menu-arrow d-lg-none"></span>
-												
+										</a>
 											
-											<div class="dropdown-menu">
-												
-												<a class="dropdown-item" href="#">Item 1</a>
-												<a class="dropdown-item" href="#">Item 2</a>
-												<a class="dropdown-item" href="#">Item 3</a>
-											</div>
-											</div>
-
+										
 											
-
-
+											
 										<!--end:Menu link-->
 									</div>
 									@endif

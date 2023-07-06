@@ -432,7 +432,7 @@
     $('#cdate').flatpickr({
       enableTime: true,
       dateFormat: "d-m-Y ",
-     // defaultDate: currentDate
+      defaultDate: currentDateTime
     });
   });
 </script>
@@ -492,49 +492,34 @@
         });
     });
 
-   $("#new_submit").click(function(){
-  
-        var vehicleNumber = document.getElementById('vehical_no').value;
-        if (vehicleNumber === '' || !pattern.test(vehicleNumber)) {
-            Swal.fire({
-                text: "Sorry, looks like there are some errors detected, please try again.",
-                icon: "error",
-                buttonsStyling: false,
-                confirmButtonText: "Ok, got it!",
-                customClass: {
-                    confirmButton: "btn btn-primary"
-                }
-            });
-            return false; // Prevent form submission
-        } else {
-            Swal.fire({
-                text: "Form has been successfully submitted!",
-                icon: "success",
-                buttonsStyling: false,
-                confirmButtonText: "Ok, got it!",
-                customClass: {
-                    confirmButton: "btn btn-primary"
-                }
-            }).then(function() {
-            
-              
-          
-           
-                var ticket=parseInt(document.getElementById("ticket_no").value);
-                //alert(ticket + 1);
-                $("#ticket_no").val(ticket + 1);
-                $("#vehical_no").val("");
-                $("#gross_weight").val("");
-                $("#charge").val("");
-                $("#tare_wight").val("");
-                $("#net_weight").val("");
-                $("#material").val("");
-                $('#remark').val("");
-               
-                //$("#payment_mode").val("");
-               
-           });
-        }
+    $("#new_submit").click(function(){
+    var vehicleNumber = document.getElementById('vehical_no').value;
+    if (vehicleNumber === '' || !pattern.test(vehicleNumber)) {
+        Swal.fire({
+            text: "Sorry, looks like there are some errors detected, please try again.",
+            icon: "error",
+            buttonsStyling: false,
+            confirmButtonText: "Ok, got it!",
+            customClass: {
+                confirmButton: "btn btn-primary"
+            }
+        });
+        return false; // Prevent form submission
+    } else {
+        Swal.fire({
+            text: "Form has been successfully submitted!",
+            icon: "success",
+            buttonsStyling: false,
+            confirmButtonText: "Ok, got it!",
+            customClass: {
+                confirmButton: "btn btn-primary"
+            }
+        }).then(function(t) {
+            if (t.isConfirmed) {
+                location.reload();
+            }
+        });
+    }
 });
 </script>
 <!-- <script>

@@ -304,7 +304,8 @@ var KTDatatablesExample = function () {
                 },
                 {
                     extend: 'pdf',
-                    title: documentTitle
+                    title: documentTitle,
+                    orientation: 'landscape',
                 }
             ]
         }).container().appendTo($('#kt_datatable_example_buttons'));
