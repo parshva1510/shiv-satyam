@@ -86,5 +86,5 @@ Route::get('change_password',[authentication::class,'change_password'])->name('c
 Route::POST('add_ticket',[ticket::class,'add_ticket'])->name('add_ticket');
 
 
-Route::post('update_ticket',[ticket::class,'update_ticket'])->name('update_ticket');
+Route::POST('update_ticket',[ticket::class,'update_ticket'])->name('update_ticket');
 Route::get('/delete_ticket/{sr_no}',[ticket::class,'delete_ticket'])->name('delete_ticket');

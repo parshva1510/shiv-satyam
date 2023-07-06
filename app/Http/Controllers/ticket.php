@@ -51,8 +51,7 @@ class ticket extends Controller
          $datainsert->save();
          $data=DB::select("SELECT *,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no where weight_entry.sr_no = '$datainsert->sr_no'");
         $transporters = Transporter::all();
-       
-        $sr_no = payment::get()->last()->sr_no;
+      $sr_no = payment::get()->last()->sr_no;
         $rec_no= payment::get()->last()->receipt_no;
         $temp=substr($rec_no,0,8);
         $next_rec_no= $temp . $sr_no+1;
@@ -110,7 +109,7 @@ class ticket extends Controller
 
    public function update_ticket(Request $req) {
      //dd($req->edit_sr_no);
-
+      
       $data = weight_entry::with('transporter')->find($req->edit_sr_no);
       $data->ticket_no = $req->input('ticket_no');
       $data->transpoter_no = $req->input('transpoter_no');

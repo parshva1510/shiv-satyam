@@ -108,16 +108,14 @@ License: For each use you must have a valid license purchased only from above li
 											<span class="menu-title">Apps</span>
 											<span class="menu-arrow d-lg-none"></span>
 										</span>
+									
 										<!--end:Menu link-->
 									</div>
 									<!--end:Menu item-->
                                     <!--begin:Menu item-->
 									<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2">
 										<!--begin:Menu link-->
-										<span class="menu-link">
-											<span class="menu-title">Apps</span>
-											<span class="menu-arrow d-lg-none"></span>
-										</span>
+											
 										<!--end:Menu link-->
 									</div>
 									<!--end:Menu item-->

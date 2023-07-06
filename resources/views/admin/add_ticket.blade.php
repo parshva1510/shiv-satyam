@@ -432,7 +432,7 @@
     $('#cdate').flatpickr({
       enableTime: true,
       dateFormat: "d-m-Y ",
-     // defaultDate: currentDate
+      defaultDate: currentDateTime
     });
   });
 </script>
