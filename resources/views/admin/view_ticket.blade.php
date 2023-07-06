@@ -61,7 +61,7 @@
 													</div>
 													<!--end::Daterangepicker-->
 													<!--begin::Filter menu-->
-													{{-- <div class="m-0">
+													 <div class="m-0">
 														<!--begin::Menu toggle-->
 														<button type="button" class="btn btn-light" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
 																		<!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
@@ -174,7 +174,7 @@
 															<!--end::Form-->
 														</div>
 														<!--end::Menu 1-->
-													</div> --}}
+													</div> 
 													<!--end::Filter menu-->
 														<div class="card-title">
 															<!--begin::Export buttons-->
@@ -565,9 +565,9 @@ cb(start, end);
 
 
 
-{{-- 
+
 <script>
-    /*$(document).ready(function () {
+    $(document).ready(function () {
 var table = $('#kt_customers_table').DataTable({
     scrollY: '200px',
     paging: false,
@@ -583,6 +583,6 @@ $('input.toggle-vis').on('click', function (e) {
     column.visible(!column.visible());
 });
 });
-</script>--}}
+</script>
 
 @endsection
