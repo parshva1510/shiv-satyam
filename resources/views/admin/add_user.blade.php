@@ -59,12 +59,8 @@
 
                                             <td>{{$row->f_name}}</td>
 
-                                            @if($row->role==1)
-                                                <td>Admin</td>
-                                            @else
-                                                <td>Operator</td>
-                                            @endif
-
+                                            <td>{{$row->role}}</td>
+                                          
                                             <td>{{$row->contact}}</td>
 
                                             <td class="text-end">
@@ -169,8 +165,8 @@
                                         <!--begin::Input-->
                                         <select class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="role" id="role" placeholder="">        
                                         <option value="">Select Mode...</option>    
-                                        <option value="1">Admin</option>
-                                        <option value="2">Operator</option>
+                                        <option value="Admin">Admin</option>
+                                        <option value="Operator" selected>Operator</option>
                                         </select>
                                         <!--end::Input-->
                                     </div>
@@ -223,7 +219,7 @@
                                         <!--end::Label-->
                                         <!--begin::Input-->
                                         @csrf
-                                        <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="username1" id="username1" placeholder="Enter Username" required/>
+                                        <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="username1" id="username1" placeholder="Enter Username" readonly/>
                                         <!--end::Input-->
                                     </div>
                                     <div class="fv-row mb-7">
@@ -265,9 +261,9 @@
                                         <!--end::Label-->
                                         <!--begin::Input-->
                                         <select class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="role1" id="role1" placeholder="" >
-		                                        <option value="">Select Mode...</option>
-                                                <option value="1">Admin</option>
-                                                <option value="2">Operator</option>
+		                                       
+                                                <option value="Admin">Admin</option>
+                                                <option value="Operator">Operator</option>
                                         </select>
                                         <!--end::Input-->
                                     </div>
@@ -331,7 +327,9 @@
                         $("#vpassword1").val(""); 
                         $("#username1").val(response['username']); 
                         $("#f_name1").val(response['f_name']); 
-                        $("#role1").val(response['role']); 
+                        if(response['role']==="Admin"){
+                        $("#role1 option[value='Admin']").attr('selected', 'selected');}
+                        else{$("#role1 option[value='Operator']").attr('selected', 'selected');}
                         $("#contact1").val(response['contact']);
                     }
                 });
@@ -339,9 +337,9 @@
         });
 </script>
 <script>
-  $(document).ready(function(){
-        $("#vpassword").focusout(function(){
-           if(document.getElementById("password").value != document.getElementById("vpassword").value)
+        $(document).ready(function(){
+            $("#vpassword").focusout(function(){
+                if(document.getElementById("password").value != document.getElementById("vpassword").value)
         {
             alert("Password does not Match");
             $("#password").val("");
@@ -350,12 +348,13 @@
         }
         
         });  });
-        <script>
+    </script>
+    <script>
         $("#kt_modal_edit_user").submit(function(){
         var name=document.getElementById("username1").value;
-        var pwd=document.getElementById("password1").value;
-        
-        if(name ==='' && pwd === '')
+        var contact=document.getElementById("contact1").value;
+        var fullname=document.getElementById("f_name1").value;
+        if(name ==='' && conatct === '' && fullname ==='')
         {
             Swal.fire({
                 text: "Sorry, looks like there are some errors detected, please try again.",
@@ -431,54 +430,5 @@
         });
 </script>
 
-<script>
-        $("#kt_modal_add_user").submit(function(){
-        var name=document.getElementById("name1").value;
-        var city=document.getElementById("city1").value;
-        var contact=document.getElementById("contact1").value;
-        if(name ==='' && city === '' && contact ==='')
-        {
-            Swal.fire({
-                text: "Sorry, looks like there are some errors detected, please try again.",
-                icon: "error",
-            });
-            return false; // Prevent form submission
-        } else {
-            Swal.fire({
-                position: 'middle-center',
-                icon: 'success',
-                title: 'User data has been successfully updated!',
-                showConfirmButton: false,
-                timer: 1500
-                }).then(function() {
-                $("#kt_modal_add_user").submit();
-           });
-        }
-    });
-</script>
-<script>
-    $("#kt_modal_add_user").submit(function(){
-        var name=document.getElementById("name").value;
-        var city=document.getElementById("city").value;
-        var contact=document.getElementById("contact").value;
-        if(name ==='' && city === '' && contact ==='')
-        {
-            Swal.fire({
-                text: "Sorry, looks like there are some errors detected, please try again.",
-                icon: "error",
-            });
-            return false; // Prevent form submission
-        } else {
-            Swal.fire({
-                position: 'middle-center',
-                icon: 'success',
-                title: 'User data has been successfully submitted!',
-                showConfirmButton: false,
-                timer: 1500
-                }).then(function() {
-                $("#kt_modal_add_user").submit();
-           });
-        }
-    });
-</script>
+
 @endsection

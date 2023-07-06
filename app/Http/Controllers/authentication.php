@@ -22,6 +22,7 @@ class authentication extends Controller
         $data=DB::select("SELECT * FROM `users` where username like '$username'");
         if($data==null){
             Session()->flash('message', 'Login Failed!');
+                return redirect("login")->with("fail","Login Failed");
         }else{
             if($password==$data[0]->password){
                 $_SESSION['type']="remember";

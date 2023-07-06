@@ -66,6 +66,7 @@ Route::post('update_user',[User::class,'update_user'])->name('update_user');
 Route::get('add_payment',[paymentController::class,'show_payment'])->name('show_payment');
 Route::post('add_payment',[paymentController::class,'add_payment'])->name('add_payment');
 Route::post('add_payment1',[paymentController::class,'show_payment'])->name('add_payment1');
+Route::get('edit_payment',[paymentController::class,'show_payment'])->name('show_payment1');
 Route::get('/edit_payment/{id}',[paymentController::class,'edit_payment'])->name('edit_payment');
 Route::post('update_payment',[paymentController::class,'update_payment'])->name('update_payment');
 Route::get('delete_payment/{id}',[paymentController::class,'delete_payment'])->name('delete_payment');

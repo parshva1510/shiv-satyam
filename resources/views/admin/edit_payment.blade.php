@@ -361,6 +361,7 @@
                                     
                                         <div class="col-md-9">
                                             <!--begin::Input-->
+                                            <input type="text" name="check" id="check" class="form-control form-control-solid" value="edit" hidden>
                                             <input type="date" name="date1" id="date1" class="form-control form-control-solid" value="" required>
                                             <!--end::Input-->
                                         </div>
@@ -412,14 +413,14 @@
                                     
                                         <div class="col-md-9">
                                             <!--begin::Input-->
-                                            <select class="form-select form-select-solid" name="payment1" id="payment1" data-control="select2" data-hide-search="true" data-placeholder="Mode">
-                                                <option></option>
+                                            <select class="form-select form-select-solid" name="payment1" id="payment1"  data-hide-search="true" data-placeholder="Mode">
+                            
                                                 <option value="">Select Mode...</option>
                                                 <option value="Cash" selected>Cash</option>
                                                 <option value="Gpay">Gpay</option>
                                                 <option value="Cheque">Cheque</option>
                                                 <option value="Bank Transfer">Bank Transfer</option>
-                                                <option value="Account Pay">Account Pays</option>
+                                                <option value="Account Pays">Account Pays</option>
                                             </select>
                                             <!--end::Input-->
                                         </div>
@@ -514,7 +515,16 @@
                         $("#sr_no1").val(response['receipt_no']); 
                         $("#amount1").val(response['amount']); 
                         $("#remark1").val(response['remark']);  
-                        //$("#payment1").val('Gpay');
+                        if(response['payment_mode']==="Gpay"){
+                            $("#payment1 option[value='Gpay']").attr('selected', 'selected');}
+                        if(response['payment_mode']==="Cash"){
+                            $("#payment1 option[value='Cash']").attr('selected', 'selected');}
+                        if(response['payment_mode']==="Cheque"){
+                            $("#payment1 option[value='Cheque']").attr('selected', 'selected');}
+                        if(response['payment_mode']==="Bank Transfer"){
+                            $("#payment1 option[value='Bank Transfer']").attr('selected', 'selected');}
+                        if(response['payment_mode']==="Account Pays"){
+                            $("#payment1 option[value='Account Pays']").attr('selected', 'selected');}
                     }
                 });
             });
@@ -535,7 +545,7 @@
             Swal.fire({
                 position: 'middle-center',
                 icon: 'success',
-                title: 'payment has been successfully updated!',
+                title: 'Payment has been successfully updated!',
                 showConfirmButton: false,
                 timer: 1500
                 }).then(function() {
@@ -559,7 +569,7 @@
             Swal.fire({
                 position: 'middle-center',
                 icon: 'success',
-                title: 'payment has been successfully added!',
+                title: 'Payment has been successfully added!',
                 showConfirmButton: false,
                 timer: 1500
                 }).then(function() {

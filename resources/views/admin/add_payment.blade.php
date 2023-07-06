@@ -119,7 +119,7 @@
                                 <tbody class="fw-semibold text-gray-600">
                                 @foreach($payment as $row)  
                                 <tr>
-                                      
+                                        <input type="hidden" class="delete_id" value="{{$row->sr_no}}">
                                         <td>{{$row->receipt_no}}</td>
 
                                         <td data-kt-ecommerce-order-filter="order_id">{{(new DateTime($row->date))->format('d-m-Y')}}</td>
@@ -147,7 +147,7 @@
                                                 </span>
                                                 <!--end::Svg Icon-->
                                             </a>
-                                            <a href=""  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" onclick="delete()">
+                                            <button type="button"  data-kt-ecommerce-order-filter="delete_row" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm servicedeletebtn">
                                                 <!--begin::Svg Icon | path: icons/duotune/general/gen027.svg data-kt-ecommerce-order-filter="delete_row"-->
                                                 <span class="svg-icon svg-icon-3">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -157,7 +157,7 @@
                                                     </svg>
                                                 </span>
                                                 <!--end::Svg Icon-->
-                                            </a>
+</button>
                                         </td>
                                     </tr> 
                                     @endforeach
@@ -259,7 +259,7 @@
                                         <div class="col-md-9">
                                             <!--begin::Input-->
                                             <select class="form-select form-select-solid" name="payment" id="payment" data-control="select2" data-hide-search="true" data-placeholder="Mode">
-                                                <option></option>
+                                             
                                                 <option value="">Select Mode...</option>
                                                 <option value="Cash" selected>Cash</option>
                                                 <option value="Gpay">Gpay</option>
@@ -349,6 +349,7 @@
                                     
                                         <div class="col-md-9">
                                             <!--begin::Input-->
+                                            <input type="text" name="check" id="check" class="form-control form-control-solid" value="add" hidden>
                                             <input type="date" name="date1" id="date1" class="form-control form-control-solid" value="" required>
                                             <!--end::Input-->
                                         </div>
@@ -400,14 +401,15 @@
                                     
                                         <div class="col-md-9">
                                             <!--begin::Input-->
-                                            <select class="form-select form-select-solid" name="payment1" id="payment1" data-control="select2" data-hide-search="true" data-placeholder="Mode">
-                                                <option></option>
+                                            
+                                            <select class="form-select form-select-solid" name="payment1" id="payment1" data-hide-search="true" placeholder="" >
+                                                
                                                 <option value="">Select Mode...</option>
-                                                <option value="Cash" selected>Cash</option>
+                                                <option value="Cash">Cash</option>
                                                 <option value="Gpay">Gpay</option>
                                                 <option value="Cheque">Cheque</option>
                                                 <option value="Bank Transfer">Bank Transfer</option>
-                                                <option value="Account Pay">Account Pays</option>
+                                                <option value="Account Pays">Account Pays</option>
                                             </select>
                                             <!--end::Input-->
                                         </div>
@@ -460,44 +462,6 @@
 
 
 @section('pagescript')
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11">
-    function delete(){
-    const swalWithBootstrapButtons = Swal.mixin({
-  customClass: {
-    confirmButton: 'btn btn-success',
-    cancelButton: 'btn btn-danger'
-  },
-  buttonsStyling: false
-})
-
-swalWithBootstrapButtons.fire({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  icon: 'warning',
-  showCancelButton: true,
-  confirmButtonText: 'Yes, delete it!',
-  cancelButtonText: 'No, cancel!',
-  reverseButtons: true
-}).then((result) => {
-  if (result.isConfirmed) {
-    swalWithBootstrapButtons.fire(
-      'Deleted!',
-      'Your file has been deleted.',
-      'success'
-    )
-  } else if (
-    /* Read more about handling dismissals below */
-    result.dismiss === Swal.DismissReason.cancel
-  ) {
-    swalWithBootstrapButtons.fire(
-      'Cancelled',
-      'Your imaginary file is safe :)',
-      'error'
-    )
-  }
-})
-    }
-    </sript>
 <script>
 
   jQuery(document).ready(function($){
@@ -530,11 +494,99 @@ swalWithBootstrapButtons.fire({
                         $("#sr_no1").val(response['receipt_no']); 
                         $("#amount1").val(response['amount']); 
                         $("#remark1").val(response['remark']);  
-                     
-                        //$("#payment1").val('Gpay');
+                      
+                        if(response['payment_mode']==="Gpay"){
+                            $("#payment1 option[value='Gpay']").attr('selected', 'selected');}
+                        if(response['payment_mode']==="Cash"){
+                            $("#payment1 option[value='Cash']").attr('selected', 'selected');}
+                        if(response['payment_mode']==="Cheque"){
+                            $("#payment1 option[value='Cheque']").attr('selected', 'selected');}
+                        if(response['payment_mode']==="Bank Transfer"){
+                            $("#payment1 option[value='Bank Transfer']").attr('selected', 'selected');}
+                        if(response['payment_mode']==="Account Pays"){
+                            $("#payment1 option[value='Account Pays']").attr('selected', 'selected');}
+                        
                       
                     }
                 });
+            });
+        });
+</script>
+<script>
+    $("#kt_modal_edit_payment").submit(function(){
+        var amount1=document.getElementById("amount1").value;
+        var remark=document.getElementById("remark1").value;
+        if(amount1 ==='' && remark1 === '')
+        {
+            Swal.fire({
+                text: "Sorry, looks like there are some errors detected, please try again.",
+                icon: "error",
+            });
+            return false; // Prevent form submission
+        } else {
+            Swal.fire({
+                position: 'middle-center',
+                icon: 'success',
+                title: 'Payment has been successfully updated!',
+                showConfirmButton: false,
+                timer: 1500
+                }).then(function() {
+                $("kt_modal_edit_payment").submit();
+           });
+        }
+    });
+</script>
+<script>
+    $("#kt_modal_add_payment").submit(function(){
+        var amount=document.getElementById("amount").value;
+        var remark=document.getElementById("remark").value;
+        if(amount ==='' && remark === '')
+        {
+            Swal.fire({
+                text: "Sorry, looks like there are some errors detected, please try again.",
+                icon: "error",
+            });
+            return false; // Prevent form submission
+        } else {
+            Swal.fire({
+                position: 'middle-center',
+                icon: 'success',
+                title: 'Payment has been successfully added!',
+                showConfirmButton: false,
+                timer: 1500
+                }).then(function() {
+                $("kt_modal_add_payment").submit();
+           });
+        }
+    });
+</script>
+<script>
+    $(".servicedeletebtn").click(function(e){
+            e.preventDefault();
+            var id=$(this).closest("tr").find(".delete_id").val();
+                 Swal.fire({
+                    title: 'Are you sure?',
+                    text: "Once deleted, You will not be able to recover this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085D6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url:"{{url('delete_payment')}}" +"/"+ id,
+                    type:'GET',
+                    success:function(response){
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success',
+                            );
+                            location.reload();
+                            }
+                        });
+                    }
             });
         });
 </script>

@@ -15,12 +15,18 @@ class User extends Controller
     }
     public function add_user(Request $req)
     {
-        $data=new users();
+            $data=new users();
             $data->username=$req->username;
+            $user=DB::select("SELECT * FROM `users` where username like '$req->username'");
+            if($user<>null)
+            {
+                Session()->flash('message', 'User Exist!');
+                return redirect("add_user")->with("fail","User Exist!");
+            }
             $data->password=md5($req->password);
             $data->f_name=strtoupper($req->f_name);
             $data->contact=$req->contact;
-            $data->role=strtoupper($req->role);
+            $data->role=$req->role;
             $data->save();  
             return redirect()->route('add_user')->with("Add");
     }
@@ -38,7 +44,14 @@ class User extends Controller
     }
     public function update_user(Request $req)
     {
-       $data=users::find($req->id1);
+        $data=users::find($req->id1);
+        $data->f_name=strtoupper($req->f_name1);
+        $data->contact=$req->contact1;
+        $data->role=ucfirst($req->role1);
+        $data->save();
+        return redirect()->route('add_user')->with("update");
+  
+       /*$data=users::find($req->id1);
        if($data->password==$req->password1)
        {
         $data->f_name=strtoupper($req->f_name1);
@@ -49,7 +62,7 @@ class User extends Controller
        }else{
         Session()->flash('message', 'Login Failed!');
         return redirect('add_user')->with("fail","Wrong Old Password");
-       }
+       }*/
     
     }
 

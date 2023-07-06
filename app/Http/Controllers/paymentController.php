@@ -41,21 +41,23 @@ class paymentController extends Controller
 
    public function edit_payment($id)
     {
-     
        $data=payment::find($id);
-      //$balance= DB::select("SELECT (SELECT sum(charges) FROM `weight_entry` where transpoter_no=$id)-(SELECT sum(amount) FROM `payment` where client_no=$id) as balance");
        return $data;
     }
     public function update_payment(Request $req)
-    {
+    {  
        $data=payment::find(substr($req->sr_no1,8));
        $data->amount=$req->amount1;
        $data->date=$req->date1;
        $data->remark=ucfirst($req->remark1);
        $data->payment_mode=$req->payment1;
        $data->save();
-       return redirect()->route('add_payment')->with("update");
+       if($req->check === "add"){
+       return redirect()->route('add_payment')->with("update");}
+       else{
+       return redirect()->route('add_payment')->with("update");}/*it sholud be edit_payment*/
     }
+    
     public function get_transporter(Request $req)
     {
         $id=$req->transporter;

@@ -297,7 +297,7 @@
 													@foreach($data as $row)
 													
 													<tr>
-													<input type="hidden" class="delete_id" value="{{$row->sr_no}}">
+													<input type="hidden" class="delete_id" value="{{$row->id}}">
 														<!--begin::Checkbox-->
 														<td>
 															<div class="form-check form-check-sm form-check-custom form-check-solid">
@@ -459,60 +459,44 @@
 
 		// Hook export buttons
 		var exportButtons = () => {
-			const documentTitle = 'Weighment Report';
-			var buttons = new $.fn.dataTable.Buttons(table, {
-				buttons: [
-					{
-						extend: 'copyHtml5',
-						title: documentTitle
-					},
-					{
-						extend: 'excelHtml5',
-						title: documentTitle
-					},
-					{
-						extend: 'csvHtml5',
-						title: documentTitle
-					},
-					{
-						extend: 'pdf',
-						customize: function (doc) {
-                                // Here's where you can control the cell padding
-                                doc.styles.tableHeader.margin =
-                                  doc.styles.tableBodyOdd.margin =
-                                  doc.styles.tableBodyEven.margin = [3, 3, 3, 3];
-								  doc.pageMargins = [10, 10, 10,10];
-								  doc.defaultStyle.fontSize = 8;
-								  doc.styles.tableHeader.fontSize = 9;
-								  doc.styles.title.fontSize = 20;
-								  doc.content[1].margin = [ 25, 0, 25, 0 ] //left, top, right, bottom
-                            },
+        const documentTitle = 'weighbridge Report';
+    
+        var buttons = new $.fn.dataTable.Buttons(table, {
+            buttons: [
+                {
+                    extend: 'copyHtml5',
+                    title: documentTitle
+                },
+                {
+                    extend: 'excelHtml5',
+                    title: documentTitle
+                },
+                {
+                    extend: 'csvHtml5',
+                    title: documentTitle
+                },
+                {
+                    extend: 'pdf',
+                    title: documentTitle
+                }
+            ]
+        }).container().appendTo($('#kt_datatable_example_buttons'));
 
-						title: documentTitle + ' (25-06-2023 to 26-07-2023)',
-						orientation: 'landscape',
-						pageSize: 'a4',
-						exportOptions: {
-							columns: [1,2,3,4,5,6,7,8,9,10,11],
-						}
-					}
-				]
-			}).container().appendTo($('#kt_customers_table_buttons'));
-	
-			// Hook dropdown menu click event to datatable export buttons
-			const exportButtons = document.querySelectorAll('#kt_customers_table_export_menu [data-kt-export]');
-			exportButtons.forEach(exportButton => {
-				exportButton.addEventListener('click', e => {
-					e.preventDefault();
-	
-					// Get clicked export value
-					const exportValue = e.target.getAttribute('data-kt-export');
-					const target = document.querySelector('.dt-buttons .buttons-' + exportValue);
-	
-					// Trigger click event on hidden datatable export buttons
-					target.click();
-				});
-			});
-		}
+        // Hook dropdown menu click event to datatable export buttons
+        const exportButtons = document.querySelectorAll('#kt_datatable_example_export_menu [data-kt-export]');
+        exportButtons.forEach(exportButton => {
+            exportButton.addEventListener('click', e => {
+                e.preventDefault();
+
+                // Get clicked export value
+                const exportValue = e.target.getAttribute('data-kt-export');
+                const target = document.querySelector('.dt-buttons .buttons-' + exportValue);
+
+                // Trigger click event on hidden datatable export buttons
+                target.click();
+            });
+        });
+    }
 	
 		// Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
 		var handleSearchDatatable = () => {
