@@ -85,8 +85,9 @@
                                                     </label>
                                                     <select class="form-select form-select-solid" data-control="select2" data-hide-search="false" data placeholder="Select Account"name="transpoter_no" required>
                                                         <option class="dropdown-font" value="">Select Account...</option>
-                                                        @foreach ($tr_data as $row)
                                                         
+                                                        @foreach ($tr_data as $row)
+                                                       
                                                         <option value="{{$row->sr_no}}" {{((!empty($transporter) && !empty($transporter['transporter']['name']) && $transporter['transporter']['name']==$row->name))? "selected":""}}> {{($row->name).'-'.('SS'.$row->sr_no)}} </option>
                                                      
                                                         @endforeach
@@ -119,7 +120,7 @@
                                                 <span class="required">Vehicle No.</span>
                                             </label>
                                             <input  type="text" class="form-control form-control-solid" placeholder="GJ12PM1234" 
-                                                name="vehical_no" id="vehical_no" title="Please enter a valid vehicle number." value= "{{!empty($transporter)?$transporter['vehicle_no']:''}}"
+                                                name="vehical_no" id="NUMBERPLATE" title="Please enter a valid vehicle number." value= "{{!empty($transporter)?$transporter['vehicle_no']:''}}"
                                                  required oninput="this.value = this.value.toUpperCase();" maxlength="10"  required/>
                                                 
                                             <span class="d-flex number_error" id="number_error"></span>
@@ -262,7 +263,7 @@
                                     <!--begin::Input group-->
                                     <div class="d-flex flex-column mb-8">
                                         <label class="d-flex align-items-center fs-6 fw-bolder mb-2">Remarks</label>
-                                        <textarea class="form-control form-control-solid" rows="3" name="remark" id="remark" placeholder="Remarks" value="{{!empty($transporter)?$transporter['remark']:''}}"></textarea>
+                                        <textarea class="form-control form-control-solid" rows="3" name="remarks" id="remarks" placeholder="Remarks" value="{{!empty($transporter)?$transporter['remarks']:''}}"></textarea>
                                     </div>
                                     <!--end::Input group-->
                                     <!--begin::Actions-->
@@ -493,12 +494,12 @@
 
     $("#kt_modal_new_target_form").submit(function(){
       
-    var vehicleNumber = document.getElementById('vehical_no').value;
+    var vehicleNumber = document.getElementById('NUMBERPLATE').value;
     var grossweight = document.getElementById('gross_weight').value;
     var tareweight = document.getElementById('tare_wight').value;
     var netweight = document.getElementById('net_weight').value;
     var charge = document.getElementById('charge').value;
-    if (vehicleNumber === '' && grossweight  === '' && tareweight === ''&& netweight ==='' && charge ==='') {
+    if (vehicleNumber === '' || !pattern.test(vehicleNumber) && grossweight  === '' && tareweight === ''&& netweight ==='' && charge ==='') {
      
         Swal.fire({
             text: "Sorry, looks like there are some errors detected, please try again.",

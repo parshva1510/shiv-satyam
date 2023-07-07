@@ -46,7 +46,7 @@ class ticket extends Controller
          $datainsert->material =strtoupper($req->material);
          $datainsert->charges = $req->charge;
          $datainsert->payment_mode = $req->payment_mode;
-         $datainsert->remark = $req->remark;
+         $datainsert->remark = $req->remarks;
          $datainsert->cdate = date('Y-m-d',strtotime(substr($req->cdate,0,10)));
          $datainsert->save();
          $data=DB::select("SELECT *,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no where weight_entry.sr_no = '$datainsert->sr_no'");
@@ -79,7 +79,7 @@ class ticket extends Controller
 
    public function view_ticket()
    {
-     $data=DB::select("SELECT *,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no  ORDER BY weight_entry.sr_no DESC");
+     $data=DB::select("SELECT *,weight_entry.remark as remarks , weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no  ORDER BY weight_entry.sr_no DESC");
     // $transporters = Transporter::all();
    
       //$data=weight_entry::with('transporter')->get()->toarray();
@@ -127,11 +127,11 @@ class ticket extends Controller
       $data->charges = $req->input('charge');
       $data->payment_mode = $req->input('payment_mode');
       $data->cdate =date('Y-m-d',strtotime(substr($req->cdate,0,10)));
-      $data->remark =ucfirst($req->input('remark'));
+      $data->remark =ucfirst($req->input('remarks'));
       $data->save();
       /*cash transaction automatic enterd to paymnet table*/
       $tr_data=transporter::all();
-      $data=DB::select("SELECT *,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no  ORDER BY weight_entry.sr_no DESC");
+      $data=DB::select("SELECT *,weight_entry.remark as remarks,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no  ORDER BY weight_entry.sr_no DESC");
       return view('admin.view_ticket',['data' => $data]);
      // return view('admin.add_ticket',['data' => $data,'tr_data'=>$tr_data]);
 

@@ -54,7 +54,7 @@
                                     @foreach($data as $row)
                                         <tr id="cid{{$row->sr_no}}">
                                         <input type="hidden" class="delete_id" value="{{$row->sr_no}}">
-                                            <td data-kt-ecommerce-order-filter="order-id">{{$row->sr_no}}</td>
+                                            <td data-kt-ecommerce-order-filter="order-id">{{'SS'.$row->sr_no}}</td>
 
                                             <td>{{$row->name}}</td>
 

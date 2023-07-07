@@ -236,7 +236,9 @@
 														
 														
 														@endif
-														<td>{{$row->remark}}</td>
+														<td>{{$row->remarks}}</td>
+														
+														
 														<td>@if(isset($row->cdate)){{(new DateTime ($row->cdate))->format('d-m-Y')}}@endif</td>
 														
 														
