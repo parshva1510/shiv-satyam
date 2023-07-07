@@ -111,43 +111,101 @@
                                 <!--end::Table head-->
                                 <!--begin::Table body-->
                                 <tbody class="fw-semibold text-gray-600">
-                                @foreach($payment as $row)
+                              
+                                        @php
+                                            
+                                            $ticketdetails = getTicketdetails($id);
+                                            $payment=getPayment($id);
+                                            $j=0;$i=0;
+                                        @endphp
+                                
+                                       
+                                    @foreach($payment as $row)
+                                        @if($ticketdetails[$j]->cdate <> $payment[$i]->date)
+                                     
+                                            @while($ticketdetails[$j]->cdate <= $payment[$i]->date )
+                                     <tr>
+                                        <td>{{$ticketdetails[$j]->ticket_no}}</td>
+                                      
+                                        <td>{{(new DateTime($ticketdetails[$j]->cdate))->format('d-m-Y')}}</td>
+
+                                        <td>{{'₹'.$ticketdetails[$j]->charges}}</td>
+
+                                        <td></td>
+
+                                        <td></td>
+
+                                        <td></td>
+                                     
+                                        <td>{{$ticketdetails[$j]->remark}}</td>
+                                </tr> 
+                                            @php $j++ ; @endphp
+                                            @endwhile
+                                        @else
+                                   
+                                  
+                                       
+                                    <tr>
+                                        <td>{{$ticketdetails[$j]->ticket_no}}</td>
+                                      
+                                        <td>{{(new DateTime($ticketdetails[$j]->cdate))->format('d-m-Y')}}</td>
+
+                                        <td>{{'₹'.$ticketdetails[$j]->charges}}</td>
+
+                                        <td></td>
+
+                                        <td></td>
+
+                                        <td></td>
+                                     
+                                        <td>{{$ticketdetails[$j]->remark}}</td>
+                                </tr> 
+                                        @php $j++ ; @endphp
+                                      
+                                    @endif
                                 <tr>
                                      
-                                        <td></td>
+                                     <td><a href="{{route('edit_payment',$payment[$i]->sr_no)}}" data-typeId="{{$payment[$i]->sr_no}}" id="edit" >{{$payment[$i]->receipt_no}}</a></td>
 
-                                        <td>{{(new DateTime($row->date))->format('M-Y')}}</td>
+                                     <td data-kt-ecommerce-order-filter="order_id">{{(new DateTime($payment[$i]->date))->format('d-m-Y')}}</td>
 
-                                        <td>{{'₹'.$row->debit-$row->credit}}</td>
+                                     <td>{{$payment[$i]->receipt_no}}</td>
 
-                                        <td></td>
+                                     <td>{{'₹'. $payment[$i]->amount}}</td>
 
-                                        <td>{{'₹'.$row->debit - $row->credit}}</td>
+                                     <td>{{'₹'.$payment[$i]->debit - ($payment[$i]->credit + $payment[$i]->amount) }}</td>
 
-                                        <td></td>
-                                     
-                                        <td></td>
-
-                                    </tr> 
-
-                                    <tr>
-                                     
-                                     <td><a href="{{route('edit_payment',$row->sr_no)}}" data-typeId="{{$row->sr_no}}" id="edit" >{{$row->receipt_no}}</a></td>
-
-                                     <td data-kt-ecommerce-order-filter="order_id">{{(new DateTime($row->date))->format('d-m-Y')}}</td>
-
-                                     <td></td>
-
-                                     <td>{{'₹'.$row->amount}}</td>
-
-                                     <td>{{'₹'.$row->debit - ($row->credit + $row->amount) }}</td>
-
-                                     <td>{{$row->payment_mode}}</td>
+                                     <td>{{ $payment[$i]->payment_mode}}</td>
                                   
-                                     <td>{{$row->remark}}</td>
+                                     <td>{{$payment[$i]->remark}}</td>
 
-                                 </tr> 
+                                </tr>
+                            
+                                        @php  $lastpayment=$payment[$i]->date; $i++; @endphp
                                     @endforeach
+                         
+                                    @foreach($ticketdetails as $ticket_row)
+                                        @if($ticket_row->cdate > $lastpayment)
+                                     <tr>
+                                        <td>{{$ticket_row->ticket_no}}</td>
+                                      
+                                        <td>{{(new DateTime($ticket_row->cdate))->format('d-m-Y')}}</td>
+
+                                        <td>{{'₹'.$ticket_row->charges}}</td>
+
+                                        <td></td>
+
+                                        <td></td>
+
+                                        <td></td>
+                                     
+                                        <td>{{$ticket_row->remark}}</td>
+                                </tr> 
+                                   
+                                 @endif
+                                @endforeach
+
+                              
                                 </tbody>
                                 <!--end::Table body-->
                             </table>
@@ -182,7 +240,7 @@
                                     <div class="row-md-1 mb-5">
                                         <!--begin::Label-->
                                         <label class="fs-6 fw-semibold form-label ">
-                                            <span><b><h4>Transporter: {{$row->transporter_name}}</h4></b></span>
+                                            <span><b><h4>Transporter:</h4></b></span>
                                             <span><b><h4> Opening Balance: {{$balance[0]->balance}} </h4></b></span>
                                         </label>
                                         <!--end::Label-->
@@ -343,7 +401,7 @@
                                         <!--begin::Label-->
                                         <label class="fs-6 fw-semibold form-label ">
                                         <label class="fs-6 fw-semibold form-label ">
-                                            <span><b><h4>Transporter: {{$row->transporter_name}}</h4></b></span>
+                                            <span><b><h4>Transporter: </h4></b></span>
                                             <span><b><h4> Opening Balance: {{$balance[0]->balance}} </h4></b></span>
                                         </label>
                                         </label>

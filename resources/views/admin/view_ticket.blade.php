@@ -103,7 +103,7 @@
 																			<li class="d-flex align-items-center py-2">
 																			<label class="form-check form-check-sm form-check-custom form-check-solid me-5">
 																			<input class="toggle-vis form-check-input"  type="checkbox" checked data-column="1"/>
-																			<span class="form-check-label">T. No.</span>
+																			<span class="form-check-label">Ticket. No.</span>
 																			</label>
 																			</li>
 																			<li class="d-flex align-items-center py-2">
@@ -522,12 +522,12 @@
 	
 		// Search Datatable --- official docs reference: https://datatables.net/reference/api/search()
 		var handleSearchDatatable = () => {
-			const filterSearch = document.querySelector('[data-kt-filter="search"]');
+			const filterSearch = document.querySelector('[data-kt-customer-table-filter]');
 			filterSearch.addEventListener('keyup', function (e) {
 				datatable.search(e.target.value).draw();
 			});
 		}
-	
+		
 		// Public methods
 		return {
 			init: function () {
@@ -537,7 +537,7 @@
 					return;
 				}
 	
-				initDatatable();
+			initDatatable();
             exportButtons();
             handleSearchDatatable();
 			}

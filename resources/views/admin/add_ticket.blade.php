@@ -251,8 +251,8 @@
                                         
                                             
                                             </select>
-                                        <!-- a kem ave che ok joi lau 
-                                     -->
+                                        
+                                     
                                         </div>
                                         <!--end::Col-->						
                                     </div>
@@ -492,54 +492,47 @@
         });
     });
 
-   $("#new_submit").click(function(){
-  
-        var vehicleNumber = document.getElementById('vehical_no').value;
-        if (vehicleNumber === '' || !pattern.test(vehicleNumber)) {
-            Swal.fire({
-                text: "Sorry, looks like there are some errors detected, please try again.",
-                icon: "error",
-                buttonsStyling: false,
-                confirmButtonText: "Ok, got it!",
-                customClass: {
-                    confirmButton: "btn btn-primary"
-                }
-            });
-            return false; // Prevent form submission
-        } else {
-            Swal.fire({
-                text: "Form has been successfully submitted!",
-                icon: "success",
-                buttonsStyling: false,
-                confirmButtonText: "Ok, got it!",
-                customClass: {
-                    confirmButton: "btn btn-primary"
-                }
-            }).then(function() {
-            
-              /*  if(t.isConfirmed)
-                {
-                    location.reload();
-                }*/
-          
-           
-                var ticket=parseInt(document.getElementById("ticket_no").value);
-                //alert(ticket + 1);
-                $("#ticket_no").val(ticket + 1);
-                $("#vehical_no").val("");
-                $("#gross_weight").val("");
-                $("#charge").val("");
-                $("#tare_wight").val("");
-                $("#net_weight").val("");
-                $("#material").val("");
-                $('#remark').val("");
-               
-                //$("#payment_mode").val("");
-               
-           });
-        }
+    $("#new_submit").click(function(){
+    var vehicleNumber = document.getElementById('vehical_no').value;
+    if (vehicleNumber === '' || !pattern.test(vehicleNumber)) {
+        Swal.fire({
+            text: "Sorry, looks like there are some errors detected, please try again.",
+            icon: "error",
+            buttonsStyling: false,
+            confirmButtonText: "Ok, got it!",
+            customClass: {
+                confirmButton: "btn btn-primary"
+            }
+        });
+        return false; // Prevent form submission
+    } else {
+        Swal.fire({
+            text: "Form has been successfully submitted!",
+            icon: "success",
+            buttonsStyling: false,
+            confirmButtonText: "Ok, got it!",
+            customClass: {
+                confirmButton: "btn btn-primary"
+            }
+        }).then(function(t) {
+            if (t.isConfirmed) {
+                location.reload();
+            }
+        });
+    }
 });
+
 </script>
+<!-- <script>
+  // Get the button element
+  const button = document.getElementById('redirectButton');
+
+  // Attach event listener to the button
+  button.addEventListener('click', function() {
+    // Redirect to a different page
+    window.location.href = "https://www.example.com";
+  });
+</script> -->
 
 
 
