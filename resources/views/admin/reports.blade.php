@@ -138,7 +138,7 @@
 
                                             <td>{{$row->material}}</td>
 
-                                            <td>{{$row->charges}}</td>
+                                            <td>{{' Rs.'.$row->charges}}</td>
 
                                             @if($row->payment_mode==1)
 														

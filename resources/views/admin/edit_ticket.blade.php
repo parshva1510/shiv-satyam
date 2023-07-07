@@ -64,9 +64,7 @@
                                         <div class="col-md-4 fv-row">
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Ticket No.</span>
-                                              <!-- done medam condition samjai gai ??  -->
-                                                <!-- weight entry ma j 6 ne k tranmsporter table ma ??hauk de je hu pote joi lis -->
-                                            </label>
+                                               </label>
                                            
                                             <input type="hidden" name="edit_sr_no" value="{{$transporter['sr_no']}}">
                                             <input type="number" min="0" class="form-control form-control-solid" placeholder="" name="ticket_no" id="ticket_no" value="{{$transporter['ticket_no']}}" readonly>
@@ -159,8 +157,10 @@
                                                 <!--end::Svg Icon-->
                                                 <!--end::Icon-->
                                                 <!--begin::Datepicker-->
-                                                
-                                                <input class="form-control form-control-solid ps-12" id="gross_date" placeholder="Select a date" name="gross_date" value="{{(new DateTime($transporter->gross_date))->format('d-m-Y H:i')}}" />
+                                        <!-- -->
+                                        
+                                                <input class="form-control form-control-solid ps-12" id="gross_date" placeholder="Select a date" name="gross_date" value="{{(new DateTime($transporter->gross_date .' '. $transporter->gross_time))->format('d-m-Y H:i')}}" />
+
                                                 
 
 
@@ -194,7 +194,7 @@
                                                 <!--end::Svg Icon-->
                                                 <!--end::Icon-->
                                                 <!--begin::Datepicker-->
-                                                <input class="form-control form-control-solid ps-12" id="tare_date" placeholder="Select a date" name="tare_date" value="{{(new DateTime($transporter->tare_date))->format('d-m-Y')}}"/>
+                                                <input class="form-control form-control-solid ps-12" id="tare_date" placeholder="Select a date" name="tare_date" value="{{(new DateTime($transporter->tare_date .' '. $transporter->tare_time))->format('d-m-Y H:i')}}" />
                                                 <!--end::Datepicker-->
                                             </div>
                                         </div>
@@ -261,7 +261,7 @@
                                     <!--begin::Input group-->
                                     <div class="d-flex flex-column mb-8">
                                         <label class="d-flex align-items-center fs-6 fw-bolder mb-2">Remarks</label>
-                                        <textarea class="form-control form-control-solid" rows="3" name="remark" placeholder="Remarks" value="{{$transporter['remark']}}"></textarea>
+                                        <textarea class="form-control form-control-solid" rows="3" name="remark" id="remark" placeholder="Remarks" value="{{$transporter['remark']}}"></textarea>
                                     </div>
                                     <!--end::Input group-->
                                     <!--begin::Actions-->
@@ -432,7 +432,7 @@
     $('#cdate').flatpickr({
       enableTime: true,
       dateFormat: "d-m-Y ",
-      defaultDate: currentDateTime
+      //defaultDate: currentDateTime
       
 
     });
@@ -549,11 +549,14 @@
     });
     </script> -->
     <script>
+        
         $("#kt_modal_new_target_form").submit(function(){
-        var gross_weight=document.getElementById("gross_weight").value;
-        var tare_weight=document.getElementById("tare_weight").value;
-        var net_weight=document.getElementById("net_weight").value;
-        if(gross_weight ==='' && tare_weight === '' && net_weight ==='')
+        var vehicleNumber = document.getElementById('vehical_no').value;
+        var grossweight = document.getElementById('gross_weight').value;
+        var tareweight = document.getElementById('tare_wight').value;
+        var netweight = document.getElementById('net_weight').value;
+        var charge = document.getElementById('chargs').value;
+        if(vehicleNumber == '' && grossweight  == '' && tareweight == ''&& netweight =='' && charge =='')
         {
             Swal.fire({
                 text: "Sorry, looks like there are some errors detected, please try again.",
@@ -564,7 +567,7 @@
             Swal.fire({
                 position: 'middle-center',
                 icon: 'success',
-                title: 'Transporter data has been successfully updated!',
+                title: 'Ticket data has been successfully updated!',
                 showConfirmButton: false,
                 timer: 1500
                 }).then(function() {

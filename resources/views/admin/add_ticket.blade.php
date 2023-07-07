@@ -1,12 +1,12 @@
 <!-- <option value="1">Cash</option> -->
 @extends('admin.layout.layout')
 @section('mainsection')
-<div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+<div class="app-main flex-column flex-row-fluid"   id="kt_app_main">
     <!--begin::Content wrapper-->
     <div class="d-flex flex-column flex-column-fluid">
         <!--begin::Toolbar-->
-        <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6 mb-5 mt-5">
-        <form id="kt_modal_new_target_form" class="form" method="POST" action= "{{!empty($transporter)?route('update_ticket'):route('add_ticket')}}" target="_blank">
+        <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6 mb-5 mt-5" tabindex="-1">
+        <form id="kt_modal_new_target_form"  class="form" method="POST" action= "{{!empty($transporter)?route('update_ticket'):route('add_ticket')}}" target="_blank">
             <!--begin::Toolbar container-->
             <div id="kt_app_toolbar_container" class="app-container new-full-width container-xxl d-flex flex-stack">
                 
@@ -64,8 +64,8 @@
                                         <div class="col-md-4 fv-row">
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Ticket No.</span>
-                                              <!-- done medam condition samjai gai ??  -->
-                                                <!-- weight entry ma j 6 ne k tranmsporter table ma ??hauk de je hu pote joi lis -->
+                                              
+                                                
                                             </label>
                                            
                                             <input type="hidden" name="edit_sr_no" value="{{!empty($transporter)?$transporter['sr_no']:''}}">
@@ -138,9 +138,9 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Gross Weight (KG)</span>
                                             </label>
-                                            <input type="number"   class="form-control form-control-solid" placeholder="0" name="gross_weight" id="gross_weight"  value="{{!empty($transporter)?$transporter['gross_weight']:''}}" style=" -webkit-appearance: none;"/>
-                                           
+                                            <input type="number" class="form-control form-control-solid" placeholder="0" name="gross_weight" id="gross_weight" value="{{!empty($transporter)?$transporter['gross_weight']:''}}" required/>
                                         </div>
+
                                         <!--end::Label-->
                                         <!--begin::Label-->
                                         <div class="col-md-3 fv-row">
@@ -160,7 +160,7 @@
                                                 <!--end::Icon-->
                                                 <!--begin::Datepicker-->
                                                 
-                                                <input class="form-control form-control-solid ps-12" id="gross_date" placeholder="Select a date" name="gross_date" value="{{!empty($transporter) ? $transporter['gross_date']:''}}" />
+                                                <input class="form-control form-control-solid ps-12" id="gross_date" placeholder="Select a date" name="gross_date" value="{{!empty($transporter) ? $transporter['gross_date']:''}}" required/>
                                                 
 
 
@@ -174,7 +174,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Tare Weight (KG)</span>
                                             </label>
-                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="0" name="tare_wight" id="tare_wight" value="{{!empty($transporter)?$transporter['tare_weight']:''}}"/>
+                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="0" name="tare_wight" id="tare_wight" value="{{!empty($transporter)?$transporter['tare_weight']:''}}" required/>
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Label-->
@@ -194,7 +194,7 @@
                                                 <!--end::Svg Icon-->
                                                 <!--end::Icon-->
                                                 <!--begin::Datepicker-->
-                                                <input class="form-control form-control-solid ps-12" id="tare_date" placeholder="Select a date" name="tare_date" value="{{!empty($transporter) ? $transporter['tare_date'] :date('Y-m-d')}}"/>
+                                                <input class="form-control form-control-solid ps-12" id="tare_date" placeholder="Select a date" name="tare_date" value="{{!empty($transporter) ? $transporter['tare_date'] :date('Y-m-d')}}" required/>
                                                 <!--end::Datepicker-->
                                             </div>
                                         </div>
@@ -219,7 +219,7 @@
                                                 <span class="">Material</span>
                                             </label>
                                             
-                                            <input  type="text" class="form-control form-control-solid" placeholder="MATERIAL"  name="material" id="material" value="{{!empty($transporter)?$transporter['material']:''}}" />
+                                            <input  type="text" class="form-control form-control-solid" placeholder="MATERIAL"  name="material" id="material" value="{{!empty($transporter)?$transporter['material']:''}}" required/>
                                                     <datalist id="material">
                                                             @foreach($material as $item)
                                                                 <option value="{{$item->material}}">{{$item->material}}</option>
@@ -240,8 +240,10 @@
                                         <!--end::Label-->	
                                         <!--begin::Col-->                         
                                         <div class="col-md-3 fv-row">
-                                            <label class="d-flex align-items-center fs-6 fw-bolder mb-2">Payment Mode</label>
-                                            <select class="form-select form-select-solid" id="select-payment" data-control="select2" data-hide-search="true" data-placeholder="Select Payment Mode" name="payment_mode" value="">
+                                            <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
+                                                <span class="required">Payment Mode</span>
+                                            </label>
+                                            <select class="form-select form-select-solid" id="select-payment" data-control="select2" data-hide-search="true" data-placeholder="Select Payment Mode" name="payment_mode" required>
                                             <option value="">Select Mode...</option>
                                             <option value="1" {{!empty($transporter) && $transporter['payment_mode'] == "1" && !empty($transporter['payment_mode']) ? 'selected' : '' }} selected>CASH</option>
                                             <option value="2" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "2" ? 'selected' : '' }}>GPAY</option>
@@ -251,8 +253,7 @@
                                         
                                             
                                             </select>
-                                        <!-- a kem ave che ok joi lau 
-                                     -->
+                                        
                                         </div>
                                         <!--end::Col-->						
                                     </div>
@@ -278,9 +279,7 @@
                                 </form>
                             </div>
                             <!--end:Form-->
-                            <!--Begin Edit Form-->
-                           
-                            <!--End Edit form-->
+                            
                         </div>
                         <!--end::Heading-->
                     </div>
@@ -492,9 +491,15 @@
         });
     });
 
-    $("#new_submit").click(function(){
+    $("#kt_modal_new_target_form").submit(function(){
+      
     var vehicleNumber = document.getElementById('vehical_no').value;
-    if (vehicleNumber === '' || !pattern.test(vehicleNumber)) {
+    var grossweight = document.getElementById('gross_weight').value;
+    var tareweight = document.getElementById('tare_wight').value;
+    var netweight = document.getElementById('net_weight').value;
+    var charge = document.getElementById('charge').value;
+    if (vehicleNumber === '' && grossweight  === '' && tareweight === ''&& netweight ==='' && charge ==='') {
+     
         Swal.fire({
             text: "Sorry, looks like there are some errors detected, please try again.",
             icon: "error",

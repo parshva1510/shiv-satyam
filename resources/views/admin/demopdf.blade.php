@@ -123,7 +123,7 @@
 			  <tr class="pb">
 				<td><b>Net:</b></td>	<td><b>{{($data[0]->net_weight.' kg')}}</b></td>
 				<td>Material:</td>	<td>{{($data[0]->material)}}</td>
-				<td>Charges:</td>	<td>{{($data[0]->charges)}}</td>
+				<td>Charges:</td>	<td>{{' Rs.'.($data[0]->charges)}}</td>
 			  </tr>
 			  <tr class="hr"> 
 				<td colspan="3">Operators Signature:</td>
@@ -163,7 +163,7 @@
 			  <tr class="pb">
 				<td><b>Net:</b></td>	<td><b>{{($data[0]->net_weight.' kg')}}</b></td>
 				<td>Material:</td>	<td>{{($data[0]->material)}}</td>
-				<td>Charges:</td>	<td>{{($data[0]->charges)}}</td>
+				<td>Charges:</td>	<td>{{' Rs.'.($data[0]->charges)}}</td>
 			  </tr>
 			  <tr class="hr"> 
 				<td colspan="3">Operators Signature:</td>
@@ -204,7 +204,7 @@
 			  <tr class="pb">
 				<td><b>Net:</b></td>	<td><b>{{($data[0]->net_weight.' kg')}}</b></td>
 				<td>Material:</td>	<td>{{($data[0]->material)}}</td>
-				<td>Charges:</td>	<td>{{($data[0]->charges)}}</td>
+				<td>Charges:</td>	<td>{{' Rs.'.($data[0]->charges)}}</td>
 			  </tr>
 			  <tr class="hr"> 
 				<td colspan="3">Operators Signature:</td>

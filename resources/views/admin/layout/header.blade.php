@@ -13,7 +13,7 @@ License: For each use you must have a valid license purchased only from above li
 <html lang="en">
 	<!--begin::Head-->
 	<head><base href="../"/>
-		<title>Metronic - the world's #1 selling Bootstrap Admin Theme Ecosystem for HTML, Vue, React, Angular & Laravel by Keenthemes</title>
+		<title>Shiv Satyam</title>
 		<meta charset="utf-8" />
 		<meta name="description" content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 100,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue, Asp.Net Core, Rails, Spring, Blazor, Django, Flask & Laravel versions. Grab your copy now and get life-time updates for free." />
 		<meta name="keywords" content="metronic, bootstrap, bootstrap 5, angular, VueJs, React, Asp.Net Core, Rails, Spring, Blazor, Django, Flask & Laravel starter kits, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon" />
@@ -274,28 +274,10 @@ License: For each use you must have a valid license purchased only from above li
 										<!--begin::Menu separator-->
 										<div class="separator my-2"></div>
 										<!--end::Menu separator-->
-										<!--begin::Menu item-->
-										<div class="menu-item px-5">
-											<a href="../../demo1/dist/account/overview.html" class="menu-link px-5">My Profile</a>
-										</div>
-										<!--end::Menu item-->
-										<!--begin::Menu item-->
-										<div class="menu-item px-5">
-											<a href="../../demo1/dist/apps/projects/list.html" class="menu-link px-5">
-												<span class="menu-text">My Projects</span>
-											</a>
-										</div>
-										<!--end::Menu item-->
-										<!--begin::Menu item-->
-										<div class="menu-item px-5">
-											<a href="../../demo1/dist/account/statements.html" class="menu-link px-5">My Statements</a>
-										</div>
-										<!--end::Menu item-->
-										<!--begin::Menu item-->
-										<div class="menu-item px-5 my-1">
-											<a href="../../demo1/dist/account/settings.html" class="menu-link px-5">Account Settings</a>
-										</div>
-										<!--end::Menu item-->
+										
+										
+										
+										
 										<!--begin::Menu item-->
 										<div class="menu-item px-5">
 											<a href="{{route('destroy')}}" class="menu-link px-5">Sign Out</a>

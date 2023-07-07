@@ -71,123 +71,7 @@
 													</div>
 													<!--end::Daterangepicker-->
 													<!--begin::Filter menu-->
-													 <div class="m-0">
-														<!--begin::Menu toggle-->
-														<button type="button" class="btn btn-light" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-																		<!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
-																		<span class="svg-icon svg-icon-2 mr-0">
-																			<svg xmlns="http://www.w3.org/2000/svg" width="30px" height="30px" viewBox="0 0 24 24">
-																				<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-																					<rect x="5" y="5" width="6" height="6" rx="1" fill="currentColor" />
-																					<rect x="14" y="5" width="6" height="6" rx="1" fill="currentColor" opacity="0.3" />
-																					<rect x="5" y="14" width="6" height="6" rx="1" fill="currentColor" opacity="0.3" />
-																					<rect x="14" y="14" width="6" height="6" rx="1" fill="currentColor" opacity="0.3" />
-																				</g>
-																			</svg>
-																		</span>
-																		<!--end::Svg Icon-->
-														</button>
-														<!--end::Menu toggle-->
-														<!--begin::Menu 1-->
-														<div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true">
-															<!--begin::Form-->
-															<div class="px-7 py-5">	
-																<!--begin::Input group-->
-																<div class="">
-																	<!--begin::Options-->
-																	<div class="d-flex justify-content-around">
-																	
-																		<!--begin::Options-->
-																		<div class="d-flex flex-column">
-																			
-																			<li class="d-flex align-items-center py-2">
-																			<label class="form-check form-check-sm form-check-custom form-check-solid me-5">
-																			<input class="toggle-vis form-check-input"  type="checkbox" checked data-column="1"/>
-																			<span class="form-check-label">T. No.</span>
-																			</label>
-																			</li>
-																			<li class="d-flex align-items-center py-2">
-																			<label class="form-check form-check-sm form-check-custom form-check-solid me-5">
-																			<input class="toggle-vis form-check-input"  type="checkbox" checked data-column="2"/>
-																			<span class="form-check-label">Vehicle No.</span>
-																			</label>
-																			</li>
-																			<li class="d-flex align-items-center py-2">
-																			<label class="form-check form-check-sm form-check-custom form-check-solid me-5">
-																			<input class="toggle-vis form-check-input"  type="checkbox" checked data-column="3"/>
-																			<span class="form-check-label">Transporter</span>
-																			</label>
-																			</li>
-																			<li class="d-flex align-items-center py-2">
-																			<label class="form-check form-check-sm form-check-custom form-check-solid me-5">
-																			<input class="toggle-vis form-check-input"  type="checkbox" checked data-column="4"/>
-																			<span class="form-check-label">G. Weight</span>
-																			</label>
-																			</li>
-																			<li class="d-flex align-items-center py-2">
-																			<label class="form-check form-check-sm form-check-custom form-check-solid me-5">
-																			<input class="toggle-vis form-check-input"  type="checkbox" checked data-column="5"/>
-																			<span class="form-check-label">G. Date</span>
-																			</label>
-																			</li>
-																			<li class="d-flex align-items-center py-2">
-																			<label class="form-check form-check-sm form-check-custom form-check-solid me-5">
-																			<input class="toggle-vis form-check-input"  type="checkbox" checked data-column="6"/>
-																			<span class="form-check-label">T. Weight</span>
-																			</label>
-																			</li>
-																		</div>
-																		<!--end::Options-->
-																		<!--begin::Options-->
-																		<div d-flex flex-column>
-																			<li class="d-flex align-items-center py-2">
-																			<label class="form-check form-check-sm form-check-custom form-check-solid me-5">
-																			<input class="toggle-vis form-check-input"  type="checkbox" checked data-column="7"/>
-																			<span class="form-check-label">T. Date</span>
-																			</label>
-																			</li>
-																			<li class="d-flex align-items-center py-2">
-																			<label class="form-check form-check-sm form-check-custom form-check-solid me-5">
-																			<input class="toggle-vis form-check-input"  type="checkbox" checked data-column="8"/>
-																			<span class="form-check-label">Net Weight</span>
-																			</label>
-																			</li>
-																			<li class="d-flex align-items-center py-2">
-																			<label class="form-check form-check-sm form-check-custom form-check-solid me-5">
-																			<input class="toggle-vis form-check-input"  type="checkbox" checked data-column="9"/>
-																			<span class="form-check-label">Material</span>
-																			</label>
-																			</li>
-																			<li class="d-flex align-items-center py-2">
-																			<label class="form-check form-check-sm form-check-custom form-check-solid me-5">
-																			<input class="toggle-vis form-check-input"  type="checkbox" checked data-column="10"/>
-																			<span class="form-check-label">Charge</span>
-																			</label>
-																			</li>
-																			<li class="d-flex align-items-center py-2">
-																			<label class="form-check form-check-sm form-check-custom form-check-solid me-5">
-																			<input class="toggle-vis form-check-input"  type="checkbox" checked data-column="11"/>
-																			<span class="form-check-label">Payment Mode</span>
-																			</label>
-																			</li>
-																			<li class="d-flex align-items-center py-2">
-																			<label class="form-check form-check-sm form-check-custom form-check-solid me-5">
-																			<input class="toggle-vis form-check-input"  type="checkbox" checked data-column="12"/>
-																			<span class="form-check-label">Actions</span>
-																			</label>
-																			</li>
-																		</div>
-																		<!--end::Options-->
-																		
-																	</div>
-																	<!--end::Options-->
-																</div>
-																<!--end::Input group-->		
-															</div>
-															<!--end::Form-->
-														</div>
-														<!--end::Menu 1-->
-													</div> 
+													 
 													<!--end::Filter menu-->
 													<div class="card-title">
 															<!--begin::Export buttons-->
@@ -281,6 +165,7 @@
 														<th class="min-w-70px">Material</th>
 														<th class="min-w-70px">Charge</th>
 														<th class="min-w-70px">Payment Mode</th>
+														<th class="min-w-70px">Remarks</th>
 														<th class="min-w-70px">Current Date</th>
 														<th class="text-end min-w-70px">Actions</th>
 														
@@ -326,7 +211,7 @@
 
 														<td>{{$row->material}}</td>
 
-														<td>{{$row->charges}}</td>
+														<td>{{' Rs.'.$row->charges}}</td>
 														
 
 														@if($row->payment_mode==1)
@@ -351,6 +236,7 @@
 														
 														
 														@endif
+														<td>{{$row->remark}}</td>
 														<td>@if(isset($row->cdate)){{(new DateTime ($row->cdate))->format('d-m-Y')}}@endif</td>
 														
 														
@@ -590,7 +476,7 @@ cb(start, end);
 
 
 
-<script>
+<!-- <script>
     $(document).ready(function () {
 var table = $('#ticket_data').DataTable({
     scrollY: '200px',
@@ -608,7 +494,7 @@ $('input.toggle-vis').on('click', function (e) {
 });
 });
 
-</script>
+</script> -->
 
 {{--<script>
 	$("#kt_ecommerce_report_views_daterangepicker").change(function(){
