@@ -49,7 +49,7 @@ class ticket extends Controller
          $datainsert->remark = $req->remarks;
          $datainsert->cdate = date('Y-m-d',strtotime(substr($req->cdate,0,10)));
          $datainsert->save();
-         $data=DB::select("SELECT *,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no where weight_entry.sr_no = '$datainsert->sr_no'");
+         $data=DB::select("SELECT *,weight_entry.remark as remarks,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no where weight_entry.sr_no = '$datainsert->sr_no'");
         $transporters = Transporter::all();
        
         $sr_no = payment::get()->last()->sr_no;
@@ -101,7 +101,8 @@ class ticket extends Controller
 
      //dd($data->gross_date);
      //$ticket_no = DB::table('weight_entry')->where('sr_no',$id);
-    // $data=DB::select("SELECT *,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no");
+    
+    // $data=DB::select("SELECT *,weight_entry.remark as remarks,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no where weight_entry.sr_no = '$datainsert->sr_no'");
      $tr_data = transporter::all();
      $ticket_no =(weight_entry::get()->last()->ticket_no) +  1;
      return view('admin.edit_ticket', ["transporter" => $data, 'tr_data' => $tr_data,'sr_no' => $sr_no,'ticket_no'=> $ticket_no,'material'=> $material]);
@@ -128,12 +129,14 @@ class ticket extends Controller
       $data->payment_mode = $req->input('payment_mode');
       $data->cdate =date('Y-m-d',strtotime(substr($req->cdate,0,10)));
       $data->remark =ucfirst($req->input('remarks'));
+      
       $data->save();
       /*cash transaction automatic enterd to paymnet table*/
       $tr_data=transporter::all();
-      $data=DB::select("SELECT *,weight_entry.remark as remarks,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no  ORDER BY weight_entry.sr_no DESC");
+      $data=DB::select("SELECT *,weight_entry.remark as remarks ,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no  ORDER BY weight_entry.sr_no DESC");
       return view('admin.view_ticket',['data' => $data]);
      // return view('admin.add_ticket',['data' => $data,'tr_data'=>$tr_data]);
+// aa to tu select karavas update ma kya ? aa select 6 edit ni kya ?
 
    }
   

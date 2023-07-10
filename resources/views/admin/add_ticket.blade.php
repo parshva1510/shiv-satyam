@@ -83,17 +83,20 @@
                                                         <span class="required">Transporter</span>
                                                       
                                                     </label>
+
                                                     <select class="form-select form-select-solid" data-control="select2" data-hide-search="false" data placeholder="Select Account"name="transpoter_no" required>
-                                                        <option class="dropdown-font" value="">Select Account...</option>
-                                                        
-                                                        @foreach ($tr_data as $row)
+
+                                                      
+                                                    <option class="dropdown-font" value="">Select Account...</option>
                                                        
-                                                        <option value="{{$row->sr_no}}" {{((!empty($transporter) && !empty($transporter['transporter']['name']) && $transporter['transporter']['name']==$row->name))? "selected":""}}> {{($row->name).'-'.('SS'.$row->sr_no)}} </option>
+                                                        @foreach ($tr_data as $row)
+                                                        <option value="{{$row->sr_no}}" {{((!empty($transporter) && !empty($transporter['transporter']['name']) && $transporter['transporter']['name']==$row->name))? "selected":($row->name=="LOCAL"?"selected":"")}}> {{($row->name).'-'.('SS'.$row->sr_no)}} </option>
                                                      
                                                         @endforeach
                                                       
                                          
                                                     </select>
+                                                    
                                                 </div>
                                                 
                                                 <div class="col-md-4 mt-8">
@@ -261,6 +264,7 @@
                                     <!--end::Input group-->
 
                                     <!--begin::Input group-->
+                                   
                                     <div class="d-flex flex-column mb-8">
                                         <label class="d-flex align-items-center fs-6 fw-bolder mb-2">Remarks</label>
                                         <textarea class="form-control form-control-solid" rows="3" name="remarks" id="remarks" placeholder="Remarks" value="{{!empty($transporter)?$transporter['remarks']:''}}"></textarea>
@@ -269,7 +273,7 @@
                                     <!--begin::Actions-->
                                     <div class="text-center d-flex flex-stack">
 
-                                        <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-primary">{{!empty($transporter)?'':'Reset'}}</button>
+                                        <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-primary">Reset</button>
                                         <button type="submit" id="new_submit" class="btn btn-primary" >
                                             <span class="indicator-label"  >Submit</span>
                                             <span class="indicator-progress">Please wait...
@@ -343,7 +347,7 @@
                             <label class="required fw-bolder fs-6 mb-2">Name</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" name="name" id="name" placeholder="Sahal" value=""/>
+                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" name="name" id="name" placeholder="Name" value="{{$transporter['name'] ?? '' }}"/>
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->
@@ -383,7 +387,7 @@
                     <!--end::Scroll-->
                     <!--begin::Actions-->
                     <div class="text-center d-flex flex-stack pt-5">
-                        <button type="" class="btn btn-light me-3" >Reset</button>
+                        <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-primary">Reset</button>
                         <button type="" class="btn btn-primary"  >
                             <span class="indicator-label">Submit</span>
                             <span class="indicator-progress">Please wait...

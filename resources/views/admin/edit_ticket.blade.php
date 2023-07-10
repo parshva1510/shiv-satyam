@@ -31,8 +31,9 @@
                                         </span>
                                             <!--end::Svg Icon-->
                                             <!--end::Icon-->
+                                            <!-- data kya 217 no ni id no ? -->
                                             <!--begin::Datepicker-->
-                                            <input class="form-control form-control-solid ps-12" id="cdate" placeholder="Select a date" name="cdate" value="{{(new DateTime($transporter->cdate))->format('d-m-Y')}}"/>
+                                             <input class="form-control form-control-solid ps-12" id="cdate" placeholder="Select a date" name="cdate" value="{{(new DateTime($transporter['cdate']))->format('d-m-Y')}}"/>
                                             <!--end::Datepicker-->
                                     </div>
                             </div>
@@ -259,15 +260,17 @@
                                     <!--end::Input group-->
 
                                     <!--begin::Input group-->
+                                
                                     <div class="d-flex flex-column mb-8">
                                         <label class="d-flex align-items-center fs-6 fw-bolder mb-2">Remarks</label>
-                                        <textarea class="form-control form-control-solid" rows="3" name="remark" id="remark" placeholder="Remarks" value="{{$transporter['remark']}}"></textarea>
+                                        <!-- print r hatu etle 1 return thatutu sathe samjo tu jo hu karu -->
+                                        <textarea class="form-control form-control-solid" rows="3" name="remarks" id="remark" placeholder="Remarkssssssss" >{{($transporter['remark'])}}</textarea>
                                     </div>
                                     <!--end::Input group-->
                                     <!--begin::Actions-->
                                     <div class="text-center d-flex flex-stack"  style= "display: flex; justify-content: flex-end;">
                                         <button type="submit" id="new_submit" class="btn btn-primary" >
-                                            <span class="indicator-label"  onclick="submitForm()">Submit</span>
+                                            <span class="indicator-label">Submit</span>
                                             <span class="indicator-progress">Please wait...
                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                         </button>
@@ -549,14 +552,11 @@
     });
     </script> -->
     <script>
-        
         $("#kt_modal_new_target_form").submit(function(){
-        var vehicleNumber = document.getElementById('vehical_no').value;
-        var grossweight = document.getElementById('gross_weight').value;
-        var tareweight = document.getElementById('tare_wight').value;
-        var netweight = document.getElementById('net_weight').value;
-        var charge = document.getElementById('chargs').value;
-        if(vehicleNumber == '' && grossweight  == '' && tareweight == ''&& netweight =='' && charge =='')
+        var name=document.getElementById("name1").value;
+        var city=document.getElementById("city1").value;
+        var contact=document.getElementById("contact1").value;
+        if(name ==='' && city === '' && contact ==='')
         {
             Swal.fire({
                 text: "Sorry, looks like there are some errors detected, please try again.",
@@ -567,7 +567,7 @@
             Swal.fire({
                 position: 'middle-center',
                 icon: 'success',
-                title: 'Ticket data has been successfully updated!',
+                title: 'Transporter data has been successfully updated!',
                 showConfirmButton: false,
                 timer: 1500
                 }).then(function() {
@@ -575,7 +575,7 @@
            });
         }
     });
-    </script>
+</script>
     
     <script>
     $(document).ready(function($){

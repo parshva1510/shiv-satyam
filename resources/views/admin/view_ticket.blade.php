@@ -237,7 +237,7 @@
 														
 														@endif
 														<td>{{$row->remarks}}</td>
-														
+														<!-- db ma store nathi that e wait jo ha to e edit ma issue 6 data update vakhate controller ma jo -->
 														
 														<td>@if(isset($row->cdate)){{(new DateTime ($row->cdate))->format('d-m-Y')}}@endif</td>
 														
@@ -584,5 +584,7 @@ $('input.toggle-vis').on('click', function (e) {
             });
         });
 </script>
+
+
 
 @endsection
