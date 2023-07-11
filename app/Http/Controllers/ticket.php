@@ -50,7 +50,7 @@ class ticket extends Controller
          $datainsert->cdate = date('Y-m-d',strtotime(substr($req->cdate,0,10)));
          $datainsert->save();
          $data=DB::select("SELECT *,weight_entry.remark as remarks,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no where weight_entry.sr_no = '$datainsert->sr_no'");
-        $transporters = Transporter::all();
+         $transporters = Transporter::all();
        
         $sr_no = payment::get()->last()->sr_no;
         $rec_no= payment::get()->last()->receipt_no;

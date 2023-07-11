@@ -226,11 +226,13 @@
                                         </button>
                                 </div>
                                 <div class="mt-5">
-                                        <button type="button" id="refresh" name="refresh" class="btn btn-primary full-button ">
-                                            <span class="glyphicon glyphicon-refresh">Refresh</span>
-                                            <span class="indicator-progress">Please wait...
-                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                        </button>
+                                <button type="button" id="refresh" name="refresh" class="btn btn-primary full-button" onclick="goBack()">
+    <span class="glyphicon glyphicon-refresh">Refresh</span>
+    <span class="indicator-progress">Please wait...
+        <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+    </span>
+</button>      
+      
                                 </div>
                                 </form>
                             </div>
@@ -356,4 +358,25 @@ KTUtil.onDOMContentLoaded(function () {
 });
 
 </script>
+<script>
+    function goBack() {
+        window.history.back(); // Go back to the previous page
+        //location.reload();
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @endsection

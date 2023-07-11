@@ -132,7 +132,8 @@
                                         <!--end::Label-->												
                                     </div>
                                     <!--end::Input group-->
-
+<!-- aam better rese chalse ?
+ha pan swal fire joi lau niche kem submit nai karva deta pattern ma bhul 6  -->
                                                                                             
 
                                     <!--begin::Input group-->
@@ -272,8 +273,9 @@
                                     <!--end::Input group-->
                                     <!--begin::Actions-->
                                     <div class="text-center d-flex flex-stack">
+                                        
+                                    <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-primary">Reset</button>
 
-                                        <button type="reset" id="kt_modal_new_target_cancel" class="btn btn-primary">Reset</button>
                                         <button type="submit" id="new_submit" class="btn btn-primary" >
                                             <span class="indicator-label"  >Submit</span>
                                             <span class="indicator-progress">Please wait...
@@ -483,17 +485,17 @@
     var pattern = /^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/;
 
     document.addEventListener('DOMContentLoaded', function() {
-        var input = document.getElementById('NUMBERPLATE');
-        input.addEventListener('input', function() {
-            var value = this.value;
-            if (pattern.test(value)) {
-                console.log('Valid vehicle number: ' + value);
-                document.getElementById('number_error').textContent = "";
-            } else {
-                console.log('Invalid vehicle number: ' + value);
-                document.getElementById('number_error').textContent = "Please add a valid vehicle number";
-            }
-        });
+        // var input = document.getElementById('NUMBERPLATE');
+        // input.addEventListener('input', function() {
+        //     var value = this.value;
+        //     if (pattern.test(value)) {
+        //         console.log('Valid vehicle number: ' + value);
+        //         document.getElementById('number_error').textContent = "";
+        //     } else {
+        //         console.log('Invalid vehicle number: ' + value);
+        //         document.getElementById('number_error').textContent = "Please add a valid vehicle number";
+        //     }
+        // });
     });
 
     $("#kt_modal_new_target_form").submit(function(){
@@ -503,8 +505,23 @@
     var tareweight = document.getElementById('tare_wight').value;
     var netweight = document.getElementById('net_weight').value;
     var charge = document.getElementById('charge').value;
-    if (vehicleNumber === '' || !pattern.test(vehicleNumber) && grossweight  === '' && tareweight === ''&& netweight ==='' && charge ==='') {
-     
+    if (vehicleNumber === '' || !pattern.test(vehicleNumber) ){
+        // console.log('Invalid vehicle number: ' + value);
+                document.getElementById('number_error').textContent = "Please add a valid vehicle number";  
+                return false;
+
+    }else  {
+        // console.log('Valid vehicle number: ' + value);
+                document.getElementById('number_error').textContent = "";
+              
+            }
+// // try  done ne ?hov thanksa oyy wait
+// if( !pattern.test(vehicleNumber)){
+//     console.log("pattern is wrong");
+//     return false;
+// }
+    if (grossweight  === '' && tareweight === ''&& netweight ==='' && charge ==='' &&  !pattern.test(vehicleNumber)) {
+
         Swal.fire({
             text: "Sorry, looks like there are some errors detected, please try again.",
             icon: "error",
@@ -532,6 +549,14 @@
     }
 });
 </script>
+
+<script>
+  document.getElementById("kt_modal_new_target_cancel").addEventListener("click", function() {
+    // Additional actions to perform on reset button click
+    console.log("Reset button clicked!");
+  });
+</script>
+
 <!-- <script>
     $("#kt_modal_new_target_form").submit(function(){
         var vehicle_no=document.getElementById("vehical_no").value;
