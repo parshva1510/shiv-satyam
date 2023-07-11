@@ -30,6 +30,7 @@ class ticket extends Controller
        
          $data = weight_entry::find($req->sr_no);
          $datainsert = new weight_entry();
+        
          $sr_no = transporter::get()->last()->sr_no;
          
          $datainsert->ticket_no = $req->ticket_no;
@@ -40,7 +41,6 @@ class ticket extends Controller
          $datainsert->gross_time = date('Y-m-d H:i',strtotime($req->gross_date));
          $datainsert->tare_weight = $req->tare_wight;
          $datainsert->tare_date =date('Y-m-d',strtotime(substr($req->tare_date,0,10)));
-         //dd($datainsert->tare_date);
          $datainsert->tare_time = date('Y-m-d H:i',strtotime($req->tare_date));
          $datainsert->net_weight = $req->net_weight;
          $datainsert->material =strtoupper($req->material);
@@ -49,6 +49,26 @@ class ticket extends Controller
          $datainsert->remark = $req->remarks;
          $datainsert->cdate = date('Y-m-d',strtotime(substr($req->cdate,0,10)));
          $datainsert->save();
+
+         $data1 = new weight_entry_log();
+         $data1->ticket_no = $req->ticket_no;
+         $data1->client_no =$req->transpoter_no ;
+         $data1->vehicle_no = $req->vehical_no;
+         $data1->gross_weight = $req->gross_weight;
+         $data1->gross_date =date('Y-m-d H:i',strtotime(substr($req->gross_date,0,10)));
+         $data1->gross_time = date('Y-m-d H:i',strtotime($req->gross_date));
+         $data1->tare_weight = $req->tare_wight;
+         $data1->tare_date =date('Y-m-d',strtotime(substr($req->tare_date,0,10)));
+         $data1->tare_time = date('Y-m-d H:i',strtotime($req->tare_date));
+         $data1->net_weight = $req->net_weight;
+         $data1->material =strtoupper($req->material);
+         $data1->charges = $req->charge;
+         $data1->payment_mode = $req->payment_mode;
+         $data1->remark = $req->remarks;
+         $data1->update_by = $req->update_by;
+         $data1->update_date = date('Y-m-d',strtotime(substr($req->cdate,0,10)));
+         $data1->save();
+
          $data=DB::select("SELECT *,weight_entry.remark as remarks,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no where weight_entry.sr_no = '$datainsert->sr_no'");
          $transporters = Transporter::all();
        
@@ -119,7 +139,6 @@ class ticket extends Controller
       $data->gross_weight = $req->input('gross_weight');
       $data->gross_date = date('Y-m-d', strtotime(substr($req->gross_date, 0, 10)));
       $data->gross_time = date('Y-m-d H:i', strtotime($req->gross_date));
-      //dd($data->gross_time);
       $data->tare_weight = $req->input('tare_wight');
       $data->tare_date =date('Y-m-d',strtotime(substr($req->tare_date,0,10)));
       $data->tare_time = date('Y-m-d H:i',strtotime($req->tare_date));
@@ -129,9 +148,29 @@ class ticket extends Controller
       $data->payment_mode = $req->input('payment_mode');
       $data->cdate =date('Y-m-d',strtotime(substr($req->cdate,0,10)));
       $data->remark =ucfirst($req->input('remarks'));
-      
       $data->save();
-      /*cash transaction automatic enterd to paymnet table*/
+
+      $dataupdate = new weight_entry_log();
+      $dataupdate->ticket_no = $req->ticket_no;
+      $dataupdate->client_no =$req->transpoter_no ;
+      $dataupdate->vehicle_no = $req->vehical_no;
+      $dataupdate->gross_weight = $req->gross_weight;
+      $dataupdate->gross_date =date('Y-m-d H:i',strtotime(substr($req->gross_date,0,10)));
+      $dataupdate->gross_time = date('Y-m-d H:i',strtotime($req->gross_date));
+      $dataupdate->tare_weight = $req->tare_wight;
+      $dataupdate->tare_date =date('Y-m-d',strtotime(substr($req->tare_date,0,10)));
+      $dataupdate->tare_time = date('Y-m-d H:i',strtotime($req->tare_date));
+      $dataupdate->net_weight = $req->net_weight;
+      $dataupdate->material =strtoupper($req->material);
+      $dataupdate->charges = $req->charge;
+      $dataupdate->payment_mode = $req->payment_mode;
+      $dataupdate->remark = $req->remarks;
+      $dataupdate->update_by = $req->update_by;
+      $dataupdate->update_date = date('Y-m-d',strtotime(substr($req->cdate,0,10)));
+      $dataupdate->save();
+
+
+
       $tr_data=transporter::all();
       $data=DB::select("SELECT *,weight_entry.remark as remarks ,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no  ORDER BY weight_entry.sr_no DESC");
       return view('admin.view_ticket',['data' => $data]);
