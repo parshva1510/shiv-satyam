@@ -6,7 +6,7 @@
     <div class="d-flex flex-column flex-column-fluid">
         <!--begin::Toolbar-->
         <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6 mb-5 mt-5">
-        <form id="kt_modal_new_target_form1" class="form" method="POST" action= "{{!empty($transporter)?route('update_ticket'):route('add_ticket')}}" >
+        <form id="kt_modal_new_target_form" class="form" method="POST" action= "{{!empty($transporter)?route('update_ticket'):route('add_ticket')}}" >
             <!--begin::Toolbar container-->
             <div id="kt_app_toolbar_container" class="app-container new-full-width container-xxl d-flex flex-stack">
                 
@@ -552,11 +552,12 @@
     });
     </script> -->
     <script>
-        $("#kt_modal_new_target_form1").submit(function(){
-        var name=document.getElementById("name1").value;
-        var city=document.getElementById("city1").value;
-        var contact=document.getElementById("contact1").value;
-        if(name ==='' && city === '' && contact ==='')
+        $("#kt_modal_new_target_form").submit(function(){
+            var grossweight = document.getElementById('gross_weight').value;
+            var tareweight = document.getElementById('tare_wight').value;
+            var netweight = document.getElementById('net_weight').value;
+            var charge = document.getElementById('charge').value;
+        ifgrossweight  === '' && tareweight === ''&& netweight ==='' && charge ==='' &&  !pattern.test(vehicleNumber)
         {
             Swal.fire({
                 text: "Sorry, looks like there are some errors detected, please try again.",
@@ -567,11 +568,11 @@
             Swal.fire({
                 position: 'middle-center',
                 icon: 'success',
-                title: 'Transporter data has been successfully updated!',
+                title: 'Ticket data has been successfully updated!',
                 showConfirmButton: false,
                 timer: 1500
                 }).then(function() {
-                $("#kt_modal_new_target_form1").submit();
+                $("#kt_modal_new_target_form").submit();
            });
         }
     });
