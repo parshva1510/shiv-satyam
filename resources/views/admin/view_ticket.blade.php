@@ -473,6 +473,8 @@ $("#kt_ecommerce_report_views_daterangepicker").daterangepicker({
 }, cb);
 
 cb(start, end);
+
+
 </script>
 
 

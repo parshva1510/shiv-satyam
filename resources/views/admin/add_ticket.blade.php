@@ -167,6 +167,7 @@ ha pan swal fire joi lau niche kem submit nai karva deta pattern ma bhul 6  -->
                                                 
                                                 <input class="form-control form-control-solid ps-12" id="gross_date" placeholder="Select a date" name="gross_date" value="{{!empty($transporter) ? $transporter['gross_date']:''}}" required/>
                                                 
+                                                
 
 
                                                 <!--end::Datepicker-->
@@ -199,7 +200,7 @@ ha pan swal fire joi lau niche kem submit nai karva deta pattern ma bhul 6  -->
                                                 <!--end::Svg Icon-->
                                                 <!--end::Icon-->
                                                 <!--begin::Datepicker-->
-                                                <input class="form-control form-control-solid ps-12" id="tare_date" placeholder="Select a date" name="tare_date" value="{{!empty($transporter) ? $transporter['tare_date'] :date('Y-m-d')}}" required/>
+                                                <input class="form-control form-control-solid ps-12" id="tare_date" placeholder="Select a date" name="tare_date" value="{{!empty($transporter) ? $transporter['tare_date']:''}}" required/>
                                                 <!--end::Datepicker-->
                                             </div>
                                         </div>
@@ -442,6 +443,17 @@ ha pan swal fire joi lau niche kem submit nai karva deta pattern ma bhul 6  -->
     });
   });
 </script>
+<!-- <script>
+  // Get the current date
+  var currentDate = new Date();
+
+  // Format the date as "d-m-Y"
+  var formattedDate = currentDate.getDate() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getFullYear();
+
+  // Set the formatted date as the placeholder value
+  document.getElementById("gross_date").gross_date = formattedDate;
+</script> -->
+
 
 
 
@@ -515,11 +527,7 @@ ha pan swal fire joi lau niche kem submit nai karva deta pattern ma bhul 6  -->
                 document.getElementById('number_error').textContent = "";
               
             }
-// // try  done ne ?hov thanksa oyy wait
-// if( !pattern.test(vehicleNumber)){
-//     console.log("pattern is wrong");
-//     return false;
-// }
+
     if (grossweight  === '' && tareweight === ''&& netweight ==='' && charge ==='' &&  !pattern.test(vehicleNumber)) {
 
         Swal.fire({
@@ -557,34 +565,7 @@ ha pan swal fire joi lau niche kem submit nai karva deta pattern ma bhul 6  -->
   });
 </script>
 
-<!-- <script>
-    $("#kt_modal_new_target_form").submit(function(){
-        var vehicle_no=document.getElementById("vehical_no").value;
-        var gross_weight=document.getElementById("gross_weight").value;
-        var tare_weight=document.getElementById("tare_wight").value;
-        var net_weight=document.getElementById("net_weight").value;
-        var charges=document.getElementById("charge").value;
-        
-        if(vehicle_no ==='' && gross_weight === '' && tare_weight ==='' && net_weight ==='' && charges ==='')
-        {
-            Swal.fire({
-                text: "Sorry, looks like there are some errors detected, please try again.",
-                icon: "error",
-            });
-            return false; // Prevent form submission
-        } else {
-            Swal.fire({
-                position: 'middle-center',
-                icon: 'success',
-                title: 'form has been successfully submitted!',
-                showConfirmButton: false,
-                timer: 1500
-                }).then(function() {
-                $("#kt_modal_new_target_form").submit();
-           });
-        }
-    });
-</script> -->
+
 
 
 
@@ -594,23 +575,6 @@ ha pan swal fire joi lau niche kem submit nai karva deta pattern ma bhul 6  -->
 
 
     
-    <!-- <script>
-    // Element to indecate
-    var button = document.querySelector("#new_submit");
-    
-    // Handle button click event
-    button.addEventListener("click", function(e) {
-    e.preventDefault();
-    // Activate indicator
-    button.setAttribute("data-kt-indicator", "on");
-    
-    // Disable indicator after 3 seconds
-    setTimeout(function() {
-    myFunction(1);
-    button.removeAttribute("data-kt-indicator");
-    }, 1000);
-    });
-    </script> -->
     
     <script>
     $(document).ready(function($){
