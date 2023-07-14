@@ -114,6 +114,7 @@ class ticket extends Controller
 
    public function edit_ticket($id)
 {
+  // view ticket ni badle update ticket j lakhelu re 6
  
      $sr_no = transporter::get()->last()->sr_no;
      $data = weight_entry::with('transporter')->find($id);
@@ -130,7 +131,7 @@ class ticket extends Controller
 
 
    public function update_ticket(Request $req) {
-     //dd($req->edit_sr_no);
+     //dd($req->edit_sr_no); 
 
       $data = weight_entry::with('transporter')->find($req->edit_sr_no);
       $data->ticket_no = $req->input('ticket_no');
@@ -149,7 +150,9 @@ class ticket extends Controller
       $data->cdate =date('Y-m-d',strtotime(substr($req->cdate,0,10)));
       $data->remark =ucfirst($req->input('remarks'));
       $data->save();
+      //dd($data['ticket_no']);
 
+      //wieght_entry_log table data
       $dataupdate = new weight_entry_log();
       $dataupdate->ticket_no = $req->ticket_no;
       $dataupdate->client_no =$req->transpoter_no ;
@@ -166,18 +169,18 @@ class ticket extends Controller
       $dataupdate->payment_mode = $req->payment_mode;
       $dataupdate->remark = $req->remarks;
       $dataupdate->update_by = $req->update_by;
-      $dataupdate->update_date = date('Y-m-d',strtotime(substr($req->cdate,0,10)));
+      $dataupdate->update_date = Carbon::now();
       $dataupdate->save();
-
-
-
       $tr_data=transporter::all();
       $data=DB::select("SELECT *,weight_entry.remark as remarks ,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no  ORDER BY weight_entry.sr_no DESC");
-      return view('admin.view_ticket',['data' => $data]);
-     // return view('admin.add_ticket',['data' => $data,'tr_data'=>$tr_data]);
-// aa to tu select karavas update ma kya ? aa select 6 edit ni kya ?
+      //return view('admin.view_ticket',['data' => $data]);
+      return redirect()->route('view_ticket');
+      
+    
+
 
    }
+  
   
 
    public function delete_ticket($id){

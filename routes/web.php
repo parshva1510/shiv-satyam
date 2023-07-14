@@ -85,7 +85,7 @@ Route::get('reset_password',[authentication::class,'reset_password'])->name('res
 Route::get('change_password',[authentication::class,'change_password'])->name('change_password');
 
 Route::POST('add_ticket',[ticket::class,'add_ticket'])->name('add_ticket');
-
+// aa je apne update karie 6ea e kai method  6 ?
 
 Route::post('update_ticket',[ticket::class,'update_ticket'])->name('update_ticket');
 Route::get('/delete_ticket/{sr_no}',[ticket::class,'delete_ticket'])->name('delete_ticket');

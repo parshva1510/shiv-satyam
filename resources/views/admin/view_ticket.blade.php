@@ -190,6 +190,7 @@
 														</td>
 														<!--end::Checkbox-->
 														<input type="hidden" class="delete_id" value="{{$row->id}}">
+														<!--  niche te batavyu ema location.reload lakhelu 6 tya ja  -->
 														<td>{{$row->ticket_no}}</td>
 													
 													
@@ -580,6 +581,7 @@ $('input.toggle-vis').on('click', function (e) {
                             'success',
                             );
                             location.reload();
+						//ahiya??ha location remove karu search kar how to redirect from jquery ajax
                             }
                         });
                     }

@@ -1,7 +1,8 @@
 "use strict";
 var KTUsersAddUser = function() {
     const t = document.getElementById("kt_modal_add_user_1"),
-        e = t.querySelector("#kt_modal_add_user_form_1"),
+        e = t.querySelector("#kt_modal_new_target_form"),
+        // aa id no koi form 6?
         n = new bootstrap.Modal(t);
     return {
         init: function() {
