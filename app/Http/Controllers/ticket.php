@@ -114,7 +114,7 @@ class ticket extends Controller
 
    public function edit_ticket($id)
 {
-  // view ticket ni badle update ticket j lakhelu re 6
+  
  
      $sr_no = transporter::get()->last()->sr_no;
      $data = weight_entry::with('transporter')->find($id);

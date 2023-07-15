@@ -190,7 +190,7 @@
 														</td>
 														<!--end::Checkbox-->
 														<input type="hidden" class="delete_id" value="{{$row->id}}">
-														<!--  niche te batavyu ema location.reload lakhelu 6 tya ja  -->
+														
 														<td>{{$row->ticket_no}}</td>
 													
 													
@@ -238,8 +238,7 @@
 														
 														@endif
 														<td>{{$row->remarks}}</td>
-														<!-- db ma store nathi that e wait jo ha to e edit ma issue 6 data update vakhate controller ma jo -->
-														
+																												
 														<td>@if(isset($row->cdate)){{(new DateTime ($row->cdate))->format('d-m-Y')}}@endif</td>
 														
 														
