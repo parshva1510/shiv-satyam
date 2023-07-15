@@ -132,8 +132,7 @@
                                         <!--end::Label-->												
                                     </div>
                                     <!--end::Input group-->
-<!-- aam better rese chalse ?
-ha pan swal fire joi lau niche kem submit nai karva deta pattern ma bhul 6  -->
+
                                                                                             
 
                                     <!--begin::Input group-->
