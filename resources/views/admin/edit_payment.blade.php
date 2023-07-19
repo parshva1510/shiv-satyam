@@ -240,7 +240,7 @@
                                     <div class="row-md-1 mb-5">
                                         <!--begin::Label-->
                                         <label class="fs-6 fw-semibold form-label ">
-                                            <span><b><h4>Transporter:</h4></b></span>
+                                            <span><b><h4>Transporter:{{$transporter_name[0]->name}}</h4></b></span>
                                             <span><b><h4> Opening Balance: {{$balance[0]->balance}} </h4></b></span>
                                         </label>
                                         <!--end::Label-->
@@ -401,7 +401,7 @@
                                         <!--begin::Label-->
                                         <label class="fs-6 fw-semibold form-label ">
                                         <label class="fs-6 fw-semibold form-label ">
-                                            <span><b><h4>Transporter: </h4></b></span>
+                                            <span><b><h4>Transporter: {{$transporter_name[0]->name}}</h4></b></span>
                                             <span><b><h4> Opening Balance: {{$balance[0]->balance}} </h4></b></span>
                                         </label>
                                         </label>

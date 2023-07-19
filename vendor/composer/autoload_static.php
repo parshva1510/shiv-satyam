@@ -33,6 +33,7 @@ class ComposerStaticInit794fad89cac06836a5373c64c5bd4cb8
         'a1cfe24d14977df6878b9bf804af2d1c' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Phpunit/Autoload.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
         '320163ac6b93aebe3dc25b60a0533d56' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/helpers.php',
+        '83926a8ce548561e7e05a196ab9d9b27' => __DIR__ . '/../..' . '/app/helper/helper.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -542,13 +543,12 @@ class ComposerStaticInit794fad89cac06836a5373c64c5bd4cb8
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
-        'App\\Http\\Controllers\\Payment' => __DIR__ . '/../..' . '/app/Http/Controllers/Payment.php',
         'App\\Http\\Controllers\\User' => __DIR__ . '/../..' . '/app/Http/Controllers/User.php',
         'App\\Http\\Controllers\\authentication' => __DIR__ . '/../..' . '/app/Http/Controllers/authentication.php',
+        'App\\Http\\Controllers\\paymentController' => __DIR__ . '/../..' . '/app/Http/Controllers/paymentController.php',
         'App\\Http\\Controllers\\pdfcontroller' => __DIR__ . '/../..' . '/app/Http/Controllers/pdfcontroller.php',
         'App\\Http\\Controllers\\reportcontroller' => __DIR__ . '/../..' . '/app/Http/Controllers/reportcontroller.php',
         'App\\Http\\Controllers\\ticket' => __DIR__ . '/../..' . '/app/Http/Controllers/ticket.php',
-        'App\\Http\\Controllers\\transporter_data' => __DIR__ . '/../..' . '/app/Http/Controllers/transporter_data.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',

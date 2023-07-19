@@ -59,8 +59,11 @@ class paymentController extends Controller
     public function get_transporter(Request $req)
     {
         $id=$req->transporter;
+      
         $transporter=DB::select("SELECT * from transporter");
         $payment=DB::select("SELECT p.sr_no,p.client_no,t.name as transporter_name,p.amount,p.date,p.remark,p.payment_mode,p.receipt_no,(SELECT sum(charges) from weight_entry where transpoter_no=p.client_no and cdate <= p.date) as debit,(SELECT sum(amount) from payment where client_no=p.client_no and date <p.date)as credit from payment p join transporter t on t.sr_no=p.client_no where p.client_no='$id'");
+        $transporter_name = DB::select("SELECT name FROM transporter where sr_no='$id'"); 
+          //dd($transporter_name);
         $count=DB::select("SELECT count(*) as count from payment where client_no='$id'");
         $balance= DB::select("SELECT (SELECT sum(charges) FROM `weight_entry` where transpoter_no=$id)-(SELECT sum(amount) FROM `payment` where client_no=$id) as balance");
         $sr_no = payment::get()->last()->sr_no;
@@ -73,6 +76,6 @@ class paymentController extends Controller
             $balance=0;   
             return view('admin.add_payment1',['transporter' => $transporter,'payment' => $payment,'sr_no' => $sr_no ,'rec_no' => $next_rec_no,'id' =>$id]);
         } 
-        return view('admin.edit_payment', ['transporter' => $transporter,'payment' => $payment,'sr_no' => $sr_no ,'rec_no' => $next_rec_no,'balance' => $balance,'id' =>$id,'count' => $count]);
+        return view('admin.edit_payment', ['transporter' => $transporter,'payment' => $payment,'sr_no' => $sr_no ,'rec_no' => $next_rec_no,'balance' => $balance,'id' =>$id,'count' => $count,'transporter_name'=>$transporter_name]);
     }
 }
