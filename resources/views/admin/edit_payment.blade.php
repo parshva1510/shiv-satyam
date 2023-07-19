@@ -143,7 +143,7 @@
                                             @endwhile
                                         @else
                                    
-                                  
+                                  <!-- date wise ticket add thavi joie -->
                                        
                                     <tr>
                                         <td>{{$ticketdetails[$j]->ticket_no}}</td>
@@ -184,26 +184,7 @@
                                         @php  $lastpayment=$payment[$i]->date; $i++; @endphp
                                     @endforeach
                          
-                                    @foreach($ticketdetails as $ticket_row)
-                                        @if($ticket_row->cdate > $lastpayment)
-                                     <tr>
-                                        <td>{{$ticket_row->ticket_no}}</td>
-                                      
-                                        <td>{{(new DateTime($ticket_row->cdate))->format('d-m-Y')}}</td>
-
-                                        <td>{{'₹'.$ticket_row->charges}}</td>
-
-                                        <td></td>
-
-                                        <td></td>
-
-                                        <td></td>
-                                     
-                                        <td>{{$ticket_row->remark}}</td>
-                                </tr> 
                                    
-                                 @endif
-                                @endforeach
 
                               
                                 </tbody>
