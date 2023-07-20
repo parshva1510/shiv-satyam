@@ -95,7 +95,7 @@
                             <!--begin::Card body-->
                             <div class="card-body">
                                 <!--begin::Table-->
-                                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_sales_table">
+                                <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_datatable_example">
                                 <!--begin::Table head-->
                                 <thead>
                                     <!--begin::Table row-->
@@ -103,10 +103,10 @@
                                         <th></th>
                                         <th class="min-w-70px">Receipt No.</th>
                                         <th class="min-w-70px">Date</th>
-                                        <th class="min-w-70px">Transoprter</th>                            
+                                        <th class="min-w-70px">Vehical No</th>                            
                                         <th class="min-w-70x">Debit</th>
                                         <th class="min-w-70px">Credit</th>
-                                        <th class="min-w-70px">Remaining</th>
+                                        <th class="min-w-70px">Balance</th>
                                         <th class="min-w-70px">Payment</th>
                                     
                                        
@@ -126,7 +126,7 @@
 
                                         <td data-kt-ecommerce-order-filter="order_id">{{(new DateTime($row->date))->format('d-m-Y')}}</td>
 
-                                        <td>{{$row->transporter_name}}</td>
+                                        <td>{{$row->vehicle_no}}</td>
 
                                         <td>{{'₹ '.$row->debit-$row->credit }}</td>
 
@@ -200,12 +200,7 @@
                                         </button>
                                 </div>
                                 <div class="mt-5">
-                                <button type="button" id="refresh" name="refresh" class="btn btn-primary full-button" onclick="goBack()">
-                                    <span class="glyphicon glyphicon-refresh">Refresh</span>
-                                    <span class="indicator-progress">Please wait...
-                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                    </span>
-                                </button>      
+                                     
       
                                 </div>
                                 </form>
@@ -231,7 +226,7 @@
 
 <!--begin::Custom Javascript(used for report page only)-->
 <script src="{{url('public/assets/js/custom/apps/ecommerce/sales/listing.js')}}"></script>
-{{-- <script src="{{url('public/assets/js/custom/apps/ecommerce/customers/listing/listing.js')}}"></script> --}}
+<!-- <script src="{{url('public/assets/js/custom/apps/ecommerce/customers/listing/listing.js')}}"></script> -->
 <!--end::Custom Javascript-->
 
 <script>
@@ -246,19 +241,7 @@ var KTDatatablesExample = function () {
     var table = '#kt_datatable_example';
     var datatable;
 
-    // Private functions
-    var initDatatable = function () {
-       
-
-        // Init datatable --- more info on datatables: https://datatables.net/manual/
-        datatable = $('#kt_datatable_example').DataTable({
-            "info": true,
-            'pageLength': 10,
-            "ordering": false,
-        
-        });
-        //console.log(datatable);
-    }
+   
 
     // Hook export buttons
     var exportButtons = () => {
@@ -319,7 +302,7 @@ var KTDatatablesExample = function () {
                 return;
             }
 
-            initDatatable();
+            
             exportButtons();
             handleSearchDatatable();
         }

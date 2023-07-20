@@ -30,7 +30,11 @@ class reportcontroller extends Controller
 
    public function payment_report(){
      $transporter=transporter::get()->all();
-     $payment=DB::select("SELECT p.sr_no,p.client_no,t.name as transporter_name,p.amount,p.date,p.remark,p.payment_mode,p.receipt_no,(SELECT sum(charges) from weight_entry where transpoter_no=p.client_no and cdate<=p.date) as debit,(SELECT sum(amount) from payment where client_no=p.client_no and date < p.date)as credit from payment p join transporter t on t.sr_no=p.client_no GROUP by p.sr_no order by sr_no desc;");
+     $payment=DB::select("SELECT p.sr_no, p.client_no, t.name AS transporter_name, p.amount, p.date, p.remark, p.payment_mode, p.receipt_no, (SELECT SUM(charges) FROM weight_entry WHERE transpoter_no = p.client_no AND cdate <= p.date) AS debit, (SELECT SUM(amount) FROM payment WHERE client_no = p.client_no AND date < p.date) AS credit, we.vehicle_no FROM payment p JOIN
+     transporter t ON t.sr_no = p.client_no LEFT JOIN  weight_entry we ON we.transpoter_no = p.client_no AND we.cdate <= p.date GROUP BY p.sr_no, p.client_no, t.name, p.amount, p.date, p.remark, p.payment_mode, p.receipt_no,
+     we.vehicle_no ORDER BY p.sr_no DESC;");
+     
+
      return view('admin.payment_report',["transporter" => $transporter,'payment' => $payment]);
    }
 
@@ -38,9 +42,11 @@ class reportcontroller extends Controller
         $id=$req->transporter;
         $transporter=DB::select("SELECT * from transporter");
         $daterange=$req->kt_daterangepicker_1;
-        $date1=date('d-m-Y',strtotime(substr($daterange,0,10)));
-        $date2=date('d-m-Y',strtotime(substr($daterange,13)));
-        $payment=DB::select("SELECT p.sr_no,p.client_no,t.name as transporter_name,p.amount,p.date,p.remark,p.payment_mode,p.receipt_no,(SELECT sum(charges) from weight_entry where transpoter_no=p.client_no and cdate <= p.date) as debit,(SELECT sum(amount) from payment where client_no=p.client_no and date <p.date)as credit from payment p join transporter t on t.sr_no=p.client_no where p.client_no='$id'");
+        $date1=date('Y-m-d',strtotime(substr($daterange,0,10)));
+        $date2=date('Y-m-d',strtotime(substr($daterange,13)));
+    //dd($date2);
+        $payment=DB::select("SELECT p.sr_no,p.client_no,t.name as transporter_name,p.amount,p.date,p.remark,p.payment_mode,p.receipt_no,(SELECT sum(charges) FROM weight_entry WHERE transpoter_no = p.client_no AND date <= p.date) as debit,(SELECT sum(amount) FROM payment WHERE client_no = p.client_no AND date < p.date) as credit,(SELECT vehicle_no FROM weight_entry WHERE transpoter_no = p.client_no AND cdate <= p.date LIMIT 1) as vehicle_no FROM payment p JOIN transporter t ON t.sr_no = p.client_no WHERE p.client_no = '$id' and p.date between '$date1' and '$date2' ");
+        //$payment=DB::select("SELECT * from payment where client_no='$id'");
         $sr_no = payment::get()->last()->sr_no;
         $rec_no= payment::get()->last()->receipt_no;
         $temp=substr($rec_no,0,8);
