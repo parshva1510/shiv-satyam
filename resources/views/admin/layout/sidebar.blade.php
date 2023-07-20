@@ -193,7 +193,7 @@
                 </div>
                 <!--end:Menu sub-->
                    <!--begin:Menu sub-->
-                   <div class="menu-sub menu-sub-accordion menu-active-bg">
+                <div class="menu-sub menu-sub-accordion menu-active-bg">
                     <!--begin:Menu item-->
                     <div class="menu-item">
                         <!--begin:Menu link-->
@@ -207,7 +207,24 @@
                     </div>
                     <!--end:Menu item-->
                 </div>
-                <!--end:Menu sub-->       
+                <!--end:Menu sub-->  
+                <!--begin:Menu sub-->
+                <div class="menu-sub menu-sub-accordion menu-active-bg">
+                    <!--begin:Menu item-->
+                    <div class="menu-item">
+                        <!--begin:Menu link-->
+                        <a class="menu-link" href="{{route('payment_report')}}">
+                            <span class="menu-bullet">
+                                <span class="bullet bullet-dot"></span>
+                            </span>
+                            <span class="menu-title">Payment Report</span>
+                        </a>
+                        <!--end:Menu link-->
+                    </div>
+                    <!--end:Menu item-->
+                </div>
+                <!--end:Menu sub--> 
+
             </div>
             @endif
             <!--end:Menu item-->

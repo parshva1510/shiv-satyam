@@ -31,6 +31,8 @@ Route::get('vehicle_report',[reportcontroller::class,'vehicle_report'])->name('v
 Route::get('show_vehicle_report',[reportcontroller::class,'show_vehicle_report'])->name('show_vehicle_report');
 Route::get('datewise_report',[reportcontroller::class,'datewise_report'])->name('datewise_report');
 Route::get('show_datewise_report',[reportcontroller::class,'show_datewise_report'])->name('show_datewise_report');
+Route::get('payment_report',[reportcontroller::class,'payment_report'])->name('payment_report');
+Route::get('show_payment_report',[reportcontroller::class,'show_payment_report'])->name('show_payment_report');
 
 
 Route::get('show_transporter',[ticket::class,'show_transporter'])->name('show_transporter');
