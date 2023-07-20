@@ -492,7 +492,7 @@
     </script> -->
     
     
-    <script>
+<script>
     var pattern = /^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/;
 
     document.addEventListener('DOMContentLoaded', function() {

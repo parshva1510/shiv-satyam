@@ -268,7 +268,7 @@
                                     <!--end::Input group-->
                                     <!--begin::Actions-->
                                     <div class="text-center d-flex flex-stack"  style= "display: flex; justify-content: flex-end;">
-                                        <button type="submit" id="new_submit" class="btn btn-primary" >
+                                        <button type="submit" id="kt_modal_new_target_form" class="btn btn-primary" >
                                             <span class="indicator-label">Submit</span>
                                             <span class="indicator-progress">Please wait...
                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -547,12 +547,14 @@
     
     // Disable indicator after 3 seconds
     setTimeout(function() {
-    myFunction(1);
+    
+    
+        myFunction(1);
     button.removeAttribute("data-kt-indicator");
     }, 1000);
     });
     </script> -->
-    <script>
+    <!-- <script>
         $("#kt_modal_new_target_form").submit(function(){
             var grossweight = document.getElementById('gross_weight').value;
             var tareweight = document.getElementById('tare_wight').value;
@@ -579,6 +581,60 @@
             
            });
         }
+    });
+</script> -->
+<script>
+     var pattern = /^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/;
+        document.addEventListener('DOMContentLoaded', function()
+        {
+        // var input = document.getElementById('NUMBERPLATE');
+        // input.addEventListener('input', function() {
+        //     var value = this.value;
+        //     if (pattern.test(value)) {
+        //         console.log('Valid vehicle number: ' + value);
+        //         document.getElementById('number_error').textContent = "";
+        //     } else {
+        //         console.log('Invalid vehicle number: ' + value);
+        //         document.getElementById('number_error').textContent = "Please add a valid vehicle number";
+        //     }
+        // });
+    });
+        $("#kt_modal_new_target_form").submit(function(){
+            var vehicleNumber = document.getElementById('NUMBERPLATE').value;
+            var grossweight = document.getElementById('gross_weight').value;
+            var tareweight = document.getElementById('tare_wight').value;
+            var netweight = document.getElementById('net_weight').value;
+            var charge = document.getElementById('charges').value;
+            if (vehicleNumber === '' || !pattern.test(vehicleNumber) ){
+     
+                document.getElementById('number_error').textContent = "Please add a valid vehicle number";  
+                return false;
+              
+
+    }else  {
+       
+                document.getElementById('number_error').textContent = "";
+              
+            }
+        if(grossweight  === '' && tareweight === ''&& netweight ==='' && charge ==='' &&  !pattern.test(vehicleNumber))
+        {
+            Swal.fire({
+                text: "Sorry, looks like there are some errors detected, please try again.",
+                icon: "error",
+            });
+            return false; // Prevent form submission
+          }  else {
+            Swal.fire({
+                position: 'middle-center',
+                icon: 'success',
+                title: 'Transporter data has been successfully updated!',
+                showConfirmButton: false,
+                timer: 1500
+                }).then(function() {
+                $("#kt_modal_new_target_form").submit();
+           });
+        }
+        
     });
 </script>
     
