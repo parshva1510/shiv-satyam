@@ -22,6 +22,7 @@ class ticket extends Controller
           $tr_data=Transporter::all();
           $sr_no = transporter::get()->last()->sr_no;
           $ticket_no =(weight_entry::get()->last()->ticket_no) +  1;
+    
           return view('admin.add_ticket',["transporter" => $transporter,'sr_no' => $sr_no, 'tr_data'=>$tr_data,'ticket_no'=> $ticket_no,'data'=>$data,'material' => $material,'vehicle_no'=>$vehicle_no]);
      }
      public function add_ticket(Request $req)
