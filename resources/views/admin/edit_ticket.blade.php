@@ -251,8 +251,7 @@
                                         
                                             
                                             </select>
-                                        <!-- a kem ave che ok joi lau 
-                                     -->
+                                        
                                         </div>
                                         <!--end::Col-->						
                                     </div>

@@ -90,7 +90,8 @@
                                                     <option class="dropdown-font" value="">Select Account...</option>
                                                        
                                                         @foreach ($tr_data as $row)
-                                                        <option value="{{$row->sr_no}}" {{((!empty($transporter) && !empty($transporter['transporter']['name']) && $transporter['transporter']['name']==$row->name))? "selected":($row->name=="LOCAL"?"selected":"")}}> {{($row->name).'-'.('SS'.$row->sr_no)}} </option>
+                                                        
+                                                        <option value="{{$row->sr_no}}" {{(!empty($transporter) && !empty($transporter['transporter']['name']) && $transporter['transporter']['name'] == $row->name) || ($row->name == "LOCAL" && empty($transporter)) ? "selected" : ""}}>{{ $row->name == "LOCAL" ? $row->name : $row->name.'-SS'.$row->sr_no }}</option>
                                                      
                                                         @endforeach
                                                       
@@ -349,7 +350,7 @@
                             <label class="required fw-bolder fs-6 mb-2">Name</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" name="name" id="name" placeholder="Name" value="{{$transporter['name'] ?? '' }}"/>
+                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" name="name" id="name" style="text-transform:uppercase" placeholder="Name" value="{{$transporter['name'] ?? '' }}"/>
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->

@@ -121,30 +121,8 @@
                                 
                                        
                                     @foreach($payment as $row)
-                                        @if($ticketdetails[$j]->cdate <> $payment[$i]->date)
-                                     
-                                            @while($ticketdetails[$j]->cdate <= $payment[$i]->date )
-                                     <tr>
-                                        <td>{{$ticketdetails[$j]->ticket_no}}</td>
-                                      
-                                        <td>{{(new DateTime($ticketdetails[$j]->cdate))->format('d-m-Y')}}</td>
 
-                                        <td>{{'₹'.$ticketdetails[$j]->charges}}</td>
-
-                                        <td></td>
-
-                                        <td></td>
-
-                                        <td></td>
-                                     
-                                        <td>{{$ticketdetails[$j]->remark}}</td>
-                                </tr> 
-                                            @php $j++ ; @endphp
-                                            @endwhile
-                                        @else
-                                   
-                                  <!-- date wise ticket add thavi joie -->
-                                       
+                                            @while($ticketdetails[$j]->cdate < $payment[$i]->date )
                                     <tr>
                                         <td>{{$ticketdetails[$j]->ticket_no}}</td>
                                       
@@ -159,10 +137,30 @@
                                         <td></td>
                                      
                                         <td>{{$ticketdetails[$j]->remark}}</td>
-                                </tr> 
-                                        @php $j++ ; @endphp
+                                    </tr> 
+                                            @php $j++ ; @endphp
+                                            @endwhile
                                       
-                                    @endif
+                                      @if($ticketdetails[$j]->cdate ==   $payment[$i]->date )
+                                    <tr>
+                                        <td>{{$ticketdetails[$j]->ticket_no}}</td>
+                                      
+                                        <td>{{(new DateTime($ticketdetails[$j]->cdate))->format('d-m-Y')}}</td>
+
+                                        <td>{{'₹'.$ticketdetails[$j]->charges}}</td>
+
+                                        <td></td>
+
+                                        <td></td>
+
+                                        <td></td>
+                                     
+                                        <td>{{$ticketdetails[$j]->remark}}</td>
+                                    </tr> 
+                                            @php $j++ ; @endphp
+                                          
+                                        @endif
+                                       
                                 <tr>
                                      
                                      <td><a href="{{route('edit_payment',$payment[$i]->sr_no)}}" data-typeId="{{$payment[$i]->sr_no}}" id="edit" >{{$payment[$i]->receipt_no}}</a></td>
