@@ -122,7 +122,7 @@
                                     <label class="required fw-bolder fs-6 mb-2">Name</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="name" id="name" value="" placeholder="" required/>
+                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" style="text-transform:uppercase" name="name" id="name" value="" placeholder="" required/>
                                   
                                     <!--end::Input-->
                                 </div>
@@ -202,7 +202,7 @@
                                     <label class="required fw-bolder fs-6 mb-2">Name</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="name1" id="name1" value="" placeholder="" required/>
+                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="name1" style="text-transform:uppercase" id="name1" value="" placeholder="" required/>
                                   
                                     <!--end::Input-->
                                 </div>

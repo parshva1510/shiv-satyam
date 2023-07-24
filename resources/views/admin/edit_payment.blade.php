@@ -318,7 +318,7 @@
                                     <div class="col-md-3 text-md-start">
                                         <!--begin::Label-->
                                         <label class="fs-6 fw-semibold form-label mt-3">
-                                            <span class="required"><b>Description</b></span>
+                                            <span class=""><b>Description</b></span>
                                         </label>
                                         <!--end::Label-->
                                     </div>

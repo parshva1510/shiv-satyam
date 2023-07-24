@@ -85,7 +85,7 @@
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>
-                            <span class="menu-title">Add Client</span>
+                            <span class="menu-title">Add Transporter</span>
                         </a>
                         <!--end:Menu link-->
                     </div>

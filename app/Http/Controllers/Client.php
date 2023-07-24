@@ -9,7 +9,7 @@ class client extends Controller
     public function show_client()
     {
         $sr_no = transporter::get()->last()->sr_no;
-        $data=DB::select('select * from transporter');
+        $data=DB::select('select * from transporter ORDER BY transporter.sr_no DESC');
         return view('admin.add_client', ['sr_no' => $sr_no],['data' => $data]);       
     }
     public function add_client(Request $req)
