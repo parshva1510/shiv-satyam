@@ -545,7 +545,7 @@ $('input.toggle-vis').on('click', function (e) {
 			//console.log(dateRange);
             // Loop through each row and show/hide based on date range
             $('#ticket_data tbody tr').each(function() {
-                var soldDate = formatDate($(this).find('td:nth-child(13)').text());
+                var soldDate = formatDate($(this).find('td:nth-child(15)').text());
 				//console.log(soldDate);
                 if (isDateInRange(soldDate, startDate, endDate)) {
                     $(this).show();
