@@ -8,8 +8,8 @@ use App\Models\payment;
 use App\Models\weight_entry_log;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
-use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ticket extends Controller
 
