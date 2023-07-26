@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\users;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class authentication extends Controller
 {
@@ -26,8 +26,8 @@ class authentication extends Controller
         }else{
             if($password==$data[0]->password){
                 $_SESSION['type']="remember";
-                session(['user'=>$username]);
-                session(['role'=>$data[0]->role]);
+                $req->session()->put('user',$username);
+                $req->session()->put('role',$data[0]->role);
                 if($check==null){
                     if(isset($_COOKIE['user_login'])){
                         setcookie('user_login',"");
