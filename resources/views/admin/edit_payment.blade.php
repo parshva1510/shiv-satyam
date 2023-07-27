@@ -87,11 +87,33 @@
                 
  
                 <div class="col-xl-9">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <table class="table align-middle table-row-dashed fs-6 gy-5">
+
+                                <thead>
+                                    <th>Total Debit</th>
+                                    <th>Total Credit</th>
+                                    <th>Remaining Ballance</th>
+                                </thead>
+
+                                <tr>
+                                    <td><b> ₹ {{$totalvalues[0]->totaldebit}}</b></td>
+                                    <td><b>₹ {{$totalvalues[0]->totalcredit}}</b></td>
+                                    <td><b>₹ {{$totalvalues[0]->totaldebit - $totalvalues[0]->totalcredit}}</b></td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
                     <!--begin::Products-->
-                    <div class="card card-flush">
+                    <div class="card card-flush mt-10">
+
                    
                         <!--begin::Card body-->
                         <div class="card-body">
+                        
                             <!--begin::Table-->
                             <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_ecommerce_sales_table">
                                 <!--begin::Table head-->
@@ -102,7 +124,7 @@
                                         <th class="min-w-70px">Date</th>                         
                                         <th class="min-w-70x">Debit</th>
                                         <th class="min-w-70px">Credit</th>
-                                        <th class="min-w-70px">Remaining</th>
+                            
                                         <th class="min-w-70px">Description</th>
                                     </tr>
                                     <!--end::Table row-->
@@ -116,9 +138,9 @@
                                     <tr>
                                         <td>{{$entry->receipt}}</td>
                                         <td>{{$entry->date}}</td>
-                                        <td>{{$entry->debit}}</td>
-                                        <td>{{$entry->credit}}</td>
-                                        <td>{{$entry->remaining}}</td>
+                                        <td>₹ {{$entry->debit}}</td>
+                                        <td>₹ {{$entry->credit}}</td>
+                                       
                                         <td>{{$entry->description}}</td>
                                     </tr>
                                    @endforeach
@@ -159,7 +181,7 @@
                                         <!--begin::Label-->
                                         <label class="fs-6 fw-semibold form-label ">
                                             <span><b><h4>Transporter: {{$name->name}}</h4></b></span>
-                                            <span><b><h4> Opening Balance:  {{$lastentry->remaining}}</h4></b></span>
+                                            <span><b><h4> Opening Balance: ₹ {{$totalvalues[0]->totaldebit - $totalvalues[0]->totalcredit}}</h4></b></span>
                                         </label>
                                         <!--end::Label-->
                                     </div>

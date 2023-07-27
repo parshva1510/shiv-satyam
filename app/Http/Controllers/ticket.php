@@ -90,7 +90,7 @@ class ticket extends Controller
 
               $ledgertable = new ledger();
               $ledgertable->transporter_id = $req->transpoter_no;
-              $ledgertable->receipt = $req->ticket_no;
+              //$ledgertable->receipt = $req->ticket_no;
               $ledgertable->credit = $req->charge;
               $ledgertable->debit = $req->charge;
               $ledgertable->date = date('Y-m-d',strtotime(substr($req->cdate,0,10)));
@@ -100,7 +100,7 @@ class ticket extends Controller
 
           $ledgertable = new ledger();
           $ledgertable->transporter_id = $req->transpoter_no;
-          $ledgertable->receipt = $req->ticket_no;
+         // $ledgertable->receipt = $req->ticket_no;
           $ledgertable->credit = 0;
           $ledgertable->debit = $req->charge;
           $ledgertable->date = date('Y-m-d',strtotime(substr($req->cdate,0,10)));
