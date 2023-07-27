@@ -95,7 +95,42 @@ class paymentController extends Controller
         $id=$req->transporter;
         $transportername = transporter::where('sr_no',$id)->first();
         $transporter=DB::select("SELECT * from transporter");
-      $updatedLedgerEntries = DB::select("SELECT t_index, transporter_id, credit, debit, date, receipt, description, CASE WHEN receipt IS NOT NULL THEN ( SELECT COALESCE(SUM(debit - credit), 0) FROM ledger AS inner_ledger WHERE inner_ledger.transporter_id = outer_ledger.transporter_id AND inner_ledger.t_index < outer_ledger.t_index ) - credit ELSE SUM(debit - credit) OVER (PARTITION BY transporter_id ORDER BY t_index) END AS remaining FROM ledger AS outer_ledger WHERE transporter_id = $id"); 
+
+    
+      //$updatedLedgerEntries = DB::select("SELECT t_index, transporter_id, credit, debit, date, receipt, description, CASE WHEN receipt IS NOT NULL THEN ( SELECT COALESCE(SUM(debit - credit), 0) FROM ledger AS inner_ledger WHERE inner_ledger.transporter_id = outer_ledger.transporter_id AND inner_ledger.t_index < outer_ledger.t_index ) - credit ELSE SUM(debit - credit) OVER (PARTITION BY transporter_id ORDER BY t_index) END AS remaining FROM ledger AS outer_ledger WHERE transporter_id = $id"); 
+
+
+      //new logic
+
+      function calculateRemaining($ledgerEntries)
+      {
+          $remaining = 0;
+          $updatedLedgerEntries = [];
+      
+          foreach ($ledgerEntries as $entry) {
+              if ($entry->receipt !== "") {
+                  $creditSum = 0;
+                  foreach ($ledgerEntries as $innerEntry) {
+                      if ($innerEntry->t_index < $entry->t_index) {
+                          $creditSum += ($innerEntry->debit - $innerEntry->credit);
+                      }
+                  }
+                  $entry->remaining = $creditSum - $entry->credit;
+              } else {
+                  $remaining += ($entry->debit - $entry->credit);
+                  $entry->remaining = $remaining;
+              }
+      
+              $updatedLedgerEntries[] = $entry;
+          }
+      
+          return $updatedLedgerEntries;
+      }
+      
+      // Assuming $ledgerEntries is the collection of entries from your database with transporter_id = 77.
+      $ledgerEntries = ledger::where('transporter_id', $id)->orderBy('t_index')->get();
+      $updatedLedgerEntries = calculateRemaining($ledgerEntries);
+
       $lastEntry = end($updatedLedgerEntries);
       $sr_no = payment::get()->last()->sr_no;
       $rec_no= payment::get()->last()->receipt_no;
