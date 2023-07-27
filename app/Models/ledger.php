@@ -11,4 +11,5 @@ class ledger extends Model
     protected $table='ledger';
     protected $primaryKey='t_index';
     public $timestamps=false;
+
 }

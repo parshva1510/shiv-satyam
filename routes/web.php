@@ -98,3 +98,4 @@ Route::get('login',[authentication::class,'login'])->name('login');
 Route::post('login',[authentication::class,'check_user'])->name('check_user');
 Route::get('login',[authentication::class,'destroy'])->name('destroy');
 Route::get('/',[authentication::class,'login']);
+Route::get('/jk',[ticket::class,'test']);

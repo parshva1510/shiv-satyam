@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\demo;
+use App\Models\ledger;
 use App\Models\transporter;
 use App\Models\weight_entry;
 use App\Models\payment;
@@ -10,6 +11,7 @@ use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 
 class ticket extends Controller
 
@@ -77,20 +79,34 @@ class ticket extends Controller
         $rec_no= payment::get()->last()->receipt_no;
         $temp=substr($rec_no,0,8);
         $next_rec_no= $temp . $sr_no+1;
-        $datapayment = new payment();
-        $datapayment->client_no=$req->transpoter_no;
-        $datapayment->amount=$req->charge;
-        $datapayment->date=$req->cdate;
-        $datapayment->remark="Cash received";
-        $datapayment->payment_mode="Cash";
-        
-        $datapayment->receipt_no=$next_rec_no;
-        if($req->transpoter_no==22)
-        {
-          $datapayment->save();
+       
+
+        //Adding Entry in Ledger Table to smooth calculation
+
+        if($req->payment_mode != '5'){
+          
+              //logic if payment mode is not AC then first amount will debit and then by paying with cash is credit
+              // basically debit - credit (100-100 = 0)
+
+              $ledgertable = new ledger();
+              $ledgertable->transporter_id = $req->transpoter_no;
+              $ledgertable->receipt = $req->ticket_no;
+              $ledgertable->credit = $req->charge;
+              $ledgertable->debit = $req->charge;
+              $ledgertable->date = date('Y-m-d',strtotime(substr($req->cdate,0,10)));
+              $ledgertable->save();
         }
         else{
+
+          $ledgertable = new ledger();
+          $ledgertable->transporter_id = $req->transpoter_no;
+          $ledgertable->receipt = $req->ticket_no;
+          $ledgertable->credit = 0;
+          $ledgertable->debit = $req->charge;
+          $ledgertable->date = date('Y-m-d',strtotime(substr($req->cdate,0,10)));
+          $ledgertable->save();
         }
+
         $ticket_no = $datainsert->ticket_no;
         $viewdata = DB::select("SELECT * FROM `weight_entry` ORDER BY `sr_no` DESC LIMIT 7");
         $pdf = Pdf::loadView('admin.demopdf',['viewdata'=> $viewdata,'transporter' => $data,'tr_data'=>$transporters,'sr_no' => $sr_no,'ticket_no'=> $ticket_no,'rec_no' => $next_rec_no],compact('data'))->setPaper('a4', 'portrait');
