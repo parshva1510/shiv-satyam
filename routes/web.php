@@ -69,6 +69,8 @@ Route::post('update_payment',[paymentController::class,'update_payment'])->name(
 Route::get('delete_payment/{id}',[paymentController::class,'delete_payment'])->name('delete_payment');
 Route::get('get_transporter',[paymentController::class,'get_transporter'])->name('get_transporter');
 
+Route::post('edit_thepayment',[paymentController::class,'edit_thepayment'])->name('edit_thepayment');
+
 Route::get('add_report',[ticket::class,'add_report'])->name('add_report');
 
 
@@ -99,3 +101,4 @@ Route::post('login',[authentication::class,'check_user'])->name('check_user');
 Route::get('login',[authentication::class,'destroy'])->name('destroy');
 Route::get('/',[authentication::class,'login']);
 Route::get('/jk',[ticket::class,'test']);
+Route::get('get_paymentdetails/{id1}/{id2}',[paymentController::class,'get_paymentdetails']);

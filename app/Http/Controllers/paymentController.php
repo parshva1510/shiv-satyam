@@ -121,4 +121,34 @@ class paymentController extends Controller
       return view('admin.edit_payment',['ledger'=>$ledgerEntries,'transporter' => $transporter,'lastentry'=>$lastEntry,'name'=>$transportername,'nextrcpt'=>$next_rec_no,'id'=>$id,'totalvalues'=>$totalvalues]);
       //dd($updatedLedgerEntries);
     }
+
+    public function get_paymentdetails($id1,$id2)
+    {
+      $recpt = $id1.'/'.$id2;
+      $data = ledger::where('receipt',$recpt)->get();
+      //dd($data);
+      return response()->json($data);
+    }
+
+
+    public function edit_thepayment(Request $req)
+    {
+      $updatedata = ledger::where('receipt',$req->Receipt_1)->update(
+        [
+          'credit'=>$req->amount123,
+          'date'=>$req->date12
+        ]
+      );
+
+      $paymentableupdate = payment::where('receipt_no',$req->Receipt_1)->update(
+        [
+          'amount'=>$req->amount123,
+          'date'=>$req->date12
+        ]
+      );
+
+      return back()->with('done','Updated Sucessfully!');
+    }
+
+
 }

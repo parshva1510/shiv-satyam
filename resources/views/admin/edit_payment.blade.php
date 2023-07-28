@@ -136,7 +136,7 @@
 
                                     @foreach($ledger as $entry)
                                     <tr>
-                                        <td>{{$entry->receipt}}</td>
+                                        <td><a href="javascript:void(0)" onclick="openeditpopup('{{$entry->receipt}}')" data-recipt="{{$entry->receipt}}">{{$entry->receipt}}</td>
                                         <td>{{$entry->date}}</td>
                                         <td>₹ {{$entry->debit}}</td>
                                         <td>₹ {{$entry->credit}}</td>
@@ -317,6 +317,89 @@
                     </div>
                     <!--End Add Payment Form-->
                     </div>
+
+
+                    <!-- Edit Model -->
+
+
+                    <div class="modal fade" tabindex="-1" id="kt_modal_1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title">Edit Payment</h3>
+
+                                        <!--begin::Close-->
+                                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                            <i class="ki-duotone ki-cross fs-1"><span class="path1"></span><span class="path2"></span></i>
+                                        </div>
+                                        <!--end::Close-->
+                                    </div>
+                                    <form class="form" method="POST" action="{{route('edit_thepayment')}}">
+                                    <div class="modal-body">
+
+
+                                         <div class="row fv-row mb-5">
+                                                <div class="col-md-3 text-md-start">
+                                                    <!--begin::Label-->
+                                                    <label class="fs-6 fw-semibold form-label mt-3">
+                                                        <span class="required"><b>Receipt No.</b></span>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                </div>
+
+                                                    <div class="col-md-9">
+                                                        @csrf
+                                                        <!--begin::Input-->
+                                                        <input type="text" class="form-control form-control-solid" name="Receipt_1" id="Receipt_1" value="" data-kt-ecommerce-settings-type="tagify" required />
+                                                        <!--end::Input-->
+                                                    </div>
+                                        </div>
+
+
+                                        <div class="row fv-row mb-5">
+                                                <div class="col-md-3 text-md-start">
+                                                    <!--begin::Label-->
+                                                    <label class="fs-6 fw-semibold form-label mt-3">
+                                                        <span class="required"><b>Date</b></span>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                </div>
+                                                    <div class="col-md-9">
+                                                        <!--begin::Input-->
+                                            <input type="date" name="date12" id="date12" class="form-control form-control-solid" value="" required>                                                        <!--end::Input-->
+                                                    </div>
+                                        </div>
+
+
+                                       <div class="row fv-row mb-5">
+                                                <div class="col-md-3 text-md-start">
+                                                    <!--begin::Label-->
+                                                    <label class="fs-6 fw-semibold form-label mt-3">
+                                                        <span class="required"><b>Credit</b></span>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                </div>
+                                                    <div class="col-md-9">
+                                                        <!--begin::Input-->
+                                                        <input type="text" class="form-control form-control-solid" name="amount123" id="amount123" value="" data-kt-ecommerce-settings-type="tagify" required />
+                                                        <!--end::Input-->
+                                                    </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Change Payment</button>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    <!-- Edit Model -->
                 
                 </div>
             <!--end::Content container-->
@@ -364,6 +447,55 @@
                 });
             });
         });
+</script>
+
+<script>
+    function openeditpopup(id)
+    {
+
+        //console.info(id);
+        
+        $.ajax({
+                    url:"{{url('get_paymentdetails')}}" +"/"+ id,
+                    type:'GET',
+                    success:function(response){
+
+
+                        var creditValue = response[0].credit;
+                        //var newdate = response[0].date;
+
+                        // Function to format the date
+                        function formatDate(inputDate) {
+                            var date = new Date(inputDate);
+                            var year = date.getFullYear();
+                            var month = String(date.getMonth() + 1).padStart(2, '0');
+                            var day = String(date.getDate()).padStart(2, '0');
+                            return year + '-' + month + '-' + day;
+                            }
+
+                        var newdate = response[0].date;
+
+                        var formattedDate = formatDate(newdate);
+                        //console.info(formattedDate);
+
+                       // $("#date12").val(response->date); 
+
+                        $("#amount123").val(creditValue); 
+                        $("#Receipt_1").val(id); 
+                        $("#date12").val(formattedDate);
+                        
+                       
+                        //$("#date1").val(response['date']); 
+                        //$("#sr_no1").val(response['receipt_no']); 
+                        //$("#amount1").val(response['amount']); 
+                        //$("#remark1").val(response['remark']);  
+                        //$("#payment1").val('Gpay');
+                    }
+                }); 
+
+                $('#kt_modal_1').modal('show');
+
+    }
 </script>
 
 
