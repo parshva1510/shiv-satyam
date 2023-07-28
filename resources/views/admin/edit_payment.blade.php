@@ -136,7 +136,13 @@
 
                                     @foreach($ledger as $entry)
                                     <tr>
-                                        <td><a href="javascript:void(0)" onclick="openeditpopup('{{$entry->receipt}}')" data-recipt="{{$entry->receipt}}">{{$entry->receipt}}</td>
+                                        <td>
+                                            @if (preg_match('/^\d{4}-\d{2}\/\d+$/', $entry->receipt))
+                                            <a href="javascript:void(0)" onclick="openeditpopup('{{ $entry->receipt }}')" data-recipt="{{ $entry->receipt }}">{{ $entry->receipt }}</a>
+                                        @else
+                                            {{ $entry->receipt }}
+                                        @endif
+                                        </td>
                                         <td>{{$entry->date}}</td>
                                         <td>₹ {{$entry->debit}}</td>
                                         <td>₹ {{$entry->credit}}</td>
