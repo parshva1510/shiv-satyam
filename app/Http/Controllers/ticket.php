@@ -90,7 +90,7 @@ class ticket extends Controller
 
               $ledgertable = new ledger();
               $ledgertable->transporter_id = $req->transpoter_no;
-              //$ledgertable->receipt = $req->ticket_no;
+              $ledgertable->receipt = $req->ticket_no;
               $ledgertable->credit = $req->charge;
               $ledgertable->debit = $req->charge;
               $ledgertable->date = date('Y-m-d',strtotime(substr($req->cdate,0,10)));
@@ -100,7 +100,7 @@ class ticket extends Controller
 
           $ledgertable = new ledger();
           $ledgertable->transporter_id = $req->transpoter_no;
-         // $ledgertable->receipt = $req->ticket_no;
+          $ledgertable->receipt = $req->ticket_no;
           $ledgertable->credit = 0;
           $ledgertable->debit = $req->charge;
           $ledgertable->date = date('Y-m-d',strtotime(substr($req->cdate,0,10)));
@@ -188,6 +188,34 @@ class ticket extends Controller
       $dataupdate->update_by = $req->update_by;
       $dataupdate->update_date = Carbon::now();
       $dataupdate->save();
+
+
+
+       //Updating Entry in Ledger Table to smooth calculation
+
+       if($req->payment_mode != '5'){
+          
+        //logic if payment mode is not AC then first amount will debit and then by paying with cash is credit
+        // basically debit - credit (100-100 = 0)
+        $updateledger = ledger::where('receipt',$req->ticket_no)->update(
+          [
+            'credit'=>$req->charge,
+            'debit'=>$req->charge
+          ]
+        );
+       
+          }
+          else{
+
+            $updateledger = ledger::where('receipt',$req->ticket_no)->update(
+              [
+                'credit'=> 0,
+                'debit'=>$req->charge
+              ]
+            );
+          }
+
+
       $tr_data=transporter::all();
       $data=DB::select("SELECT *,weight_entry.remark as remarks ,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no  ORDER BY weight_entry.sr_no DESC");
       //return view('admin.view_ticket',['data' => $data]);
