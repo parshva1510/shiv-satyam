@@ -131,15 +131,55 @@ License: For each use you must have a valid license purchased only from above li
 									<!--begin:Menu item-->
 									<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item">
 										<!--begin:Menu link-->
-										<a href="{{route('reports')}}">	<span class="menu-link">
-											<span class="menu-title">Repotes</span>
+										<a href="">	<span class="menu-link">
+											<span class="menu-title">Reports</span>
 											<span class="menu-arrow d-lg-none"></span></span>
-										
 										</a>
-											
-										
-											
-											
+										<div class="menu-sub menu-sub-dropdown p-3 w-200px">
+											<!--begin::Menu item-->
+											<div class="menu-item">
+												<a href="{{route('reports')}}" class="menu-link px-1 py-3">
+													<span class="menu-bullet me-0">
+														<span class="bullet bullet-dot"></span>
+													</span>
+													<span class="menu-title">Transporter Report</span>
+												</a>
+											</div>
+											<!--end::Menu item-->
+
+											<!--begin::Menu item-->
+											<div class="menu-item">
+												<a href="{{route('vehicle_report')}}" class="menu-link px-1 py-3">
+													<span class="menu-bullet me-0">
+														<span class="bullet bullet-dot"></span>
+													</span>
+													<span class="menu-title">Vehicle Report</span>
+												</a>
+											</div>
+											<!--end::Menu item-->
+
+											<!--begin::Menu item-->
+											<div class="menu-item">
+												<a href="{{route('datewise_report')}}" class="menu-link px-1 py-3">
+													<span class="menu-bullet me-0">
+														<span class="bullet bullet-dot"></span>
+													</span>
+													<span class="menu-title">Datewise Report</span>
+												</a>
+											</div>
+											<!--end::Menu item-->
+
+											<!--begin::Menu item-->
+											<div class="menu-item">
+												<a href="{{route('payment_report')}}" class="menu-link px-1 py-3">
+													<span class="menu-bullet me-0">
+														<span class="bullet bullet-dot"></span>
+													</span>
+													<span class="menu-title">Payment Report</span>
+												</a>
+											</div>
+											<!--end::Menu item-->
+										</div>
 										<!--end:Menu link-->
 									</div>
 									@endif
