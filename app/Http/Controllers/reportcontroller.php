@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\transporter;
 use App\Models\weight_entry;
 use App\Models\payment;
+use App\Models\ledger;
 use DB;
 use Illuminate\Http\Request;
 
@@ -28,30 +29,45 @@ class reportcontroller extends Controller
       
    }
 
-   public function payment_report(){
-     $transporter=transporter::get()->all();
-     $payment=DB::select("SELECT p.sr_no, p.client_no, t.name AS transporter_name, p.amount, p.date, p.remark, p.payment_mode, p.receipt_no, (SELECT SUM(charges) FROM weight_entry WHERE transpoter_no = p.client_no AND cdate <= p.date) AS debit, (SELECT SUM(amount) FROM payment WHERE client_no = p.client_no AND date < p.date) AS credit, we.vehicle_no FROM payment p JOIN
-     transporter t ON t.sr_no = p.client_no LEFT JOIN  weight_entry we ON we.transpoter_no = p.client_no AND we.cdate <= p.date GROUP BY p.sr_no, p.client_no, t.name, p.amount, p.date, p.remark, p.payment_mode, p.receipt_no,
-     we.vehicle_no ORDER BY p.sr_no DESC;");
-     
-
-     return view('admin.payment_report',["transporter" => $transporter,'payment' => $payment]);
+   public function payment_report(Request $req){
+     $id=$req->transporter;
+     $transportername = transporter::where('sr_no',$id)->first();
+     $transporter=DB::select("SELECT * from transporter");
+   //$updatedLedgerEntries = DB::select("SELECT t_index, transporter_id, credit, debit, date, receipt, description, CASE WHEN receipt IS NOT NULL THEN ( SELECT COALESCE(SUM(debit - credit), 0) FROM ledger AS inner_ledger WHERE inner_ledger.transporter_id = outer_ledger.transporter_id AND inner_ledger.t_index < outer_ledger.t_index ) - credit ELSE SUM(debit - credit) OVER (PARTITION BY transporter_id ORDER BY t_index) END AS remaining FROM ledger AS outer_ledger WHERE transporter_id = $id"); 
+   // Assuming $ledgerEntries is the collection of entries from your database with transporter_id = 77.
+   $ledgerEntries = ledger::where('transporter_id', $id)->orderBy('t_index')->get();
+   $totalvalues = DB::select("SELECT sum(credit)as totalcredit, sum(debit) as totaldebit from ledger where transporter_id='$id'");
+   //dd($totalvalues);
+   $lastEntry = end($ledgerEntries);
+   $sr_no = payment::get()->last()->sr_no;
+   $rec_no= payment::get()->last()->receipt_no;
+   $temp=substr($rec_no,0,8);
+   $next_rec_no= $temp . $sr_no+1;
+   //dd($lastEntry);
+   //$ledgerEntries = ledger::where('transporter_id', $id)->orderBy('t_index')->get();
+   //$updatedLedgerEntries = calculateRemaining($ledgerEntries);
+     return view('admin.payment_report', ['ledger'=>$ledgerEntries,'transporter' => $transporter,'lastentry'=>$lastEntry,'name'=>$transportername,'nextrcpt'=>$next_rec_no,'id'=>$id,'totalvalues'=>$totalvalues]); 
+  
    }
 
    public function show_payment_report(Request $req){
-        $id=$req->transporter;
-        $transporter=DB::select("SELECT * from transporter");
-        $daterange=$req->kt_daterangepicker_1;
-        $date1=date('Y-m-d',strtotime(substr($daterange,0,10)));
-        $date2=date('Y-m-d',strtotime(substr($daterange,13)));
-    //dd($date2);
-        $payment=DB::select("SELECT p.sr_no,p.client_no,t.name as transporter_name,p.amount,p.date,p.remark,p.payment_mode,p.receipt_no,(SELECT sum(charges) FROM weight_entry WHERE transpoter_no = p.client_no AND date <= p.date) as debit,(SELECT sum(amount) FROM payment WHERE client_no = p.client_no AND date < p.date) as credit,(SELECT vehicle_no FROM weight_entry WHERE transpoter_no = p.client_no AND cdate <= p.date LIMIT 1) as vehicle_no FROM payment p JOIN transporter t ON t.sr_no = p.client_no WHERE p.client_no = '$id' and p.date between '$date1' and '$date2' ");
-        //$payment=DB::select("SELECT * from payment where client_no='$id'");
-        $sr_no = payment::get()->last()->sr_no;
-        $rec_no= payment::get()->last()->receipt_no;
-        $temp=substr($rec_no,0,8);
-        $next_rec_no= $temp . $sr_no+1;
-        return view('admin.payment_report', ['transporter' => $transporter,'payment' => $payment,'sr_no' => $sr_no ,'rec_no' => $next_rec_no]); 
+     $id=$req->transporter;
+     $transportername = transporter::where('sr_no',$id)->first();
+     $transporter=DB::select("SELECT * from transporter");
+   //$updatedLedgerEntries = DB::select("SELECT t_index, transporter_id, credit, debit, date, receipt, description, CASE WHEN receipt IS NOT NULL THEN ( SELECT COALESCE(SUM(debit - credit), 0) FROM ledger AS inner_ledger WHERE inner_ledger.transporter_id = outer_ledger.transporter_id AND inner_ledger.t_index < outer_ledger.t_index ) - credit ELSE SUM(debit - credit) OVER (PARTITION BY transporter_id ORDER BY t_index) END AS remaining FROM ledger AS outer_ledger WHERE transporter_id = $id"); 
+   // Assuming $ledgerEntries is the collection of entries from your database with transporter_id = 77.
+   $ledgerEntries = ledger::where('transporter_id', $id)->orderBy('t_index')->get();
+   $totalvalues = DB::select("SELECT sum(credit)as totalcredit, sum(debit) as totaldebit from ledger where transporter_id=$id");
+   //dd($totalvalues);
+   $lastEntry = end($ledgerEntries);
+   $sr_no = payment::get()->last()->sr_no;
+   $rec_no= payment::get()->last()->receipt_no;
+   $temp=substr($rec_no,0,8);
+   $next_rec_no= $temp . $sr_no+1;
+   //dd($lastEntry);
+   //$ledgerEntries = ledger::where('transporter_id', $id)->orderBy('t_index')->get();
+   //$updatedLedgerEntries = calculateRemaining($ledgerEntries);
+        return view('admin.payment_report', ['ledger'=>$ledgerEntries,'transporter' => $transporter,'lastentry'=>$lastEntry,'name'=>$transportername,'nextrcpt'=>$next_rec_no,'id'=>$id,'totalvalues'=>$totalvalues]); 
   
    }
    

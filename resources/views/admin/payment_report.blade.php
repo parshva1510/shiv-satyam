@@ -100,10 +100,9 @@
                                 <thead>
                                     <!--begin::Table row-->
                                     <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
-                                        <th></th>
+                                      
                                         <th class="min-w-70px">Receipt No.</th>
-                                        <th class="min-w-70px">Date</th>
-                                        <th class="min-w-70px">Vehical No</th>                            
+                                        <th class="min-w-70px">Date</th>                           
                                         <th class="min-w-70x">Debit</th>
                                         <th class="min-w-70px">Credit</th>
                                         <th class="min-w-70px">Balance</th>
@@ -118,29 +117,23 @@
                                 <!--end::Table head-->
                                 <!--begin::Table body-->
                                 <tbody class="fw-semibold text-gray-600">
-                                @foreach($payment as $row)  
-                                <tr>
-                                        <input type="hidden" class="delete_id" value="{{$row->sr_no}}">
-                                        <td></td>
-                                        <td>{{$row->receipt_no}}</td>
-
-                                        <td data-kt-ecommerce-order-filter="order_id">{{(new DateTime($row->date))->format('d-m-Y')}}</td>
-
-                                        <td>{{$row->vehicle_no}}</td>
-
-                                        <td>{{'₹ '.$row->debit-$row->credit }}</td>
-
-                                        <td>{{'₹ '.$row->amount}}</td>
-
-                                        <td>{{'₹ '.$row->debit-($row->credit + $row->amount)}}</td>
-
-                                        <td>{{$row->payment_mode}}</td>
-                                     
-                                       
-
-                                        
-                                    </tr> 
-                                    @endforeach
+                                
+                                    @foreach($ledger as $entry)
+                                    <tr>
+                                        <td>
+                                            @if (preg_match('/^\d{4}-\d{2}\/\d+$/', $entry->receipt))
+                                            <a href="javascript:void(0)" onclick="openeditpopup('{{ $entry->receipt }}')" data-recipt="{{ $entry->receipt }}">{{ $entry->receipt }}</a>
+                                        @else
+                                            {{ $entry->receipt }}
+                                        @endif
+                                        </td>
+                                        <td>{{$entry->date}}</td>
+                                        <td>₹ {{$entry->debit}}</td>
+                                        <td>₹ {{$entry->credit}}</td>
+                                        <td>₹ {{$totalvalues[0]->totaldebit - $totalvalues[0]->totalcredit}}</td>
+                                        <td>{{$entry->payment_mode}}</td>
+                                    </tr>
+                                   @endforeach
                                 </tbody>
                                 <!--end::Table body-->
                             </table>
