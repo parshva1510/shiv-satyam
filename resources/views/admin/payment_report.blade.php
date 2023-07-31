@@ -106,7 +106,7 @@
                                         <th class="min-w-70x">Debit</th>
                                         <th class="min-w-70px">Credit</th>
                                         <th class="min-w-70px">Balance</th>
-                                        <th class="min-w-70px">Payment</th>
+                                        
                                     
                                        
                                         
@@ -131,7 +131,7 @@
                                         <td>₹ {{$entry->debit}}</td>
                                         <td>₹ {{$entry->credit}}</td>
                                         <td>₹ {{$totalvalues[0]->totaldebit - $totalvalues[0]->totalcredit}}</td>
-                                        <td>{{$entry->payment_mode}}</td>
+                                       
                                     </tr>
                                    @endforeach
                                 </tbody>
@@ -157,9 +157,11 @@
                                     </label>
                                     <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Account" name="transporter" id="transporter">
                                     <option class="dropdown-font" value="">Select Account...</option>
-                                                        @foreach ($transporter as $row)
-                                                        <option value="{{$row->sr_no}}">{{$row->name}}</option>
-                                                        @endforeach
+                                   
+                                                @foreach ($transporter as $row)
+                                                    <option value="{{ $row->sr_no}}">{{( $row->name) }}</option>
+                                                @endforeach
+                                          
                                     </select>
                                 </div>
 
@@ -186,7 +188,7 @@
                                     <input type="text" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search Order" />
                                 </div>
                                 <div class="mt-5">
-                                        <button type="submit" id="transporter_submit" name="transporter_submit" class="btn btn-primary full-button">
+                                        <button type="submit"  id="transporter_submit" name="transporter_submit" class="btn btn-primary full-button">
                                             <span class="indicator-label">View Report</span>
                                             <span class="indicator-progress">Please wait...
                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -314,6 +316,11 @@ KTUtil.onDOMContentLoaded(function () {
         //location.reload();
     }
 </script>
+
+
+
+
+
 
 
 

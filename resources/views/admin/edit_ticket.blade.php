@@ -219,7 +219,7 @@
                                                 <span class="required">Material</span>
                                             </label>
                                             
-                                            <input id="field2" type="text" class="form-control form-control-solid" placeholder="MATERIAL"  name="material" value="{{$transporter['material']}}" />
+                                            <input id="field2" type="text" class="form-control form-control-solid" placeholder="MATERIAL"  name="material" style="text-transform:uppercase" value="{{$transporter['material']}}" />
                                                     <datalist id="material">
                                                             @foreach($material as $item)
                                                                 <option value="{{$item->material}}">{{$item->material}}</option>
@@ -262,7 +262,7 @@
                                     <div class="d-flex flex-column mb-8">
                                         <label class="d-flex align-items-center fs-6 fw-bolder mb-2">Remarks</label>
                                        
-                                        <textarea class="form-control form-control-solid" rows="3" name="remarks" id="remark" placeholder="Remarkssssssss" >{{($transporter['remark'])}}</textarea>
+                                        <textarea class="form-control form-control-solid" rows="3" name="remarks" id="remark" style="text-transform:capitalize"  placeholder="Remarks" >{{($transporter['remark'])}}</textarea>
                                     </div>
                                     <!--end::Input group-->
                                     <!--begin::Actions-->

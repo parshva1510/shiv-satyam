@@ -149,7 +149,7 @@
                                     <label class="fw-bolder fs-6 mb-2">Remark</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="remark" id="remark" placeholder=""/>
+                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="remark" style="text-transform:capitalize" id="remark" placeholder=""/>
                                         <!--end::Input-->
                                 </div> 
                                 <div class="row-md-6 mt-8"style= "display: flex; justify-content: flex-end;">    
@@ -228,7 +228,7 @@
                                     <label class="fw-bolder fs-6 mb-2">Remark</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="remark1" id="remark1" placeholder=""/>
+                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="remark1" style="text-transform:capitalize" id="remark1" placeholder=""/>
                                         <!--end::Input-->
                                 </div>     
                                 <button type="" id="new_submit" class="btn btn-primary">

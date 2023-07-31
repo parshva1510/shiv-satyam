@@ -225,7 +225,7 @@
                                                 <span class="required">Material</span>
                                             </label>
                                             
-                                            <input  type="text" class="form-control form-control-solid" placeholder="MATERIAL"  name="material" id="material" value="{{!empty($transporter)?$transporter['material']:''}}" required/>
+                                            <input  type="text" class="form-control form-control-solid" placeholder="MATERIAL"  name="material" id="material" style="text-transform:uppercase" value="{{!empty($transporter)?$transporter['material']:''}}" required/>
                                                     <datalist id="material">
                                                             @foreach($material as $item)
                                                                 <option value="{{$item->material}}">{{$item->material}}</option>
@@ -269,7 +269,7 @@
                                    
                                     <div class="d-flex flex-column mb-8">
                                         <label class="d-flex align-items-center fs-6 fw-bolder mb-2">Remarks</label>
-                                        <textarea class="form-control form-control-solid" rows="3" name="remarks" id="remarks" placeholder="Remarks" value="{{!empty($transporter)?$transporter['remarks']:''}}"></textarea>
+                                        <textarea class="form-control form-control-solid" rows="3" name="remarks" id="remarks" placeholder="Remarks" style="text-transform:capitalize" value="{{!empty($transporter)?$transporter['remarks']:''}}"></textarea>
                                     </div>
                                     <!--end::Input group-->
                                     <!--begin::Actions-->
@@ -382,7 +382,7 @@
                             <label class="fw-bolder fs-6 mb-2">Remark</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <textarea class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Remarks" name="remark" id="remark"></textarea>
+                            <textarea class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Remarks" name="remark"  style="text-transform:capitalize" id="remark"></textarea>
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->
