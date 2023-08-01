@@ -81,7 +81,7 @@
                                                         <span class="required">Transporter</span>
                                                       
                                                     </label>
-                                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="false" data placeholder="Select Account"name="transpoter_no" required>
+                                                    <select class="form-select form-select-solid" disabled="true" data-control="select2" data-hide-search="false" data placeholder="Select Account"name="transpoter_no"  required>
                                                         <option class="dropdown-font" value="">Select Account...</option>
                                                         @foreach ($tr_data as $row)
                                                         

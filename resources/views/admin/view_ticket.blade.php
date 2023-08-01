@@ -403,7 +403,7 @@
 								  doc.content[1].margin = [ 25, 0, 25, 0 ] //left, top, right, bottom
                             },
 
-						title: documentTitle + ' (25-06-2023 to 26-07-2023)',
+						
 						orientation: 'landscape',
 						pageSize: 'a4',
 						exportOptions: {
