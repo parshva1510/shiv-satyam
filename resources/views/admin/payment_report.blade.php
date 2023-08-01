@@ -155,7 +155,7 @@
                                     <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                         <span class="required">Transporter</span>
                                     </label>
-                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Account" name="transporter" id="transporter">
+                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="false" data-placeholder="Select Account" name="transporter" id="transporter">
                                     <option class="dropdown-font" value="">Select Account...</option>
                                    
                                                 @foreach ($transporter as $row)
@@ -235,12 +235,17 @@ var KTDatatablesExample = function () {
     // Shared variables
     var table = '#kt_datatable_example';
     var datatable;
-
-   
+    var initDatatable = function () {
+    datatable = $('#kt_datatable_example').DataTable({
+            "info": true,
+            'pageLength': 10,
+            "ordering": false
+        });
+    }
 
     // Hook export buttons
     var exportButtons = () => {
-        const documentTitle = 'Transporter Report';
+        const documentTitle = 'Payment Report';
     
         var buttons = new $.fn.dataTable.Buttons(table, {
             buttons: [
@@ -297,7 +302,7 @@ var KTDatatablesExample = function () {
                 return;
             }
 
-            
+            initDatatable();
             exportButtons();
             handleSearchDatatable();
         }

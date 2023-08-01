@@ -188,7 +188,7 @@
                                     <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                         <span class="required">Transporter</span>
                                     </label>
-                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Account" name="transporter" id="transporter">
+                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="false" data-placeholder="Select Account" name="transporter" id="transporter">
                                     <option class="dropdown-font" value="">Select Account...</option>
                                                         @foreach ($transporter as $row)
                                                         <option value="{{$row->sr_no}}">{{$row->name}}</option>

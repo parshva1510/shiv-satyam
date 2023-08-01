@@ -12,6 +12,7 @@
                 <!--begin::Page title-->
                 <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
                     <!--begin::Title-->
+                     
                     <h1 class="page-heading d-flex text-dark fw-bold flex-column justify-content-center my-0">Vehicle Reports</h1>
                     <!--end::Title-->
                 </div>
@@ -188,7 +189,7 @@
                                     <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                         <span class="required">Vehicle</span>
                                     </label>
-                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Select Account" name="vehicle" id="vehicle">
+                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="false" data-placeholder="Select Account" name="vehicle" id="vehicle">
                                     <option class="dropdown-font" value="">Select Account...</option>
                                                         @foreach ($vehicle as $row)
                                                         <option value="{{$row->vehicle_no}}">{{$row->vehicle_no}}</option>
@@ -265,7 +266,7 @@ var KTDatatablesExample = function () {
 
     // Hook export buttons
     var exportButtons = () => {
-        const documentTitle = 'Vehicle Report';
+        const documentTitle = 'Vehicle Report trtrhth';
         var buttons = new $.fn.dataTable.Buttons(table, {
             buttons: [
                 {
@@ -282,7 +283,8 @@ var KTDatatablesExample = function () {
                 },
                 {
                     extend: 'pdf',
-                    title: documentTitle
+                    title: documentTitle,
+                    orientation: 'landscape',
                 }
             ]
         }).container().appendTo($('#kt_datatable_example_buttons'));
