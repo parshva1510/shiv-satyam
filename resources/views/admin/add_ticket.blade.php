@@ -360,7 +360,7 @@
                             <label class="required fw-bolder fs-6 mb-2">Mobile No.</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="number"  class="form-control form-control-solid mb-3 mb-lg-0" name="contact" id="contact" placeholder="6595989565" maxlength="10" minlength="10" required/>
+                            <input type="number"  class="form-control form-control-solid mb-3 mb-lg-0" name="contact" id="contact" placeholder="6595989565"maxlength="10" minlength="10" required/>
                             
                             <!--end::Input-->
                         </div>
