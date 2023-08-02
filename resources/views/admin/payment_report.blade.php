@@ -159,7 +159,7 @@
                                     <option class="dropdown-font" value="">Select Account...</option>
                                    
                                                 @foreach ($transporter as $row)
-                                                    <option value="{{ $row->sr_no}}">{{( $row->name) }}</option>
+                                                    <option value="{{ $row->sr_no}}" {{ ($id == $row->sr_no) ? "selected" : "" }}>{{( $row->name) .'-'.('SS'.$row->sr_no)}}</option>
                                                 @endforeach
                                           
                                     </select>
@@ -171,7 +171,7 @@
                                     </label>
                                     <!--begin::Flatpickr-->
                                     <div class="input-group">
-                                        <input class="form-control form-control-solid" placeholder="Pick date rage" id="kt_daterangepicker_1" name="kt_daterangepicker_1"/>
+                                        <input class="form-control form-control-solid" placeholder="Pick date rage" id="kt_daterangepicker_1" name="kt_daterangepicker_1"  value=" {{$daterange}}"/>
                                     </div>
                                     <!--end::Flatpickr-->
                                 </div>
@@ -246,6 +246,8 @@ var KTDatatablesExample = function () {
     // Hook export buttons
     var exportButtons = () => {
         const documentTitle = 'Payment Report';
+       
+        
     
         var buttons = new $.fn.dataTable.Buttons(table, {
             buttons: [

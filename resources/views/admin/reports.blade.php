@@ -190,9 +190,14 @@
                                     </label>
                                     <select class="form-select form-select-solid" data-control="select2" data-hide-search="false" data-placeholder="Select Account" name="transporter" id="transporter">
                                     <option class="dropdown-font" value="">Select Account...</option>
-                                                        @foreach ($transporter as $row)
-                                                        <option value="{{$row->sr_no}}">{{$row->name}}</option>
-                                                        @endforeach
+                                  
+
+                                    @foreach($transporter as $row)
+                                        <option value="{{ $row->sr_no }}" {{ ($id == $row->sr_no) ? "selected" : "" }}>
+                                            {{ $row->name .'-'.('SS'.$row->sr_no)}}
+                                        </option>
+                                    @endforeach
+                               
                                     </select>
                                 </div>
 
@@ -202,7 +207,7 @@
                                     </label>
                                     <!--begin::Flatpickr-->
                                     <div class="input-group">
-                                        <input class="form-control form-control-solid" placeholder="Pick date rage" id="kt_daterangepicker_1" name="kt_daterangepicker_1"/>
+                                        <input class="form-control form-control-solid" placeholder="Pick date rage" id="kt_daterangepicker_1" name="kt_daterangepicker_1" value=" {{$daterange}}">
                                     </div>
                                     <!--end::Flatpickr-->
                                 </div>

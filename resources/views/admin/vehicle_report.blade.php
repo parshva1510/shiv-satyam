@@ -192,7 +192,8 @@
                                     <select class="form-select form-select-solid" data-control="select2" data-hide-search="false" data-placeholder="Select Account" name="vehicle" id="vehicle">
                                     <option class="dropdown-font" value="">Select Account...</option>
                                                         @foreach ($vehicle as $row)
-                                                        <option value="{{$row->vehicle_no}}">{{$row->vehicle_no}}</option>
+                                                        <option value="{{$row->vehicle_no}}" {{ ($id == $row->vehicle_no) ? "selected" : "" }}>{{$row->vehicle_no}}</option>
+                                                        
                                                         @endforeach
                                     </select>
                                 </div>

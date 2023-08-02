@@ -195,8 +195,8 @@ License: For each use you must have a valid license purchased only from above li
 									
 									<div style="text-align: right" class="menu-item">
 										<div class="d-flex flex-column">
-											<div class="fw-bold d-flex align-items-center fs-5">Shiv Satyam</div>
-											<span class="fw-semibold text-muted fs-7">Admin</span>
+											<div class="fw-bold d-flex align-items-center fs-5">{{session('user')}}</div>
+											<span class="fw-semibold text-muted fs-7">{{session('role')}}</span>
 										</div>
 									</div>
 									<!--<div class="cursor-pointer symbol symbol-35px symbol-md-40px" data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end">

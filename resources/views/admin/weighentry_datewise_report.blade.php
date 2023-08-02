@@ -192,7 +192,7 @@
                                     </label>
                                     <!--begin::Flatpickr-->
                                     <div class="input-group">
-                                        <input class="form-control form-control-solid" placeholder="Pick date rage" id="kt_daterangepicker_1" name="kt_daterangepicker_1"/>
+                                        <input class="form-control form-control-solid" placeholder="Pick date rage" id="kt_daterangepicker_1" name="kt_daterangepicker_1" value="{{$daterange}}"/>
                                     </div>
                                     <!--end::Flatpickr-->
                                 </div>

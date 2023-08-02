@@ -81,7 +81,7 @@
                                                         <span class="required">Transporter</span>
                                                       
                                                     </label>
-                                                    <select class="form-select form-select-solid" disabled="true" data-control="select2" data-hide-search="false" data placeholder="Select Account"name="transpoter_no"  required>
+                                                    <select class="form-select form-select-solid "  style="pointer-events: none;" data-control="select2" data-hide-search="false" data placeholder="Select Account"name="transpoter_no"  required>
                                                         <option class="dropdown-font" value="">Select Account...</option>
                                                         @foreach ($tr_data as $row)
                                                         
@@ -295,112 +295,7 @@
     <!--end::Content wrapper-->
 </div>
 
-<div class="modal fade" id="kt_modal_add_user_1" tabindex="-1" aria-hidden="true">
-    <!--begin::Modal dialog-->
-    <div class="modal-dialog modal-dialog-centered mw-650px">
-        <!--begin::Modal content-->
-        <div class="modal-content">
-            <!--begin::Modal header-->
-            <div class="modal-header" id="kt_modal_add_user_1_header">
-                <!--begin::Modal title-->
-                <h2 class="fw-bold">Add Transporter</h2>
-                <!--end::Modal title-->
-                <!--begin::Close-->
-                <div class="btn btn-icon btn-sm btn-active-icon-primary" id="close_jk" data-kt-users-modal-action_1="close">
-                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                    <span class="svg-icon svg-icon-1">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor" />
-                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor" />
-                        </svg>
-                    </span>
-                    <!--end::Svg Icon-->
-                </div>
-                <!--end::Close-->
-            </div>
-            <!--end::Modal header-->
-            <!--begin::Modal body-->
-            <div class="modal-body scroll-y mx-5 mx-xl-15 my-7 text-start">
-                <!--begin::Form-->
-                <form id="kt_modal_add_transporter" class="form" method="POST" action="{{route('add_transporter')}}">
-                        @csrf
-                    <!--begin::Scroll-->
-                    <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_add_user_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_add_user_header" data-kt-scroll-wrappers="#kt_modal_add_user_scroll" data-kt-scroll-offset="300px">
-                        <!--begin::Input group-->
-                        <div class="fv-row mb-7">
-                            <!--begin::Label-->
-                            <label class="required fw-bolder fs-6 mb-2">Transporter A/C No.</label>
-                            <!--end::Label-->
-                            <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="ac_no" value="{{'SS'.$sr_no+1}}" readonly>
-                                    
-                            <!--end::Input-->
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="fv-row mb-7 fv-plugins-icon-container">
-                            <!--begin::Label-->
-                            <label class="required fw-bolder fs-6 mb-2">Name</label>
-                            <!--end::Label-->
-                            <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" name="name" id="name" placeholder="Sahal" value=""/>
-                            <!--end::Input-->
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="fv-row mb-7 fv-plugins-icon-container">
-                            <!--begin::Label-->
-                            <label class="required fw-bolder fs-6 mb-2">Mobile No.</label>
-                            <!--end::Label-->
-                            <!--begin::Input-->
-                            <input type="text"  class="form-control form-control-solid mb-3 mb-lg-0" name="contact" id="contact" placeholder="6595989565" maxlength="10" minlength="10" required/>
-                            
-                            <!--end::Input-->
-                        </div>
-                        <!--end::Input group-->
-                        <!--begin::Input group-->
-                        <div class="fv-row mb-7 fv-plugins-icon-container">
-                            <!--begin::Label-->
-                            <label class="required fw-bolder fs-6 mb-2">City</label>
-                            <!--end::Label-->
-                            <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" name="city" id="city" placeholder="Bhuj"/>
-                            <!--end::Input-->
-                        </div>
-                        <!--end::Input group-->
-                        
-                        <!--begin::Input group-->
-                        <div class="fv-row mb-7 fv-plugins-icon-container">
-                            <!--begin::Label-->
-                            <label class="fw-bolder fs-6 mb-2">Remark</label>
-                            <!--end::Label-->
-                            <!--begin::Input-->
-                            <textarea class="form-control form-control-solid mb-3 mb-lg-0" placeholder="Remarks" name="remark" id="remark"></textarea>
-                            <!--end::Input-->
-                        </div>
-                        <!--end::Input group-->
-                    </div>
-                    
-                    <!--end::Scroll-->
-                    <!--begin::Actions-->
-                    <div class="text-center d-flex flex-stack pt-5">
-                        <button type="" class="btn btn-light me-3" >Reset</button>
-                        <button type="" class="btn btn-primary"  >
-                            <span class="indicator-label">Submit</span>
-                            <span class="indicator-progress">Please wait...
-                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                        </button>
-                    </div>
-                    <!--end::Actions-->
-                </form>
-                <!--end::Form-->
-            </div>
-            <!--end::Modal body-->
-        </div>
-        <!--end::Modal content-->
-    </div>
-    <!--end::Modal dialog-->
-</div>
+
 
 @endsection
 
