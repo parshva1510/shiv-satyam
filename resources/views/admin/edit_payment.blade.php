@@ -48,7 +48,7 @@
                                             <select class="form-select form-select-solid" name="transporter" id="transporter" data-control="select2" data-hide-search="false" data-placeholder="Select Transporter">
                                                 <option></option>
                                                 @foreach($transporter as $row)
-                                                <option value="{{$row->sr_no}}">{{$row->name}}.'-'.('SS'.$row->sr_no)</option>
+                                                <option value="{{$row->sr_no}}">{{$row->name.'-'.('SS'.$row->sr_no)}}</option>
                                                 @endforeach
                                             </select>
                                             <!--end::Input-->

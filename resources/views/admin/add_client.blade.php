@@ -65,7 +65,7 @@
                                             <td>{{$row->remark}}</td>
                                     
                                             <td class="text-end">
-                                            <a href="{{route('edit_client', $row->sr_no)}}" data-typeId="{{$row->sr_no}}" id="edit"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" >
+                                            <a  data-typeId="{{$row->sr_no}}" id="edit"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" >
                                                     <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                                                     <span class="svg-icon svg-icon-3">
                                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -131,7 +131,7 @@
                                     <label class="required fw-bolder fs-6 mb-2">Mobile No</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                    <input type="text" class="form-control form-control-solid mb-3 mb-lg-0 readonly" name="contact" id="contact" placeholder="" maxlength="10" minlength="10" required/>
+                                        <input type="number" class="form-control form-control-solid mb-3 mb-lg-0" name="contact" id="contact" required/>
                                         <!--end::Input-->
                                 </div>
                                     <!--begin::Table-->
@@ -341,6 +341,21 @@
            });
         }
     });
+</script>
+<script>
+const contactInput = document.getElementById('contact');
+
+contactInput.addEventListener('input', function () {
+  const desiredLength = 10;
+  const inputValue = this.value.trim();
+  
+  if (inputValue.length !== desiredLength) {
+    this.setCustomValidity(`Contact number should be exactly ${desiredLength} digits.`);
+  } else {
+    this.setCustomValidity('');
+  }
+});
+
 </script>
 <script>
     $(".servicedeletebtn").click(function(e){

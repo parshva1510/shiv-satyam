@@ -188,7 +188,7 @@
                                     <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                         <span class="required">Transporter</span>
                                     </label>
-                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="false" data-placeholder="Select Account" name="transporter" id="transporter">
+                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="false" data-placeholder="Select Account" name="transporter" id="transporter" >
                                     <option class="dropdown-font" value="">Select Account...</option>
                                   
 
@@ -211,6 +211,8 @@
                                     </div>
                                     <!--end::Flatpickr-->
                                 </div>
+                                         <input type="text" id="transporter_name" name="transporter_name" hidden>
+                                        <input type="text" id="daterange" name="daterange" hidden>
                                 <!--end::Table-->
                                 <div class="d-flex d-none align-items-center position-relative my-1">
                                     <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
@@ -265,7 +267,20 @@
 </script>
 
 <script>
+   var name,date;
+    $("#kt_modal_transporter").on('submit',function(){
+        var v = $("#transporter option:selected");
+        var s=(v.text()).trim();
+        var index=s.indexOf("-");
+        var name=s.substring(0,index);
+        $("#transporter_name").val(name);
+        var name=document.getElementById("transporter_name").value;
+        alert(name);
 
+        $("#daterange").val(document.getElementById("kt_daterangepicker_1").value);
+        date=document.getElementById("daterange").value;
+        alert(date);
+    });
 // Class definition
 var KTDatatablesExample = function () {
     // Shared variables
@@ -288,7 +303,7 @@ var KTDatatablesExample = function () {
 
     // Hook export buttons
     var exportButtons = () => {
-        const documentTitle = 'Transporter Report';
+        const documentTitle = date;
     
         var buttons = new $.fn.dataTable.Buttons(table, {
             buttons: [

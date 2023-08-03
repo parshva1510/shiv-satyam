@@ -84,7 +84,7 @@
                                                       
                                                     </label>
 
-                                                    <select class="form-select form-select-solid" data-control="select2" data-hide-search="false" data placeholder="Select Account"name="transpoter_no" required>
+                                                    <select class="form-select form-select-solid" data-control="select2" id="transpoter_no"  data-hide-search="false" data placeholder="Select Account"name="transpoter_no" required>
 
                                                       
                                                     <option class="dropdown-font" value="">Select Account...</option>
@@ -143,7 +143,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Gross Weight (KG)</span>
                                             </label>
-                                            <input type="number" class="form-control form-control-solid" placeholder="0" name="gross_weight" id="gross_weight" value="{{!empty($transporter)?$transporter['gross_weight']:''}}" required/>
+                                            <input type="number" class="form-control form-control-solid amount-input" placeholder="0" name="gross_weight" id="gross_weight" value="{{!empty($transporter)?$transporter['gross_weight']:''}}" required/>
                                         </div>
 
                                         <!--end::Label-->
@@ -180,7 +180,7 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Tare Weight (KG)</span>
                                             </label>
-                                            <input type="number" min="0" class="form-control form-control-solid" placeholder="0" name="tare_wight" id="tare_wight" value="{{!empty($transporter)?$transporter['tare_weight']:''}}" required/>
+                                            <input type="number" min="0" class="form-control form-control-solid amount-input" placeholder="0" name="tare_wight" id="tare_wight" value="{{!empty($transporter)?$transporter['tare_weight']:''}}" required/>
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Label-->
@@ -212,12 +212,19 @@
                                     <!--begin::Input group-->
                                     <div class="row g-9 mb-8">
                                         <!--begin::Label-->
-                                        <div class="col-md-3 fv-row">
+                                        <!-- <div class="col-md-3 fv-row">
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Net Weight</span>
                                             </label>
                                             <input  type="number" min="0" class="form-control form-control-solid" placeholder="0" name="net_weight" id="net_weight" value="{{!empty($transporter)?$transporter['net_weight']:''}}" required/>
+                                        </div> -->
+                                        <div class="col-md-3 fv-row">
+                                            <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
+                                                <span class="required">Net Weight (KG)</span>
+                                            </label>
+                                            <input type="number" class="form-control form-control-solid" name="net_weight" id="net_weight" readonly/>
                                         </div>
+
                                         <!--end::Label-->
                                         <!--begin::Label-->
                                         <div class="col-md-3 fv-row">
@@ -236,7 +243,7 @@
                                         <!--begin::Label-->
                                         <div class="col-md-3 fv-row">
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
-                                                <span class="required">Charge</span>
+                                                <span class="rdocumentequired">Charge</span>
                                             </label>
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1"><i class="bi bi-currency-rupee"></i></span>
@@ -249,13 +256,12 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Payment Mode</span>
                                             </label>
-                                            <select class="form-select form-select-solid" id="select-payment" data-control="select2" data-hide-search="true" data-placeholder="Select Payment Mode" name="payment_mode" required>
-                                            <option value="">Select Mode...</option>
-                                            <option value="1" {{!empty($transporter) && $transporter['payment_mode'] == "1" && !empty($transporter['payment_mode']) ? 'selected' : '' }} selected>CASH</option>
-                                            <option value="2" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "2" ? 'selected' : '' }}>GPAY</option>
-                                            <option value="3" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "3" ? 'selected' : '' }}>CHEQUE</option>
-                                            <option value="4" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "4" ? 'selected' : '' }}>BANK TRANSFER</option>
-                                            <option value="5" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "5" ? 'selected' : '' }}>A/C PAY</option>
+                                            <select class="form-select form-select-solid" id="payment" data-control="select2" data-hide-search="true" data-placeholder="Select Payment Mode" name="payment_mode" required>
+                                            <option value="1">CASH</option>
+                                            <option value="2">GPAY</option>
+                                            <option value="3">CHEQUE</option>
+                                            <option value="4">BANK TRANSFER</option>
+                                            <option value="5">A/C PAY</option>
                                         
                                             
                                             </select>
@@ -360,8 +366,9 @@
                             <label class="required fw-bolder fs-6 mb-2">Mobile No.</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="number"  class="form-control form-control-solid mb-3 mb-lg-0" name="contact" id="contact" placeholder="6595989565"maxlength="10" minlength="10" required/>
                             
+                            <input type="number" class="form-control form-control-solid mb-3 mb-lg-0" name="contact" id="contact" placeholder="6595989565" required/>
+
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->
@@ -443,54 +450,7 @@
     });
   });
 </script>
-<!-- <script>
-  // Get the current date
-  var currentDate = new Date();
 
-  // Format the date as "d-m-Y"
-  var formattedDate = currentDate.getDate() + '-' + (currentDate.getMonth() + 1) + '-' + currentDate.getFullYear();
-
-  // Set the formatted date as the placeholder value
-  document.getElementById("gross_date").gross_date = formattedDate;
-</script> -->
-
-
-
-
-
-<!-- <script>
-    function myFunction(id) {
-    // Get the values of the required fields
-    let field1 = document.getElementById('field1').value;
-    let field2 = document.getElementById('field2').value;
-    let field3 = document.getElementById('field3').value;
-    
-    // Check if any of the required fields are empty
-    if (field1 === '' || field2 === '' || field3 === '') {
-        Swal.fire({
-            text: "Sorry, looks like there are some errors detected, please try again.",
-            icon: "error",
-            buttonsStyling: false,
-            confirmButtonText: "Ok, got it!",
-            customClass: {
-                confirmButton: "btn btn-primary"
-            }
-        });
-    } else {
-        Swal.fire({
-            text: "Form has been successfully submitted!",
-            icon: "success",
-            buttonsStyling: false,
-            confirmButtonText: "Ok, got it!",
-            customClass: {
-                confirmButton: "btn btn-primary"
-            }
-        }).then((function(t) {
-            t.isConfirmed && o.hide();
-        }));
-    }
-    }
-    </script> -->
     
     
 <script>
@@ -564,6 +524,96 @@
     console.log("Reset button clicked!");
   });
 </script>
+<script>
+  $(document).ready(function () {
+      // Select all input fields with class 'amount-input'
+      $('.amount-input').on('input', function () {
+          var total = 0;
+
+          // Loop through each input field and calculate the total
+          $('.amount-input').each(function () {
+    var amount = parseFloat($(this).val());
+    if (!isNaN(amount)) {
+        total +-= amount; // Use the '-=' operator to subtract and update the 'total' variable.
+    }
+});
+
+          // Update the 'ટોટલ' input field with the calculated total
+          $('#total').val(total);
+
+          // Convert the total to words and update the 'અંકે રૂપિયા' input field
+          NumToWord(total, 'ankers');
+      });
+  });
+
+  function onlyNumbers(evt) {
+      var e = event || evt; // For trans-browser compatibility
+      var charCode = e.which || e.keyCode;
+
+      if (charCode > 31 && (charCode < 48 || charCode > 57))
+          return false;
+      return true;
+  }
+
+  function NumToWord(inputNumber, outputControl) {
+      // Your NumToWord function implementation
+      // Make sure it works correctly separately
+  }
+</script>
+<script>
+    $(document).ready(function () {
+        // Select the input fields for gross weight, tare weight, and net weight
+        var $grossWeightInput = $('#gross_weight');
+        var $tareWeightInput = $('#tare_wight');
+        var $netWeightInput = $('#net_weight');
+
+        // Calculate and update the net weight whenever the gross or tare weight changes
+        $('.amount-input').on('input', function () {
+            var grossWeight = parseFloat($grossWeightInput.val());
+            var tareWeight = parseFloat($tareWeightInput.val());
+            var netWeight = grossWeight - tareWeight;
+
+            // Update the net weight input field with the calculated value
+            $netWeightInput.val(netWeight);
+
+            // Convert the net weight to words and update the appropriate input field (if needed)
+            // You can call the NumToWord function here if you have its implementation
+            // NumToWord(netWeight, 'ankers');
+        });
+    });
+</script>
+<script>
+const contactInput = document.getElementById('contact');
+
+contactInput.addEventListener('input', function () {
+  const desiredLength = 10;
+  const inputValue = this.value.trim();
+  
+  if (inputValue.length !== desiredLength) {
+    this.setCustomValidity(`Contact number should be exactly ${desiredLength} digits.`);
+  } else {
+    this.setCustomValidity('');
+  }
+});
+
+</script>
+
+
+<script>
+ 
+    $("#transpoter_no").change(function(){
+        var trans_no=$(this).val();
+        if(trans_no != 48)
+        {
+            $("#payment option[value='5']").attr('selected','selected');  
+        }
+    });
+
+</script>
+
+
+
+
 
 
 
