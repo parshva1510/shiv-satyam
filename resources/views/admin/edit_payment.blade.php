@@ -143,7 +143,7 @@
                                             {{ $entry->receipt }}
                                         @endif
                                         </td>
-                                        <td>{{$entry->date}}</td>
+                                        <td>{{Date("d-m-Y",strtotime($entry->date))}}</td>
                                         <td>₹ {{$entry->debit}}</td>
                                         <td>₹ {{$entry->credit}}</td>
                                        
@@ -423,7 +423,7 @@
     var currentDateTime = new Date();
     $('#date').flatpickr({
       enableTime: true,
-      dateFormat: "Y-m-d",
+      dateFormat: "d-m-Y",
       defaultDate: currentDateTime
     });
   });
@@ -444,7 +444,7 @@
                     type:'GET',
                     success:function(response){
                        
-                        $("#date1").val(response['date']); 
+                        $("#date1").val(Date('d-m-Y'),strtotime((response['date']))); 
                         $("#sr_no1").val(response['receipt_no']); 
                         $("#amount1").val(response['amount']); 
                         $("#remark1").val(response['remark']);  

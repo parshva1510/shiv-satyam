@@ -70,7 +70,7 @@ class ticket extends Controller
          $data1->remark = $req->remarks;
          $data1->update_by = $req->update_by;
          $data1->update_date = date('Y-m-d',strtotime(substr($req->cdate,0,10)));
-         $data1->save();
+        $data1->save();
 
          $data=DB::select("SELECT *,weight_entry.remark as remarks,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no where weight_entry.sr_no = '$datainsert->sr_no'");
          $transporters = Transporter::all();
@@ -80,7 +80,7 @@ class ticket extends Controller
         $temp=substr($rec_no,0,8);
         $next_rec_no= $temp . $sr_no+1;
        
-
+dd($req->payment_mode);
         //Adding Entry in Ledger Table to smooth calculation
 
         if($req->payment_mode != '5'){
@@ -88,13 +88,15 @@ class ticket extends Controller
               //logic if payment mode is not AC then first amount will debit and then by paying with cash is credit
               // basically debit - credit (100-100 = 0)
 
-              $ledgertable = new ledger();
+              //temp comment to avoid non ac pay transaction to payment
+              
+             /* $ledgertable = new ledger();
               $ledgertable->transporter_id = $req->transpoter_no;
               $ledgertable->receipt = $req->ticket_no;
               $ledgertable->credit = $req->charge;
               $ledgertable->debit = $req->charge;
               $ledgertable->date = date('Y-m-d',strtotime(substr($req->cdate,0,10)));
-              $ledgertable->save();
+             // $ledgertable->save();*/
         }
         else{
 
@@ -104,7 +106,7 @@ class ticket extends Controller
           $ledgertable->credit = 0;
           $ledgertable->debit = $req->charge;
           $ledgertable->date = date('Y-m-d',strtotime(substr($req->cdate,0,10)));
-          $ledgertable->save();
+          //$ledgertable->save();
         }
 
         $ticket_no = $datainsert->ticket_no;

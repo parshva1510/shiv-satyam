@@ -275,11 +275,11 @@
         var name=s.substring(0,index);
         $("#transporter_name").val(name);
         var name=document.getElementById("transporter_name").value;
-        alert(name);
+//alert(name);
 
         $("#daterange").val(document.getElementById("kt_daterangepicker_1").value);
         date=document.getElementById("daterange").value;
-        alert(date);
+       // alert(date);
     });
 // Class definition
 var KTDatatablesExample = function () {

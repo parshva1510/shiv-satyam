@@ -16,7 +16,7 @@ class paymentController extends Controller
         $data=new payment();
         $data->client_no=$req->id;
         $data->amount=$req->amount;
-        $data->date=$req->date;
+        $data->date=Date("Y-m-d",strtotime($req->date));
         $data->remark=ucfirst($req->remark);
         $data->payment_mode=$req->payment;
         $data->receipt_no=$req->sr_no;
@@ -26,7 +26,7 @@ class paymentController extends Controller
         $paymententryinledger->transporter_id = $req->id;
         $paymententryinledger->credit = $req->amount;
         $paymententryinledger->debit = 0;
-        $paymententryinledger->date = $req->date;
+        $paymententryinledger->date = Date("Y-m-d",strtotime($req->date));
         $paymententryinledger->receipt = $req->sr_no;
         $paymententryinledger->description = ucfirst($req->remark);
         $paymententryinledger->save();
