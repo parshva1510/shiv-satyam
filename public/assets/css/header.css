@@ -97,3 +97,6 @@ a.btn.btn-primary.full-button {
   .d-flex.align-items-center.gap-2.gap-lg-3.r1 {
     margin-right: -120px !IMPORTANT;
 }
+span.select2-selection.select2-selection--single.form-select.form-select-solid.pn {
+    pointer-events: none;
+}
