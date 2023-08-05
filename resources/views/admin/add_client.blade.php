@@ -65,7 +65,7 @@
                                             <td>{{$row->remark}}</td>
                                     
                                             <td class="text-end">
-                                            <a  data-typeId="{{$row->sr_no}}" id="edit"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" >
+                                            <a  href="{{route('edit_user', $row->sr_no)}}" data-typeId="{{$row->sr_no}}" id="edit"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1" >
                                                     <!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
                                                     <span class="svg-icon svg-icon-3">
                                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -131,7 +131,7 @@
                                     <label class="required fw-bolder fs-6 mb-2">Mobile No</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="number" class="form-control form-control-solid mb-3 mb-lg-0" name="contact" id="contact" required/>
+                                        <input type="number" class="form-control form-control-solid mb-3 mb-lg-0" name="contact" id="contact" pattern="[1-9]{1}[0-9]{9}" maxlength="10" required/>
                                         <!--end::Input-->
                                 </div>
                                     <!--begin::Table-->
@@ -291,56 +291,6 @@
                 });
             });
         });
-        </script>
-        <script>
-        $("#kt_modal_edit_transporter").submit(function(){
-        var name=document.getElementById("name1").value;
-        var city=document.getElementById("city1").value;
-        var contact=document.getElementById("contact1").value;
-        if(name ==='' && city === '' && contact ==='')
-        {
-            Swal.fire({
-                text: "Sorry, looks like there are some errors detected, please try again.",
-                icon: "error",
-            });
-            return false; // Prevent form submission
-        } else {
-            Swal.fire({
-                position: 'middle-center',
-                icon: 'success',
-                title: 'Transporter data has been successfully updated!',
-                showConfirmButton: false,
-                timer: 1500
-                }).then(function() {
-                $("#kt_modal_edit_transporter").submit();
-           });
-        }
-    });
-</script>
-<script>
-    $("#kt_modal_add_transporter").submit(function(){
-        var name=document.getElementById("name").value;
-        var city=document.getElementById("city").value;
-        var contact=document.getElementById("contact").value;
-        if(name ==='' && city === '' && contact ==='')
-        {
-            Swal.fire({
-                text: "Sorry, looks like there are some errors detected, please try again.",
-                icon: "error",
-            });
-            return false; // Prevent form submission
-        } else {
-            Swal.fire({
-                position: 'middle-center',
-                icon: 'success',
-                title: 'Transporter data has been successfully submitted!',
-                showConfirmButton: false,
-                timer: 1500
-                }).then(function() {
-                $("#kt_modal_add_transporter").submit();
-           });
-        }
-    });
 </script>
 <script>
 const contactInput = document.getElementById('contact');
