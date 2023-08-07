@@ -35,7 +35,7 @@
                             <!--begin::Card body-->
                             <div class="card-body">
                                 <!--begin::Table-->
-                                <form id="kt_modal_transporter" class="form" method="get" action="{{route('get_transporter')}}">
+                                <form id="kt_modal_transporter" class="form" method="GET" action="{{route('get_transporter')}}">
                                 <div class="row fv-row mb-1">
                                     <div class="col-md-2 text-md-end">
                                         <!--begin::Label-->

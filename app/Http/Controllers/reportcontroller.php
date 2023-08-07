@@ -26,10 +26,10 @@ class reportcontroller extends Controller
        $daterange=$req->kt_daterangepicker_1;
        $date1=date('Y-m-d',strtotime(substr($daterange,0,10)));
        $date2=date('y-m-d',strtotime(substr($daterange,13)));
-       
-     
        $data=DB::select("SELECT *,transporter.name as tranporter_name FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no where transpoter_no='$id' and weight_entry.cdate BETWEEN '$date1' and '$date2'");
-       return view('admin.reports', ["transporter" => $transporter, 'data' => $data, 'id' => $id, 'daterange' => $daterange]);
+       $total_charges=DB::select("SELECT sum(charges) as total FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no where transpoter_no='$id' and weight_entry.cdate BETWEEN '$date1' and '$date2'");
+       return view('admin.reports', ["transporter" => $transporter, 'data' => $data, 'id' => $id, 'daterange' => $daterange,'total_charges'=> $total_charges]);
+
       
    }
   

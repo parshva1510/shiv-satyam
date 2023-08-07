@@ -140,7 +140,7 @@
                                             @if (preg_match('/^\d{4}-\d{2}\/\d+$/', $entry->receipt))
                                             <a href="javascript:void(0)" onclick="openeditpopup('{{ $entry->receipt }}')" data-recipt="{{ $entry->receipt }}">{{ $entry->receipt }}</a>
                                         @else
-                                            {{ $entry->receipt }}
+                                        <a href="{{route('generate-pdf',20232400203) }}"  target="_blank">{{ $entry->receipt }}</a>
                                         @endif
                                         </td>
                                         <td>{{Date("d-m-Y",strtotime($entry->date))}}</td>

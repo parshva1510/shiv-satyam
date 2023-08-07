@@ -216,11 +216,11 @@
 
 														@if($row->payment_mode==1)
 														
-															<td>ROKADA</td>
+															<td>CASH</td>
 														
 														@elseif($row->payment_mode==2)
 														
-															<td>UDHAR</td>
+															<td>CREDIT</td>
 					
 														@endif
 														<td>{{$row->remarks}}</td>
@@ -276,6 +276,14 @@
 														<!--end::Action=-->
 													</tr>
 													@endforeach
+													<tr>
+														<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>
+														<td>Total Cash</td> <td>{{$total1[0]->cash}}</td>
+													</tr>
+													<tr>
+														<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>
+														<td>Total Credit</td> <td>{{$total2[0]->credit}}</td>
+													</tr>
 													
 												</tbody>
 												<!--end::Table body-->

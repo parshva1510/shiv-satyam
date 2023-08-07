@@ -29,13 +29,9 @@ class ticket extends Controller
      }
      public function add_ticket(Request $req)
      {
-
-       
          $data = weight_entry::find($req->sr_no);
          $datainsert = new weight_entry();
-        
          $sr_no = transporter::get()->last()->sr_no;
-         
          $datainsert->ticket_no = $req->ticket_no;
          $datainsert->transpoter_no =$req->transpoter_no ;
          $datainsert->vehicle_no = $req->vehical_no;
@@ -70,8 +66,7 @@ class ticket extends Controller
          $data1->remark = $req->remarks;
          $data1->update_by = $req->update_by;
          $data1->update_date = date('Y-m-d',strtotime(substr($req->cdate,0,10)));
-        $data1->save();
-
+         $data1->save();
          $data=DB::select("SELECT *,weight_entry.remark as remarks,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no where weight_entry.sr_no = '$datainsert->sr_no'");
          $transporters = Transporter::all();
        
@@ -117,11 +112,10 @@ class ticket extends Controller
 
    public function view_ticket()
    {
-     $data=DB::select("SELECT *,weight_entry.remark as remarks , weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no  ORDER BY weight_entry.sr_no DESC");
-    // $transporters = Transporter::all();
-   
-      //$data=weight_entry::with('transporter')->get()->toarray();
-      return view('admin.view_ticket',compact('data'));
+    $data=DB::select("SELECT *,weight_entry.remark as remarks , weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no where cdate=CURDATE() ORDER BY weight_entry.sr_no desc");
+    $total1=DB::select("SELECT sum(charges) as cash from weight_entry where cdate=CURDATE() and payment_mode=1");
+    $total2=DB::select("SELECT sum(charges) as credit from weight_entry where cdate=CURDATE() and payment_mode=2");
+    return view('admin.view_ticket',['data'=>$data,'total1' => $total1,'total2' => $total2]);
      
    }
    public function client()
@@ -131,9 +125,7 @@ class ticket extends Controller
    }
 
    public function edit_ticket($id)
-{
-  
- 
+  {
      $sr_no = transporter::get()->last()->sr_no;
      $data = weight_entry::with('transporter')->find($id);
      $material=DB::select("select DISTINCT material from weight_entry");
