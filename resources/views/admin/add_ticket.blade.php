@@ -5,7 +5,7 @@
     <!--begin::Content wrapper-->
     <div class="d-flex flex-column flex-column-fluid">
         <!--begin::Toolbar-->
-        <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6 mb-5 mt-5" tabindex="-1">
+        <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6 mb-5 mt-5">
         <form id="kt_modal_new_target_form"  class="form" method="POST" action= "{{!empty($transporter)?route('update_ticket'):route('add_ticket')}}" target="_blank">
             <!--begin::Toolbar container-->
             <div id="kt_app_toolbar_container" class="app-container new-full-width container-xxl d-flex flex-stack">
@@ -257,15 +257,9 @@
                                                 <span class="required">Payment Mode</span>
                                             </label>
                                             <select class="form-select form-select-solid" id="payment" data-control="select2" data-hide-search="true" data-placeholder="Select Payment Mode" name="payment_mode" required>
-                                            <option value="1">CASH</option>
-                                            <option value="2">GPAY</option>
-                                            <option value="3">CHEQUE</option>
-                                            <option value="4">BANK TRANSFER</option>
-                                            <option value="5">A/C PAY</option>
-                                        
-                                            
+                                            <option value="1">ROKADA</option>
+                                            <option value="2">UDHAR</option>
                                             </select>
-                                        
                                         </div>
                                         <!--end::Col-->						
                                     </div>
@@ -308,7 +302,7 @@
     <!--end::Content wrapper-->
 </div>
 
-<div class="modal fade" id="kt_modal_add_user_1" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="kt_modal_add_user_1" aria-hidden="true">
     <!--begin::Modal dialog-->
     <div class="modal-dialog modal-dialog-centered mw-650px">
         <!--begin::Modal content-->
@@ -356,7 +350,7 @@
                             <label class="required fw-bolder fs-6 mb-2">Name</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" name="name" id="name" style="text-transform:uppercase" placeholder="Name" value="{{$transporter['name'] ?? '' }}"/>
+                            <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" name="name" id="name" style="text-transform:uppercase" placeholder="Name" value="{{$transporter['name'] ?? '' }}" />
                             <!--end::Input-->
                         </div>
                         <!--end::Input group-->
@@ -595,38 +589,17 @@ contactInput.addEventListener('input', function () {
     this.setCustomValidity('');
   }
 });
-
 </script>
-
-
 <script>
- 
     $("#transpoter_no").change(function(){
         var trans_no=$(this).val();
         if(trans_no != 48)
         {
-            $("#payment option[value='5']").attr('selected','selected');  
+            $("#payment option[value='2']").attr('selected','selected');  
         }
     });
-
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-    <script>
+<script>
     $(document).ready(function($){
     $("#close_jk").click(function(){
     $("#kt_modal_add_user_1").modal('hide');

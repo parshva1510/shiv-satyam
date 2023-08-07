@@ -79,8 +79,7 @@ class ticket extends Controller
         $rec_no= payment::get()->last()->receipt_no;
         $temp=substr($rec_no,0,8);
         $next_rec_no= $temp . $sr_no+1;
-       
-dd($req->payment_mode);
+
         //Adding Entry in Ledger Table to smooth calculation
 
         if($req->payment_mode != '5'){
@@ -90,13 +89,13 @@ dd($req->payment_mode);
 
               //temp comment to avoid non ac pay transaction to payment
               
-             /* $ledgertable = new ledger();
+              $ledgertable = new ledger();
               $ledgertable->transporter_id = $req->transpoter_no;
               $ledgertable->receipt = $req->ticket_no;
               $ledgertable->credit = $req->charge;
               $ledgertable->debit = $req->charge;
               $ledgertable->date = date('Y-m-d',strtotime(substr($req->cdate,0,10)));
-             // $ledgertable->save();*/
+              $ledgertable->save();
         }
         else{
 

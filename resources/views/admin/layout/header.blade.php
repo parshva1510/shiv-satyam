@@ -127,7 +127,7 @@ License: For each use you must have a valid license purchased only from above li
 										<!--end:Menu link-->
 									</div>
 									<!--end:Menu item-->
-
+									@endif
 									<!--begin:Menu item-->
 									<div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item">
 										<!--begin:Menu link-->
@@ -182,7 +182,7 @@ License: For each use you must have a valid license purchased only from above li
 										</div>
 										<!--end:Menu link-->
 									</div>
-									@endif
+								
 									<!--end:Menu item-->
 								</div>
 								<!--end::Menu-->

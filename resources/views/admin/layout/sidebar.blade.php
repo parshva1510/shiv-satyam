@@ -127,7 +127,7 @@
                 </div>
                 <!--end:Menu sub-->
             </div>
-            @if(session('role')==="Admin")
+            
             <!--begin:Menu item-->
             <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                 <!--begin:Menu link-->
@@ -218,7 +218,7 @@
                 <!--end:Menu sub--> 
 
             </div>
-            @endif
+            
             <!--end:Menu item-->
             <!--end:Menu item-->
             @if(session('role')==="Admin")
@@ -261,7 +261,7 @@
                 </div>
                 <!--end:Menu sub-->
             </div>
-            @endif
+           @endif
             <!--end:Menu item-->
            
            
