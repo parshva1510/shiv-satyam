@@ -17,8 +17,8 @@
                     <!--end::Title-->
                 </div>
                             <div  style= "display: flex; justify-content: flex-end;">
-                                
                                     <!--begin::Input-->
+                                    @if(session('role')=="Admin")
                                     <div class="position-relative d-flex align-items-center">
                                         <!--begin::Icon-->
                                         <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
@@ -36,8 +36,8 @@
                                              <input class="form-control form-control-solid ps-12" id="cdate" placeholder="Select a date" name="cdate" value="{{(new DateTime($transporter['cdate']))->format('d-m-Y')}}"/>
                                             <!--end::Datepicker-->
                                     </div>
-                            </div>
-                                        
+                                    @endif
+                            </div>                          
                 <!--end::Page title-->
             </div>
             <!--end::Toolbar container-->
@@ -127,12 +127,15 @@
                                         </div>
                                         <!--end::Label-->
                                         <!--begin::Label-->
+                                        
                                         <div class="col-md-3 fv-row">
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2 required">Gross Date</label>
                                             <!--begin::Input-->
+                                           
                                             <div class="position-relative d-flex align-items-center">
                                                 <!--begin::Icon-->
                                                 <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
+                                                @if(session('role')=="Admin")
                                                 <span class="svg-icon svg-icon-2 position-absolute mx-4">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path opacity="0.3" d="M21 22H3C2.4 22 2 21.6 2 21V5C2 4.4 2.4 4 3 4H21C21.6 4 22 4.4 22 5V21C22 21.6 21.6 22 21 22Z" fill="currentColor" />
@@ -143,15 +146,15 @@
                                                 <!--end::Svg Icon-->
                                                 <!--end::Icon-->
                                                 <!--begin::Datepicker-->
-                                        <!-- -->
-                                        
-                                                <input class="form-control form-control-solid ps-12" id="gross_date" placeholder="Select a date" name="gross_date" value="{{(new DateTime($transporter->gross_date .' '. $transporter->gross_time))->format('d-m-Y H:i')}}" />
-
                                                 
-
-
+                                                <input class="form-control form-control-solid ps-12" id="gross_date" placeholder="Select a date" name="gross_date" value="{{(new DateTime($transporter->gross_date .' '. $transporter->gross_time))->format('d-m-Y H:i')}}" />
+                                               @else
+                                                <input id="gross" type="text" class="form-control form-control-solid" placeholder="Gross Date"  name="gross" style="text-transform:uppercase" value="{{(new DateTime($transporter->gross_date .' '. $transporter->gross_time))->format('d-m-Y H:i')}}" readonly/>
+                                                @endif
                                                 <!--end::Datepicker-->
                                             </div>
+                                      
+
                                         </div>
                                         <!--end::Label-->
 
@@ -170,6 +173,7 @@
                                             <div class="position-relative d-flex align-items-center">
                                                 <!--begin::Icon-->
                                                 <!--begin::Svg Icon | path: icons/duotune/general/gen014.svg-->
+                                                @if(session('role')=="Admin")
                                                 <span class="svg-icon svg-icon-2 position-absolute mx-4">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path opacity="0.3" d="M21 22H3C2.4 22 2 21.6 2 21V5C2 4.4 2.4 4 3 4H21C21.6 4 22 4.4 22 5V21C22 21.6 21.6 22 21 22Z" fill="currentColor" />
@@ -180,7 +184,10 @@
                                                 <!--end::Svg Icon-->
                                                 <!--end::Icon-->
                                                 <!--begin::Datepicker-->
-                                                <input class="form-control form-control-solid ps-12" id="tare_date" placeholder="Select a date" name="tare_date" value="{{(new DateTime($transporter->tare_date .' '. $transporter->tare_time))->format('d-m-Y H:i')}}" />
+                                                <input class="form-control form-control-solid ps-12" id="tare_date" placeholder="Select a date" name="tare_date" value="{{(new DateTime($transporter->tare_date .' '. $transporter->tare_time))->format('d-m-Y H:i')}}"/>
+                                                @else
+                                                <input id="tare" type="text" class="form-control form-control-solid" placeholder="Tare Date"  name="tare" style="text-transform:uppercase" value="{{(new DateTime($transporter->tare_date .' '. $transporter->tare_time))->format('d-m-Y H:i')}}" readonly/>
+                                                @endif
                                                 <!--end::Datepicker-->
                                             </div>
                                         </div>
@@ -199,11 +206,11 @@
                                             <input  id="net_weight" type="number" min="0" class="form-control form-control-solid" placeholder="0" name="net_weight" value="{{$transporter['net_weight']}}" required/>
                                         </div> -->
                                         <div class="col-md-3 fv-row">
-    <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
-        <span class="required">Net Weight (KG)</span>
-    </label>
-    <input type="number" class="form-control form-control-solid" name="net_weight" id="net_weight" value="{{$transporter['net_weight']}}" />
-</div>
+                                            <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
+                                                <span class="required">Net Weight (KG)</span>
+                                            </label>
+                                            <input type="number" class="form-control form-control-solid" name="net_weight" id="net_weight" value="{{$transporter['net_weight']}}" />
+                                        </div>
                                         <!--end::Label-->
                                         <!--begin::Label-->
                                         <div class="col-md-3 fv-row">
@@ -226,7 +233,11 @@
                                             </label>
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1"><i class="bi bi-currency-rupee"></i></span>
-                                                <input id="charges" type="number" min="0" class="form-control form-control-solid" placeholder="0" name="charge" value="{{$transporter['charges']}}" required/>
+                                                @if(session('role')=="Admin")
+                                                <input id="charges" type="number" min="0" class="form-control form-control-solid" placeholder="0" name="charge" value="{{$transporter['charges']}}"/>
+                                                @else
+                                                <input id="charges" type="number" min="0" class="form-control form-control-solid" placeholder="0" name="charge" value="{{$transporter['charges']}}" readonly/>
+                                                @endif
                                             </div>
                                         </div>
                                         <!--end::Label-->	
@@ -235,13 +246,8 @@
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">Payment Mode</label>
                                             <select class="form-select form-select-solid" id="select-payment" data-control="select2" data-hide-search="true" data-placeholder="Select Payment Mode" name="payment_mode" value="">
                                             <option value="">Select Mode...</option>
-                                            <option value="1" {{ $transporter['payment_mode'] == "1" && !empty($transporter['payment_mode']) ? 'selected' : '' }} selected>CASH</option>
-                                            <option value="2" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "2" ? 'selected' : '' }}>GPAY</option>
-                                            <option value="3" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "3" ? 'selected' : '' }}>CHEQUE</option>
-                                            <option value="4" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "4" ? 'selected' : '' }}>BANK TRANSFER</option>
-                                            <option value="5" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "5" ? 'selected' : '' }}>A/C PAY</option>
-                                        
-                                            
+                                            <option value="1" {{ $transporter['payment_mode'] == "1" && !empty($transporter['payment_mode']) ? 'selected' : '' }} selected>ROKADA</option>
+                                            <option value="2" {{isset($transporter['payment_mode']) && $transporter['payment_mode'] == "2" ? 'selected' : '' }}>UDHAR</option>                       
                                             </select>
                                         
                                         </div>
@@ -306,6 +312,7 @@
 
 <script>
   jQuery(document).ready(function($){
+
     var currentDateTime = new Date();
 
     $('#gross_date').flatpickr({
@@ -485,7 +492,7 @@
         //     }
         // });
     });
-        $("#kt_modal_new_target_form").submit(function(){
+        $("#kt_modal_new_target_form").click(function(){
             var vehicleNumber = document.getElementById('NUMBERPLATE').value;
             var grossweight = document.getElementById('gross_weight').value;
             var tareweight = document.getElementById('tare_wight').value;
@@ -553,4 +560,5 @@ $(document).ready(function () {
     });
     });
     </script>
+
 @endsection

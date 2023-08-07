@@ -258,6 +258,7 @@
 																	</span> -->
 																	<!--end::Svg Icon-->
 																</a>
+																@if(session('role')=="Admin")
 																<button type="button"  data-kt-ecommerce-order-filter="delete_row" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm servicedeletebtn">
 																	<!--begin::Svg Icon | path: icons/duotune/general/gen027.svg-->
 																	<span class="svg-icon svg-icon-3">
@@ -269,14 +270,13 @@
 																	</span>
                                                    	 			<!--end::Svg Icon-->
                                                 				</button>
+																@endif
 														</td>
 														
 														<!--end::Action=-->
 													</tr>
 													@endforeach
-													 <tr>
-														<td>total cash</td>
-													</tr>
+													
 												</tbody>
 												<!--end::Table body-->
 											</table>
