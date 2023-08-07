@@ -157,6 +157,7 @@
 														<th class="min-w-30px">Ticket. No.</th>
 														<th class="min-w-70px">Vehicle No.</th>
 														<th class="min-w-150px">Transporter</th>
+														<th class="min-w-70px">Date</th>
 														<th class="min-w-70px">G. Weight</th>
 														<th class="min-w-120px">G. Date</th>
 														<th class="min-w-70px">T. Weight</th>
@@ -166,7 +167,6 @@
 														<th class="min-w-70px">Charge</th>
 														<th class="min-w-70px">Payment Mode</th>
 														<th class="min-w-70px">Remarks</th>
-														<th class="min-w-70px">Current Date</th>
 														<th class="text-end min-w-70px">Actions</th>
 														
 
@@ -193,12 +193,11 @@
 														
 														<td>{{$row->ticket_no}}</td>
 													
-													
-														<td>{{$row->vehicle_no}}</td>
-														
+														<td>{{$row->vehicle_no}}</td>	
 														
 														<td>{{$row->name}}</td>
 
+														<td>@if(isset($row->cdate)){{(new DateTime ($row->cdate))->format('d-m-Y')}}@endif</td>
 
 														<td>{{$row->gross_weight}}</td>
 
@@ -217,33 +216,15 @@
 
 														@if($row->payment_mode==1)
 														
-															<td>cash</td>
+															<td>ROKADA</td>
 														
 														@elseif($row->payment_mode==2)
 														
-															<td>Gpay</td>
-														
-														@elseif($row->payment_mode==3)
-														
-															<td>Cheque</td>
-														
-														@elseif($row->payment_mode==4)
-													
-															<td>Bank Transfer</td>
-														
-														@else
-														
-															<td>A/C Pay</td>
-														
-														
+															<td>UDHAR</td>
+					
 														@endif
 														<td>{{$row->remarks}}</td>
-																												
-														<td>@if(isset($row->cdate)){{(new DateTime ($row->cdate))->format('d-m-Y')}}@endif</td>
-														
-														
-													
-													
+					
 														<td class="text-end">
 																<a href="{{route('generate-pdf', $row->id) }}"  target="_blank"   class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
 																	<!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
@@ -267,15 +248,6 @@
                                                                     </span>
                                                                     <!--end::Svg Icon-->
                                                                 </a>
-
-
-
-
-
-
-
-																
-															
 
 																	<!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
 																	<!-- <span class="svg-icon svg-icon-3">
@@ -302,6 +274,9 @@
 														<!--end::Action=-->
 													</tr>
 													@endforeach
+													 <tr>
+														<td>total cash</td>
+													</tr>
 												</tbody>
 												<!--end::Table body-->
 											</table>
