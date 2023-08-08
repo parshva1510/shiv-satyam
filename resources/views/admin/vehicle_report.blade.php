@@ -104,6 +104,7 @@
                                             <th class="min-w-30px">Ticket. No.</th>
                                             <th class="min-w-70px">Vehicle No.</th>
                                             <th class="min-w-150px">Transporter</th>
+                                            <th class="min-w-130px">Date</th>
                                             <th class="min-w-70px">G. Weight</th>
                                             <th class="min-w-150px">G. Date</th>
                                             <th class="min-w-70px">T. Weight</th>
@@ -126,6 +127,8 @@
                                             <td>{{$row->vehicle_no}}</td>
 
                                             <td>{{$row->name}}</td>
+
+                                            <td>{{Date("d-m-Y",strtotime($row->cdate))}}</td>
 
                                             <td>{{$row->gross_weight}}</td>
 
@@ -254,7 +257,9 @@ var KTDatatablesExample = function () {
 
     // Hook export buttons
     var exportButtons = () => {
-        const documentTitle = 'Vehicle Report trtrhth';
+        
+        const documentTitle = "Vehicle No: " + {{$total_charges[0]->total}} + "Total: Rs." + {{$total_charges[0]->total}};
+    
         var buttons = new $.fn.dataTable.Buttons(table, {
             buttons: [
                 {

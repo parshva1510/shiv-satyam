@@ -28,10 +28,7 @@ class reportcontroller extends Controller
        $date2=date('y-m-d',strtotime(substr($daterange,13)));
        $data=DB::select("SELECT *,transporter.name as tranporter_name FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no where transpoter_no='$id' and weight_entry.cdate BETWEEN '$date1' and '$date2'");
        $total_charges=DB::select("SELECT sum(charges) as total FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no where transpoter_no='$id' and weight_entry.cdate BETWEEN '$date1' and '$date2'");
-    
-       return view('admin.reports', ["transporter" => $transporter, 'data' => $data, 'id' => $id, 'daterange' => $daterange,'total_charges'=> $total_charges]);
-
-      
+       return view('admin.reports', ["transporter" => $transporter, 'data' => $data, 'id' => $id, 'daterange' => $daterange,'total_charges'=> $total_charges]);      
    }
   
 
@@ -93,14 +90,16 @@ class reportcontroller extends Controller
     $id=0;
     $vehicle=DB::select("SELECT DISTINCT vehicle_no FROM weight_entry");
     $data=DB::select("SELECT *,transporter.name as name FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no ");
-    return view('admin.vehicle_report',["vehicle" => $vehicle,"data" => $data,'id'=>$id]);
+    $total_charges=DB::select("SELECT sum(charges) as total FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no ");
+    return view('admin.vehicle_report',["vehicle" => $vehicle,"data" => $data,'id'=>$id,'total_charges'=> $total_charges]);  
    }
    public function show_vehicle_report(Request $req)
    {
         $id=$req->vehicle;
         $vehicle=DB::select("SELECT DISTINCT vehicle_no FROM weight_entry");
         $data=DB::select("SELECT *,transporter.name as name from transporter join weight_entry on transporter.sr_no=weight_entry.transpoter_no where vehicle_no='$id'");
-        return view('admin.vehicle_report',["vehicle" => $vehicle,"data" => $data,'id'=>$id]);
+        $total_charges=DB::select("SELECT sum(charges) as total,vehicle_no from transporter join weight_entry on transporter.sr_no=weight_entry.transpoter_no where vehicle_no='$id'");
+        return view('admin.vehicle_report',["vehicle" => $vehicle,"data" => $data,'id'=>$id,'total_charges'=> $total_charges]);      
        
    }
    public function datewise_report()

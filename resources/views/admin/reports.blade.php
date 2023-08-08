@@ -127,7 +127,7 @@
 
                                             <td>{{$row->tranporter_name}}</td>
 
-                                            <td>{{Date("d-m-Y",strtotime($row->tare_date))}}</td>
+                                            <td>{{Date("d-m-Y",strtotime($row->cdate))}}</td>
 
                                             <td>{{$row->gross_weight}}</td>
 
