@@ -104,9 +104,9 @@
                                             <th class="min-w-70px">Vehicle No.</th>
                                             <th class="min-w-150px">Transporter</th>
                                             <th class="min-w-70px">G. Weight</th>
-                                            <th class="min-w-120px">G. Date</th>
+                                            <th class="min-w-130px">G. Date</th>
                                             <th class="min-w-70px">T. Weight</th>
-                                            <th class="min-w-120px">T. Date</th>
+                                            <th class="min-w-130px">T. Date</th>
                                             <th class="min-w-70px">Net Weight</th>
                                             <th class="min-w-70px">Material</th>
                                             <th class="min-w-70px">Charge</th>
@@ -138,30 +138,17 @@
 
                                             <td>{{$row->material}}</td>
 
-                                            <td>{{' Rs.'.$row->charges}}</td>
+                                            <td>{{$row->charges}}</td>
 
                                             @if($row->payment_mode==1)
 														
-															<td>CASH</td>
+											<td>CASH</td>
 														
-														@elseif($row->payment_mode==2)
+											@elseif($row->payment_mode==2)
 														
-															<td>GPAY</td>
-														
-														@elseif($row->payment_mode==3)
-														
-															<td>CHEQUE</td>
-														
-														@elseif($row->payment_mode==4)
-													
-															<td>BANK TRANSFER</td>
-														
-														@else
-														
-															<td>A/C PAY</td>
-														
-														
-														@endif
+											<td>CREDIT</td>
+																
+											@endif
 
                                        
                                   

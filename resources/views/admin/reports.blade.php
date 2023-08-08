@@ -102,11 +102,12 @@
                                         <tr class="text-start text-gray-800 fw-bolder fs-7 text-uppercase gs-0">
                                             <th class="min-w-30px">Ticket. No.</th>
                                             <th class="min-w-70px">Vehicle No.</th>
-                                            <th class="min-w-150px">Transporter</th>
+                                            <th class="min-w-120px">Transporter</th>
+                                            <th class="min-w-130px">Date</th>
                                             <th class="min-w-70px">G. Weight</th>
-                                            <th class="min-w-120px">G. Date</th>
+                                            <th class="min-w-130px">G. Date</th>
                                             <th class="min-w-70px">T. Weight</th>
-                                            <th class="min-w-120px">T. Date</th>
+                                            <th class="min-w-130px">T. Date</th>
                                             <th class="min-w-70px">Net Weight</th>
                                             <th class="min-w-70px">Material</th>
                                             <th class="min-w-70px">Charge</th>
@@ -126,6 +127,8 @@
 
                                             <td>{{$row->tranporter_name}}</td>
 
+                                            <td>{{Date("d-m-Y",strtotime($row->tare_date))}}</td>
+
                                             <td>{{$row->gross_weight}}</td>
 
                                             <td>{{(new datetime($row->gross_date))->format('d-m-Y')}}</td>
@@ -138,30 +141,17 @@
 
                                             <td>{{$row->material}}</td>
 
-                                            <td>{{' Rs.'.$row->charges}}</td>
+                                            <td>{{$row->charges}}</td>
 
                                             @if($row->payment_mode==1)
 														
-															<td>CASH</td>
+											<td>CASH</td>
 														
-														@elseif($row->payment_mode==2)
+											@elseif($row->payment_mode==2)
 														
-															<td>GPAY</td>
+											<td>CREDIT</td>
 														
-														@elseif($row->payment_mode==3)
-														
-															<td>CHEQUE</td>
-														
-														@elseif($row->payment_mode==4)
-													
-															<td>BANK TRANSFER</td>
-														
-														@else
-														
-															<td>A/C PAY</td>
-														
-														
-														@endif
+											@endif
 
                                        
                                   
@@ -311,7 +301,7 @@ var KTDatatablesExample = function () {
         var name=document.getElementById("transporter_name").value;
         $("#daterange").val(document.getElementById("kt_daterangepicker_1").value);
         date=document.getElementById("daterange").value;
-        const documentTitle = name + " Date:" + date;
+        const documentTitle = name + " Date:" + date +" Total: Rs." + {{$total_charges[0]->total}};
     
         var buttons = new $.fn.dataTable.Buttons(table, {
             buttons: [

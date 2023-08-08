@@ -1,11 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\users;
-use Illuminate\Support\Facades\DB;
-
+use DB;
 class authentication extends Controller
 {
     public function login()
@@ -13,21 +10,20 @@ class authentication extends Controller
      return view('login');
     }
     public function check_user(Request $req)
- 
     {
         $username=$req->username;
         $password=md5($req->password);
         $check=$req->remember;
-        
         $data=DB::select("SELECT * FROM `users` where username like '$username'");
         if($data==null){
-            Session()->flash('message', 'Login Failed!');
+        
+                Session()->flash('message', 'Login Failed!');
                 return redirect("login")->with("fail","Login Failed");
         }else{
             if($password==$data[0]->password){
                 $_SESSION['type']="remember";
-                $req->session()->put('user',$username);
-                $req->session()->put('role',$data[0]->role);
+                session(['user'=>$username]);
+                session(['role'=>$data[0]->role]);
                 if($check==null){
                     if(isset($_COOKIE['user_login'])){
                         setcookie('user_login',"");
@@ -38,9 +34,9 @@ class authentication extends Controller
                }else{
                     //COOKIES for username
                     setcookie("test_cookie", "test", time() + 3600, '/');
-                    setcookie("user_login", $_POST['username']);
+                    setcookie("user_login", $_POST['username'], strtotime('+30 days'));
                     //COOKIES for password
-                    setcookie("user_password", $_POST['password']);
+                    setcookie("user_password", $_POST['password'], strtotime('+30 days'));
                 }
                 Session()->flash('message', 'Login succssesful');
                 return redirect()->route('view_ticket');
@@ -57,5 +53,6 @@ class authentication extends Controller
         return view('login');
     }
 }
+
 
 

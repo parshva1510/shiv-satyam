@@ -257,8 +257,8 @@
                                                 <span class="required">Payment Mode</span>
                                             </label>
                                             <select class="form-select form-select-solid" id="payment" data-control="select2" data-hide-search="true" data-placeholder="Select Payment Mode" name="payment_mode" required>
-                                            <option value="1">ROKADA</option>
-                                            <option value="2">UDHAR</option>
+                                            <option value="1">CASH</option>
+                                            <option value="2">CREDIT</option>
                                             </select>
                                         </div>
                                         <!--end::Col-->						
