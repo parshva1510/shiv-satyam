@@ -257,8 +257,8 @@ var KTDatatablesExample = function () {
 
     // Hook export buttons
     var exportButtons = () => {
-        
-        const documentTitle = "Vehicle No: " + {{$total_charges[0]->total}} + "Total: Rs." + {{$total_charges[0]->total}};
+        var vehicle=document.getElementById("vehicle").value;
+        const documentTitle = "Vehicle No: " + vehicle + " Total: Rs." + {{$total_charges[0]->total}};
     
         var buttons = new $.fn.dataTable.Buttons(table, {
             buttons: [

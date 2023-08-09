@@ -226,7 +226,7 @@
                                             </label>
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon1"><i class="bi bi-currency-rupee"></i></span>
-                                               
+                                              
                                                 <input id="charges" type="number" min="0" class="form-control form-control-solid" placeholder="0" name="charge" value="{{$transporter['charges']}}"/>
                                                
                                             </div>
@@ -256,7 +256,7 @@
                                     <!--end::Input group-->
                                     <!--begin::Actions-->
                                     <div class="text-center d-flex flex-stack"  style= "display: flex; justify-content: flex-end;">
-                                        <button type="submit" id="kt_modal_new_target_form" class="btn btn-primary" >
+                                        <button type="submit" id="submit_update" class="btn btn-primary" >
                                             <span class="indicator-label">Submit</span>
                                             <span class="indicator-progress">Please wait...
                                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -307,20 +307,22 @@
     var currentDateTime = new Date();
 
     $('#gross_date').flatpickr({
-
-      dateFormat: "d-m-Y H:i",
+        enableTime: true,
+        dateFormat: "d-m-Y H:i",
         
     });
     @if(session('role') <>"Admin")
         $('input#gross_date').prop( 'disabled', 'disabled' );
         $('input#tare_date').prop( 'disabled', 'disabled' );
+        $('input#cdate').prop( 'disabled', 'disabled' );
         $('input#charges').prop( 'disabled', 'disabled' );
     @endif
     $('#tare_date').flatpickr({
-      dateFormat: "d-m-Y H:i",
+        enableTime: true,
+        dateFormat: "d-m-Y H:i",
     });
     $('#cdate').flatpickr({
-   
+        
       dateFormat: "d-m-Y ",
       //defaultDate: currentDateTime
     });
@@ -483,7 +485,7 @@
         //     }
         // });
     });
-        $("#kt_modal_new_target_form").submit(function(){
+        $("#submit_update").click(function(){
             var vehicleNumber = document.getElementById('NUMBERPLATE').value;
             var grossweight = document.getElementById('gross_weight').value;
             var tareweight = document.getElementById('tare_wight').value;
@@ -493,12 +495,8 @@
      
                 document.getElementById('number_error').textContent = "Please add a valid vehicle number";  
                 return false;
-              
-
-    }else  {
-       
+            }else  {
                 document.getElementById('number_error').textContent = "";
-              
             }
         if(grossweight  === '' && tareweight === ''&& netweight ==='' && charge ==='' &&  !pattern.test(vehicleNumber))
         {

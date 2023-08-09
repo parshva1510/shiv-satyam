@@ -252,25 +252,10 @@
 {{-- <script src="{{url('public/assets/js/custom/apps/ecommerce/customers/listing/listing.js')}}"></script> --}}
 <!--end::Custom Javascript-->
 
-<script>
-    $("#kt_daterangepicker_1").daterangepicker();
-</script>
+>
 
 <script>
-   var name,date;
-    $("#kt_modal_transporter").on('submit',function(){
-        var v = $("#transporter option:selected");
-        var s=(v.text()).trim();
-        var index=s.indexOf("-");
-        var name=s.substring(0,index);
-        $("#transporter_name").val(name);
-        var name=document.getElementById("transporter_name").value;
-//alert(name);
-
-        $("#daterange").val(document.getElementById("kt_daterangepicker_1").value);
-        date=document.getElementById("daterange").value;
-       // alert(date);
-    });
+   
 // Class definition
 var KTDatatablesExample = function () {
     // Shared variables
@@ -301,7 +286,7 @@ var KTDatatablesExample = function () {
         var name=document.getElementById("transporter_name").value;
         $("#daterange").val(document.getElementById("kt_daterangepicker_1").value);
         date=document.getElementById("daterange").value;
-        const documentTitle = name + " Date:" + date +" Total: Rs." + {{$total_charges[0]->total}};
+        const documentTitle = name + " [Date:" + date +"] Total: Rs." + {{$total_charges[0]->total}};
     
         var buttons = new $.fn.dataTable.Buttons(table, {
             buttons: [
