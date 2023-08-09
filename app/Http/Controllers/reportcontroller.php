@@ -106,9 +106,12 @@ class reportcontroller extends Controller
    public function show_datewise_report(Request $req)
    {
      $daterange=$req->kt_daterangepicker_1;
-     $date1=date('Y-m-d',strtotime(substr($daterange,0,10)));
-     $date2=date('y-m-d',strtotime(substr($daterange,13)));
+     dd($daterange);
+     $date1=Date('Y-m-d',strtotime(substr($daterange,0,10)));
+     $date2=Date('y-m-d',strtotime(substr($daterange,13)));
+     dd($date1);
      $data=DB::select("SELECT *,transporter.name as name from transporter join weight_entry on transporter.sr_no=weight_entry.transpoter_no where cdate BETWEEN '$date1' and '$date2' order by cdate");
+     dd($data);
      $total_cash=DB::select("SELECT sum(charges) as 'Total' from weight_entry where cdate BETWEEN '$date1' and '$date2' and payment_mode='1' order by cdate;");
      $total_credit=DB::select("SELECT sum(charges) as 'Total' from weight_entry where cdate BETWEEN '$date1' and '$date2' and payment_mode='2' order by cdate;");
      return view('admin.weighentry_datewise_report',["data" => $data,'daterange'=>$daterange,'total_cash'=> $total_cash,'total_credit' => $total_credit]);

@@ -258,8 +258,8 @@ var KTDatatablesExample = function () {
 
     // Hook export buttons
     var exportButtons = () => {
-        var daterange=document.getElementById("kt_daterangepicker_1").value;
-        const documentTitle = 'Date: ' + daterange + ' [ Total Cash: ' + {{$total_cash[0]->Total}} + " Total Credit: " + {{$total_credit[0]->Total}} + "]";
+        //var daterange=document.getElementById("kt_daterangepicker_1").value;
+        const documentTitle = 'Date: ' + {{$daterange}} + ' [ Total Cash: ' + {{$total_cash[0]->Total}} + " Total Credit: " + {{$total_credit[0]->Total}} + "]";
 
 
         var buttons = new $.fn.dataTable.Buttons(table, {

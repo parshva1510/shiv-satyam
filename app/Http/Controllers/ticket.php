@@ -83,7 +83,7 @@ class ticket extends Controller
               // basically debit - credit (100-100 = 0)
 
               //temp comment to avoid non ac pay transaction to payment
-              
+              dd("hi");
               $ledgertable = new ledger();
               $ledgertable->transporter_id = $req->transpoter_no;
               $ledgertable->receipt = $req->ticket_no;
@@ -100,7 +100,7 @@ class ticket extends Controller
           $ledgertable->credit = 0;
           $ledgertable->debit = $req->charge;
           $ledgertable->date = date('Y-m-d',strtotime(substr($req->cdate,0,10)));
-          //$ledgertable->save();
+          $ledgertable->save();
         }
 
         $ticket_no = $datainsert->ticket_no;
@@ -192,7 +192,7 @@ class ticket extends Controller
 
        //Updating Entry in Ledger Table to smooth calculation
 
-       if($req->payment_mode != '5'){
+       if($req->payment_mode != '2'){
           
         //logic if payment mode is not AC then first amount will debit and then by paying with cash is credit
         // basically debit - credit (100-100 = 0)
