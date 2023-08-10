@@ -112,7 +112,7 @@
                                             <th class="min-w-70px">Material</th>
                                             <th class="min-w-70px">Charge</th>
                                             <th class="min-w-70px">Payment Mode</th>
-                                            {{-- <th class="text-end min-w-70px">Actions</th> --}}
+                                        
                                         </tr>
                                         <!--end::Table row-->
                                     </thead>
@@ -153,10 +153,21 @@
 														
 											@endif
 
-                                       
-                                  
                                         </tr>
                                         @endforeach
+
+                                        <tr>
+                                            <td><td> <td></td> <td></td>  <td></td> <td></td> <td></td> <td></td>   <td></td>   
+                                            <td colspan="2"> <span style="font-size:18px;font-weight:bold">Total Cash:</span></td>
+                                            <td> <span style="font-size:18px;font-weight:bold">₹. {{$total1[0]->cash}}</span></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><td> <td></td> <td></td>  <td></td> <td></td> <td></td> <td></td><td></td> 
+                                            <td colspan="2"> <span style="text-align:right;font-size:18px;font-weight:bold">Total Credit:</span></td>
+                                            <td> <span style="font-size:18px;font-weight:bold">₹. {{$total2[0]->credit}}</span></td>
+                                            <td></td>
+                                        </tr>
                                     </tbody>
                                     <!--end::Table body-->
                                 </table>
@@ -269,7 +280,7 @@ var KTDatatablesExample = function () {
         // Init datatable --- more info on datatables: https://datatables.net/manual/
         datatable = $('#kt_datatable_example').DataTable({
             "info": true,
-            'pageLength': 10,
+            'pageLength': 20,
             "ordering": false,
         
         });
@@ -286,7 +297,7 @@ var KTDatatablesExample = function () {
         var name=document.getElementById("transporter_name").value;
         $("#daterange").val(document.getElementById("kt_daterangepicker_1").value);
         date=document.getElementById("daterange").value;
-        const documentTitle = name + " [Date:" + date +"] Total: Rs." + {{$total_charges[0]->total}};
+        const documentTitle = name + " [ Date:" + date +" ]" ;
     
         var buttons = new $.fn.dataTable.Buttons(table, {
             buttons: [

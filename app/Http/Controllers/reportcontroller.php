@@ -13,11 +13,12 @@ class reportcontroller extends Controller
     public function reports()
    {
      $transporter=transporter::get()->all();
-     $daterange=Date('d-m-Y')." - " .Date('d-m-Y') ;
+     $daterange=Date('m-d-Y')." - " .Date('m-d-Y') ;
      $id =0;
      $data=DB::select("SELECT *,transporter.name as tranporter_name FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no where cdate=CURRENT_DATE");
-     $total_charges=DB::select("SELECT sum(charges) as total FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no and cdate=CURRENT_DATE");
-     return view('admin.reports',["transporter" => $transporter,"data" => $data,'id'=>$id,'daterange' => $daterange,'total_charges'=> $total_charges]);
+     $total1=DB::select("SELECT sum(charges) as cash FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no and cdate=CURRENT_DATE and payment_mode='1'");
+     $total2=DB::select("SELECT sum(charges) as credit FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no and cdate=CURRENT_DATE and payment_mode='2'");
+     return view('admin.reports',["transporter" => $transporter,"data" => $data,'id'=>$id,'daterange' => $daterange,'total1'=> $total1,'total2'=> $total2]);
    }
 
    public function show_report(Request $req)
@@ -28,12 +29,13 @@ class reportcontroller extends Controller
      $date1=date('Y-m-d',strtotime(substr($daterange,0,10)));
      $date2=date('Y-m-d',strtotime(substr($daterange,13)));
      $data=DB::select("SELECT *,transporter.name as tranporter_name FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no where transpoter_no='$id' and weight_entry.cdate BETWEEN '$date1' and '$date2'");
-     $total_charges=DB::select("SELECT sum(charges) as total FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no where transpoter_no='$id' and weight_entry.cdate BETWEEN '$date1' and '$date2'");
-     return view('admin.reports', ["transporter" => $transporter, 'data' => $data, 'id' => $id, 'daterange' => $daterange,'total_charges'=> $total_charges]);      
+     $total1=DB::select("SELECT sum(charges) as cash FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no where transpoter_no='$id' and weight_entry.cdate BETWEEN '$date1' and '$date2' and payment_mode='1'");
+     $total2=DB::select("SELECT sum(charges) as credit FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no where transpoter_no='$id' and weight_entry.cdate BETWEEN '$date1' and '$date2' and payment_mode='2'");
+     return view('admin.reports', ["transporter" => $transporter, 'data' => $data, 'id' => $id, 'daterange' => $daterange,'total1'=> $total1,'total2'=> $total2]);      
    }
 
    public function payment_report(Request $req){
-     $daterange=Date('d-m-Y')." - " .Date('d-m-Y') ;
+    $daterange=Date('m-d-Y')." - " .Date('m-d-Y') ;
      $id=$req->transporter;
      $transportername = transporter::where('sr_no',$id)->first();
      $transporter=DB::select("SELECT * from transporter");
@@ -81,8 +83,9 @@ class reportcontroller extends Controller
      $id=0;
      $vehicle=DB::select("SELECT DISTINCT vehicle_no FROM weight_entry");
      $data=DB::select("SELECT *,transporter.name as name FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no where cdate=CURRENT_DATE ");
-     $total_charges=DB::select("SELECT sum(charges) as total FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no where cdate=CURRENT_DATE ");
-     return view('admin.vehicle_report',["vehicle" => $vehicle,"data" => $data,'id'=>$id,'total_charges'=> $total_charges]);  
+     $total1=DB::select("SELECT sum(charges) as cash FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no where cdate=CURRENT_DATE and payment_mode='1'");
+     $total2=DB::select("SELECT sum(charges) as credit FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no where cdate=CURRENT_DATE and payment_mode='2'");
+     return view('admin.vehicle_report',["vehicle" => $vehicle,"data" => $data,'id'=>$id,'total1'=> $total1,'total2'=> $total2]);  
    }
 
    public function show_vehicle_report(Request $req)
@@ -90,31 +93,28 @@ class reportcontroller extends Controller
      $id=$req->vehicle;
      $vehicle=DB::select("SELECT DISTINCT vehicle_no FROM weight_entry");
      $data=DB::select("SELECT *,transporter.name as name from transporter join weight_entry on transporter.sr_no=weight_entry.transpoter_no where vehicle_no='$id'");
-     $total_charges=DB::select("SELECT sum(charges) as total,vehicle_no from transporter join weight_entry on transporter.sr_no=weight_entry.transpoter_no where vehicle_no='$id'");
-     //dd($id );
-     return view('admin.vehicle_report',["vehicle" => $vehicle,"data" => $data,'id'=>$id,'total_charges'=> $total_charges]);       
+     $total1=DB::select("SELECT sum(charges) as cash from transporter join weight_entry on transporter.sr_no=weight_entry.transpoter_no where vehicle_no='$id' and payment_mode='1'");
+     $total2=DB::select("SELECT sum(charges) as credit from transporter join weight_entry on transporter.sr_no=weight_entry.transpoter_no where vehicle_no='$id' and payment_mode='2'");
+     return view('admin.vehicle_report',["vehicle" => $vehicle,"data" => $data,'id'=>$id,'total1'=> $total1,'total2'=> $total2]);     
    }
    public function datewise_report()
    {
      $data=DB::select("SELECT *,transporter.name as name FROM `weight_entry`join transporter on transporter.sr_no=weight_entry.transpoter_no where cdate=CURRENT_DATE ");
-     $daterange=Date('d-m-Y')." - " .Date('d-m-Y') ;
-     $total_cash=DB::select("SELECT sum(charges) as 'Total' from weight_entry where  payment_mode='1' and cdate=CURRENT_DATE ");
-     $total_credit=DB::select("SELECT sum(charges) as 'Total' from weight_entry where payment_mode='2' and cdate=CURRENT_DATE ");
-    return view('admin.weighentry_datewise_report',["data" => $data,'daterange'=>$daterange,'total_cash'=> $total_cash,'total_credit' => $total_credit]);
+     $daterange=Date('m-d-Y')." - " .Date('m-d-Y') ;
+     $total1=DB::select("SELECT sum(charges) as cash from weight_entry where  payment_mode='1' and cdate=CURRENT_DATE and payment_mode='1'");
+     $total2=DB::select("SELECT sum(charges) as credit from weight_entry where payment_mode='2' and cdate=CURRENT_DATE and payment_mode='2'");
+    return view('admin.weighentry_datewise_report',["data" => $data,'daterange'=>$daterange,'total1'=> $total1,'total2' => $total2]);
    }
    
    public function show_datewise_report(Request $req)
    {
      $daterange=$req->kt_daterangepicker_1;
-     dd($daterange);
      $date1=Date('Y-m-d',strtotime(substr($daterange,0,10)));
-     $date2=Date('y-m-d',strtotime(substr($daterange,13)));
-     dd($date1);
+     $date2=Date('Y-m-d',strtotime(substr($daterange,13)));
      $data=DB::select("SELECT *,transporter.name as name from transporter join weight_entry on transporter.sr_no=weight_entry.transpoter_no where cdate BETWEEN '$date1' and '$date2' order by cdate");
-     dd($data);
-     $total_cash=DB::select("SELECT sum(charges) as 'Total' from weight_entry where cdate BETWEEN '$date1' and '$date2' and payment_mode='1' order by cdate;");
-     $total_credit=DB::select("SELECT sum(charges) as 'Total' from weight_entry where cdate BETWEEN '$date1' and '$date2' and payment_mode='2' order by cdate;");
-     return view('admin.weighentry_datewise_report',["data" => $data,'daterange'=>$daterange,'total_cash'=> $total_cash,'total_credit' => $total_credit]);
+     $total1=DB::select("SELECT sum(charges) as 'cash' from weight_entry where cdate BETWEEN '$date1' and '$date2' and payment_mode='1' order by cdate;");
+     $total2=DB::select("SELECT sum(charges) as 'credit' from weight_entry where cdate BETWEEN '$date1' and '$date2' and payment_mode='2' order by cdate;");
+     return view('admin.weighentry_datewise_report',["data" => $data,'daterange'=>$daterange,'total1'=> $total1,'total2' => $total2]);
    }
 
 }

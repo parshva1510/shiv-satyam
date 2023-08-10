@@ -276,15 +276,9 @@
 														<!--end::Action=-->
 													</tr>
 													@endforeach
-													<tr>
-														<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>
-														<td>Total Cash</td> <td>{{$total1[0]->cash}}</td>
-													</tr>
-													<tr>
-														<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>
-														<td>Total Credit</td> <td>{{$total2[0]->credit}}</td>
-													</tr>
 													
+										
+                                     
 												</tbody>
 												<!--end::Table body-->
 											</table>
@@ -347,7 +341,7 @@
 	   // Init datatable --- more info on datatables: https://datatables.net/manual/
 	   datatable = $('#ticket_data').DataTable({
 		   "info": true,
-		   'pageLength': 10,
+		   'pageLength': 20,
 		   "ordering": false
 	   });
 	   //console.log(datatable);
@@ -525,17 +519,20 @@ $('input.toggle-vis').on('click', function (e) {
             var dateRange = $(this).val().split(' - ');
             var startDate = $.trim(dateRange[0]);
             var endDate = $.trim(dateRange[1]);
+			alert(dateRange);alert(startDate);alert(endDate);
 			//console.log(dateRange);
             // Loop through each row and show/hide based on date range
-            $('#ticket_data tbody tr').each(function() {
-                var soldDate = formatDate($(this).find('td:nth-child(15)').text());
+           /* $('#ticket_data tbody tr').each(function() {
+				var soldDate = formatDate($(this).find('td:nth-child(15)').text());
+				
 				//console.log(soldDate);
                 if (isDateInRange(soldDate, startDate, endDate)) {
+					
                     $(this).show();
                 } else {
                     $(this).hide();
                 }
-            });
+            });*/
         });
 
 		 // Function to format date as 'DD-MM-YYYY'
