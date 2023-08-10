@@ -28,7 +28,7 @@ Route::group(['middleware'=>['AuthCheck']], function()
 Route::get('ticket_form',[ticket::class,'index'])->name('ticket_form');
 Route::get('/edit_ticket/{id}',[ticket::class, 'edit_ticket'])->name('edit_ticket');
 Route::get('view_ticket',[ticket::class,'view_ticket'])->name('view_ticket');
-
+Route::get('get_ticket',[ticket::class,'get_ticket'])->name('get_ticket');
 
 Route::get('reports',[reportcontroller::class,'reports'])->name('reports');
 Route::get('show_report',[reportcontroller::class,'show_report'])->name('show_report');
@@ -96,9 +96,9 @@ Route::get('/delete_ticket/{sr_no}',[ticket::class,'delete_ticket'])->name('dele
 
 
 
-Route::get('login',[authentication::class,'login'])->name('login');
+//Route::get('login',[authentication::class,'login'])->name('login');
 Route::post('login',[authentication::class,'check_user'])->name('check_user');
 Route::get('login',[authentication::class,'destroy'])->name('destroy');
-Route::get('/',[authentication::class,'login']);
+Route::get('/',[authentication::class,'login'])->name('login');
 Route::get('/jk',[ticket::class,'test']);
 Route::get('get_paymentdetails/{id1}/{id2}',[paymentController::class,'get_paymentdetails']);

@@ -116,7 +116,6 @@ class ticket extends Controller
     $total1=DB::select("SELECT sum(charges) as cash from weight_entry where cdate=CURDATE() and payment_mode=1");
     $total2=DB::select("SELECT sum(charges) as credit from weight_entry where cdate=CURDATE() and payment_mode=2");
     return view('admin.view_ticket',['data'=>$data,'total1' => $total1,'total2' => $total2]);
-     
    }
    public function client()
    {
@@ -219,10 +218,6 @@ class ticket extends Controller
       $data=DB::select("SELECT *,weight_entry.remark as remarks ,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no  ORDER BY weight_entry.sr_no DESC");
       //return view('admin.view_ticket',['data' => $data]);
       return redirect()->route('view_ticket');
-      
-    
-
-
    }
   
   
@@ -255,5 +250,16 @@ class ticket extends Controller
         $data->remark=ucfirst($req->remark);
         $data->save();
         return redirect()->back();
+   }
+
+   public function get_ticket(Request $req)
+   {
+      $daterange=$req->kt_ecommerce_report_views_daterangepicker;
+      $startdate=date("Y-m-d",strtotime(substr($daterange,0,10)));
+      $enddate=Date("Y-m-d",strtotime(substr($daterange,13)));
+      $data=DB::select("SELECT *,weight_entry.remark as remarks , weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no where cdate between '$startdate' and '$enddate' ORDER BY weight_entry.sr_no desc");
+      $total1=DB::select("SELECT sum(charges) as cash from weight_entry where cdate between '$startdate' and '$enddate' and payment_mode=1");
+      $total2=DB::select("SELECT sum(charges) as credit from weight_entry where cdate between '$startdate' and '$enddate' and payment_mode=2");
+      return view('admin.view_ticket',['data'=>$data,'total1' => $total1,'total2' => $total2]);
    }
   }
