@@ -105,12 +105,7 @@
                                         <th class="min-w-70px">Date</th>                           
                                         <th class="min-w-70x">Debit</th>
                                         <th class="min-w-70px">Credit</th>
-                                        <th class="min-w-70px">Balance</th>
-                                        
-                                    
-                                       
-                                        
-                                        {{-- <th class="text-end min-w-70px">Actions</th> --}}
+                                        <!--<th class="min-w-70px">Balance</th>-->
                                     </tr>
                                     <!--end::Table row-->
                                 </thead>
@@ -130,7 +125,7 @@
                                         <td>{{$entry->date}}</td>
                                         <td>₹ {{$entry->debit}}</td>
                                         <td>₹ {{$entry->credit}}</td>
-                                        <td>₹ {{$totalvalues[0]->totaldebit - $totalvalues[0]->totalcredit}}</td>
+                                       <!-- <td>₹ {{$totalvalues[0]->totaldebit - $totalvalues[0]->totalcredit}}</td>-->
                                        
                                     </tr>
                                    @endforeach

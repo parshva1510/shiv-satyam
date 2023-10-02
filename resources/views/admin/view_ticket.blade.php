@@ -66,9 +66,17 @@
 												<!--begin::Toolbar-->
 												<div class="d-flex justify-content-end mobileflex" data-kt-customer-table-toolbar="base">
 													<!--begin::Daterangepicker-->
-													<div class="w-225px me-3 mobilewidth">
-													<input class="form-control form-control-solid w-100 mw-250px me-3" placeholder="Pick date range" id="kt_ecommerce_report_views_daterangepicker" />
-													</div>
+													<form id="kt_modal_get_ticket" class="form" method="GET" action="{{route('get_ticket')}}">
+														<div class="w-320px me-3 d-flex mobilewidth">
+														<input class="form-control form-control-solid w-100 mw-250px me-3" placeholder="Pick date range" id="kt_ecommerce_report_views_daterangepicker" name="kt_ecommerce_report_views_daterangepicker" />
+														
+														<button type="submit" id="new_submit1" class="btn btn-primary" >
+																<span class="indicator-label"  onclick="submitForm()">View</span>
+																<span class="indicator-progress">Please wait...
+																<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                        				</button>
+														</div>
+													</form>
 													<!--end::Daterangepicker-->
 													<!--begin::Filter menu-->
 													 
@@ -211,7 +219,7 @@
 
 														<td>{{$row->material}}</td>
 
-														<td>{{' Rs.'.$row->charges}}</td>
+														<td>{{$row->charges}}</td>
 														
 
 														@if($row->payment_mode==1)
@@ -276,15 +284,7 @@
 														<!--end::Action=-->
 													</tr>
 													@endforeach
-													<tr>
-														<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>
-														<td>Total Cash</td> <td>{{$total1[0]->cash}}</td>
-													</tr>
-													<tr>
-														<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>	<td></td>
-														<td>Total Credit</td> <td>{{$total2[0]->credit}}</td>
-													</tr>
-													
+										
 												</tbody>
 												<!--end::Table body-->
 											</table>
@@ -347,7 +347,7 @@
 	   // Init datatable --- more info on datatables: https://datatables.net/manual/
 	   datatable = $('#ticket_data').DataTable({
 		   "info": true,
-		   'pageLength': 10,
+		   'pageLength': 20,
 		   "ordering": false
 	   });
 	   //console.log(datatable);
@@ -355,6 +355,7 @@
 
 		// Hook export buttons
 		var exportButtons = () => {
+			
 			const documentTitle = 'Weighment Report';
 			var buttons = new $.fn.dataTable.Buttons(table, {
 				buttons: [
@@ -372,8 +373,7 @@
 					},
 					{
 						extend: 'pdf',
-                    title: documentTitle,
-                    orientation: 'landscape',
+                    	title: documentTitle,
 						customize: function (doc) {
                                 // Here's where you can control the cell padding
                                 doc.styles.tableHeader.margin =
@@ -441,7 +441,7 @@
 		KTDatatablesExample.init();
 	});
 	
-	</script>
+</script>
 
 <!-- date range change karvani -->
 
@@ -502,62 +502,6 @@ $('input.toggle-vis').on('click', function (e) {
 
 </script> -->
 
-{{--<script>
-	$("#kt_ecommerce_report_views_daterangepicker").change(function(){
-		var date=this.value;
-		alert(date);
-		$.ajax({
-		
-                    url:"{{url('getdata')}}"+"/"+date,
-                    type:'GET',
-                    success:function(response){
-                 
-                    }
-                });
-});
-
-	</script>--}}
-
-<script>
-    $(document).ready(function() {
-        // Add the date range filter
-        $('#kt_ecommerce_report_views_daterangepicker').on('change', function() {
-            var dateRange = $(this).val().split(' - ');
-            var startDate = $.trim(dateRange[0]);
-            var endDate = $.trim(dateRange[1]);
-			//console.log(dateRange);
-            // Loop through each row and show/hide based on date range
-            $('#ticket_data tbody tr').each(function() {
-                var soldDate = formatDate($(this).find('td:nth-child(15)').text());
-				//console.log(soldDate);
-                if (isDateInRange(soldDate, startDate, endDate)) {
-                    $(this).show();
-                } else {
-                    $(this).hide();
-                }
-            });
-        });
-
-		 // Function to format date as 'DD-MM-YYYY'
-		 function formatDate(date) {
-            var parts = date.split('-');
-            return parts[1] + '-' + parts[0] + '-' + parts[2];
-        }
-
-
-        // Function to check if a date is within the specified range
-        function isDateInRange(date, start, end) {
-            var soldDate = new Date(date);
-            var startDate = new Date(start);
-            var endDate = new Date(end);
-
-            if (startDate <= soldDate && soldDate <= endDate) {
-                return true;
-            }
-            return false;
-        }
-    });
-</script>
 <script>
 	$(".servicedeletebtn").click(function(e){
             e.preventDefault();
@@ -589,7 +533,6 @@ $('input.toggle-vis').on('click', function (e) {
             });
         });
 </script>
-
 
 
 @endsection

@@ -77,13 +77,12 @@ class ticket extends Controller
 
         //Adding Entry in Ledger Table to smooth calculation
 
-        if($req->payment_mode != '5'){
+        if($req->payment_mode != '2'){
           
               //logic if payment mode is not AC then first amount will debit and then by paying with cash is credit
               // basically debit - credit (100-100 = 0)
 
               //temp comment to avoid non ac pay transaction to payment
-              
               $ledgertable = new ledger();
               $ledgertable->transporter_id = $req->transpoter_no;
               $ledgertable->receipt = $req->ticket_no;
@@ -100,7 +99,7 @@ class ticket extends Controller
           $ledgertable->credit = 0;
           $ledgertable->debit = $req->charge;
           $ledgertable->date = date('Y-m-d',strtotime(substr($req->cdate,0,10)));
-          //$ledgertable->save();
+          $ledgertable->save();
         }
 
         $ticket_no = $datainsert->ticket_no;
@@ -116,7 +115,6 @@ class ticket extends Controller
     $total1=DB::select("SELECT sum(charges) as cash from weight_entry where cdate=CURDATE() and payment_mode=1");
     $total2=DB::select("SELECT sum(charges) as credit from weight_entry where cdate=CURDATE() and payment_mode=2");
     return view('admin.view_ticket',['data'=>$data,'total1' => $total1,'total2' => $total2]);
-     
    }
    public function client()
    {
@@ -148,16 +146,22 @@ class ticket extends Controller
       $data->transpoter_no = $req->input('transpoter_no');
       $data->vehicle_no = $req->input('vehical_no');
       $data->gross_weight = $req->input('gross_weight');
-      $data->gross_date = date('Y-m-d', strtotime(substr($req->gross_date, 0, 10)));
-      $data->gross_time = date('Y-m-d H:i', strtotime($req->gross_date));
+      
+     
       $data->tare_weight = $req->input('tare_wight');
-      $data->tare_date =date('Y-m-d',strtotime(substr($req->tare_date,0,10)));
-      $data->tare_time = date('Y-m-d H:i',strtotime($req->tare_date));
+     
       $data->net_weight = $req->input('net_weight');
       $data->material = strtoupper($req->input('material'));
+      if(session('role')=="Admin"){
       $data->charges = $req->input('charge');
-      $data->payment_mode = $req->input('payment_mode');
+      $data->gross_date = date('Y-m-d', strtotime(substr($req->gross_date, 0, 10)));
+      $data->gross_time = date('Y-m-d H:i', strtotime($req->gross_date));
+      $data->tare_date =date('Y-m-d',strtotime(substr($req->tare_date,0,10)));
+      $data->tare_time = date('Y-m-d H:i',strtotime($req->tare_date));
       $data->cdate =date('Y-m-d',strtotime(substr($req->cdate,0,10)));
+      }
+      $data->payment_mode = $req->input('payment_mode');
+   
       $data->remark =ucfirst($req->input('remarks'));
       $data->save();
       //dd($data['ticket_no']);
@@ -186,7 +190,7 @@ class ticket extends Controller
 
        //Updating Entry in Ledger Table to smooth calculation
 
-       if($req->payment_mode != '5'){
+       if($req->payment_mode != '2'){
           
         //logic if payment mode is not AC then first amount will debit and then by paying with cash is credit
         // basically debit - credit (100-100 = 0)
@@ -213,10 +217,6 @@ class ticket extends Controller
       $data=DB::select("SELECT *,weight_entry.remark as remarks ,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no  ORDER BY weight_entry.sr_no DESC");
       //return view('admin.view_ticket',['data' => $data]);
       return redirect()->route('view_ticket');
-      
-    
-
-
    }
   
   
@@ -249,5 +249,16 @@ class ticket extends Controller
         $data->remark=ucfirst($req->remark);
         $data->save();
         return redirect()->back();
+   }
+
+   public function get_ticket(Request $req)
+   {
+      $daterange=$req->kt_ecommerce_report_views_daterangepicker;
+      $startdate=date("Y-m-d",strtotime(substr($daterange,0,10)));
+      $enddate=Date("Y-m-d",strtotime(substr($daterange,13)));
+      $data=DB::select("SELECT *,weight_entry.remark as remarks , weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no where cdate between '$startdate' and '$enddate' ORDER BY weight_entry.sr_no desc");
+      $total1=DB::select("SELECT sum(charges) as cash from weight_entry where cdate between '$startdate' and '$enddate' and payment_mode=1");
+      $total2=DB::select("SELECT sum(charges) as credit from weight_entry where cdate between '$startdate' and '$enddate' and payment_mode=2");
+      return view('admin.view_ticket',['data'=>$data,'total1' => $total1,'total2' => $total2]);
    }
   }

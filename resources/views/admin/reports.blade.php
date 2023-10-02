@@ -112,7 +112,7 @@
                                             <th class="min-w-70px">Material</th>
                                             <th class="min-w-70px">Charge</th>
                                             <th class="min-w-70px">Payment Mode</th>
-                                            {{-- <th class="text-end min-w-70px">Actions</th> --}}
+                                        
                                         </tr>
                                         <!--end::Table row-->
                                     </thead>
@@ -127,7 +127,7 @@
 
                                             <td>{{$row->tranporter_name}}</td>
 
-                                            <td>{{Date("d-m-Y",strtotime($row->tare_date))}}</td>
+                                            <td>{{Date("d-m-Y",strtotime($row->cdate))}}</td>
 
                                             <td>{{$row->gross_weight}}</td>
 
@@ -153,10 +153,21 @@
 														
 											@endif
 
-                                       
-                                  
                                         </tr>
                                         @endforeach
+
+                                        <tr>
+                                            <td><td> <td></td> <td></td>  <td></td> <td></td> <td></td> <td></td>   <td></td>   
+                                            <td colspan="2"> <span style="font-size:18px;font-weight:bold">Total Cash:</span></td>
+                                            <td> <span style="font-size:18px;font-weight:bold">₹ {{$total1[0]->cash}}</span></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><td> <td></td> <td></td>  <td></td> <td></td> <td></td> <td></td><td></td> 
+                                            <td colspan="2"> <span style="text-align:right;font-size:18px;font-weight:bold">Total Credit:</span></td>
+                                            <td> <span style="font-size:18px;font-weight:bold">₹ {{$total2[0]->credit}}</span></td>
+                                            <td></td>
+                                        </tr>
                                     </tbody>
                                     <!--end::Table body-->
                                 </table>
@@ -252,25 +263,10 @@
 {{-- <script src="{{url('public/assets/js/custom/apps/ecommerce/customers/listing/listing.js')}}"></script> --}}
 <!--end::Custom Javascript-->
 
-<script>
-    $("#kt_daterangepicker_1").daterangepicker();
-</script>
+>
 
 <script>
-   var name,date;
-    $("#kt_modal_transporter").on('submit',function(){
-        var v = $("#transporter option:selected");
-        var s=(v.text()).trim();
-        var index=s.indexOf("-");
-        var name=s.substring(0,index);
-        $("#transporter_name").val(name);
-        var name=document.getElementById("transporter_name").value;
-//alert(name);
-
-        $("#daterange").val(document.getElementById("kt_daterangepicker_1").value);
-        date=document.getElementById("daterange").value;
-       // alert(date);
-    });
+   
 // Class definition
 var KTDatatablesExample = function () {
     // Shared variables
@@ -284,7 +280,7 @@ var KTDatatablesExample = function () {
         // Init datatable --- more info on datatables: https://datatables.net/manual/
         datatable = $('#kt_datatable_example').DataTable({
             "info": true,
-            'pageLength': 10,
+            'pageLength': 20,
             "ordering": false,
         
         });
@@ -301,7 +297,7 @@ var KTDatatablesExample = function () {
         var name=document.getElementById("transporter_name").value;
         $("#daterange").val(document.getElementById("kt_daterangepicker_1").value);
         date=document.getElementById("daterange").value;
-        const documentTitle = name + " Date:" + date +" Total: Rs." + {{$total_charges[0]->total}};
+        const documentTitle = name + " [ Date:" + date +" ]" ;
     
         var buttons = new $.fn.dataTable.Buttons(table, {
             buttons: [
@@ -378,7 +374,23 @@ KTUtil.onDOMContentLoaded(function () {
     }
 </script>
 
-
+<script>
+    jQuery(function ($) {
+        var startDate = moment().startOf('month');
+        var endDate = moment().endOf('month');
+        
+        $('input[name="daterange"]').daterangepicker({
+            opens: 'left',
+            locale: {
+                format: 'DD-MM-YYYY'
+            },
+            startDate: startDate,
+            endDate: endDate
+        }, function(start, end, label) {
+            $('.daterange span').html(start.format('DD-MM-YYYY') + ' - ' + end.format('DD-MM-YYYY'));
+        });
+    });
+</script>
 
 
 

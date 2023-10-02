@@ -104,10 +104,11 @@
                                             <th class="min-w-30px">Ticket. No.</th>
                                             <th class="min-w-70px">Vehicle No.</th>
                                             <th class="min-w-150px">Transporter</th>
+                                            <th class="min-w-130px">Date</th>
                                             <th class="min-w-70px">G. Weight</th>
-                                            <th class="min-w-150px">G. Date</th>
+                                            <th class="min-w-130px">G. Date</th>
                                             <th class="min-w-70px">T. Weight</th>
-                                            <th class="min-w-150px">T. Date</th>
+                                            <th class="min-w-130px">T. Date</th>
                                             <th class="min-w-70px">Net Weight</th>
                                             <th class="min-w-70px">Material</th>
                                             <th class="min-w-70px">Charge</th>
@@ -126,6 +127,8 @@
                                             <td>{{$row->vehicle_no}}</td>
 
                                             <td>{{$row->name}}</td>
+
+                                            <td>{{Date("d-m-Y",strtotime($row->cdate))}}</td>
 
                                             <td>{{$row->gross_weight}}</td>
 
@@ -150,11 +153,22 @@
                                             <td>CREDIT</td>
                                                     
                                             @endif
-
-                                       
-                                  
                                         </tr>
                                         @endforeach
+
+                                        <tr>
+                                            <td><td> <td></td> <td></td>  <td></td> <td></td> <td></td> <td></td> <td></td>
+                                            <td colspan="2"> <span style="font-size:18px;font-weight:bold">Total Cash:</span></td>
+                                            <td> <span style="font-size:18px;font-weight:bold">₹. {{$total1[0]->cash}}</span></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td><td> <td></td> <td></td>  <td></td> <td></td> <td></td> <td></td><td></td>
+                                            <td colspan="2"> <span style="text-align:right;font-size:18px;font-weight:bold">Total Credit:</span></td>
+                                            <td> <span style="font-size:18px;font-weight:bold">₹. {{$total2[0]->credit}}</span></td>
+                                            <td></td>
+                                        </tr>
+                                     
                                     </tbody>
                                     <!--end::Table body-->
                                 </table>
@@ -246,7 +260,7 @@ var KTDatatablesExample = function () {
         // Init datatable --- more info on datatables: https://datatables.net/manual/
         datatable = $('#kt_datatable_example').DataTable({
             "info": true,
-            'pageLength': 10,
+            'pageLength': 20,
             "ordering": false
         });
         //console.log(datatable);
@@ -254,7 +268,9 @@ var KTDatatablesExample = function () {
 
     // Hook export buttons
     var exportButtons = () => {
-        const documentTitle = 'Vehicle Report trtrhth';
+        var vehicle=document.getElementById("vehicle").value;
+        const documentTitle = "Vehicle No: " + vehicle;
+    
         var buttons = new $.fn.dataTable.Buttons(table, {
             buttons: [
                 {
