@@ -83,7 +83,6 @@ class ticket extends Controller
               // basically debit - credit (100-100 = 0)
 
               //temp comment to avoid non ac pay transaction to payment
-              dd("hi");
               $ledgertable = new ledger();
               $ledgertable->transporter_id = $req->transpoter_no;
               $ledgertable->receipt = $req->ticket_no;

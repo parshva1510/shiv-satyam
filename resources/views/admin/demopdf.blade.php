@@ -96,7 +96,7 @@
 		<thead class="hr">	
 			<tr>
 			<td colspan="6">
-			<img src="C:\xampplatest\htdocs\shiv-satyam\public\assets\media\logos\header.png"style="height:100px;">
+			<img src="C:\xampp latest\htdocs\shiv-satyam\public\assets\media\logos\header.png"style="height:100px;">
 			</td>
 			</tr>
 		</thead>
@@ -138,7 +138,7 @@
 			
 			  <tr>
 			<td colspan="6">
-			<img src="C:\xampplatest\htdocs\shiv-satyam\public\assets\media\logos\header.png"style="height:100px;">
+			<img src="C:\xampp latest\htdocs\shiv-satyam\public\assets\media\logos\header.png"style="height:100px;">
 			</td>
 		</tr>
 			  
@@ -178,7 +178,7 @@
 			
 			  <tr>
 			<td colspan="6">
-			<img src="C:\xampplatest\htdocs\shiv-satyam\public\assets\media\logos\header.png"style="height:100px;">
+			<img src="C:\xampp latest\htdocs\shiv-satyam\public\assets\media\logos\header.png"style="height:100px;">
 			</td>
 		</tr>
 			  
