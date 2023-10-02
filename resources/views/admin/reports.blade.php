@@ -159,13 +159,13 @@
                                         <tr>
                                             <td><td> <td></td> <td></td>  <td></td> <td></td> <td></td> <td></td>   <td></td>   
                                             <td colspan="2"> <span style="font-size:18px;font-weight:bold">Total Cash:</span></td>
-                                            <td> <span style="font-size:18px;font-weight:bold">₹. {{$total1[0]->cash}}</span></td>
+                                            <td> <span style="font-size:18px;font-weight:bold">₹ {{$total1[0]->cash}}</span></td>
                                             <td></td>
                                         </tr>
                                         <tr>
                                             <td><td> <td></td> <td></td>  <td></td> <td></td> <td></td> <td></td><td></td> 
                                             <td colspan="2"> <span style="text-align:right;font-size:18px;font-weight:bold">Total Credit:</span></td>
-                                            <td> <span style="font-size:18px;font-weight:bold">₹. {{$total2[0]->credit}}</span></td>
+                                            <td> <span style="font-size:18px;font-weight:bold">₹ {{$total2[0]->credit}}</span></td>
                                             <td></td>
                                         </tr>
                                     </tbody>
@@ -374,7 +374,23 @@ KTUtil.onDOMContentLoaded(function () {
     }
 </script>
 
-
+<script>
+    jQuery(function ($) {
+        var startDate = moment().startOf('month');
+        var endDate = moment().endOf('month');
+        
+        $('input[name="daterange"]').daterangepicker({
+            opens: 'left',
+            locale: {
+                format: 'DD-MM-YYYY'
+            },
+            startDate: startDate,
+            endDate: endDate
+        }, function(start, end, label) {
+            $('.daterange span').html(start.format('DD-MM-YYYY') + ' - ' + end.format('DD-MM-YYYY'));
+        });
+    });
+</script>
 
 
 

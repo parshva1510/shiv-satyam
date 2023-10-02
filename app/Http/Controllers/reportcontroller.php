@@ -24,6 +24,7 @@ class reportcontroller extends Controller
    public function show_report(Request $req)
    {
      $id=$req->transporter;
+    
      $transporter=transporter::get()->all();
      $daterange=$req->kt_daterangepicker_1;
      $date1=date('Y-m-d',strtotime(substr($daterange,0,10)));
