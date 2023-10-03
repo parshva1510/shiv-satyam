@@ -192,12 +192,7 @@
                                     <!--begin::Input group-->
                                     <div class="row g-9 mb-8">
                                         <!--begin::Label-->
-                                        <!-- <div class="col-md-3 fv-row">
-                                            <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
-                                                <span class="required">Net Weight</span>
-                                            </label>
-                                            <input  id="net_weight" type="number" min="0" class="form-control form-control-solid" placeholder="0" name="net_weight" value="{{$transporter['net_weight']}}" required/>
-                                        </div> -->
+                                      
                                         <div class="col-md-3 fv-row">
                                             <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                 <span class="required">Net Weight (KG)</span>
@@ -312,8 +307,11 @@
         
     });
     @if(session('role') <>"Admin")
-        $('input#gross_date').prop( 'disabled', 'disabled' );
-        $('input#tare_date').prop( 'disabled', 'disabled' );
+        if($(gross_weight).val() !=0)
+        {   $('input#gross_date').prop( 'disabled', 'disabled' );}
+        if($(tare_weight).val() !=0)
+        {   $('input#tare_date').prop( 'disabled', 'disabled' );}
+    
         $('input#cdate').prop( 'disabled', 'disabled' );
         $('input#charges').prop( 'disabled', 'disabled' );
     @endif
@@ -329,162 +327,8 @@
   });
 </script>
 
-
-<!-- <script>
-    function myFunction(id) {
-    // Get the values of the required fields
-    let field1 = document.getElementById('field1').value;
-    let field2 = document.getElementById('field2').value;
-    let field3 = document.getElementById('field3').value;
-    
-    // Check if any of the required fields are empty
-    if (field1 === '' || field2 === '' || field3 === '') {
-        Swal.fire({
-            text: "Sorry, looks like there are some errors detected, please try again.",
-            icon: "error",
-            buttonsStyling: false,
-            confirmButtonText: "Ok, got it!",
-            customClass: {
-                confirmButton: "btn btn-primary"
-            }
-        });
-    } else {
-        Swal.fire({
-            text: "Form has been successfully submitted!",
-            icon: "success",
-            buttonsStyling: false,
-            confirmButtonText: "Ok, got it!",
-            customClass: {
-                confirmButton: "btn btn-primary"
-            }
-        }).then((function(t) {
-            t.isConfirmed && o.hide();
-        }));
-    }
-    }
-    </script> -->
-    
-    
-    <!-- <script>
-    var pattern = /^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/;
-
-    document.addEventListener('DOMContentLoaded', function() {
-        var input = document.getElementById('NUMBERPLATE');
-        input.addEventListener('input', function() {
-            var value = this.value;
-            if (pattern.test(value)) {
-                console.log('Valid vehicle number: ' + value);
-                document.getElementById('number_error').textContent = "";
-            } else {
-                console.log('Invalid vehicle number: ' + value);
-                document.getElementById('number_error').textContent = "Please add a valid vehicle number";
-            }
-        });
-    });
-
-    function submitForm() {
-        var vehicleNumber = document.getElementById('NUMBERPLATE').value;
-        if (vehicleNumber === '' || !pattern.test(vehicleNumber)) {
-            Swal.fire({
-                text: "Sorry, looks like there are some errors detected, please try again.",
-                icon: "error",
-                buttonsStyling: false,
-                confirmButtonText: "Ok, got it!",
-                customClass: {
-                    confirmButton: "btn btn-primary"
-                }
-            });
-            return false; // Prevent form submission
-        } else {
-            Swal.fire({
-                text: "Form has been successfully submitted!",
-                icon: "success",
-                buttonsStyling: false,
-                confirmButtonText: "Ok, got it!",
-                customClass: {
-                    confirmButton: "btn btn-primary"
-                }
-            }).then(function(t) {
-                if (t.isConfirmed) {
-                    // Hide the Swal alert or perform any other action
-                }
-            });
-        }
-    }
-</script> -->
-
-
-
-
-
-
-
-
-    
-    <!-- <script>
-    // Element to indecate
-    var button = document.querySelector("#new_submit");
-    
-    // Handle button click event
-    button.addEventListener("click", function(e) {
-    e.preventDefault();
-    // Activate indicator
-    button.setAttribute("data-kt-indicator", "on");
-    
-    // Disable indicator after 3 seconds
-    setTimeout(function() {
-    
-    
-        myFunction(1);
-    button.removeAttribute("data-kt-indicator");
-    }, 1000);
-    });
-    </script> -->
-    <!-- <script>
-        $("#kt_modal_new_target_form").submit(function(){
-            var grossweight = document.getElementById('gross_weight').value;
-            var tareweight = document.getElementById('tare_wight').value;
-            var netweight = document.getElementById('net_weight').value;
-            var charge = document.getElementById('charge').value;
-        if(grossweight  === '' && tareweight === ''&& netweight ==='' && charge ==='')
-        {
-            Swal.fire({
-                text: "Sorry, looks like there are some errors detected, please try again.",
-                icon: "error",
-            });
-        // Prevent form submission
-        } else {
-            console.log("updated");
-            
-            Swal.fire({
-                position: 'middle-center',
-                icon: 'success',
-                title: 'Ticket data has been successfully updated!',
-                showConfirmButton: false,
-                timer: 1500
-                }).then(function() {
-                $("#kt_modal_new_target_form").submit();
-            
-           });
-        }
-    });
-</script> -->
 <script>
      var pattern = /^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/;
-        document.addEventListener('DOMContentLoaded', function()
-        {
-        // var input = document.getElementById('NUMBERPLATE');
-        // input.addEventListener('input', function() {
-        //     var value = this.value;
-        //     if (pattern.test(value)) {
-        //         console.log('Valid vehicle number: ' + value);
-        //         document.getElementById('number_error').textContent = "";
-        //     } else {
-        //         console.log('Invalid vehicle number: ' + value);
-        //         document.getElementById('number_error').textContent = "Please add a valid vehicle number";
-        //     }
-        // });
-    });
         $("#submit_update").click(function(){
             var vehicleNumber = document.getElementById('NUMBERPLATE').value;
             var grossweight = document.getElementById('gross_weight').value;

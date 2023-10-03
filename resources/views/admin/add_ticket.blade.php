@@ -78,7 +78,7 @@
                                             <div class="row">
 
                                             
-                                                <div class="col-md-8">
+                                                <div class="col-md-12">
                                                     <label class="d-flex align-items-center fs-6 fw-bolder mb-2">
                                                         <span class="required">Transporter</span>
                                                       
@@ -100,7 +100,7 @@
                                                     
                                                 </div>
                                                 
-                                                <div class="col-md-4 mt-8">
+                                                <div class="col-md-4 mt-8" hidden>
                                                     <!--begin::Add user-->
                                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_user_1">
                                                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
@@ -450,20 +450,6 @@
 <script>
     var pattern = /^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/;
 
-    document.addEventListener('DOMContentLoaded', function() {
-        // var input = document.getElementById('NUMBERPLATE');
-        // input.addEventListener('input', function() {
-        //     var value = this.value;
-        //     if (pattern.test(value)) {
-        //         console.log('Valid vehicle number: ' + value);
-        //         document.getElementById('number_error').textContent = "";
-        //     } else {
-        //         console.log('Invalid vehicle number: ' + value);
-        //         document.getElementById('number_error').textContent = "Please add a valid vehicle number";
-        //     }
-        // });
-    });
-
     $("#kt_modal_new_target_form").submit(function(){
       
     var vehicleNumber = document.getElementById('NUMBERPLATE').value;
@@ -525,11 +511,11 @@
           var total = 0;
 
           // Loop through each input field and calculate the total
-          $('.amount-input').each(function () {
-    var amount = parseFloat($(this).val());
-    if (!isNaN(amount)) {
-        total +-= amount; // Use the '-=' operator to subtract and update the 'total' variable.
-    }
+        $('.amount-input').each(function () {
+        var amount = parseFloat($(this).val());
+        if (!isNaN(amount)) {
+            total +-= amount; // Use the '-=' operator to subtract and update the 'total' variable.
+        }
 });
 
           // Update the 'ટોટલ' input field with the calculated total
@@ -565,14 +551,12 @@
         $('.amount-input').on('input', function () {
             var grossWeight = parseFloat($grossWeightInput.val());
             var tareWeight = parseFloat($tareWeightInput.val());
+        
             var netWeight = grossWeight - tareWeight;
-
-            // Update the net weight input field with the calculated value
+            if(netWeight<0)
+            {netWeight = tareWeight-grossWeight ;}
             $netWeightInput.val(netWeight);
 
-            // Convert the net weight to words and update the appropriate input field (if needed)
-            // You can call the NumToWord function here if you have its implementation
-            // NumToWord(netWeight, 'ankers');
         });
     });
 </script>

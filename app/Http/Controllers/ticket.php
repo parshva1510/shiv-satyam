@@ -139,9 +139,9 @@ class ticket extends Controller
 
 
    public function update_ticket(Request $req) {
-     //dd($req->edit_sr_no); 
 
       $data = weight_entry::with('transporter')->find($req->edit_sr_no);
+      dd($data->toArray());
       $data->ticket_no = $req->input('ticket_no');
       $data->transpoter_no = $req->input('transpoter_no');
       $data->vehicle_no = $req->input('vehical_no');
@@ -159,10 +159,12 @@ class ticket extends Controller
       $data->tare_date =date('Y-m-d',strtotime(substr($req->tare_date,0,10)));
       $data->tare_time = date('Y-m-d H:i',strtotime($req->tare_date));
       $data->cdate =date('Y-m-d',strtotime(substr($req->cdate,0,10)));
+
       }
       $data->payment_mode = $req->input('payment_mode');
    
       $data->remark =ucfirst($req->input('remarks'));
+      //dd($data->toArray());
       $data->save();
       //dd($data['ticket_no']);
 
