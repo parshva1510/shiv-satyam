@@ -264,6 +264,9 @@
 <!--end::Custom Javascript-->
 
 >
+<script>
+    $("#kt_daterangepicker_1").daterangepicker();
+</script>
 
 <script>
    
@@ -295,9 +298,12 @@ var KTDatatablesExample = function () {
         var name=s.substring(0,index);
         $("#transporter_name").val(name);
         var name=document.getElementById("transporter_name").value;
-        $("#daterange").val(document.getElementById("kt_daterangepicker_1").value);
-        date=document.getElementById("daterange").value;
-        const documentTitle = name + " [ Date:" + date +" ]" ;
+        // $("#daterange").val(document.getElementById("kt_daterangepicker_1").value);
+        // date=document.getElementById("daterange").value;
+        // const documentTitle = name + " [ Date:" + date +" ]" ;
+
+        var daterange=document.getElementById("kt_daterangepicker_1").value;
+        const documentTitle = 'Date: ' + daterange ;
     
         var buttons = new $.fn.dataTable.Buttons(table, {
             buttons: [

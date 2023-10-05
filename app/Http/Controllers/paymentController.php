@@ -38,10 +38,16 @@ class paymentController extends Controller
     {
         $transporter=DB::select("SELECT * from transporter");
         $payment=DB::select("SELECT p.sr_no,p.client_no,t.name as transporter_name,p.amount,p.date,p.remark,p.payment_mode,p.receipt_no,(SELECT sum(charges) from weight_entry where transpoter_no=p.client_no and cdate<=p.date) as debit,(SELECT sum(amount) from payment where client_no=p.client_no and date < p.date)as credit from payment p join transporter t on t.sr_no=p.client_no GROUP by p.sr_no order by sr_no desc;");
-        $sr_no = payment::get()->last()->sr_no;
-        $rec_no= payment::get()->last()->receipt_no;
-        $temp=substr($rec_no,0,8);
-        $next_rec_no= $temp . $sr_no+1;
+        if($payment <> NULL)
+        {
+          $sr_no = payment::get()->last()->sr_no;
+          $rec_no= payment::get()->last()->receipt_no;
+          $temp=substr($rec_no,0,8);
+          $next_rec_no= $temp . $sr_no+1;}
+          else{
+          $sr_no=1;
+          $next_rec_no="2023-24/".$sr_no;}
+        
         return view('admin.add_payment', ['transporter' => $transporter,'payment' => $payment,'sr_no' => $sr_no ,'rec_no' => $next_rec_no]); 
     }
     public function delete_payment($id)
@@ -111,15 +117,19 @@ class paymentController extends Controller
       //dd($totalvalues);
 
       $lastEntry = end($ledgerEntries);
-      $sr_no = payment::get()->last()->sr_no;
-      $rec_no= payment::get()->last()->receipt_no;
-      $temp=substr($rec_no,0,8);
-      $next_rec_no= $temp . $sr_no+1;
-      //dd($lastEntry);
-      //$ledgerEntries = ledger::where('transporter_id', $id)->orderBy('t_index')->get();
-      //$updatedLedgerEntries = calculateRemaining($ledgerEntries);
-      return view('admin.edit_payment',['ledger'=>$ledgerEntries,'transporter' => $transporter,'lastentry'=>$lastEntry,'name'=>$transportername,'nextrcpt'=>$next_rec_no,'id'=>$id,'totalvalues'=>$totalvalues]);
-      //dd($updatedLedgerEntries);
+      if($lastEntry<>NULL){
+        $sr_no = payment::get()->last()->sr_no;
+        $rec_no= payment::get()->last()->receipt_no;
+        $temp=substr($rec_no,0,8);
+        $next_rec_no= $temp . $sr_no+1;
+      }
+      else{
+        $sr_no=1;
+        $next_rec_no="2023-24/".$sr_no;}
+      
+        return view('admin.edit_payment',['ledger'=>$ledgerEntries,'transporter' => $transporter,'lastentry'=>$lastEntry,'name'=>$transportername,'nextrcpt'=>$next_rec_no,'id'=>$id,'totalvalues'=>$totalvalues]);
+      //return view('admin.edit_payment',['transporter' => $transporter,'name'=>$transportername,'nextrcpt'=>$next_rec_no,'id'=>$id,'totalvalues'=>$totalvalues]);
+
     }
 
     public function get_paymentdetails($id1,$id2)

@@ -104,7 +104,7 @@
 			<tbody>
 			  <tr class="pt">
 			  
-			  <td><b>Ticket No .:</b></td><td><b>{{($data[0]->ticket_no)}}</b></td>
+			  	<td><b>Ticket No .:</b></td><td><b>{{($data[0]->ticket_no)}}</b></td>
 				<td><b>Vehicle No.:</b></td><td><b>{{$data[0]->vehicle_no}}</b></td>
 				<td>Transporter:</td>	<td>{{$data[0]->name}}</td>
 			  </tr>

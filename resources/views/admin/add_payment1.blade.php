@@ -190,7 +190,7 @@
                                     <div class="col-md-3 text-md-start">
                                         <!--begin::Label-->
                                         <label class="fs-6 fw-semibold form-label mt-3">
-                                            <span class="required"><b>Date</b></span>
+                                            <span class="required"><b>Datee</b></span>
                                         </label>
                                         <!--end::Label-->
                                     </div>
@@ -268,8 +268,6 @@
                                                 <option value="Cash" selected>Cash</option>
                                                 <option value="Gpay">Gpay</option>
                                                 <option value="Cheque">Cheque</option>
-                                                <option value="Bank Transfer">Bank Transfer</option>
-                                                <option value="Account Pays">Account Pays</option>
                                             </select>
                                             <!--end::Input-->
                                         </div>

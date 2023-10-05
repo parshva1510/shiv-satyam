@@ -133,7 +133,7 @@
                                     <label class="required fw-bolder fs-6 mb-2">Mobile No</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="number" class="form-control form-control-solid mb-3 mb-lg-0" name="contact" id="contact" pattern="[1-9]{1}[0-9]{9}" maxlength="10" required/>
+                                        <input type="text" class="form-control form-control-solid mb-3 mb-lg-0" name="contact" id="contact" pattern="[1-9]{1}[0-9]{9}" maxlength="10" required required/>
                                         <!--end::Input-->
                                 </div>
                                     <!--begin::Table-->

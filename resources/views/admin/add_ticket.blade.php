@@ -6,7 +6,8 @@
     <div class="d-flex flex-column flex-column-fluid">
         <!--begin::Toolbar-->
         <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6 mb-5 mt-5">
-        <form id="kt_modal_new_target_form"  class="form" method="POST" action= "{{!empty($transporter)?route('update_ticket'):route('add_ticket')}}" target="_blank">
+        <form id="kt_modal_new_target_form" class="form" method="POST" action="{{ !empty($transporter) ? route('update_ticket') : route('generate-pdf1') }}" target="_blank">
+
             <!--begin::Toolbar container-->
             <div id="kt_app_toolbar_container" class="app-container new-full-width container-xxl d-flex flex-stack">
                 
@@ -479,7 +480,7 @@
                 confirmButton: "btn btn-primary"
             }
         });
-        return false; // Prevent form submission
+       
     } else {
         Swal.fire({
             text: "Form has been successfully submitted!",
@@ -491,7 +492,7 @@
             }
         }).then(function(t) {
             if (t.isConfirmed) {
-                location.reload();
+                window.location.href = 'http://localhost/shiv-satyam/ticket_form';
             }
         });
     }
@@ -577,7 +578,7 @@ contactInput.addEventListener('input', function () {
 <script>
     $("#transpoter_no").change(function(){
         var trans_no=$(this).val();
-        if(trans_no != 48)
+        if(trans_no != 1)
         {
             $("#payment option[value='2']").attr('selected','selected');  
         }

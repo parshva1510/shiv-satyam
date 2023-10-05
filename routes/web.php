@@ -27,6 +27,7 @@ Route::group(['middleware'=>['AuthCheck']], function()
 
 Route::get('ticket_form',[ticket::class,'index'])->name('ticket_form');
 Route::get('/edit_ticket/{id}',[ticket::class, 'edit_ticket'])->name('edit_ticket');
+Route::POST('generate-pdf',[ticket::class,'add_ticket'])->name('generate-pdf1');
 Route::get('view_ticket',[ticket::class,'view_ticket'])->name('view_ticket');
 Route::get('get_ticket',[ticket::class,'get_ticket'])->name('get_ticket');
 

@@ -1,5 +1,10 @@
 <!-- <option value="1">Cash</option> -->
 @extends('admin.layout.layout')
+
+@section('pagecss')
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/toastr/toastr.css') }}" />
+@endsection
+
 @section('mainsection')
 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
     <!--begin::Content wrapper-->
@@ -292,9 +297,9 @@
 <script src="{{url('public/assets/js/custom/apps/ecommerce/customers/listing/add.js')}}"></script>
 <script src="{{url('public/assets/js/custom/apps/ecommerce/customers/listing/export.js')}}"></script>
 <script src="{{url('public/assets/js/custom/apps/ecommerce/reports/views/views.js')}}"></script>
-<script>
-    
-    </script>
+<script src="{{ asset('assets/vendor/libs/toastr/toastr.js') }}"></script>
+
+<script src="{{ asset('assets/js/ui-toasts.js') }}"></script>
 
 <script>
   jQuery(document).ready(function($){
@@ -306,15 +311,25 @@
         dateFormat: "d-m-Y H:i",
         
     });
+
     @if(session('role') <>"Admin")
-        if($(gross_weight).val() !=0)
-        {   $('input#gross_date').prop( 'disabled', 'disabled' );}
-        if($(tare_weight).val() !=0)
-        {   $('input#tare_date').prop( 'disabled', 'disabled' );}
-    
+        if($(gross_weight).val() == 0)
+        { 
+            $('input#gross_date').prop( 'disabled', false );
+        }else{ 
+            $('input#gross_date').prop( 'disabled', true );
+        }
+       if($(tare_wight).val() == 0)
+        {  
+            $('input#tare_date').prop( 'disabled', false );
+        }else{  
+            $('input#tare_date').prop( 'disabled', true );
+        }
         $('input#cdate').prop( 'disabled', 'disabled' );
-        $('input#charges').prop( 'disabled', 'disabled' );
+        $('input#charges').attr( 'readonly', true );
+
     @endif
+
     $('#tare_date').flatpickr({
         enableTime: true,
         dateFormat: "d-m-Y H:i",
@@ -349,17 +364,10 @@
                 icon: "error",
             });
             return false; // Prevent form submission
-          }  else {
-            Swal.fire({
-                position: 'middle-center',
-                icon: 'success',
-                title: 'Transporter data has been successfully updated!',
-                showConfirmButton: false,
-                timer: 1500
-                }).then(function() {
-                $("#kt_modal_new_target_form").submit();
-           });
-        }
+          }  else{
+                    $("#kt_modal_new_target_form").submit();
+                }
+           
         
     });
 </script>
@@ -376,12 +384,10 @@ $(document).ready(function () {
         var tareWeight = parseFloat($tareWeightInput.val());
         var netWeight = grossWeight - tareWeight;
 
-        // Update the net weight input field with the calculated value
-        $netWeightInput.val(netWeight);
+        if(netWeight<0)
+            {netWeight = tareWeight-grossWeight ;}
+            $netWeightInput.val(netWeight);
 
-        // Convert the net weight to words and update the appropriate input field (if needed)
-        // You can call the NumToWord function here if you have its implementation
-        // NumToWord(netWeight, 'ankers');
     });
 });
 </script>
@@ -393,5 +399,12 @@ $(document).ready(function () {
     });
     });
     </script>
-
+@if (Session::get('message'))
+    <script>
+        toastr['success']("{{ Session::get('message') }}", 'Updated!', {
+            closeButton: true,
+            tapToDismiss: false,
+        });
+    </script>
+@endif
 @endsection

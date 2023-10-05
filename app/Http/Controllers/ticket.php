@@ -23,12 +23,19 @@ class ticket extends Controller
           $transporter =[];
           $tr_data=Transporter::all();
           $sr_no = transporter::get()->last()->sr_no;
-          $ticket_no =(weight_entry::get()->last()->ticket_no) +  1;
+          //$ticket_no =(weight_entry::get()->last()->ticket_no) +  1;
+         $ticket_no=DB::select("SELECT ticket_no from weight_entry order by sr_no limit 1");
+         //dd($ticket_no);  
+         if($ticket_no==NULL)
+         {  $ticket_no=20232400001;}
+         else{$ticket_no =(weight_entry::get()->last()->ticket_no) +  1;}
+         // $id =( weight_entry::get()->last()->sr_no) + 1;
     
           return view('admin.add_ticket',["transporter" => $transporter,'sr_no' => $sr_no, 'tr_data'=>$tr_data,'ticket_no'=> $ticket_no,'data'=>$data,'material' => $material,'vehicle_no'=>$vehicle_no]);
      }
      public function add_ticket(Request $req)
      {
+      
          $data = weight_entry::find($req->sr_no);
          $datainsert = new weight_entry();
          $sr_no = transporter::get()->last()->sr_no;
@@ -70,8 +77,14 @@ class ticket extends Controller
          $data=DB::select("SELECT *,weight_entry.remark as remarks,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no where weight_entry.sr_no = '$datainsert->sr_no'");
          $transporters = Transporter::all();
        
-        $sr_no = payment::get()->last()->sr_no;
-        $rec_no= payment::get()->last()->receipt_no;
+        //$sr_no = payment::get()->last()->sr_no;
+        $sr_no=DB::select("SELECT sr_no from payment order by sr_no limit 1");
+        if($sr_no==NULL){
+          $sr_no=1;$rec_no=2023-24/1;}
+        else{
+          $sr_no = payment::get()->last()->sr_no;
+          $rec_no= payment::get()->last()->receipt_no;}
+       
         $temp=substr($rec_no,0,8);
         $next_rec_no= $temp . $sr_no+1;
 
@@ -105,8 +118,7 @@ class ticket extends Controller
         $ticket_no = $datainsert->ticket_no;
         $viewdata = DB::select("SELECT * FROM `weight_entry` ORDER BY `sr_no` DESC LIMIT 7");
         $pdf = Pdf::loadView('admin.demopdf',['viewdata'=> $viewdata,'transporter' => $data,'tr_data'=>$transporters,'sr_no' => $sr_no,'ticket_no'=> $ticket_no,'rec_no' => $next_rec_no],compact('data'))->setPaper('a4', 'portrait');
-        return $pdf->stream();
-        
+        return $pdf->stream();  
      }
 
    public function view_ticket()
@@ -141,7 +153,6 @@ class ticket extends Controller
    public function update_ticket(Request $req) {
 
       $data = weight_entry::with('transporter')->find($req->edit_sr_no);
-      dd($data->toArray());
       $data->ticket_no = $req->input('ticket_no');
       $data->transpoter_no = $req->input('transpoter_no');
       $data->vehicle_no = $req->input('vehical_no');
@@ -165,7 +176,7 @@ class ticket extends Controller
    
       $data->remark =ucfirst($req->input('remarks'));
       //dd($data->toArray());
-      $data->save();
+      $status=$data->save();
       //dd($data['ticket_no']);
 
       //wieght_entry_log table data
@@ -217,8 +228,12 @@ class ticket extends Controller
 
       $tr_data=transporter::all();
       $data=DB::select("SELECT *,weight_entry.remark as remarks ,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no  ORDER BY weight_entry.sr_no DESC");
-      //return view('admin.view_ticket',['data' => $data]);
-      return redirect()->route('view_ticket');
+      if($status<>0)
+      {
+        return redirect()->route('view_ticket')-> with ('message', 'Details Changed Successfully!') ;
+      }else{
+        return redirect()->route('view_ticket')-> with ('message', 'Details Not Changed Successfully!') ;
+      }
    }
   
   

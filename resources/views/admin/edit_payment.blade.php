@@ -273,8 +273,6 @@
                                                 <option value="Cash" selected>Cash</option>
                                                 <option value="Gpay">Gpay</option>
                                                 <option value="Cheque">Cheque</option>
-                                                <option value="Bank Transfer">Bank Transfer</option>
-                                                <option value="Account Pays">Account Pays</option>
                                             </select>
                                             <!--end::Input-->
                                         </div>

@@ -1,4 +1,9 @@
 @extends('admin.layout.layout')
+
+@section('pagecss')
+    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/toastr/toastr.css') }}" />
+@endsection
+
 @section('mainsection')
 
 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
@@ -306,31 +311,13 @@
 
 @section('pagescript')
 
-<!--begin::Vendors Javascript(used for view weighment page only)-->
-<!-- <script src="shiv_satyam/assets/plugins/custom/datatables/datatables.bundle.js"></script> -->
-<!--end::Vendors Javascript-->
 
-<!--begin::Custom Javascript(used for  view weighment page only)-->
-<!-- <script src="shiv_satyam/assets/js/custom/apps/ecommerce/customers/listing/listing.js"></script>
-<script src="shiv_satyam/assets/js/custom/apps/ecommerce/customers/listing/add.js"></script>
-<script src="shiv_satyam/assets/js/custom/apps/ecommerce/customers/listing/export.js"></script>
-<script src="shiv_satyam/assets/js/custom/apps/ecommerce/reports/views/views.js"></script> -->
-<!--end::Custom Javascript-->
-
-<!-- <script>
-    jQuery(document).ready(function($){
-        $('#datepick1510').flatpickr({
-            altInput: true,
-            altFormat: "F j, Y",
-            dateFormat: "Y-m-d",
-            mode: "range"
-        });
-    });
-</script> -->
 
 <!--begin::Custom Javascript(used for  view weighment page only)-->
 <script src="{{url('public/assets/js/custom/apps/ecommerce/customers/listing/listing.js')}}"></script>
+<script src="{{ asset('assets/vendor/libs/toastr/toastr.js') }}"></script>
 
+<script src="{{ asset('assets/js/ui-toasts.js') }}"></script>
 <!--end::Custom Javascript-->
 <script>
 
@@ -533,6 +520,13 @@ $('input.toggle-vis').on('click', function (e) {
             });
         });
 </script>
-
+@if (Session::get('message'))
+    <script>
+        toastr['success']("{{ Session::get('message') }}", 'Updated!', {
+            closeButton: true,
+            tapToDismiss: false,
+        });
+    </script>
+@endif
 
 @endsection
