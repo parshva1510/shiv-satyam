@@ -153,6 +153,7 @@
                                                 
                                                 <input class="form-control form-control-solid ps-12" id="gross_date" placeholder="Select a date" name="gross_date" value="{{(new DateTime($transporter->gross_date .' '. $transporter->gross_time))->format('d-m-Y H:i')}}" />
                                                 <!--end::Datepicker-->
+                                                <input type="text" name="gdate" id="gdate" value="{{(new DateTime($transporter->gross_date .' '. $transporter->gross_time))->format('d-m-Y H:i')}}" hidden>
                                             </div>
                                       
 
@@ -186,6 +187,7 @@
                                                 <!--end::Icon-->
                                                 <!--begin::Datepicker-->
                                                 <input class="form-control form-control-solid ps-12" id="tare_date" placeholder="Select a date" name="tare_date" value="{{(new DateTime($transporter->tare_date .' '. $transporter->tare_time))->format('d-m-Y H:i')}}"/>
+                                                <input type="text" name="tdate" id="tdate" value="{{(new DateTime($transporter->tare_date .' '. $transporter->tare_time))->format('d-m-Y H:i')}}" hidden/>
                                                 <!--end::Datepicker-->
                                             </div>
                                         </div>
@@ -317,7 +319,7 @@
         { 
             $('input#gross_date').prop( 'disabled', false );
         }else{ 
-            $('input#gross_date').prop( 'disabled', true );
+            $('input#gross_date').prop( 'disabled','disabled' );
         }
        if($(tare_wight).val() == 0)
         {  
@@ -334,6 +336,12 @@
         enableTime: true,
         dateFormat: "d-m-Y H:i",
     });
+    $("#tare_date").change(function(){
+        $("#tdate").val(this.value);
+    });
+    $("#gross_date").change(function(){
+        $("#gdate").val(this.value);
+    });
     $('#cdate').flatpickr({
         
       dateFormat: "d-m-Y ",
@@ -344,7 +352,7 @@
 
 <script>
      var pattern = /^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/;
-        $("#submit_update").click(function(){
+     $("#submit_update").click(function(){
             var vehicleNumber = document.getElementById('NUMBERPLATE').value;
             var grossweight = document.getElementById('gross_weight').value;
             var tareweight = document.getElementById('tare_wight').value;
@@ -364,10 +372,17 @@
                 icon: "error",
             });
             return false; // Prevent form submission
-          }  else{
-                    $("#kt_modal_new_target_form").submit();
-                }
-           
+          }  else {
+            Swal.fire({
+                position: 'middle-center',
+                icon: 'success',
+                title: 'Transporter data has been successfully updated!',
+                showConfirmButton: false,
+                timer: 1500
+                }).then(function() {
+                $("#kt_modal_new_target_form").submit();
+           });
+        }
         
     });
 </script>
@@ -399,12 +414,4 @@ $(document).ready(function () {
     });
     });
     </script>
-@if (Session::get('message'))
-    <script>
-        toastr['success']("{{ Session::get('message') }}", 'Updated!', {
-            closeButton: true,
-            tapToDismiss: false,
-        });
-    </script>
-@endif
 @endsection

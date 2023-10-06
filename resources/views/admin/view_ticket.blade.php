@@ -239,7 +239,7 @@
 														<td>{{$row->remarks}}</td>
 					
 														<td class="text-end">
-																<a href="{{route('generate-pdf', $row->id) }}"  target="_blank"   class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
+																<a href="{{route('generate-pdf', $row->ticket_no) }}"  target="_blank"   class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1">
 																	<!--begin::Svg Icon | path: icons/duotune/art/art005.svg-->
 																	
 																	
@@ -520,13 +520,6 @@ $('input.toggle-vis').on('click', function (e) {
             });
         });
 </script>
-@if (Session::get('updatemessage'))
-    <script>
-        toastr['success']("{{ Session::get('updatemessage') }}", 'Updated!', {
-            closeButton: true,
-            tapToDismiss: false,
-        });
-    </script>
-@endif
+
 
 @endsection

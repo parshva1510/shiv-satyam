@@ -166,13 +166,12 @@ class ticket extends Controller
       $data->material = strtoupper($req->input('material'));
       if(session('role')=="Admin"){
       $data->charges = $req->input('charge');
-      $data->gross_date = date('Y-m-d', strtotime(substr($req->gross_date, 0, 10)));
-      $data->gross_time = date('Y-m-d H:i', strtotime($req->gross_date));
-      $data->tare_date =date('Y-m-d',strtotime(substr($req->tare_date,0,10)));
-      $data->tare_time = date('Y-m-d H:i',strtotime($req->tare_date));
       $data->cdate =date('Y-m-d',strtotime(substr($req->cdate,0,10)));
-
       }
+      $data->gross_date = date('Y-m-d', strtotime(substr($req->gdate, 0, 10)));
+      $data->gross_time = date('Y-m-d H:i', strtotime($req->gdate));
+      $data->tare_date =date('Y-m-d',strtotime(substr($req->tdate,0,10)));
+      $data->tare_time = date('Y-m-d H:i',strtotime($req->tdate));
       $data->payment_mode = $req->input('payment_mode');
    
       $data->remark =ucfirst($req->input('remarks'));
