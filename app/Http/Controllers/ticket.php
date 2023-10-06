@@ -22,15 +22,16 @@ class ticket extends Controller
           $vehicle_no=DB::select("select DISTINCT vehicle_no from weight_entry");
           $transporter =[];
           $tr_data=Transporter::all();
-          $sr_no = transporter::get()->last()->sr_no;
+          
           //$ticket_no =(weight_entry::get()->last()->ticket_no) +  1;
          $ticket_no=DB::select("SELECT ticket_no from weight_entry order by sr_no limit 1");
          //dd($ticket_no);  
          if($ticket_no==NULL)
-         {  $ticket_no=20232400001;}
-         else{$ticket_no =(weight_entry::get()->last()->ticket_no) +  1;}
-         // $id =( weight_entry::get()->last()->sr_no) + 1;
-    
+         {  $ticket_no=20232400001;
+            $sr_no=0;}
+         else{
+            $sr_no = transporter::get()->last()->sr_no;
+            $ticket_no =(weight_entry::get()->last()->ticket_no) +  1;}
           return view('admin.add_ticket',["transporter" => $transporter,'sr_no' => $sr_no, 'tr_data'=>$tr_data,'ticket_no'=> $ticket_no,'data'=>$data,'material' => $material,'vehicle_no'=>$vehicle_no]);
      }
      public function add_ticket(Request $req)
@@ -230,9 +231,9 @@ class ticket extends Controller
       $data=DB::select("SELECT *,weight_entry.remark as remarks ,weight_entry.sr_no as id from weight_entry JOIN transporter on transporter.sr_no=weight_entry.transpoter_no  ORDER BY weight_entry.sr_no DESC");
       if($status<>0)
       {
-        return redirect()->route('view_ticket')-> with ('message', 'Details Changed Successfully!') ;
+        return redirect()->route('view_ticket')-> with ('updatemessage', 'Details Changed Successfully!') ;
       }else{
-        return redirect()->route('view_ticket')-> with ('message', 'Details Not Changed Successfully!') ;
+        return redirect()->route('view_ticket')-> with ('updatemessage', 'Details Not Changed Successfully!') ;
       }
    }
   

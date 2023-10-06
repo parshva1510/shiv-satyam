@@ -8,8 +8,15 @@ class client extends Controller
 {
     public function show_client()
     {
-        $sr_no = transporter::get()->last()->sr_no;
         $data=DB::select('select * from transporter ORDER BY transporter.sr_no DESC');
+        if($data==NULL)
+        {
+            $sr_no=0;
+        }else
+        {
+            $sr_no = transporter::get()->last()->sr_no;
+        }
+       
         return view('admin.add_client', ['sr_no' => $sr_no],['data' => $data]);       
     }
     public function add_client(Request $req)

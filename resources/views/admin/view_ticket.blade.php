@@ -520,9 +520,9 @@ $('input.toggle-vis').on('click', function (e) {
             });
         });
 </script>
-@if (Session::get('message'))
+@if (Session::get('updatemessage'))
     <script>
-        toastr['success']("{{ Session::get('message') }}", 'Updated!', {
+        toastr['success']("{{ Session::get('updatemessage') }}", 'Updated!', {
             closeButton: true,
             tapToDismiss: false,
         });
