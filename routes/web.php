@@ -21,6 +21,9 @@ use App\Http\Middleware\AuthCheck;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::post('login',[authentication::class,'check_user'])->name('check_user');
+Route::get('login',[authentication::class,'destroy'])->name('destroy');
+Route::get('/',[authentication::class,'login'])->name('login');
 Route::group(['middleware'=>['AuthCheck']], function()
 {
 
@@ -89,7 +92,8 @@ Route::POST('add_ticket',[ticket::class,'add_ticket'])->name('add_ticket');
 
 Route::post('update_ticket',[ticket::class,'update_ticket'])->name('update_ticket');
 Route::get('/delete_ticket/{sr_no}',[ticket::class,'delete_ticket'])->name('delete_ticket');
-
+Route::get('/jk',[ticket::class,'test']);
+Route::get('get_paymentdetails/{id1}/{id2}',[paymentController::class,'get_paymentdetails']);
 
 });
 
@@ -98,8 +102,4 @@ Route::get('/delete_ticket/{sr_no}',[ticket::class,'delete_ticket'])->name('dele
 
 
 //Route::get('login',[authentication::class,'login'])->name('login');
-Route::post('login',[authentication::class,'check_user'])->name('check_user');
-Route::get('login',[authentication::class,'destroy'])->name('destroy');
-Route::get('/',[authentication::class,'login'])->name('login');
-Route::get('/jk',[ticket::class,'test']);
-Route::get('get_paymentdetails/{id1}/{id2}',[paymentController::class,'get_paymentdetails']);
+

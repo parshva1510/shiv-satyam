@@ -201,6 +201,8 @@
                 </div>
                 <!--end:Menu sub-->  
                 <!--begin:Menu sub-->
+                @php $status=DB::SELECT("select * from payment"); @endphp
+                @if($status != NULL)
                 <div class="menu-sub menu-sub-accordion menu-active-bg">
                     <!--begin:Menu item-->
                     <div class="menu-item">
@@ -209,12 +211,14 @@
                             <span class="menu-bullet">
                                 <span class="bullet bullet-dot"></span>
                             </span>
+                           
                             <span class="menu-title">Payment Report</span>
                         </a>
                         <!--end:Menu link-->
                     </div>
                     <!--end:Menu item-->
                 </div>
+                @endif
                 <!--end:Menu sub--> 
 
             </div>

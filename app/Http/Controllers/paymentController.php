@@ -117,15 +117,18 @@ class paymentController extends Controller
       //dd($totalvalues);
 
       $lastEntry = end($ledgerEntries);
-      if($lastEntry<>NULL){
+     
+      if($lastEntry){
+        $sr_no=1;
+        $next_rec_no="2023-24/".$sr_no;}
+       
+      else{
         $sr_no = payment::get()->last()->sr_no;
         $rec_no= payment::get()->last()->receipt_no;
         $temp=substr($rec_no,0,8);
         $next_rec_no= $temp . $sr_no+1;
+
       }
-      else{
-        $sr_no=1;
-        $next_rec_no="2023-24/".$sr_no;}
       
         return view('admin.edit_payment',['ledger'=>$ledgerEntries,'transporter' => $transporter,'lastentry'=>$lastEntry,'name'=>$transportername,'nextrcpt'=>$next_rec_no,'id'=>$id,'totalvalues'=>$totalvalues]);
       //return view('admin.edit_payment',['transporter' => $transporter,'name'=>$transportername,'nextrcpt'=>$next_rec_no,'id'=>$id,'totalvalues'=>$totalvalues]);

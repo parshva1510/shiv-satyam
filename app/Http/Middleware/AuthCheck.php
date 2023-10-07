@@ -16,11 +16,11 @@ class AuthCheck
     public function handle(Request $request, Closure $next): Response
     {
         
-        if(!session()->has('user')){
-            return redirect('login')->with('fail','you must be loggedin');
+        if(session()->get('user')){
+            return $next($request);
         }
         else{
-            return $next($request);
+            return redirect('login');
         }
     }
 }

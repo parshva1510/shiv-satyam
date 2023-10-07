@@ -50,9 +50,6 @@ class reportcontroller extends Controller
      $rec_no= payment::get()->last()->receipt_no;
      $temp=substr($rec_no,0,8);
      $next_rec_no= $temp . $sr_no+1;
-   //dd($lastEntry);
-   //$ledgerEntries = ledger::where('transporter_id', $id)->orderBy('t_index')->get();
-   //$updatedLedgerEntries = calculateRemaining($ledgerEntries);
      return view('admin.payment_report', ['ledger'=>$ledgerEntries,'transporter' => $transporter,'lastentry'=>$lastEntry,'name'=>$transportername,'nextrcpt'=>$next_rec_no,'id'=>$id,'totalvalues'=>$totalvalues,'id'=>$id,'daterange'=>$daterange]); 
    }
 
@@ -60,9 +57,13 @@ class reportcontroller extends Controller
      $id=$req->transporter;
      $transportername = transporter::where('sr_no',$id)->first();
      $transporter=DB::select("SELECT * from transporter");
+     $daterange=$req->kt_daterangepicker_1;
+     $date1=date('Y-m-d',strtotime(substr($daterange,0,10)));
+     $date2=date('y-m-d',strtotime(substr($daterange,13)));
    //$updatedLedgerEntries = DB::select("SELECT t_index, transporter_id, credit, debit, date, receipt, description, CASE WHEN receipt IS NOT NULL THEN ( SELECT COALESCE(SUM(debit - credit), 0) FROM ledger AS inner_ledger WHERE inner_ledger.transporter_id = outer_ledger.transporter_id AND inner_ledger.t_index < outer_ledger.t_index ) - credit ELSE SUM(debit - credit) OVER (PARTITION BY transporter_id ORDER BY t_index) END AS remaining FROM ledger AS outer_ledger WHERE transporter_id = $id"); 
    // Assuming $ledgerEntries is the collection of entries from your database with transporter_id = 77.
-     $ledgerEntries = ledger::where('transporter_id', $id)->orderBy('t_index')->get();
+     //$ledgerEntries = ledger::where('transporter_id', $id)->orderBy('t_index')->get();
+     $ledgerEntries=DB::SELECT("SELECT * FROM `ledger` where transporter_id='$id' and date BETWEEN '$date1' and '$date2' order by t_index");
      $totalvalues = DB::select("SELECT sum(credit)as totalcredit, sum(debit) as totaldebit from ledger where date=CURRENT_DATE");
    //dd($totalvalues);
      $lastEntry = end($ledgerEntries);
@@ -73,9 +74,7 @@ class reportcontroller extends Controller
    //dd($lastEntry);
    //$ledgerEntries = ledger::where('transporter_id', $id)->orderBy('t_index')->get();
    //$updatedLedgerEntries = calculateRemaining($ledgerEntries);
-     $daterange=$req->kt_daterangepicker_1;
-     $date1=date('Y-m-d',strtotime(substr($daterange,0,10)));
-     $date2=date('y-m-d',strtotime(substr($daterange,13)));
+ 
      return view('admin.payment_report', ['ledger'=>$ledgerEntries,'transporter' => $transporter,'lastentry'=>$lastEntry,'name'=>$transportername,'nextrcpt'=>$next_rec_no,'id'=>$id,'totalvalues'=>$totalvalues,'id'=>$id,'daterange'=>$daterange]); 
    }
    
